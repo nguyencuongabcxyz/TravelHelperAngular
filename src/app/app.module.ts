@@ -1,24 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms'
+import { ToastrModule } from 'ngx-toastr';
+
 import { AppComponent } from './app.component';
 import { UserauthComponent } from './components/userauth/userauth.component';
 import { UserComponent } from './components/user/user.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SigninComponent } from './components/userauth/signin/signin.component';
+import { SignupComponent } from './components/userauth/signup/signup.component';
+import { HeaderComponent } from './components/user/header/header.component';
+import { FooterComponent } from './components/user/footer/footer.component';
+import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
+import { UserauthService } from './services/userauth.service';
+import {AuthInterceptor} from './auth/auth.interceptor'
 @NgModule({
   declarations: [
     AppComponent,
     UserauthComponent,
     UserComponent,
-    AdminComponent
+    AdminComponent,
+    SigninComponent,
+    SignupComponent,
+    HeaderComponent,
+    FooterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      progressBar: true
+    }),
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [UserauthService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
