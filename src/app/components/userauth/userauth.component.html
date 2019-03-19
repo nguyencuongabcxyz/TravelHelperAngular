@@ -1,3 +1,22 @@
-<p>
-  userauth works!
-</p>
+<div class="userauth">
+    <div class="header">
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="box">
+                <div class="form-box-button">
+                    <button class="btn btn-primary btn-lg" routerLink='/Userauth/SignIn' routerLinkActive='active'>Sign
+                        In</button>
+                    <button class="btn btn-primary btn-lg" routerLink='/Userauth/SignUp' routerLinkActive='active'>Sign
+                        Up</button>
+                </div>
+                <div class="form-box shadow-lg p-3 mb-5 bg-white rounded">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+    </div>
+</div>
