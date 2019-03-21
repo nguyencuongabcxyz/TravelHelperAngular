@@ -6,15 +6,24 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
 import { UserauthComponent } from './components/userauth/userauth.component';
 import { SigninComponent } from './components/userauth/signin/signin.component';
 import { SignupComponent } from './components/userauth/signup/signup.component';
+
 import { SearchHostComponent } from './components/user/search-host/search-host.component';
+
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { MessageComponent } from './components/user/message/message.component';
+import { RequestComponent } from './components/user/request/request.component';
+import { NotfoundComponent } from './components/notfound.component';
+
 const routes: Routes = [
+
   { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
   {
     path: 'Userauth', component: UserauthComponent,
     children: [
       { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
       { path: 'SignUp', component: SignupComponent },
-      { path: 'SignIn', component: SigninComponent }
+      { path: 'SignIn', component: SigninComponent },
+      { path: '**', component: NotfoundComponent },
     ]
   },
   {
@@ -22,13 +31,21 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/Users/Dashboard', pathMatch: 'full' },
       { path: 'Dashboard', component: DashboardComponent },
+
       { path: 'Profile', component: DashboardComponent },
       {
         path: 'Search',
         component: SearchHostComponent
-      }
+      },
+
+      { path: 'Profile', component: ProfileComponent },
+      { path: 'Message', component: MessageComponent },
+      { path: 'Request', component: RequestComponent },
+      { path: '**', component: NotfoundComponent },
+
     ]
   },
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({

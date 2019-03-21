@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchHostComponent implements OnInit {
 
-  peoples: number[] = [1, 2, 3];
+  peoples: number[] = [1];
 
   constructor() { }
 

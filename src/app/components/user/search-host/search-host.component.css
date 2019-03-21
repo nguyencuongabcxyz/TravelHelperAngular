@@ -3,10 +3,7 @@
   margin-bottom: 10px;
 }
 
-.right {
-  float: right;
-  margin-bottom: 10px;
-}
+
 
 .wrapper::after {
   content: '';

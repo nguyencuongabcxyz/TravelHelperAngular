@@ -1,7 +1,17 @@
 p{
-    color: red;
     font-style: italic;
 }
 button{
     width: 150px;
+}
+input{
+    text-indent: 25px;
+}
+.form-input{
+    position: relative;
+}
+.form-input i{
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }

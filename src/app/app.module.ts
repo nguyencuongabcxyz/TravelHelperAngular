@@ -18,9 +18,16 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
 
 import { UserauthService } from './services/userauth.service';
 import {AuthInterceptor} from './auth/auth.interceptor';
+
 import { SearchHostComponent } from './components/user/search-host/search-host.component';
 import { PeopleComponent } from './components/user/people/people.component';
 import { FormatDataPipe } from './pipes/format-data.pipe';
+
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { MessageComponent } from './components/user/message/message.component';
+import { RequestComponent } from './components/user/request/request.component';
+import { NotfoundComponent } from './components/notfound.component'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +41,12 @@ import { FormatDataPipe } from './pipes/format-data.pipe';
     DashboardComponent,
     SearchHostComponent,
     PeopleComponent,
-    FormatDataPipe
+    FormatDataPipe,
+    ProfileComponent,
+    MessageComponent,
+    RequestComponent,
+    NotfoundComponent
+
   ],
   imports: [
     BrowserModule,

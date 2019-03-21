@@ -1,3 +1,56 @@
-<p>
-  dashboard works!
-</p>
+<div class="row">
+  <div class="content-left col ">
+    <div class="box user-info">
+      <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+      <div class="info">
+        <p style="font-size:30px;">Name</p>
+        <p>Address</p>
+      </div>
+      <div class="status">
+        <p style="font-size:18px;">Select your status</p>
+        <select class="selectbox" [style.color]="status_value==='ACEPTING'?'green':'red'" [(ngModel)]="status_value">
+          <option class="select-items" value="ACEPTING" style="color:black;">Acepting Guests</option>
+          <option class="select-items" value="NOTACEPTING" style="color:black;">Not Acepting Guests</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="content-right col ">
+    <div class="box find-host">
+      <div class="box-header">
+        <i class="fas fa-couch"></i> <span>FIND HOST AT WHERE YOU ARE GOING TO</span>
+      </div>
+      <div class="proposed-box row">
+        <a href="#" class="col"><img class="photo img-responsive"
+            src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+        <a href="#" class="col"><img class="photo img-responsive"
+            src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+        <a href="#" class="col"><img class="photo img-responsive"
+            src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+      </div>
+      <div class="search-box">
+          <form>
+            <div class="search-form"> 
+            <input class="" type="text" placeholder="Where are you going?">
+            <button class="" type="submit"><i style="color:#a0acbb;" class="fas fa-search"></i></button>
+          </div>
+          </form>
+        
+      </div>
+
+    </div>
+    <div class="box plans">
+      <div class="box-header">
+        <i class="fas fa-plane"></i><span>YOUR TRIP'S PLANS</span>
+      </div>
+
+    </div>
+    <div class="box public-trip">
+      <div class="box-header">
+        <i class="fas fa-users"></i><span>TRAVELERS LOOKING FOR HOSTS</span>
+      </div>
+      <div class="public-trips">
+        
+      </div>
+    </div>
+  </div>

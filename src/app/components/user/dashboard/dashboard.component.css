@@ -1,0 +1,98 @@
+.content-left{
+    min-width: 320px;
+    max-width: 320px;
+    padding: 0px 5px 0px 5px !important;
+    /* margin-right: 5px !important; */
+}
+.content-right{
+    padding: 0px 5px 0px 5px !important;
+}
+.content-right .row,.col{
+    margin: 0px ;
+}
+.photo{
+    margin-left: auto;
+    margin-right: auto;
+   display: block;
+}
+.user-info{
+    padding-top: 50px;
+    text-align: center;
+}
+.info{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.status{
+    border-top: 1px solid rgba(0,0,0,0.15);
+    padding-bottom: 30px;
+    padding-top: 30px;
+}
+.info p{
+    padding: 3px 0px 3px 0px;
+    margin-bottom: 0px !important;
+}
+.selectbox {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    width: 100%;
+    text-align-last:center;
+    border: none;
+}
+.select-items {
+    font-weight: bold;
+    padding: 10px 10px 10px 10px;
+    height: 50px;
+  }
+.select-items option:hover {
+    background: #f2f2f2;
+}
+.box-header{
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.box-header span{
+    font-size: 17px;
+    font-weight: 600;
+}
+.box-header i{
+    font-size: 1.1em;;
+    padding-right: 8px;
+}
+.proposed-box{
+    padding: 15px 0px;
+}
+.search-box{
+    padding: 15px 0px;  
+    text-align: center;
+}
+ .search-form{
+    display: inline-block;
+    text-align: center;
+    position: relative;
+}
+
+.search-form input{
+    height: 40px;
+    width: 300px;
+    display: inline-block;
+    border: 2px solid #c5ccd5;
+     border-radius: 25px;
+     text-indent:20px;
+}
+.search-form input:focus { 
+    outline: none;
+}
+.search-form  button {
+    height: 40px; 
+    width: 40px;
+    position: absolute;
+    right: 5px;
+    border-radius: 25px;
+    background: none;
+    border: none;
+}
+.search-form  button:focus{
+    outline: none;
+}

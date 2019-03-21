@@ -7,7 +7,7 @@ export class FormatDataPipe implements PipeTransform {
 
   transform(value: any, start: number, end: number): any {
     if(value instanceof Array) {
-      value = value.join(',');
+      value = value.join(', ');
     }
     else {
       while(value.charAt(end) !== ' ') {
