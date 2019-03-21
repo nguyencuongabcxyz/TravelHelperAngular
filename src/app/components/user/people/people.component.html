@@ -1,4 +1,4 @@
-<div class="card" style="width: 22rem;">
+<div class="card" style="width: 25rem;">
   <div class="header">
       <img [src]="img" class="card-img-top" alt="...">
 
@@ -23,13 +23,13 @@
 
               <i class="eva eva-globe-2 wrapper-icon"></i>
 
-            <span>Speak {{test.speaks | formatData:0:10}}</span>
+            <span>Speak {{test.speaks | formatData:0:15}}</span>
           </li>
         </ul>
       </div>
   </div>
   <div class="card-body" [style.padding.px]="10">
-    <p class="card-text">{{test.content | formatData:0:100}}</p>
+    <p class="card-text">{{test.content | formatData:0:90}}</p>
   </div>
 </div>
 

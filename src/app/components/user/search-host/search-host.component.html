@@ -1,7 +1,13 @@
-<div class="wrapper">
-  <app-people
-    *ngFor="let people of peoples; let i = index"
-    [ngClass]="{left: true}"
-  >
-  </app-people>
+<div class="center">
+  <div class="wrapper">
+    <div class="alert alert-light" role="alert">
+        <b>{{peoples.length}} Results</b>
+    </div>
+    <app-people
+      *ngFor="let people of peoples; let i = index"
+      [ngClass]="{left: true, clear: i % 2 === 0 ? true : false}"
+    >
+    </app-people>
+  </div>
 </div>
+
