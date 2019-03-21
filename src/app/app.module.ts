@@ -17,7 +17,11 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 import { UserauthService } from './services/userauth.service';
-import {AuthInterceptor} from './auth/auth.interceptor'
+import {AuthInterceptor} from './auth/auth.interceptor';
+import { ProfileComponent } from './components/user/profile/profile.component';
+import { MessageComponent } from './components/user/message/message.component';
+import { RequestComponent } from './components/user/request/request.component';
+import { NotfoundComponent } from './components/notfound.component'
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +32,11 @@ import {AuthInterceptor} from './auth/auth.interceptor'
     SignupComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent,
+    MessageComponent,
+    RequestComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
