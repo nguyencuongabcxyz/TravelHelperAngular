@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="content-left col ">
+      <div class="box user-info">
+        <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+        <div class="info">
+          <p style="font-size:30px;">Name</p>
+          <p>Address</p>
+        </div>
+        <div class="status">
+          <p style="font-size:18px;" >Select your status</p>
+          <select class="selectbox" [style.color]="status_value==='ACEPTING'?'green':'red'" [(ngModel)]="status_value">
+            <option class="select-items" value="ACEPTING"  style="color:black;">Acepting Guests</option>
+            <option class="select-items" value="NOTACEPTING" style="color:black;">Not Acepting Guests</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="content-right col ">
+      
+    </div>
+  </div>

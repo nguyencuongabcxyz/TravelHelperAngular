@@ -1,5 +1,109 @@
-<a routerLink='/Users/Dashboard' routerLinkActive='active'>Dashboard</a>
-<a routerLink='/Users/Profile' routerLinkActive='active'>Profile</a>
-<a routerLink='/Users/Dashboard' routerLinkActive='active'>Request</a>
-<a routerLink='/Users/Dashboard' routerLinkActive='active'>Message</a>
-<a (click)="onLogout();" >Logout</a>
+<nav class="header-wrapper">
+    <div class="logo">
+        <a routerLink='/Users/Dashboard' routerLinkActive='active'>
+            <i class="fas fa-globe-asia"></i>
+        </a>
+    </div>
+
+    <div class="button-responsive">
+        <div class="search-responsive">
+            <button (click)="searchClick()"><i [ngStyle]="isSearch && !isMenu && {'color':'#ED6504'}"
+                    class="fas fa-search "></i></button>
+        </div>
+        <div class="menu-responsive">
+            <button (click)="menuClick();"><i [ngStyle]="isMenu && !isSearch && {'color':'#ED6504'}"
+                    class="fas fa-bars"></i></button>
+        </div>
+    </div>
+    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box">
+        <form>
+            <div class="search-form row">
+                <select class=" search-select form-control shadow-sm col" name="" id="">
+                    <option value="">Explore</option>
+                </select>
+                <div class="search-form-1 col">
+                    <input class="form-control shadow-sm" type="text" placeholder="Search for place">
+                    <button class="" type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <nav [ngStyle]="isMenu && !isSearch && {'display':'block'}" class="menu-bar">
+        <ul>
+            <li>
+                <a (click)="hideMenu();" [ngStyle]="isDashboard && curentStatus" routerLink='/Users/Dashboard'
+                    routerLinkActive='active'>
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Dashboard
+                        </span>
+
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a (click)="hideMenu();" [ngStyle]="isProfile && curentStatus" routerLink='/Users/Profile'
+                    routerLinkActive='active'>
+                    <div class="icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Profile
+                        </span>
+
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a (click)="hideMenu();" [ngStyle]="isRequest && curentStatus" routerLink='/Users/Request'
+                    routerLinkActive='active'>
+                    <div class="icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Request
+                        </span>
+
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a (click)="hideMenu();" [ngStyle]="isMessage && curentStatus" routerLink='/Users/Message'
+                    routerLinkActive='active'>
+                    <div class="icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Message
+                        </span>
+
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="" (click)="onLogout();">
+                    <div class="icon">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Logout
+                        </span>
+
+                    </div>
+
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+
+
+</nav>
