@@ -1,0 +1,36 @@
+<div class="card" style="width: 32rem;">
+  <div class="header">
+      <img [src]="img" class="card-img-top" alt="...">
+
+      <div class="" style="width: 18rem;">
+        <ul class="list-group">
+          <li class="list-group-item name">{{test.name}}</li>
+          <li class="list-group-item">
+            <span class="wrapper-icon">
+                <i class="eva eva-people-outline"></i>
+            </span>
+            <span>{{test.friends.length}} Friend{{test.friends.length > 1 ? 's' : ''}}</span>
+          </li>
+
+          <li class="list-group-item">
+            <span class="wrapper-icon">
+                <i class="eva eva-briefcase"></i>
+            </span>
+            <span>{{test.occupation}}</span>
+          </li>
+
+          <li class="list-group-item">
+            <span class="wrapper-icon">
+                <i class="eva eva-globe-2"></i>
+            </span>
+            <span>Speak {{test.speaks | formatData:0:15}}</span>
+          </li>
+        </ul>
+      </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{test.content | formatData:0:250}}</p>
+  </div>
+</div>
+
+

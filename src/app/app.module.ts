@@ -17,7 +17,10 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 import { UserauthService } from './services/userauth.service';
-import {AuthInterceptor} from './auth/auth.interceptor'
+import {AuthInterceptor} from './auth/auth.interceptor';
+import { SearchHostComponent } from './components/user/search-host/search-host.component';
+import { PeopleComponent } from './components/user/people/people.component';
+import { FormatDataPipe } from './pipes/format-data.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,10 @@ import {AuthInterceptor} from './auth/auth.interceptor'
     SignupComponent,
     HeaderComponent,
     FooterComponent,
-    DashboardComponent
+    DashboardComponent,
+    SearchHostComponent,
+    PeopleComponent,
+    FormatDataPipe
   ],
   imports: [
     BrowserModule,

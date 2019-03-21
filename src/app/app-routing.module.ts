@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
 import { UserauthComponent } from './components/userauth/userauth.component';
 import { SigninComponent } from './components/userauth/signin/signin.component';
 import { SignupComponent } from './components/userauth/signup/signup.component';
+import { SearchHostComponent } from './components/user/search-host/search-host.component';
 const routes: Routes = [
   { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       { path: '', redirectTo: '/Users/Dashboard', pathMatch: 'full' },
       { path: 'Dashboard', component: DashboardComponent },
       { path: 'Profile', component: DashboardComponent },
+      {
+        path: 'Search',
+        component: SearchHostComponent
+      }
     ]
   },
 ];

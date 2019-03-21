@@ -1,0 +1,15 @@
+.left {
+  float: left;
+  margin-bottom: 10px;
+}
+
+.right {
+  float: right;
+  margin-bottom: 10px;
+}
+
+.wrapper::after {
+  content: '';
+  display: block;
+  clear: both;
+}
