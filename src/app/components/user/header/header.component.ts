@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../services/user.service'
 import { Subject } from 'rxjs'
-import { User } from './../../../models/user'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
- 
+
 
   textInput = "";
   textSelect = "host";
@@ -31,16 +30,42 @@ export class HeaderComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/Userauth']);
   }
-  onKeyup() {
-    this.searchedSubject.next(this.textInput);
-    if (this.textInput.length < 1) {
-      this.cityNames = [];
+  onKeyup(event: KeyboardEvent) {
+    // console.log('onkeyup');
+    const { keyCode } = event;
+    if(keyCode === 13) {
+      this.cityNames = null;
+    } else {
+      this.searchedSubject.next(this.textInput);
+      if (this.textInput.length < 1) {
+        this.cityNames = [];
+      }
     }
   }
   onSubmit(form) {
+    console.log(form.value);
     form.value.input = this.textInput;
     this.cityNames = [];
-    console.log(form.value);
-    this.router.navigate(['/Users/Message'], { queryParams: { type: form.value.select, location: form.value.input } });
+    this.router.navigate(['/Users/Search'], { queryParams: { type: form.value.select, location: form.value.input } });
+  }
+
+  onSearch(form) {
+    // console.log('onsearch');
+    if(!this.textInput){
+      return;
+    }
+    if(!this.textInput.trim()) {
+      return;
+    }
+    // if(form.value.input){
+    //   this.textInput = ;
+    // }
+
+    this.router.navigate(['Search'], {relativeTo: this.activatedRoute, queryParams: {type: form.value.select, location: this.textInput}});
+    this.cityNames = [];
+  }
+
+  onClickInputSearch() {
+    console.log('click');
   }
 }

@@ -1,0 +1,49 @@
+.footer {
+  display: flex;
+  padding: 0 34.5px;
+  flex-direction: row;
+  height: 100%;
+}
+
+.info {
+  font-size: 32px;
+  width: 400px;
+}
+
+.about {
+  font-weight: 700;
+}
+
+.website {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.member {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li i{
+  color: #34495e;
+  background: white;
+  border-radius: 50%;
+  border: 1px solid #EEE;
+  font-size: 16px;
+  transition: 500ms all;
+}
+
+.list li i:hover {
+  cursor: pointer;
+  transform: scale(1.5);
+}

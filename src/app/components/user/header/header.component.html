@@ -25,10 +25,10 @@
                     <option value="traveler">Find Traveler</option>
                 </select>
                 <div class="search-form-1 col">
-                    <button class="" type="submit"><i class="fas fa-search"></i></button>
-                    <input [(ngModel)]="textInput" (keyup)="onKeyup();" class="form-control shadow-sm" type="text"
+                    <button class="" type="submit" (click)="onSearch(formSearch)"><i class="fas fa-search"></i></button>
+                    <input [(ngModel)]="textInput"  (keyup)="onKeyup($event);" class="form-control shadow-sm" type="text"
                         name="input" placeholder="Search for Place" >
-                        
+
                     <div class="dropdown">
                         <ul>
                             <li *ngFor="let city of cityNames"><a (click)="textInput=city; onSubmit(formSearch);">

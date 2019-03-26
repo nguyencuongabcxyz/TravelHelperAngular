@@ -1,0 +1,19 @@
+legend{
+  width: 125px;
+  margin-left: 20px;
+}
+
+fieldset {
+  border-width: 2px;
+  border-style: groove;
+  border-color: threedface;
+  border-image: initial;
+}
+
+.output {
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+input {
+  margin: .4rem;
+}

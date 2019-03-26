@@ -1,4 +1,4 @@
-<div class="center">
+<!-- <div class="center">
   <div class="wrapper">
     <div class="alert alert-light" role="alert">
         <b>{{peoples.length}} Results</b>
@@ -9,5 +9,32 @@
     >
     </app-people>
   </div>
-</div>
+</div> -->
 
+<div class="row">
+  <div class="col-sm-2"></div>
+
+  <div class="col-sm">
+    <!-- <div class="lds-ring" *ngIf="!peoples"><div></div><div></div><div></div><div></div></div> -->
+
+    <div class="d-flex justify-content-center text-secondary m-3" *ngIf="!peoples">
+        <div class="spinner-border" role="status" style="width: 3em; height: 3em;">
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div class="alert alert-light" *ngIf="length === 0;else Result">No result</div>
+    <ng-template #Result>
+        <div class="alert alert-light">{{length}} result{{length > 1 ? 's' : ''}}</div>
+    </ng-template>
+    <div class="row">
+      <div class="col-sm-6" *ngFor="let people of peoples" [ngStyle]="{padding: '5px'}">
+        <app-people [user]="people"></app-people>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-2">
+
+  </div>
+</div>
