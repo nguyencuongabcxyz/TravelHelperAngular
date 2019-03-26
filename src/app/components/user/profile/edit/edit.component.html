@@ -1,0 +1,128 @@
+<div class="row">
+  <div class="content-left col ">
+    <div class="box user-info">
+      <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+      <p style="font-size:30px;">{{user.fullName}}</p>
+      <p>{{user.address}}</p>
+      <div class="box-header">
+        <span>OVERVIEW</span>
+      </div>
+      <div class="overview">
+        abc
+      </div>
+
+    </div>
+  </div>
+  <div class="content-right col">
+    <div class="box">
+      <div class=" tab-bar">
+
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link " [ngClass]="{'active':isabout}" (click)="isabout=true;">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [ngClass]="{'active':!isabout}" (click)="isabout=false;">Myhome</a>
+          </li>
+        </ul>
+
+
+
+        <!-- <ul>
+          <li><a (click)="isabout=true;"><span>About</span></a></li>
+          <li><a (click)="isabout=false;"><span>Myhome</span></a></li>
+        </ul> -->
+      </div>
+      <div [ngClass]="{'selected':isabout}" class="about-content">
+        <form class="form-group" [formGroup]="formabout" (submit)="onSubmit(formabout);" autocomplete="off">
+          <div class="form-group row">
+            <label class="col-3 col-form-label" for="Status">Status</label>
+            <div class="col-4">
+              <select id="Status" class="form-control" formControlName="Status">
+                <option value="false" selected>Not Accepting Guest</option>
+                <option value="true">Accepting Guest</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="FullName" class="col-3 col-form-label">Full Name</label>
+            <div class="col-9">
+              <input type="text" class="form-control" id="FullName" placeholder="Full Name" formControlName="FullName">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="Address" class="col-3 col-form-label">Address</label>
+            <div class="col-4"
+              (clickOutside)="cityNames=[];formabout.get('Address').setValue(formabout.get('Address').value);">
+              <input  type="text" class="form-control" id="Address" (keyup)="onKeyup();" onfocus="this.value=''"
+                placeholder="Address" formControlName="Address">
+              <input autofocus style="position: absolute;bottom :0px; display: none;" type="text" class="form-control" (keyup)="onKeyup();"
+                placeholder="Address">
+              <div class="dropdown">
+
+                <ul>
+                  <li *ngFor="let city of cityNames"><a
+                      (click)="formabout.get('Address').setValue(city); cityNames=[];">
+                      <span>{{city}}</span>
+                    </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label" for="Gender">Gender</label>
+            <div class="col-4">
+              <select id="Gender" class="form-control" formControlName="Gender">
+                <option value="true">Male</option>
+                <option value="false">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="example-date-input" class="col-3 col-form-label">BirthDay</label>
+            <div class="col-9">
+              <input class="form-control" type="datetime" value="" id="example-date-input" formControlName="BirthDay">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Occupation" class="col-3 col-form-label">Occupation</label>
+            <div class="col-9">
+              <input type="text" class="form-control" id="Occupation" placeholder="Occupation"
+                formControlName="Occupation">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="FluentLanguage" class="col-3 col-form-label">Fluent Language</label>
+            <div class="col-9">
+              <input type="text" class="form-control" id="FluentLanguage" placeholder="Fluent Language"
+                formControlName="FluentLanguage">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="LearningLanguage" class="col-3 col-form-label">Learning Language</label>
+            <div class="col-9">
+              <input type="text" class="form-control" id="LearningLanguage" placeholder="Learning Language"
+                formControlName="LearningLanguage">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="About">About</label>
+            <textarea class="form-control" id="About" rows="5" placeholder="About" formControlName="About"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="Interest">Interest</label>
+            <textarea class="form-control" id="Interest" rows="5" placeholder="Interest"
+              formControlName="Interest"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </div>
+      <div [ngClass]="{'selected':!isabout}" class="myhome-content">
+        <form>
+          <button type="submit" class="btn btn-success">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

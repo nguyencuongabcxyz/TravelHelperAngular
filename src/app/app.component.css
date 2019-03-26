@@ -1,7 +1,7 @@
 .container{
     padding-top: 70px;
-    margin-top: 10px;
     max-width: 1280px;
+    
 }
 .container .row,.col{
     padding: 0px ;
@@ -12,19 +12,31 @@
     top: 0;
     width: 100%;
     background-color: white;
-    height: 70px;
     position: fixed;
     z-index: 1000;
 }
 .footer{
-    margin-top: 10px;
+    position: absolute;
     height: 200px;
     background-color: white;
-    clear:both;
+    width: 100%;
+    bottom: 0;
 }
 .box{
     background-color: white;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175) !important;
     border-radius: 0.15rem !important;
     margin-bottom: 10px;
+}
+.box-header{
+    padding: 15px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.box-header span{
+    font-size: 17px;
+    font-weight: 600;
+}
+.box-header i{
+    font-size: 1.1em;;
+    padding-right: 8px;
 }

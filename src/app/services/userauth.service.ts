@@ -8,38 +8,38 @@ import { HttpClient } from "@angular/common/http";
 export class UserauthService {
 
     constructor(private fb: FormBuilder, private http: HttpClient) { }
-    readonly BaseURI = 'http://localhost:50792/api';
+    readonly BaseURI = 'https://travelhelperwebsite.azurewebsites.net/api';
 
-    formModel = this.fb.group({
-        UserName: ['', Validators.required],
-        Email: ['', Validators.email],
-        FullName: [''],
-        Passwords: this.fb.group({
-            Password: ['', [Validators.required, Validators.minLength(4)]],
-            ConfirmPassword: ['', Validators.required]
-        }, { validator: this.comparePasswords })
+    // formModel = this.fb.group({
+    //     UserName: ['', Validators.required],
+    //     Email: ['', Validators.email],
+    //     FullName: [''],
+    //     Passwords: this.fb.group({
+    //         Password: ['', [Validators.required, Validators.minLength(4)]],
+    //         ConfirmPassword: ['', Validators.required]
+    //     }, { validator: this.comparePasswords })
 
-    });
+    // });
 
-    comparePasswords(fb: FormGroup) {
-        let confirmPswrdCtrl = fb.get('ConfirmPassword');
-        //passwordMismatch
-        //confirmPswrdCtrl.errors={passwordMismatch:true}
-        if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
-            if (fb.get('Password').value != confirmPswrdCtrl.value)
-                confirmPswrdCtrl.setErrors({ passwordMismatch: true });
-            else
-                confirmPswrdCtrl.setErrors(null);
-        }
-    }
+    // comparePasswords(fb: FormGroup) {
+    //     let confirmPswrdCtrl = fb.get('ConfirmPassword');
+    //     //passwordMismatch
+    //     //confirmPswrdCtrl.errors={passwordMismatch:true}
+    //     if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
+    //         if (fb.get('Password').value != confirmPswrdCtrl.value)
+    //             confirmPswrdCtrl.setErrors({ passwordMismatch: true });
+    //         else
+    //             confirmPswrdCtrl.setErrors(null);
+    //     }
+    // }
 
-    register() {
-        var body = {
-            UserName: this.formModel.value.UserName,
-            Email: this.formModel.value.Email,
-            FullName: this.formModel.value.FullName,
-            Password: this.formModel.value.Passwords.Password
-        };
+    register(body) {
+        // var body = {
+        //     UserName: this.formModel.value.UserName,
+        //     Email: this.formModel.value.Email,
+        //     FullName: this.formModel.value.FullName,
+        //     Password: this.formModel.value.Passwords.Password
+        // };
         return this.http.post(this.BaseURI + '/ApplicationUser/Register', body);
     }
 
@@ -47,7 +47,7 @@ export class UserauthService {
         return this.http.post(this.BaseURI + '/ApplicationUser/Login', formData);
     }
 
-    getUserProfile() {
-        return this.http.get(this.BaseURI + '/UserProfile');
-    }
+    // getUserProfile() {
+    //     return this.http.get(this.BaseURI + '/Users');
+    // }
 }

@@ -1,21 +1,31 @@
 <div class="row">
-    <div class="content-left col ">
+  <div class="content-left col ">
       <div class="box user-info">
-        <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
-        <div class="info">
-          <p style="font-size:30px;">Name</p>
-          <p>Address</p>
+          <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+          <div class="info">
+            <p style="font-size:30px;">{{user.fullName}}</p>
+            <p>{{user.address}}</p>
+          </div>
+          
         </div>
-        <div class="status">
-          <p style="font-size:18px;" >Select your status</p>
-          <select class="selectbox" [style.color]="status_value==='ACEPTING'?'green':'red'" [(ngModel)]="status_value">
-            <option class="select-items" value="ACEPTING"  style="color:black;">Acepting Guests</option>
-            <option class="select-items" value="NOTACEPTING" style="color:black;">Not Acepting Guests</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="content-right col ">
-      
-    </div>
   </div>
+  <div class="content-right col ">
+    <div class="box status-bar">
+        <span *ngIf="user.id" class="status-value" [style.color]="user.status?'green':'red'">
+            {{user.status?'Acepting Guest':'Not Acepting Guest'}}
+          </span>
+      <button *ngIf="user.id" class="btn btn-primary" routerLink="/Users/Profile/Edit" >Edit My sProfile</button>
+    </div>
+    <div class="box menu-bar">
+        <ul>
+          <li><a routerLinkActive='is-selected' routerLink="/Users/Profile/About" ><span>About</span></a></li>
+          <li><a routerLinkActive='is-selected' routerLink="/Users/Profile/Myhome"><span>My Home</span></a></li>
+          <li><a href=""><span>Photos</span></a></li>
+          <li><a href=""><span>References</span></a></li>
+          <li><a href=""><span>Friends</span></a></li>
+          <li><a href=""><span>Favorites</span></a></li>
+        </ul>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
