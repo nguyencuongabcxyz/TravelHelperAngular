@@ -29,6 +29,7 @@ import { PeopleComponent } from './components/user/people/people.component';
 import { EditComponent } from './components/user/profile/edit/edit.component';
 import { SearchHostComponent } from './components/user/search-host/search-host.component';
 import { FormatDataPipe } from './pipes/format-data.pipe';
+import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
 
 
 
@@ -56,6 +57,7 @@ import { FormatDataPipe } from './pipes/format-data.pipe';
     NotfoundComponent,
     AboutComponent,
     EditComponent,
+    PublicTripComponent,
 
 
 

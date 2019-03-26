@@ -17,6 +17,7 @@ import { NotfoundComponent } from './components/notfound.component';
 import { AboutComponent } from './components/user/profile/about/about.component'
 import { PeopleComponent } from './components/user/people/people.component';
 import { EditComponent } from './components/user/profile/edit/edit.component';
+import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
 
 const routes: Routes = [
 
@@ -51,11 +52,15 @@ const routes: Routes = [
         path: 'Search',
         component: SearchHostComponent
       },
+      {
+        path: 'PublicTrip',
+        component: PublicTripComponent
+      },
 
 
       { path: 'Message', component: MessageComponent },
       { path: 'Request', component: RequestComponent },
-    
+
       { path: '**', component: NotfoundComponent },
 
     ]
