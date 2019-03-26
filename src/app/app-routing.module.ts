@@ -6,13 +6,18 @@ import { DashboardComponent } from './components/user/dashboard/dashboard.compon
 import { UserauthComponent } from './components/userauth/userauth.component';
 import { SigninComponent } from './components/userauth/signin/signin.component';
 import { SignupComponent } from './components/userauth/signup/signup.component';
+
+import { SearchHostComponent } from './components/user/search-host/search-host.component';
+
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { MessageComponent } from './components/user/message/message.component';
 import { RequestComponent } from './components/user/request/request.component';
 import { NotfoundComponent } from './components/notfound.component';
+
 import { AboutComponent } from './components/user/profile/about/about.component'
 import { PeopleComponent } from './components/user/people/people.component';
 import { EditComponent } from './components/user/profile/edit/edit.component';
+
 const routes: Routes = [
 
   { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
@@ -30,6 +35,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/Users/Dashboard', pathMatch: 'full' },
       { path: 'Dashboard', component: DashboardComponent },
+
       {
         path: 'Profile', component: ProfileComponent,
         children: [
@@ -39,17 +45,19 @@ const routes: Routes = [
         ]
       },
       { path: 'Profile/Edit', component: EditComponent },
+
+
+      {
+        path: 'Search',
+        component: SearchHostComponent
+      },
+
+
       { path: 'Message', component: MessageComponent },
       { path: 'Request', component: RequestComponent },
-      {
-        path: 'People/:id', component: PeopleComponent,
-        children: [
-          // { path: '', redirectTo: '/Users/People/', pathMatch: 'full' },
-          { path: 'About', component: AboutComponent },
-          { path: 'Myhome', component: AboutComponent },
-        ]
-      },
+    
       { path: '**', component: NotfoundComponent },
+
     ]
   },
   { path: '**', component: NotfoundComponent },

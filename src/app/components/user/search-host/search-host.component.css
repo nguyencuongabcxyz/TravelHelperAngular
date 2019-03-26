@@ -1,0 +1,22 @@
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.left {
+  float: left;
+  margin-bottom: 10px;
+
+}
+
+.clear {
+  clear: both;
+  margin-right: 10px;
+}
+
+
+.wrapper::after {
+  content: '';
+  display: block;
+  clear: both;
+}

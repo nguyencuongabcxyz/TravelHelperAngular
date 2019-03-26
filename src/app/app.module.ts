@@ -17,6 +17,7 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 import { UserauthService } from './services/userauth.service';
+
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { MessageComponent } from './components/user/message/message.component';
@@ -26,6 +27,13 @@ import { ClickOutsideModule } from 'ng-click-outside';
 import { AboutComponent } from './components/user/profile/about/about.component';
 import { PeopleComponent } from './components/user/people/people.component';
 import { EditComponent } from './components/user/profile/edit/edit.component';
+import { SearchHostComponent } from './components/user/search-host/search-host.component';
+import { FormatDataPipe } from './pipes/format-data.pipe';
+
+
+
+
+
 
 
 @NgModule({
@@ -39,13 +47,18 @@ import { EditComponent } from './components/user/profile/edit/edit.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
+    SearchHostComponent,
+    PeopleComponent,
+    FormatDataPipe,
     ProfileComponent,
     MessageComponent,
     RequestComponent,
     NotfoundComponent,
     AboutComponent,
-    PeopleComponent,
-    EditComponent
+    EditComponent,
+
+
+
   ],
   imports: [
     BrowserModule,

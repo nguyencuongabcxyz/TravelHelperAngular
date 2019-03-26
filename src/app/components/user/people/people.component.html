@@ -1,31 +1,38 @@
-<div class="row">
-  <div class="content-left col ">
-      <div class="box user-info">
-          <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
-          <div class="info">
-            <p style="font-size:30px;">{{user.fullName}}</p>
-            <p>{{user.address}}</p>
-          </div>
-          
-        </div>
-  </div>
-  <div class="content-right col ">
-    <div class="box status">
-        <span *ngIf="user.id" class="status-value" [style.color]="user.status?'green':'red'">
-            {{user.status?'Acepting Guest':'Not Acepting Guest'}}
-          </span>
-      <button *ngIf="user.id" class="btn btn-primary">Send Request</button>
-    </div>
-    <div class="box menu-bar">
-        <ul>
-          <li><a href=""><span>About</span></a></li>
-          <li><a href=""><span>My Home</span></a></li>
-          <li><a href=""><span>Photos</span></a></li>
-          <li><a href=""><span>References</span></a></li>
-          <li><a href=""><span>Friends</span></a></li>
-          <li><a href=""><span>Favorites</span></a></li>
+
+<div class="card" style="width: 25rem;">
+  <div class="header">
+      <img [src]="img" class="card-img-top" alt="...">
+
+      <div class="" style="width: 18rem;">
+        <ul class="list-group">
+          <li class="list-group-item name">{{test.name}}</li>
+          <li class="list-group-item">
+
+                <i class="eva eva-message-square wrapper-icon"></i>
+
+            <b>{{test.ref.length}}</b> Reference{{test.ref.length > 1 ? 's' : ''}}
+          </li>
+
+          <li class="list-group-item">
+
+                <i class="eva eva-briefcase wrapper-icon"></i>
+
+            <span>{{test.occupation}}</span>
+          </li>
+
+          <li class="list-group-item">
+
+              <i class="eva eva-globe-2 wrapper-icon"></i>
+
+            <span>Speak {{test.speaks | formatData:0:15}}</span>
+          </li>
         </ul>
-    </div>
-    <router-outlet></router-outlet>
+      </div>
+  </div>
+  <div class="card-body" [style.padding.px]="10">
+    <p class="card-text">{{test.content | formatData:0:90}}</p>
   </div>
 </div>
+
+
+>>>>>>> master
