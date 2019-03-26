@@ -1,0 +1,135 @@
+.content-left{
+/* min-width: 300px;
+max-width: 400px; */
+padding: 0px 5px 0px 5px !important;
+flex: 0 0 33.333333%;
+max-width: 33.333333%;
+}
+.content-right{
+max-width: 100%;
+flex: 0 0 66.666667%;
+max-width: 66.666667%;
+padding: 0px 5px 0px 5px !important;
+}
+.user-info{
+    text-align: center;
+}
+.photo{
+    padding-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+   display: block;
+   border-radius: 50%;
+}
+.box-header{
+    text-align: left;
+    border-top: 1px solid rgba(0,0,0,0.15);
+}
+.overview{
+ text-align: left;
+ padding-left: 20px;
+}
+.tab-bar{
+    height: 50px;
+    display:flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.tab-bar ul{
+list-style: none;
+margin: 0;
+padding: 0;
+
+}
+.tab-bar ul li{
+    display: inline-block;
+    text-align: center; 
+}
+.tab-bar ul li a{
+    line-height: 50px;
+    padding: 0px 15px;
+    display: block;
+    text-decoration: none;
+}
+.tab-bar ul li a span{
+    font-size: 1em; 
+}
+.tab-bar ul li a:hover{
+    cursor: pointer;
+    color: #ED6504;
+}
+.about-content{
+    padding: 20px;
+    display: none;
+}    
+.about-content label{
+    word-wrap: break-word;
+}
+.myhome-content{
+    padding: 20px;
+    display: none;
+}   
+.content-right .selected{
+    display: block!important;
+}
+.content-right .active{
+    color: #ED6504;
+}
+.content-right select:hover{
+    cursor: pointer;
+}
+.dropdown{
+    z-index:10 ;
+    max-height: 200px;
+    overflow-y: scroll;
+    width: 100%;
+    position: absolute;
+    text-align: left;
+    /* border: #f2f2f2 1px solid; */
+    
+}
+.dropdown ul{
+    padding: 0px !important;
+    margin: 0px !important;
+    list-style-type: none;
+    width: 100%;
+}
+
+.dropdown ul li{
+    border-bottom: #f2f2f2 1px solid;
+    border-right: #f2f2f2 1px solid;
+    border-left: #f2f2f2 1px solid;
+    background: white;
+   border-radius: 0.1em;
+}
+.dropdown ul li:hover{
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+.dropdown ul a{
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    min-height: 40px;
+    overflow-wrap: break-word;
+    width: 100%;
+}
+.dropdown ul a span{
+    padding-left: 15px;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: black;
+}
+
+@media screen and (max-width: 768px){
+    .content-left{
+        flex: 0 0 100%;
+        max-width: 100%;
+       order: 2;
+    }
+    .content-right{
+        flex: 0 0 100%;
+        max-width: 100%;
+        order: 1;
+    }
+}

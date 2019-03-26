@@ -2,19 +2,30 @@
     /* padding:0px 10px 0px 10px;  */
     max-width: 1280px;
     margin: auto;
-    
+    display: flex;
+    align-items: center;
+    height: 66px;
 }
 .logo{
-    height: 70px;
+    
     padding-left: 10px;
     float: left;
 }
 .logo a{
+    display: inline-block;
     color: #ED6504;
 }
 .logo i{
-    margin-top: 10px;
     font-size: 50px;
+}
+.menu-bar {
+    float: right;
+    margin-left: auto;
+    margin-right: 60px;
+}
+.menu-bar button{
+    margin-left: 20px;
+    width: 150px;
 }
 /*---header---*/
 .container{
@@ -22,36 +33,18 @@
     background-size: cover;
     background-repeat: no-repeat;
     max-width: 100% !important;
-    float: left;
-    min-height: 40em;
+}
+.container-wrapper{
+   max-width: 1366px;
 }
 
 
-.content{
-    float: left;
-    width: 63%;
-    
-}
 .auth-box{
-    float: right;
-    width: 35%;
-    
+    min-height: 600px;
+    min-width: 450px;
+    max-width: 450px;
 }
-.form-box-button {
-    float: right;
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-    height: 70px;
-}
-.form-box-button button{
-    margin-left: 20px;
-    width: 150px;
-}
-.form-box{
-    min-height: 500px;
-    width: 25em;
-    
-}
+
+
 
 

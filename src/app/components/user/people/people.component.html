@@ -10,16 +10,16 @@
         </div>
   </div>
   <div class="content-right col ">
-    <div class="box status-bar">
+    <div class="box status">
         <span *ngIf="user.id" class="status-value" [style.color]="user.status?'green':'red'">
             {{user.status?'Acepting Guest':'Not Acepting Guest'}}
           </span>
-      <button *ngIf="user.id" class="btn btn-primary" routerLink="/Users/Profile/Edit" >Edit My sProfile</button>
+      <button *ngIf="user.id" class="btn btn-primary">Send Request</button>
     </div>
     <div class="box menu-bar">
         <ul>
-          <li><a routerLinkActive='is-selected' routerLink="/Users/Profile/About" ><span>About</span></a></li>
-          <li><a routerLinkActive='is-selected' routerLink="/Users/Profile/Myhome"><span>My Home</span></a></li>
+          <li><a href=""><span>About</span></a></li>
+          <li><a href=""><span>My Home</span></a></li>
           <li><a href=""><span>Photos</span></a></li>
           <li><a href=""><span>References</span></a></li>
           <li><a href=""><span>Friends</span></a></li>

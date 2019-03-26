@@ -7,8 +7,8 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from
 export class AuthGuard implements CanActivate {
 
 
-  constructor(private router: Router) {
-  }
+  constructor(private router: Router) {}
+  
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {

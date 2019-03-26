@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserauthService } from './../../../services/userauth.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -8,16 +9,46 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(public service: UserauthService, private toastr: ToastrService) { }
+
+  constructor(private fb: FormBuilder, public service: UserauthService, private toastr: ToastrService) { }
 
   ngOnInit() {
-    this.service.formModel.reset();
+    this.formModel.reset();
   }
+  formModel = this.fb.group({
+    UserName: ['', Validators.required],
+    Email: ['', Validators.email],
+    FullName: [''],
+    Passwords: this.fb.group({
+      Password: ['', [Validators.required, Validators.minLength(4)]],
+      ConfirmPassword: ['', Validators.required]
+    }, { validator: this.comparePasswords })
+
+  });
+
+  comparePasswords(fb: FormGroup) {
+    let confirmPswrdCtrl = fb.get('ConfirmPassword');
+    //passwordMismatch
+    //confirmPswrdCtrl.errors={passwordMismatch:true}
+    if (confirmPswrdCtrl.errors == null || 'passwordMismatch' in confirmPswrdCtrl.errors) {
+      if (fb.get('Password').value != confirmPswrdCtrl.value)
+        confirmPswrdCtrl.setErrors({ passwordMismatch: true });
+      else
+        confirmPswrdCtrl.setErrors(null);
+    }
+  }
+
   onSubmit() {
-    this.service.register().subscribe(
+    var body = {
+      UserName: this.formModel.value.UserName,
+      Email: this.formModel.value.Email,
+      FullName: this.formModel.value.FullName,
+      Password: this.formModel.value.Passwords.Password
+    };
+    this.service.register(body).subscribe(
       (res: any) => {
         if (res.succeeded) {
-          this.service.formModel.reset();
+          this.formModel.reset();
           this.toastr.success('New user created!', 'Registration successful.');
         } else {
           res.errors.forEach(element => {

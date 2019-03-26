@@ -5,30 +5,33 @@
                 <i class="fas fa-globe-asia"></i>
             </a>
         </div>
-        <div class="">
+        <!-- <div class="">
 
-        </div>
+        </div> -->
         <div class="menu-bar">
-            <div class="form-box-button">
+            
                 <button class="btn btn-primary btn-lg" routerLink='/Userauth/SignIn' routerLinkActive='active'>Sign
                     In</button>
                 <button class="btn btn-primary btn-lg" routerLink='/Userauth/SignUp' routerLinkActive='active'>Sign
                     Up</button>
-            </div>
+            
         </div>
     </nav>
 </div>
 <!-- Header -->
 <div class="container">
-    <div class="content ">
-        <h3>Something here</h3>
+    <div class="container-wrapper row">
+            <div class="content col">
+                    <h3>Something here</h3>
+                </div>
+                <div class="auth-box col">
+            
+                    <div class="form-box shadow-lg p-3 bg-white rounded">
+                        <router-outlet></router-outlet>
+                    </div>
+                </div>
     </div>
-    <div class="auth-box">
-
-        <div class="form-box shadow-lg p-3 bg-white rounded">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+    
 
 </div>
 <div class="footer shadow-lg p-3 bg-white ">

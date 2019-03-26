@@ -1,61 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UserService } from './../../../services/user.service'
+import { Subject } from 'rxjs'
+import { User } from './../../../models/user'
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isDashboard = true;
-  isProfile = false;
-  isMessage = false;
-  isRequest = false;
-  curentStatus = { color: '#ED6504', 'border-bottom': 'solid 4px #ED6504 ' };
-  constructor(public router: Router, public activatedRoute: ActivatedRoute) {
+ 
 
-  }
+  textInput = "";
+  textSelect = "host";
+
+  cityNames: string[];
+  private searchedSubject = new Subject<string>();
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService) { }
   ngOnInit() {
-    this.activatedRoute.url.subscribe((url: any) => {
-      if (this.router.url === "/Users/Dashboard") {
-        this.isDashboard = true;
-        this.isProfile = false;
-        this.isMessage = false;
-        this.isRequest = false;
-      } else if (this.router.url === "/Users/Profile") {
-        this.isDashboard = false;
-        this.isProfile = true;
-        this.isMessage = false;
-        this.isRequest = false;
-      } else if (this.router.url === "/Users/Message") {
-        this.isDashboard = false;
-        this.isProfile = false;
-        this.isMessage = true;
-        this.isRequest = false;
-      } else if (this.router.url === "/Users/Request") {
-        this.isDashboard = false;
-        this.isProfile = false;
-        this.isMessage = false;
-        this.isRequest = true;
-      }
-    });
+    this.service.getAdress(this.searchedSubject).subscribe(
+      res => {
+        this.cityNames = res;
 
+      }
+    );
 
   }
+
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/Userauth']);
   }
-  isMenu=false;
-  isSearch=false;
-  hideMenu(){
-    this.isMenu =false;
+  onKeyup() {
+    this.searchedSubject.next(this.textInput);
+    if (this.textInput.length < 1) {
+      this.cityNames = [];
+    }
   }
-  menuClick() {
-    this.isMenu = !this.isMenu;
-    this.isSearch = false;
-  }
-  searchClick() {
-    this.isSearch = !this.isSearch;
-    this.isMenu =false;
+  onSubmit(form) {
+    form.value.input = this.textInput;
+    this.cityNames = [];
+    console.log(form.value);
+    this.router.navigate(['/Users/Message'], { queryParams: { type: form.value.select, location: form.value.input } });
   }
 }
