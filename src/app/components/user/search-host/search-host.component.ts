@@ -13,7 +13,6 @@ export class SearchHostComponent implements OnInit, OnDestroy {
 
 
   address: string;
-  API = 'https://travelhelperwebsite.azurewebsites.net/api/Users/Search?Address=';
   subscriptionParams: Subscription;
   subscription: Subscription;
   peoples: User[] ;
