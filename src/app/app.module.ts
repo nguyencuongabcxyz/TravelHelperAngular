@@ -68,6 +68,8 @@ import { PublicTripComponent } from './components/user/public-trip/public-trip.c
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
+      positionClass:'toast-custom',
+      timeOut:1000,
       progressBar: true
     }),
     HttpClientModule,

@@ -29,7 +29,7 @@ export class UserService {
 
   }
   getAdress(terms: Observable<string>): Observable<string[]> {
-    return terms.pipe(debounceTime(400),
+    return terms.pipe(debounceTime(100),
       // distinctUntilChanged(),
       switchMap(term => this.getAdressEntries(term)))
   }
