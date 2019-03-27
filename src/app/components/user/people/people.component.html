@@ -1,38 +1,40 @@
 
-<div class="card" style="width: 25rem;">
+
+<div class="card">
+
   <div class="header">
       <img [src]="img" class="card-img-top" alt="...">
 
-      <div class="" style="width: 18rem;">
+      <div class="" >
         <ul class="list-group">
-          <li class="list-group-item name">{{test.name}}</li>
+          <li class="list-group-item name">{{user.fullName}}</li>
           <li class="list-group-item">
 
                 <i class="eva eva-message-square wrapper-icon"></i>
 
-            <b>{{test.ref.length}}</b> Reference{{test.ref.length > 1 ? 's' : ''}}
+            <b>{{user.referenceReceived ? user.referenceReceived.length : '0'}}</b> Reference
           </li>
 
           <li class="list-group-item">
 
                 <i class="eva eva-briefcase wrapper-icon"></i>
 
-            <span>{{test.occupation}}</span>
+            <span>{{user.occupation}}</span>
           </li>
 
           <li class="list-group-item">
 
               <i class="eva eva-globe-2 wrapper-icon"></i>
 
-            <span>Speak {{test.speaks | formatData:0:15}}</span>
+            <span>Speak {{language | formatData:0:15}}</span>
           </li>
         </ul>
       </div>
   </div>
   <div class="card-body" [style.padding.px]="10">
-    <p class="card-text">{{test.content | formatData:0:90}}</p>
+    <p class="card-text">{{test.about | formatData:0:90}}</p>
   </div>
 </div>
 
 
->>>>>>> master
+
