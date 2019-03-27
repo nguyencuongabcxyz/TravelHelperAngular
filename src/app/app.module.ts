@@ -66,6 +66,8 @@ import { FormatDataPipe } from './pipes/format-data.pipe';
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
+      positionClass:'toast-custom',
+      timeOut:1000,
       progressBar: true
     }),
     HttpClientModule,

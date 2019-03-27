@@ -16,4 +16,7 @@ body::after {
     display: block;
     height: 200px; /* Set same as footer's height */
 }
-
+.toast-custom {
+  top: 72px;
+  right: 12px;
+}

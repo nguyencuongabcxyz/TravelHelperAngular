@@ -22,12 +22,9 @@ export class SigninComponent implements OnInit {
         this.router.navigateByUrl('/Users');
       },
       err => {
-        if (err.status == 400)
-          this.toastr.error('Incorrect username or password.', 'Authentication failed.');
-        else if(err.status == 0){
-          this.toastr.error('I dont know');
-        }else
-          console.log(err);
+       
+          this.toastr.error('Incorrect username or password.','Authentication failed.');
+        
       }
     );
   }

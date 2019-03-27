@@ -3,7 +3,7 @@ export class User{
     fullName?:string;
     address?:string;
     gender?:boolean;
-    birthday?;
+    birthday?:string;
     occupation?;
     fluentLanguage?:string;
     learningLanguage?;

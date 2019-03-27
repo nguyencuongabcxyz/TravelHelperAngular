@@ -22,7 +22,7 @@
             <a class="nav-link " [ngClass]="{'active':isabout}" (click)="isabout=true;">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active':!isabout}" (click)="isabout=false;">Myhome</a>
+            <a class="nav-link" [ngClass]="{'active':!isabout}" (click)="isabout=false;">My home</a>
           </li>
         </ul>
 
@@ -34,10 +34,10 @@
         </ul> -->
       </div>
       <div [ngClass]="{'selected':isabout}" class="about-content">
-        <form class="form-group" [formGroup]="formabout" (submit)="onSubmit(formabout);" autocomplete="off">
+        <form class="form-group" [formGroup]="formabout" autocomplete="off">
           <div class="form-group row">
             <label class="col-3 col-form-label" for="Status">Status</label>
-            <div class="col-4">
+            <div class="col-6">
               <select id="Status" class="form-control" formControlName="Status">
                 <option value="false" selected>Not Accepting Guest</option>
                 <option value="true">Accepting Guest</option>
@@ -47,32 +47,40 @@
           <div class="form-group row">
             <label for="FullName" class="col-3 col-form-label">Full Name</label>
             <div class="col-9">
-              <input type="text" class="form-control" id="FullName" placeholder="Full Name" formControlName="FullName">
+              <input #aaa type="text" class="form-control" id="FullName" placeholder="Full Name"
+                formControlName="FullName">
             </div>
           </div>
 
           <div class="form-group row">
             <label for="Address" class="col-3 col-form-label">Address</label>
-            <div class="col-4"
-              (clickOutside)="cityNames=[];formabout.get('Address').setValue(formabout.get('Address').value);">
-              <input  type="text" class="form-control" id="Address" (keyup)="onKeyup();" onfocus="this.value=''"
-                placeholder="Address" formControlName="Address">
-              <input autofocus style="position: absolute;bottom :0px; display: none;" type="text" class="form-control" (keyup)="onKeyup();"
-                placeholder="Address">
+            <div class="col-6"
+              (clickOutside)="formabout.get('Address').setValue(formabout.get('Address').value);cityNames=[];">
+              <!-- <input disabled (click)="formabout.get('Address').setValue('')" type="text" class="form-control"
+                id="Address" (keyup)="onKeyup();" onfocus="this.value=''" style="cursor:pointer;"
+                (blur)="cityNames=[];formabout.get('Address').setValue(formabout.get('Address').value);"
+                placeholder="Address" formControlName="Address"> -->
+              <input style="text-align: left;" type="button" class="form-control" formControlName="Address"
+                (click)="showsearch();">
+              <form style="position:relative;">
+                <input #search name="search" [(ngModel)]="addressInput" class="form-control" (focus)="addressInput=''"
+                  (blur)="issearch=false;" (keyup)="onKeyup();" style=" position:absolute;bottom: 0px "
+                  [style.display]="issearch?'unset':'none'">
+              </form>
               <div class="dropdown">
-
                 <ul>
                   <li *ngFor="let city of cityNames"><a
-                      (click)="formabout.get('Address').setValue(city); cityNames=[];">
+                      (click)="formabout.get('Address').setValue(city); cityNames=[];addressInput=''">
                       <span>{{city}}</span>
                     </a></li>
                 </ul>
               </div>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-3 col-form-label" for="Gender">Gender</label>
-            <div class="col-4">
+            <div class="col-6">
               <select id="Gender" class="form-control" formControlName="Gender">
                 <option value="true">Male</option>
                 <option value="false">Female</option>
@@ -82,7 +90,7 @@
           <div class="form-group row">
             <label for="example-date-input" class="col-3 col-form-label">BirthDay</label>
             <div class="col-9">
-              <input class="form-control" type="datetime" value="" id="example-date-input" formControlName="BirthDay">
+              <input class="form-control" type="date" id="example-date-input" formControlName="BirthDay">
             </div>
           </div>
           <div class="form-group row">
@@ -115,12 +123,14 @@
             <textarea class="form-control" id="Interest" rows="5" placeholder="Interest"
               formControlName="Interest"></textarea>
           </div>
-          <button type="submit" class="btn btn-success">Save</button>
+          <button (click)="onSubmit(formabout);" type="submit" class="btn btn-success">Save</button>
+          <button (click)="setvalue();" class="btn btn-secondary">Reset</button>
         </form>
       </div>
       <div [ngClass]="{'selected':!isabout}" class="myhome-content">
         <form>
           <button type="submit" class="btn btn-success">Save</button>
+          <button class="btn btn-secondary">Reset</button>
         </form>
       </div>
     </div>

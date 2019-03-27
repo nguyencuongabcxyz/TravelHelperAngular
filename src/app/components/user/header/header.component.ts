@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../services/user.service'
-import { Subject } from 'rxjs'
-import { User } from './../../../models/user'
+import { Subject, Subscription } from 'rxjs'
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -10,7 +10,7 @@ import { User } from './../../../models/user'
 })
 export class HeaderComponent implements OnInit {
  
-
+  subscription = Subscription;
   textInput = "";
   textSelect = "host";
 
