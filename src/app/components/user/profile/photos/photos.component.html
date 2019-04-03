@@ -1,0 +1,20 @@
+<ng-container *ngIf="user.id">
+  <app-upload></app-upload>
+  <div class="box box-photos">
+    <div class="box-header">
+      <span>PHOTOS</span>
+      <button (click)="upload.open();" class="btn btn-primary"><i class="fas fa-plus"></i>Add Photo</button>
+    </div>
+    <div class="content-photos">
+      <ul class="grid-photos row">
+        <li class="grid-item col-lg-3 col-md-4 col-sm-6" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10]">
+              <a><img [src]="'./../../../../../assets/imgs/background.jpg'"></a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+
+
+
+</ng-container>

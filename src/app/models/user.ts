@@ -1,4 +1,5 @@
 import {Trip} from './trip'
+import {Home} from './home'
 export class User{
     fullName?:string;
     address?:string;
@@ -14,7 +15,7 @@ export class User{
     isDeleted?;
     createDate?;
     contact?;
-    home?;
+    home?:Home;
     photos?;
     publicTrips?: Trip[];
     hostOffersSent?;

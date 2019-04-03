@@ -18,15 +18,23 @@
     display: flex;
     align-items: center;
 }
-.status-bar button{
+.status-bar .button-bar{
     margin-left: auto;
-    margin-right: 30px;
+    margin-right: 20px;
+}
+.button-bar button{
+    margin-left: 5px;
+   
 }
 .status-bar span{
-    padding-left: 30px;
+    padding-left: 20px;
     font-size: 30px;
     font-weight: 500;
 }
+.status-bar .dropdown{
+    display: inline-block;
+}
+
 .user-info{
     padding-top: 50px;
     text-align: center;
@@ -35,12 +43,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
-.photo{
-    margin-left: auto;
-    margin-right: auto;
-   display: block;
-   border-radius: 50%;
-}
+
 .info p{
     padding: 3px 0px 3px 0px;
     margin-bottom: 0px !important;
@@ -53,23 +56,24 @@
     height: 70px;
 }
 .menu-bar ul{
-list-style: none;
-margin-top: 0px;
-margin-bottom: 0px;
+    padding-inline-start: 7px;
+    list-style: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 .menu-bar ul li{
     display: inline-block;
     text-align: center; 
+    margin: 0px 13px;
 }
 .menu-bar ul li a{
     text-decoration: none;
-    color: #27374c;
-    margin: 0px 13px;
+    font-size: 17px;
 }
 .menu-bar ul li a:hover{
     color: #ED6504;
 }
 .menu-bar ul li .is-selected{
     color: #ED6504;
-    font-weight: bold;
+    font-weight: 600;
 }

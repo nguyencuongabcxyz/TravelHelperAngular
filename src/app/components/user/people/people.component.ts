@@ -12,8 +12,11 @@ import { PublicTrip } from 'src/app/models/publictrip';
 export class PeopleComponent implements OnInit {
 
   img = '/assets/imgs/demo.jpg';
+
   @Input() user: User;
   @Input() trip: PublicTrip;
+
+
   language: string [];
 
   test = {

@@ -16,26 +16,18 @@
         </div>
     </div>
     <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box"
-        (clickOutside)="cityNames=[];textInput = '';"
-        >
-        <form #formSearch="ngForm" autocomplete="off">
+        (clickOutside)="textInput = '';">
+        <form #formSearch="ngForm" autocomplete="off" (submit)="onSubmit(formSearch);">
             <div class="search-form row">
                 <select [(ngModel)]="textSelect" class=" search-select form-control shadow-sm col" name="select">
                     <option value="host" selected>Find Host</option>
                     <option value="traveler">Find Traveler</option>
                 </select>
                 <div class="search-form-1 col">
-                    <button class="" type="submit" (click)="onSearch(formSearch)"><i class="fas fa-search"></i></button>
-                    <input [(ngModel)]="textInput"  (keyup)="onKeyup($event);" class="form-control shadow-sm" type="text"
-                        name="input" placeholder="Search for Place" >
-
-                    <div class="dropdown">
-                        <ul>
-                            <li *ngFor="let city of cityNames"><a (click)="textInput=city; onSubmit(formSearch);">
-                                    <span>{{city}}</span>
-                                </a></li>
-                        </ul>
-                    </div>
+                    <button class="" type="submit" ><i class="fas fa-search"></i></button>
+                    <input [(ngModel)]="textInput" (keyup)="onKeyup();" class="form-control shadow-sm" type="text"
+                        name="input" placeholder="Search for Place">
+                        <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();" [searchedSubject]="searchedSubject" ></app-dropdown>
                 </div>
             </div>
         </form>
@@ -43,7 +35,7 @@
     <nav [ngStyle]="isMenu && !isSearch && {'display':'block'}" class="menu-bar">
         <ul>
             <li>
-                <a (click)="this.isMenu = false;" routerLink='/Users/Dashboard' routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['Dashboard']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-home"></i>
                     </div>
@@ -55,7 +47,9 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" routerLink='/Users/Profile' routerLinkActive='active'>
+                <a (click)="this.isMenu = false;"
+                   
+                    [routerLink]="['Profile']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-user-circle"></i>
                     </div>
@@ -68,7 +62,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" routerLink='/Users/Request' routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['Request']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-envelope"></i>
                     </div>
@@ -81,7 +75,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" routerLink='/Users/Message' routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['Message']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-comments"></i>
                     </div>

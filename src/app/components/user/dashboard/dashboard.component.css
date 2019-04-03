@@ -8,14 +8,12 @@ a:hover{
     min-width: 300px;
     max-width: 300px;
     padding: 0px 5px 0px 5px !important;
-    /* margin-right: 5px !important; */
-
 }
 .content-right{
     padding: 0px 5px 0px 5px !important;
     min-width: 500px;
 }
-.content-right .row,.col{
+.content-right .row{
     margin: 0px ;
 }
 .box-action{
@@ -24,11 +22,11 @@ a:hover{
 
 }
 .box-action a{
-display: inline-block;
-margin: 12px 0px;
-font-size: 1.1em;
-color: #287FB8;
-font-weight: 500;
+    display: inline-block;
+    margin: 12px 0px;
+    font-size: 1.1em;
+    color: #287FB8;
+    font-weight: 500;
 }
 .box-action a:hover{
     color: #ED6504;
@@ -36,12 +34,7 @@ font-weight: 500;
 .box-action i{
     padding-left: 5px;
 }
-.photo{
-    margin-left: auto;
-    margin-right: auto;
-   display: block;
-   border-radius: 50%;
-}
+
 .user-info{
     padding-top: 50px;
     text-align: center;
@@ -59,38 +52,13 @@ font-weight: 500;
     padding: 3px 0px 3px 0px;
     margin-bottom: 0px !important;
 }
-/* .selectbox {
-    font-weight: bold;
-    font-size: 20px;
-    padding: 10px 0px 10px 0px;
-    width: 100%;
-    text-align-last:center;
-    border: none;
-} */
 .status-value {
     font-weight: bold;
     font-size: 20px;
     padding: 10px 10px 10px 10px;
 
   }
-/* .select-items option:hover {
-    background: #f2f2f2;
-} */
-/* .box-header{
-    padding: 15px 10px;
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-}
-.box-header span{
-    font-size: 17px;
-    font-weight: 600;
-}
-.box-header i{
-    font-size: 1.1em;;
-    padding-right: 8px;
-} */
-/* .proposed-box{
 
-} */
 .search-box{
     padding: 15px 0px;
     text-align: center;
@@ -128,124 +96,22 @@ font-weight: 500;
     outline: none;
 }
 
-.dropdown{
-    max-height: 200px;
-    overflow-y: scroll;
-    width: 100%;
-    position: absolute;
-    text-align: left;
-    /* border: #f2f2f2 1px solid; */
 
-}
-.dropdown ul{
-    padding: 0px !important;
-    margin: 0px !important;
-    list-style-type: none;
-    width: 100%;
-}
 
-.dropdown ul li{
-    border-bottom: #f2f2f2 1px solid;
-    border-right: #f2f2f2 1px solid;
-    border-left: #f2f2f2 1px solid;
-    background: white;
-   border-radius: 0.1em;
-}
-.dropdown ul li:hover{
-    background-color: #f2f2f2;
-    cursor: pointer;
-}
-.dropdown ul a{
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-    overflow-wrap: break-word;
-    width: 100%;
-}
-.dropdown ul a span{
-    padding-left: 15px;
-    font-size: 1.2em;
-    font-weight: 500;
-    color: black;
-}
 /*find-host*/
-.your-trips{
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    padding-left: 30px;
-}
 .notrip{
     height: 150px;
     border-bottom: 1px solid rgba(0,0,0,0.15);
     display: flex;
     background: #eceef0;
     align-items: center;
-
 }
 .notrip span{
     margin: auto;
 }
 /*plans*/
-.show-trips{
-    display: block;
-
-}
-.trip{
-    border-bottom: 1px solid rgba(0,0,0,0.15);
-    width: 100%;
-
-}
-.trip .img{
-    padding: 10px;
-    float: left;
-    max-width: 100px;
-}
-.trip img{
-    height: 70px;
-    width:70px;
-}
-.trip .trip-content{
-    width: 100%;
-}
-.traveler-info{
-    float: left;
-    padding-top: 5px;
-
-}
-span{
-    word-wrap: break-word;
-}
-.trip-info{
-    clear: both;
-    padding: 10px 0px;
-}
-.trip-info span{
-    padding-right: 10px;
-
-}
-.offer-button,.edit-button{
-    float: right;
-    padding: 20px 20px 0px 0px ;
-}
-.offer-button button,.edit-button button{
-    width: 100px;
-    height: 50px;
-}
-.trip-decription{
-   clear: both;
-   padding-bottom: 20px;
 
 
-}
-.traveler-info .name,.sex{
-font-size: 1.3em;
-font-weight: 500;
-padding-right: 20px;
-}
-.traveler-info .visiting,.from,.language{
-    font-size: 1em;
-    font-weight: 500;
-}
 /*public-trips*/
 @media screen and (max-width: 816px) {
     .content-left{

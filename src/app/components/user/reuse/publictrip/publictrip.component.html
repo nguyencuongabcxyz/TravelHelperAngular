@@ -1,0 +1,28 @@
+<div class="trip row">
+  <div class="img col">
+    <a href=""><img class="photo" src="./../../../../assets/imgs/profile-picture-placeholder.png" alt=""></a>
+  </div>
+  <div class="trip-content col">
+    <div class="traveler-info">
+      <a routerLink="/Users/People/{{publicTrip.user.id}}"> <span
+          class="name">{{publicTrip.user.fullName}}</span></a>
+      <span class="sex"><i *ngIf="publicTrip.gender" class="fas fa-mars"></i><i *ngIf="!publicTrip.gender"
+          class="fas fa-venus"></i></span><br>
+      <span>Visiting: </span><span class="bold-value">{{publicTrip.destination}}</span><br>
+      <span>From: </span><span class="bold-value">{{publicTrip.user.address}}</span><br>
+      <span>Speakers: </span><span class="bold-value">{{publicTrip.user.fluentLanguage}}</span><br>
+    </div>
+    <div class="offer-button ">
+      <button class="btn btn-primary">Offer to Host</button>
+    </div>
+    <div class="trip-info">
+      <span><i class="far fa-calendar-alt"></i></span>
+      <span>{{publicTrip.arrivalDate|date:"dd/MM/yy" }} <i class="fas fa-arrow-right"></i>
+        {{publicTrip.departureDate|date:"dd/MM/yy"}}</span>
+      <span><i class="fas fa-user-friends"></i></span><span>{{publicTrip.travelerNumber}} Traveler</span>
+    </div>
+    <div class="trip-decription">
+      {{publicTrip.description}}
+    </div>
+  </div>
+</div>

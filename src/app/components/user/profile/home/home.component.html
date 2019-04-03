@@ -1,0 +1,33 @@
+<ng-container *ngIf="user.id">
+  
+  <div class="box box-myhome">
+    <div class="box-header">
+      <span>MY HOME</span>
+    </div>
+    <div *ngIf="!user.home" class="nothing">
+        <span>Nothing to show</span>
+      </div>
+    <div *ngIf="user.home" class="content-myhome">
+      <div *ngIf="user.home.maxGuest" class="item"><span>Max Number of Guests :</span>{{user.home.maxGuest}}</div>
+      <div *ngIf="user.home.preferedGender" class="item"><span>Preferred Gender to Host
+          :</span>{{user.home.preferedGender}}</div>
+      <div *ngIf="user.home.sleepingArrangement" class="item"><span>Sleeping Arrangements
+          :</span>{{user.home.sleepingArrangement}}</div>
+      <div *ngIf="user.home.sleepingDescription" class="item"> <span>Description of Sleeping Arrangement</span>
+        <p>{{user.home.sleepingDescription}}</p>
+      </div>
+      <div *ngIf="user.home.transportationAccess" class="item"><span>Public Transportation Access </span>
+        <p>{{user.home.transportationAccess}}</p>
+      </div>
+      <div *ngIf="user.home.allowedThing" class="item"><span>Allowed Thing </span>
+        <p>{{user.home.allowedThing}}</p>
+      </div>
+      <div *ngIf="user.home.stuff" class="item"><span>Stuff </span>
+        <p>{{user.home.stuff}}</p>
+      </div>
+      <div *ngIf="user.home.additionInfo" class="item"><span>Additional Information </span>
+        <p>{{user.home.additionInfo}}</p>
+      </div>
+    </div>
+  </div>
+</ng-container>

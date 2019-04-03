@@ -10,6 +10,7 @@ body{
   color:#27374c!important;
   position: relative;
   min-height: 100vh;
+  overflow-y: scroll;
 }
 body::after {
     content: '';

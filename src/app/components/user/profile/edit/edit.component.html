@@ -1,22 +1,33 @@
-<div class="row">
+<div class="row" *ngIf="user.id">
+  <app-upload></app-upload>
   <div class="content-left col ">
     <div class="box user-info">
-      <a href="#"><img class="photo img-responsive" src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+      <a class="upload" (click)="this.upload.open()">
+        <div class="top"></div>
+        <div class="bottom">
+          <i class="fas fa-camera"></i>
+        </div>
+      </a>
+      <img class="photo img-responsive" [src]="'./../../../../assets/imgs/profile-picture-placeholder.png'">
       <p style="font-size:30px;">{{user.fullName}}</p>
       <p>{{user.address}}</p>
       <div class="box-header">
         <span>OVERVIEW</span>
       </div>
       <div class="overview">
-        abc
+        <div class="item"><i class="fas fa-map-marker"></i> <span>{{user.address}}</span></div>
+        <div class="item"><i class="fas fa-child"></i> <span>Fluence in {{user.fluentLanguage}}</span></div>
+        <div class="item"> <i class="fas fa-book"></i> <span>Leaning {{user.learningLanguage}}</span></div>
+        <div class="item"> <i class="far fa-calendar-alt"></i><span>{{user.birthday|date:'dd/MM/yyyy'}}</span></div>
+        <div class="item"><i class="fas fa-venus-mars"></i> <span>{{user.gender?'Male':'Female'}}</span></div>
+        <div class="item"><i class="fas fa-briefcase"></i> <span>{{user.occupation}}</span></div>
       </div>
-
     </div>
   </div>
+  <!-- content-left -->
   <div class="content-right col">
     <div class="box">
       <div class=" tab-bar">
-
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="nav-link " [ngClass]="{'active':isabout}" (click)="isabout=true;">About</a>
@@ -25,20 +36,14 @@
             <a class="nav-link" [ngClass]="{'active':!isabout}" (click)="isabout=false;">My home</a>
           </li>
         </ul>
-
-
-
-        <!-- <ul>
-          <li><a (click)="isabout=true;"><span>About</span></a></li>
-          <li><a (click)="isabout=false;"><span>Myhome</span></a></li>
-        </ul> -->
       </div>
-      <div [ngClass]="{'selected':isabout}" class="about-content">
+        <!-- tab-bar -->
+      <div [ngClass]="{'selected':isabout}" class="content">
         <form class="form-group" [formGroup]="formabout" autocomplete="off">
           <div class="form-group row">
             <label class="col-3 col-form-label" for="Status">Status</label>
-            <div class="col-6">
-              <select id="Status" class="form-control" formControlName="Status">
+            <div style="max-width:250px;min-width:250px;" class="col-6">
+              <select id="Status" class="form-control" formControlName="status">
                 <option value="false" selected>Not Accepting Guest</option>
                 <option value="true">Accepting Guest</option>
               </select>
@@ -47,41 +52,35 @@
           <div class="form-group row">
             <label for="FullName" class="col-3 col-form-label">Full Name</label>
             <div class="col-9">
-              <input #aaa type="text" class="form-control" id="FullName" placeholder="Full Name"
-                formControlName="FullName">
+              <input type="text" class="form-control" id="FullName" formControlName="fullName">
             </div>
           </div>
-
           <div class="form-group row">
             <label for="Address" class="col-3 col-form-label">Address</label>
             <div class="col-6"
-              (clickOutside)="formabout.get('Address').setValue(formabout.get('Address').value);cityNames=[];">
-              <!-- <input disabled (click)="formabout.get('Address').setValue('')" type="text" class="form-control"
-                id="Address" (keyup)="onKeyup();" onfocus="this.value=''" style="cursor:pointer;"
-                (blur)="cityNames=[];formabout.get('Address').setValue(formabout.get('Address').value);"
-                placeholder="Address" formControlName="Address"> -->
-              <input style="text-align: left;" type="button" class="form-control" formControlName="Address"
+              (clickOutside)="formabout.get('address').setValue(formabout.get('address').value);cityNames=[];">
+              <input style="text-align: left;" type="button" class="form-control" formControlName="address"
                 (click)="showsearch();">
               <form style="position:relative;">
                 <input #search name="search" [(ngModel)]="addressInput" class="form-control" (focus)="addressInput=''"
                   (blur)="issearch=false;" (keyup)="onKeyup();" style=" position:absolute;bottom: 0px "
                   [style.display]="issearch?'unset':'none'">
+                <div class="dropdown">
+                  <ul>
+                    <li *ngFor="let city of cityNames"><a
+                        (click)="formabout.get('address').setValue(city); cityNames=[];addressInput=''">
+                        <span>{{city}}</span>
+                      </a></li>
+                  </ul>
+                </div>
               </form>
-              <div class="dropdown">
-                <ul>
-                  <li *ngFor="let city of cityNames"><a
-                      (click)="formabout.get('Address').setValue(city); cityNames=[];addressInput=''">
-                      <span>{{city}}</span>
-                    </a></li>
-                </ul>
-              </div>
+
             </div>
           </div>
-
           <div class="form-group row">
             <label class="col-3 col-form-label" for="Gender">Gender</label>
-            <div class="col-6">
-              <select id="Gender" class="form-control" formControlName="Gender">
+            <div style="max-width:130px;min-width:130px;" class="col-3">
+              <select id="Gender" class="form-control" formControlName="gender">
                 <option value="true">Male</option>
                 <option value="false">Female</option>
               </select>
@@ -89,50 +88,102 @@
           </div>
           <div class="form-group row">
             <label for="example-date-input" class="col-3 col-form-label">BirthDay</label>
-            <div class="col-9">
-              <input class="form-control" type="date" id="example-date-input" formControlName="BirthDay">
+            <div style="max-width:250px;min-width:250px;" class="col-6">
+              <input class="form-control" type="date" id="example-date-input" formControlName="birthday">
             </div>
           </div>
           <div class="form-group row">
             <label for="Occupation" class="col-3 col-form-label">Occupation</label>
             <div class="col-9">
-              <input type="text" class="form-control" id="Occupation" placeholder="Occupation"
-                formControlName="Occupation">
+              <input type="text" class="form-control" id="Occupation" formControlName="occupation">
             </div>
           </div>
           <div class="form-group row">
             <label for="FluentLanguage" class="col-3 col-form-label">Fluent Language</label>
             <div class="col-9">
-              <input type="text" class="form-control" id="FluentLanguage" placeholder="Fluent Language"
-                formControlName="FluentLanguage">
+              <input type="text" class="form-control" id="FluentLanguage" formControlName="fluentLanguage">
             </div>
           </div>
           <div class="form-group row">
             <label for="LearningLanguage" class="col-3 col-form-label">Learning Language</label>
             <div class="col-9">
-              <input type="text" class="form-control" id="LearningLanguage" placeholder="Learning Language"
-                formControlName="LearningLanguage">
+              <input type="text" class="form-control" id="LearningLanguage" formControlName="learningLanguage">
             </div>
           </div>
           <div class="form-group">
             <label for="About">About</label>
-            <textarea class="form-control" id="About" rows="5" placeholder="About" formControlName="About"></textarea>
+            <textarea class="form-control" id="About" rows="5" formControlName="about"></textarea>
           </div>
           <div class="form-group">
             <label for="Interest">Interest</label>
-            <textarea class="form-control" id="Interest" rows="5" placeholder="Interest"
-              formControlName="Interest"></textarea>
+            <textarea class="form-control" id="Interest" rows="5" formControlName="interest"></textarea>
           </div>
-          <button (click)="onSubmit(formabout);" type="submit" class="btn btn-success">Save</button>
-          <button (click)="setvalue();" class="btn btn-secondary">Reset</button>
+          <div class="button-bar">
+            <button (click)="onSaveabout();" type="submit" class="btn btn-success">Save</button>
+            <button (click)="setvalueabout();" class="btn btn-secondary">Reset</button>
+          </div>
         </form>
       </div>
-      <div [ngClass]="{'selected':!isabout}" class="myhome-content">
-        <form>
-          <button type="submit" class="btn btn-success">Save</button>
-          <button class="btn btn-secondary">Reset</button>
+      <!-- content-about -->
+      <div [ngClass]="{'selected':!isabout}" class="content">
+        <form class="form-group" [formGroup]="formhome" autocomplete="off">
+          <div class="form-group row">
+            <label for="maxGuest" class="col-3 col-form-label">Max Number of Guests:</label>
+            <div style="max-width:130px;min-width:130px;" class="col-2">
+              <input type="number" class="form-control" id="maxGuest" formControlName="maxGuest">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label" for="preferedGender">Preferred Gender to Host</label>
+            <div style="max-width:130px;min-width:130px;" class="col-6">
+              <select id="preferedGender" class="form-control" formControlName="preferedGender">
+                <option value="any" selected>Any</option>
+                <option value="true">Male</option>
+                <option value="false">Female</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-3 col-form-label" for="preferedGender">Sleeping Arrangements</label>
+            <div style="max-width:250px;min-width:250px;" class="col-6">
+              <select id="preferedGender" class="form-control" formControlName="preferedGender">
+                <option></option>
+                <option value="sharedBed" selected>Shared Bed</option>
+                <option value="true">Shared Room</option>
+                <option value="false">Public Room (Eg: Living Room)</option>
+                <option value="false">Private Room</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="SleepingDescription">Description of Sleeping Arrangement</label>
+            <textarea class="form-control" id="SleepingDescription" rows="5"
+              formControlName="sleepingDescription"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="TransportationAccess">Public Transportation Access</label>
+            <textarea class="form-control" id="TransportationAccess" rows="5"
+              formControlName="transportationAccess"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="allowedThing">Allowed Thing</label>
+            <textarea class="form-control" id="allowedThing" rows="5" formControlName="allowedThing"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="stuff">Stuff</label>
+            <textarea class="form-control" id="stuff" rows="5" formControlName="stuff"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="additionInfo">Additional Information</label>
+            <textarea class="form-control" id="additionInfo" rows="5" formControlName="additionInfo"></textarea>
+          </div>
+          <div class="button-bar">
+          <button (click)="onSavehome()" type="submit" class="btn btn-success">Save</button>
+          <button (click)="setvaluehome()" class="btn btn-secondary">Reset</button>
+        </div>
         </form>
       </div>
+      <!-- content-home -->
     </div>
   </div>
 </div>

@@ -13,12 +13,11 @@ import { ProfileComponent } from './components/user/profile/profile.component';
 import { MessageComponent } from './components/user/message/message.component';
 import { RequestComponent } from './components/user/request/request.component';
 import { NotfoundComponent } from './components/notfound.component';
-
 import { AboutComponent } from './components/user/profile/about/about.component'
-import { PeopleComponent } from './components/user/people/people.component';
 import { EditComponent } from './components/user/profile/edit/edit.component';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
-
+import {PhotosComponent} from './components/user/profile/photos/photos.component'
+import {HomeComponent} from './components/user/profile/home/home.component'
 const routes: Routes = [
 
   { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
@@ -34,19 +33,29 @@ const routes: Routes = [
   {
     path: 'Users', component: UserComponent, canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/Users/Dashboard', pathMatch: 'full' },
+      { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
       { path: 'Dashboard', component: DashboardComponent },
-
+      { path: 'Profile/Edit', component: EditComponent },
       {
         path: 'Profile', component: ProfileComponent,
         children: [
-          { path: '', redirectTo: '/Users/Profile/About', pathMatch: 'full' },
+          { path: '', redirectTo: 'About', pathMatch: 'full' },
           { path: 'About', component: AboutComponent },
-          { path: 'Myhome', component: AboutComponent }
+          { path: 'Myhome', component: HomeComponent },
+          { path: 'Photos', component: PhotosComponent },
         ]
       },
-      { path: 'Profile/Edit', component: EditComponent },
-
+      { path: 'People', redirectTo: "/Users/Profile/About", pathMatch: 'full' },
+      {
+        path: 'People/:id', component: ProfileComponent,
+        children: [
+          { path: '', redirectTo: "About", pathMatch: 'full' },
+          { path: 'About', component: AboutComponent },
+          { path: 'Myhome', component: HomeComponent },
+          { path: 'Photos', component: PhotosComponent },
+          
+        ]
+      },
 
       {
         path: 'Search',
@@ -60,7 +69,7 @@ const routes: Routes = [
 
       { path: 'Message', component: MessageComponent },
       { path: 'Request', component: RequestComponent },
-
+      { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
 
     ]
