@@ -1,0 +1,44 @@
+.content-photos{
+padding: 5px;
+}
+.content-photos ul {
+    list-style: none;
+    
+}
+.content-photos ul li{
+    display: inline-block;
+    
+}
+
+.box-header{
+    display: flex;
+    align-items: center;
+} 
+.box-header button{
+     margin-left: auto;
+     margin-right: 20px;
+} 
+.grid-photos{
+    margin: 0;
+    padding: 0px;
+}
+.grid-item{
+    padding: 0px;
+    border: solid 5px white;
+}
+.grid-item::after{
+    content: "";
+	display: block;
+    padding-bottom: 100%;
+    
+}
+.content-photos  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+}
+a:hover{
+   cursor: pointer;
+}
+

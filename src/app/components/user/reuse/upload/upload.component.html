@@ -1,0 +1,40 @@
+<ng-template #content>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Upload a Photo</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div class="img-preview">
+      <img class="photo" [src]="imageUrl">
+    </div>
+
+    <form autocomplete="off" #uploadForm="ngForm">
+      <div class="form-group">
+        <label for="exampleFormControlFile1">Select an Image</label>
+        <input (change)="handleFileInput($event.target.files)" ngModel name="file" type="file" class="form-control-file"
+          id="exampleFormControlFile1" required>
+      </div>
+      <div>
+        <ul>
+          <li><span>Image types allowed: GIF, JPG, PNG.</span></li>
+          <li><span>Image size must be 2 kB to 20 MB.</span></li>
+          <li><span>For best results, upload a photo with a 4:3 ratio.</span></li>
+          <li><span>Using script blockers may prevent image uploads from working.</span></li>
+        </ul>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Description</label>
+        <input required autofocus ngModel name="description" type="text" class="form-control"
+          id="exampleFormControlInput1">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
+    <button [disabled]="uploadForm.invalid" type="button" class="btn btn-success"
+      (click)="upload(uploadForm)">Upload</button>
+  </div>
+</ng-template>

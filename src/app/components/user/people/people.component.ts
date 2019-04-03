@@ -11,7 +11,7 @@ import { User } from 'src/app/models/user';
 export class PeopleComponent implements OnInit {
 
   img = '/assets/imgs/demo.jpg';
-  @Input() user: User;
+  @Input() user: any;
   language: string [];
 
   test = {

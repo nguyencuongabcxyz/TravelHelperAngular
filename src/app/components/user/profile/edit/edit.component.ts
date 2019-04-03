@@ -1,94 +1,132 @@
-import { Component, OnInit , ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { User } from './../../../../models/user'
 import { UserService } from './../../../../services/user.service'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'
-import {Subject} from 'rxjs'
-import {Router} from '@angular/router'
+import { Subject } from 'rxjs'
+import { Router } from '@angular/router'
+import { UploadComponent } from './../../reuse/upload/upload.component'
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.css', './../../../../app.component.css']
 })
-export class EditComponent implements OnInit{
-  @ViewChild('search') search:ElementRef;
-
-  issearch=false;
-  user: User = {};
+export class EditComponent implements OnInit {
+  @ViewChild('search') search: ElementRef;
+  @ViewChild(UploadComponent) upload: UploadComponent;
+  issearch = false;
+  user: any = {};
   cityNames: string[];
-  addressInput='';
+  addressInput = '';
   isabout;
   private searchedSubject = new Subject<string>();
-  formabout: FormGroup = this.fb.group({
-    Status: '',
-    FullName: '',
-    Address:'',
-    Gender: '',
-    BirthDay: '',
-    Occupation: '',
-    FluentLanguage: '',
-    LearningLanguage: '',
-    About: '',
-    Interest: ''
+  formabout: FormGroup = this.fbabout.group({
+    status: '',
+    fullName: '',
+    address: '',
+    gender: '',
+    birthday: '',
+    occupation: '',
+    fluentLanguage: '',
+    learningLanguage: '',
+    about: '',
+    interest: ''
   });
-
-  constructor(public route:Router,public fb: FormBuilder, public service: UserService, public toastr: ToastrService) {
+  formhome: FormGroup = this.fbhome.group({
+    maxGuest: '',
+    preferedGender: '',
+    sleepingArrangement: '',
+    sleepingDescription: '',
+    transportationAccess: '',
+    allowedThing: '',
+    stuff: '',
+    additionInfo: ''
+  });
+  constructor(public route: Router, public fbhome: FormBuilder, public fbabout: FormBuilder, public service: UserService, public toastr: ToastrService) {
 
   }
 
   ngOnInit() {
-    this.isabout=true;
+    this.isabout = true;
     this.service.getUserProfile().subscribe(
       res => {
         this.user = res;
-        this.setvalue();
+        this.setvalueabout();
+        this.setvaluehome();
       }
     );
+    
     this.service.getAdress(this.searchedSubject).subscribe(
-      res=>{
-        
-          this.cityNames=res;
-        
-        
-        
+      res => {
+        this.cityNames = res;
       }
     );
   }
-  setvalue(){
+  setvalueabout() {
     this.formabout.setValue({
-      Status: this.user.status,
-      FullName: this.user.fullName,
-      Address: this.user.address,
-      Gender: this.user.gender,
-      BirthDay: this.user.birthday.substring(0,10),
-      Occupation: this.user.occupation,
-      FluentLanguage: this.user.fluentLanguage,
-      LearningLanguage: this.user.learningLanguage,
-      About: this.user.about,
-      Interest: this.user.interest
+      status: this.user.status,
+      fullName: this.user.fullName,
+      address: this.user.address,
+      gender: this.user.gender,
+      birthday: this.user.birthday.substring(0, 10),
+      occupation: this.user.occupation,
+      fluentLanguage: this.user.fluentLanguage,
+      learningLanguage: this.user.learningLanguage,
+      about: this.user.about,
+      interest: this.user.interest
     });
   }
-  onKeyup(){
+  onKeyup() {
     this.searchedSubject.next(this.addressInput);
     if (this.addressInput.length < 1) {
       this.cityNames = [];
     }
   }
-  onSubmit() {
+  onSaveabout() {
     this.service.editProfileAbout(this.formabout.value).subscribe(
       (res: any) => {
-          this.toastr.success("Saved");
-          this.route.navigateByUrl('/Users/Profile');
+        this.toastr.success("Saved");
+        this.route.navigateByUrl('/Users/Profile');
       },
-      
+
     );
   }
-  showsearch(){
-    this.issearch=true;
+  showsearch() {
+    this.issearch = true;
     setTimeout(() => {
       this.search.nativeElement.focus();
-  }, 0);
+    }, 0);
+  }
+  setvaluehome() {
+    this.formhome.setValue({
+      maxGuest: this.user.home.maxGuest,
+      preferedGender: this.user.home.preferedGender,
+      sleepingArrangement: this.user.home.sleepingArrangement,
+      sleepingDescription: this.user.home.sleepingDescription,
+      transportationAccess: this.user.home.transportationAccess,
+      allowedThing: this.user.home.allowedThing,
+      stuff: this.user.home.stuff,
+      additionInfo: this.user.home.additionInfo
+    });
+  }
+  onSavehome() {
     
+    if (this.user.home)
+      this.service.editProfileHome(this.formhome.value).subscribe(
+        (res: any) => {
+          this.toastr.success("Saved");
+          this.route.navigateByUrl('/Users/Profile');
+        },
+      );
+    else {
+      this.service.createProfileHome(this.formhome.value).subscribe(
+        (res: any) => {
+          this.toastr.success("Saved");
+          this.route.navigateByUrl('/Users/Profile');
+        },
+
+      );
+    }
   }
 
 }

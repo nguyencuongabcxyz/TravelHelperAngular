@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { ToastrModule } from 'ngx-toastr';
 
+
 import { AppComponent } from './app.component';
 import { UserauthComponent } from './components/userauth/userauth.component';
 import { UserComponent } from './components/user/user.component';
@@ -17,6 +18,10 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 import { UserauthService } from './services/userauth.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
+
 
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProfileComponent } from './components/user/profile/profile.component';
@@ -30,6 +35,12 @@ import { EditComponent } from './components/user/profile/edit/edit.component';
 import { SearchHostComponent } from './components/user/search-host/search-host.component';
 import { FormatDataPipe } from './pipes/format-data.pipe';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
+import { TripComponent } from './components/user/reuse/trip/trip.component';
+import { PublictripComponent } from './components/user/reuse/publictrip/publictrip.component';
+import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.component';
+import { UploadComponent } from './components/user/reuse/upload/upload.component';
+import { PhotosComponent } from './components/user/profile/photos/photos.component';
+import { HomeComponent } from './components/user/profile/home/home.component';
 
 
 
@@ -58,6 +69,12 @@ import { PublicTripComponent } from './components/user/public-trip/public-trip.c
     AboutComponent,
     EditComponent,
     PublicTripComponent,
+    TripComponent,
+    PublictripComponent,
+    DropdownComponent,
+    UploadComponent,
+    PhotosComponent,
+    HomeComponent,
 
 
 
@@ -74,15 +91,17 @@ import { PublicTripComponent } from './components/user/public-trip/public-trip.c
     }),
     HttpClientModule,
     BrowserAnimationsModule,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgbModule,
   ],
   providers: [UserauthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
-    
+    NgbModal,
+    NgbActiveModal
   ],
   bootstrap: [AppComponent]
 })

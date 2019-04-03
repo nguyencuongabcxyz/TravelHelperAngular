@@ -1,0 +1,18 @@
+.content-overview{
+    margin: 0px;
+    padding: 10px 20px;
+    line-height: 2.5;
+}
+.content-aboutme{
+    line-height: 2.0;
+    padding: 10px 20px;
+    white-space: pre-wrap;
+}
+.content-overview span{
+    font-size: 1.1em;
+    padding: 5px 10px;
+}
+.content-overview i{
+    font-size: 1.1em;
+    width: 20px;
+}
