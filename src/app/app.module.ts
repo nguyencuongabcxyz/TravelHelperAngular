@@ -30,6 +30,7 @@ import { EditComponent } from './components/user/profile/edit/edit.component';
 import { SearchHostComponent } from './components/user/search-host/search-host.component';
 import { FormatDataPipe } from './pipes/format-data.pipe';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
+import { PubicTripContentComponent } from './components/user/pubic-trip-content/pubic-trip-content.component';
 
 
 
@@ -58,6 +59,7 @@ import { PublicTripComponent } from './components/user/public-trip/public-trip.c
     AboutComponent,
     EditComponent,
     PublicTripComponent,
+    PubicTripContentComponent,
 
 
 

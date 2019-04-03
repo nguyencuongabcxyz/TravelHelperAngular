@@ -3,8 +3,8 @@
     min-width: 300px;
     max-width: 300px;
     padding: 0px 5px 0px 5px !important;
-    
-    
+
+
 }
 .content-right{
     padding: 0px 5px 0px 5px !important;
@@ -26,23 +26,23 @@ margin-bottom: 0px;
 }
 .menu-bar ul li{
     display: inline-block;
-    text-align: center; 
+    text-align: center;
 }
 .menu-bar ul li a{
     text-decoration: none;
     color: #27374c;
     margin: 0px 13px;
-    
+
 
 } */
 
-.header {
+.headers {
   display: flex;
   padding: 10px;
 
 }
 
-.header img {
+.headers img {
   height: 150px;
    width: 150px;
 }
@@ -69,6 +69,9 @@ li {
   width: 16px;
   --display: inline-block;
   --background: white;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
+.list-group-item{
+  padding: 0.3rem 1.25rem;
+}

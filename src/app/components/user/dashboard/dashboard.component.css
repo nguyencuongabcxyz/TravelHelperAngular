@@ -9,7 +9,7 @@ a:hover{
     max-width: 300px;
     padding: 0px 5px 0px 5px !important;
     /* margin-right: 5px !important; */
-    
+
 }
 .content-right{
     padding: 0px 5px 0px 5px !important;
@@ -21,7 +21,7 @@ a:hover{
 .box-action{
     width: 100%;
     text-align: center;
-   
+
 }
 .box-action a{
 display: inline-block;
@@ -89,10 +89,10 @@ font-weight: 500;
     padding-right: 8px;
 } */
 /* .proposed-box{
-    
+
 } */
 .search-box{
-    padding: 15px 0px;  
+    padding: 15px 0px;
     text-align: center;
 }
  .search-form{
@@ -109,14 +109,14 @@ font-weight: 500;
      border-radius: 25px;
      text-indent:20px;
 }
-.search-form input:focus { 
+.search-form input:focus {
     outline: none;
 }
 .search-form input:hover{
     cursor: pointer;
 }
 .search-form  button {
-    height: 40px; 
+    height: 40px;
     width: 40px;
     position: absolute;
     right: 5px;
@@ -135,7 +135,7 @@ font-weight: 500;
     position: absolute;
     text-align: left;
     /* border: #f2f2f2 1px solid; */
-    
+
 }
 .dropdown ul{
     padding: 0px !important;
@@ -180,7 +180,7 @@ font-weight: 500;
     display: flex;
     background: #eceef0;
     align-items: center;
-    
+
 }
 .notrip span{
     margin: auto;
@@ -188,12 +188,12 @@ font-weight: 500;
 /*plans*/
 .show-trips{
     display: block;
-    
+
 }
 .trip{
     border-bottom: 1px solid rgba(0,0,0,0.15);
     width: 100%;
-    
+
 }
 .trip .img{
     padding: 10px;
@@ -210,7 +210,7 @@ font-weight: 500;
 .traveler-info{
     float: left;
     padding-top: 5px;
-    
+
 }
 span{
     word-wrap: break-word;
@@ -221,7 +221,7 @@ span{
 }
 .trip-info span{
     padding-right: 10px;
-    
+
 }
 .offer-button,.edit-button{
     float: right;
@@ -234,7 +234,7 @@ span{
 .trip-decription{
    clear: both;
    padding-bottom: 20px;
-   
+
 
 }
 .traveler-info .name,.sex{
@@ -254,6 +254,6 @@ padding-right: 20px;
     }
     .content-right{
         order: 1;
-        
+
     }
 }

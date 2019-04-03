@@ -1,8 +1,8 @@
 
 
-<div class="card">
+<div class="card box">
 
-  <div class="header">
+  <div class="headers">
       <img [src]="img" class="card-img-top" alt="...">
 
       <div class="" >
@@ -12,22 +12,45 @@
 
                 <i class="eva eva-message-square wrapper-icon"></i>
 
-            <b>{{user.referenceReceived ? user.referenceReceived.length : '0'}}</b> Reference
+                <span><b>{{user.referenceReceived ? user.referenceReceived.length : '0'}}</b> Reference</span>
           </li>
 
-          <li class="list-group-item">
+          <ng-container *ngIf="!trip;else traveler">
+            <li class="list-group-item" >
 
                 <i class="eva eva-briefcase wrapper-icon"></i>
 
             <span>{{user.occupation}}</span>
           </li>
+          </ng-container>
+
+          <ng-template #traveler>
+            <li class="list-group-item">
+              <i class="fas fa-user-friends wrapper-icon"></i>
+              <!-- <i class="eva eva-people wrapper-icon"></i> -->
+
+                <span><b>{{trip.trip.travelerNumber}} Traveler{{trip.trip.travelerNumber > 1 ? 's' : ''}}</b> in town</span>
+            </li>
+          </ng-template>
+
+
 
           <li class="list-group-item">
 
               <i class="eva eva-globe-2 wrapper-icon"></i>
 
-            <span>Speak {{language | formatData:0:15}}</span>
+            <span>Speak <b>{{language | formatData:0:15}}</b></span>
           </li>
+
+          <ng-container *ngIf="trip">
+            <li class="list-group-item" >
+
+              <i class="far fa-calendar-alt wrapper-icon"></i>
+
+            <span><b>{{trip.trip.arrivalDate | date:'MMM d'}} to {{trip.trip.departureDate | date:'MMM d'}}</b></span>
+          </li>
+          </ng-container>
+
         </ul>
       </div>
   </div>

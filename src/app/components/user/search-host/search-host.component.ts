@@ -3,11 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user';
+import { PublicTrip } from 'src/app/models/publictrip';
 
 @Component({
   selector: 'app-search-host',
   templateUrl: './search-host.component.html',
-  styleUrls: ['./search-host.component.css']
+  styleUrls: ['./search-host.component.css', './../../../app.component.css']
 })
 export class SearchHostComponent implements OnInit, OnDestroy {
 
@@ -15,7 +16,8 @@ export class SearchHostComponent implements OnInit, OnDestroy {
   address: string;
   subscriptionParams: Subscription;
   subscription: Subscription;
-  peoples: User[] ;
+  hosts: User[] ;
+  travelers: PublicTrip[];
   length: number;
 
 // tslint:disable-next-line: no-shadowed-variable
@@ -27,12 +29,19 @@ export class SearchHostComponent implements OnInit, OnDestroy {
 
   loadData() {
     this.subscriptionParams = this.activate.queryParams.subscribe(data => {
-      //console.log(data.location);
+      console.log(data);
       this.address = data.location;
-      this.subscription = this.UserService.getHostByAddress(this.address).subscribe(users => {
-        this.peoples = users;
-        this.length = this.peoples.length;
-      });
+      if(data.type === 'host'){
+        this.subscription = this.UserService.getHostByAddress(this.address).subscribe(users => {
+          this.hosts = users;
+          this.length = this.hosts.length;
+        });
+      } else {
+        this.subscription = this.UserService.getTravelerByAddress(this.address).subscribe(trip => {
+          this.travelers = trip;
+          this.length = this.travelers.length;
+        });
+      }
     });
   }
 

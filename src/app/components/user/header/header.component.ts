@@ -14,7 +14,7 @@ import { Subject, Subscription } from 'rxjs'
 })
 export class HeaderComponent implements OnInit {
 
- 
+
   subscription = Subscription;
   textInput = "";
   textSelect = "host";

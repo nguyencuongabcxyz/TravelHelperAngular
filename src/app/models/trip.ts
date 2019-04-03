@@ -1,8 +1,8 @@
 export class Trip {
     publicTripId?;
-    arrivalDate?: Date;
+    arrivalDate?;
     destination?: string;
-    departureDate?: Date;
+    departureDate?;
     travelerNumber?: number;
     description?: string;
     createDate?;

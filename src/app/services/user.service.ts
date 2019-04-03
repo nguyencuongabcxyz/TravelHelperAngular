@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable, of } from 'rxjs'
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators'
 import { User } from '../models/user';
+import { PublicTrip } from '../models/publictrip';
+import { Trip } from '../models/trip';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
   readonly BaseURI = 'https://travelhelperwebsite.azurewebsites.net/api';
-  Search = '/Users/Search?address=';
+  searchHost = '/Users/Search?address=';
+  searchTraveler = '/Publictrips/Search?destination=';
+  // userPublicTrip = '/Users/Publictrips';
+  publicTripId = '/Publictrips/';
 
   getPeopleProfile(id: String): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users/' + id);
@@ -39,6 +44,30 @@ export class UserService {
 
   getHostByAddress(address): Observable<User[]> {
     // console.log(this.API + this.Search + address);
-    return this.http.get<User[]>(this.BaseURI + this.Search + address);
+    return this.http.get<User[]>(this.BaseURI + this.searchHost + address);
+  }
+
+  getTravelerByAddress(address): Observable<PublicTrip[]> {
+    return this.http.get<PublicTrip[]>(this.BaseURI + this.searchTraveler + address);
+  }
+
+  // getPublicTripUser(): Observable<PublicTrip[]> {
+  //   return this.http.get<PublicTrip[]>(this.BaseURI + this.userPublicTrip);
+  // }
+
+  getPublicTripById(id: number): Observable<Trip> {
+    return this.http.get<Trip>(this.BaseURI + this.publicTripId + id);
+  }
+
+  putPublicTripById(id: number, publicTrip): Observable<Trip> {
+    return this.http.put<Trip>(this.BaseURI + this.publicTripId + id, publicTrip);
+  }
+
+  postPublicTrip(publicTrip): Observable<any[]> {
+    return this.http.post<any[]>(this.BaseURI + '/Publictrips', publicTrip);
+  }
+
+  deletePublicTripById(id: number) {
+    return this.http.delete(this.BaseURI + this.publicTripId + id);
   }
 }
