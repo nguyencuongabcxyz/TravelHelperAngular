@@ -1,0 +1,8 @@
+<div class="dropdown"(clickOutside)="cityNames=[];">
+    <ul>
+      <li *ngFor="let city of cityNames"><a (click)="onClick(city);resetValue();">
+          <span>{{city}}</span>
+        </a></li>
+    </ul>
+    
+  </div>

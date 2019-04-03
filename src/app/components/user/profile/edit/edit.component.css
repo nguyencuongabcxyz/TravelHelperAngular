@@ -1,3 +1,9 @@
+a:hover{
+    cursor: pointer;
+}
+form{
+    margin-bottom: 0px;
+}
 .content-left{
 /* min-width: 300px;
 max-width: 400px; */
@@ -13,13 +19,38 @@ padding: 0px 5px 0px 5px !important;
 }
 .user-info{
     text-align: center;
+    padding-top: 50px;
 }
 .photo{
-    padding-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
-   display: block;
-   border-radius: 50%;
+    margin-bottom: 20px;
+   
+}
+.upload{
+    position: absolute;
+    opacity: 0.3;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+.upload:hover{
+    opacity: 0.6;
+}
+.upload .top{
+    height: 50%;
+    border-radius:100px 100px 0 0  ;
+}
+.upload .bottom{
+    display: flex;
+    align-items: center;
+    height: 50%;
+    border-radius:0 0 100px 100px ;
+    background-color: #646363;
+}
+
+.upload i{
+    color: black;
+    margin:  auto;
+    font-size: 40px;
 }
 .box-header{
     text-align: left;
@@ -29,6 +60,21 @@ padding: 0px 5px 0px 5px !important;
  text-align: left;
  padding-left: 20px;
 }
+.overview .item{
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+}
+.item  span{
+    font-size: 1.1em;
+    padding: 5px 10px;
+}
+.item i{
+    font-size: 1.1em;
+    width: 20px;
+}
+
 .tab-bar{
     height: 50px;
     display:flex;
@@ -60,17 +106,11 @@ padding: 0;
     cursor: pointer;
     color: #ED6504;
 }
-.about-content{
+.content{
     padding: 20px;
     display: none;
 }    
-.about-content label{
-    word-wrap: break-word;
-}
-.myhome-content{
-    padding: 20px;
-    display: none;
-}   
+  
 .content-right .selected{
     display: block!important;
 }
@@ -87,7 +127,13 @@ padding: 0;
     padding: 5px 30px;
 }
 .content-right label{
+    word-wrap: break-word;
+    size: 18px;
     font-weight: 600;
+}
+.button-bar{
+    border-top: #ecf0f1 solid 2px;
+    padding-top: 20px
 }
 .dropdown{
     z-index:10 ;
@@ -99,7 +145,6 @@ padding: 0;
     /* border: #f2f2f2 1px solid; */
     
 }
-
 .dropdown ul{
     padding: 0px !important;
     margin: 0px !important;

@@ -8,10 +8,23 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class UserService {
-
+  private id: string;
   constructor(private http: HttpClient) { }
   readonly BaseURI = 'https://travelhelperwebsite.azurewebsites.net/api';
   Search = '/Users/Search?address=';
+
+  setUser(id) {
+    this.id = id;
+  }
+  getisUser() {
+    return this.id ? false : true;
+  }
+  getUser(): Observable<any> {
+    if (this.id == null)
+      return this.getUserProfile();
+    return this.getPeopleProfile(this.id);
+
+  }
 
   getPeopleProfile(id: String): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users/' + id);
@@ -36,9 +49,15 @@ export class UserService {
   editProfileAbout(formAbout) {
     return this.http.put(this.BaseURI + '/Users', formAbout);
   }
-
-  getHostByAddress(address): Observable<User[]> {
-    // console.log(this.API + this.Search + address);
-    return this.http.get<User[]>(this.BaseURI + this.Search + address);
+  editProfileHome(formHome){
+    return this.http.put(this.BaseURI + '/homes', formHome);
   }
+  createProfileHome(formHome){
+    return this.http.post(this.BaseURI + '/homes', formHome);
+  }
+  getHostByAddress(address): Observable<any[]> {
+    // console.log(this.API + this.Search + address);
+    return this.http.get<any[]>(this.BaseURI + this.Search + address);
+  }
+  
 }

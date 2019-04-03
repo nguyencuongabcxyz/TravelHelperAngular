@@ -1,0 +1,20 @@
+.content-myhome{
+    line-height: 2.5;
+    padding: 10px 20px;
+    white-space: pre-wrap;
+}
+.content-myhome span{
+    padding-right: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+.nothing{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: #eceef0;
+    height: 150px;
+}
+.nothing span{
+    margin: auto;
+}

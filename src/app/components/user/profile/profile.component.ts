@@ -8,19 +8,37 @@ import { Router, ActivatedRoute } from '@angular/router'
   styleUrls: ['./profile.component.css', './../../../app.component.css']
 })
 export class ProfileComponent implements OnInit {
-  user: User = {};
-  isAbout=true;
-  isMyhome=false;
+  isUser: boolean;
+  user: any = {};
+  isAbout = true;
+  isMyhome = false;
   constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute) { }
   ngOnInit() {
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.user = res;
+    this.activatedRoute.paramMap.subscribe(
+      param => {
+        let id = param.get('id');
+        this.service.setUser(id);
+        this.service.getUser().subscribe(
+          res => {
+            this.user = res;
+          },
+          err => {
+            if (err.status == 404)
+              this.router.navigate(['/Users/404']);
+              
+          }
+        );
       }
     );
+
+    this.isUser = this.service.getisUser();
+
 
 
 
 
   }
+  //   isActive(url): boolean {
+  //     return this.router.url.includes(url);
+  // }
 }

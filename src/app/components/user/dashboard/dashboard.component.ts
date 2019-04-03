@@ -12,13 +12,13 @@ import { Subject } from 'rxjs'
 })
 
 export class DashboardComponent implements OnInit {
-  
+  isUser=true;
   textInput = "";
-  user:User={};
-  publicTrips: PublicTrip[] ;
+  user:any={};
+  publicTrips: any[] ;
   constructor(private service: UserService,private activatedRoute: ActivatedRoute,private router: Router) { }
-  cityNames: string[];
-  private searchedSubject = new Subject<string>();
+  // cityNames: string[];
+  public searchedSubject = new Subject<string>();
   ngOnInit() {
     this.user.publicTrips=[];
     this.service.getUserProfile().subscribe(
@@ -27,30 +27,29 @@ export class DashboardComponent implements OnInit {
        
       }
     );
-    
     this.service.getPublicTrips().subscribe(
       res=> {
         this.publicTrips=res;
         //  console.log(res);
       }
     );
-    this.service.getAdress(this.searchedSubject).subscribe(
-      res => {
-        this.cityNames = res;
+    // this.service.getAdress(this.searchedSubject).subscribe(
+    //   res => {
+    //     this.cityNames = res;
        
-      }
-    );
+    //   }
+    // );
   }
   onKeyup() {
     this.searchedSubject.next(this.textInput);
-    if (this.textInput.length < 1) {
-      this.cityNames = [];
-    }
+    // if (this.textInput.length < 1) {
+    //   this.cityNames = [];
+    // }
   }
   onSubmit(form) {
-    form.value.input = this.textInput;
-    this.cityNames = [];
+    // form.value.input = this.textInput;
+    // this.cityNames = [];
     // console.log(form.value);
-    this.router.navigate(['/Users/Message'], { queryParams: { type: 'host', location: form.value.input } });
+    this.router.navigate(['/Users/Search'], { queryParams: { type: 'host', location: form.value.input } });
   }
 }

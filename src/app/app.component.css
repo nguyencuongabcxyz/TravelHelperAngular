@@ -1,20 +1,21 @@
 .container{
     padding-top: 70px;
     max-width: 1280px;
-    
+
 }
-.container .row,.col{
+.col{
     padding: 0px ;
-    margin: 0px ;
-}
+}   
+
 .header{
-    padding: 0px !important;
+    
     top: 0;
     width: 100%;
     background-color: white;
     position: fixed;
     z-index: 1000;
 }
+
 .footer{
     position: absolute;
     height: 200px;
@@ -29,7 +30,7 @@
     margin-bottom: 10px;
 }
 .box-header{
-    padding: 15px 10px;
+    padding: 15px 20px;
     border-bottom: 1px solid rgba(0,0,0,0.15);
 }
 .box-header span{
@@ -39,4 +40,12 @@
 .box-header i{
     font-size: 1.1em;;
     padding-right: 8px;
+}
+.photo{
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+   border-radius: 50%;
 }

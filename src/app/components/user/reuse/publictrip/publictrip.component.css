@@ -1,0 +1,68 @@
+a{
+    color: #27374c;
+}
+a:hover{
+    text-decoration: none;
+}
+.trip{
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    width: 100%;
+}
+.row{
+    margin: 0;
+}
+.col{
+    padding: 0;
+}
+.trip .img{
+    padding: 20px;
+    float: left;
+    max-width: 110px;
+}
+.trip img{
+    height: 70px;
+    width:70px;
+    border-radius: 50%;
+}
+.trip .trip-content{
+    width: 100%;
+   
+}
+.traveler-info{
+    float: left;
+    padding-top: 5px;
+}
+span{
+    word-wrap: break-word;
+}
+.trip-info{
+    clear: both;
+    padding: 10px 0px;
+}
+.trip-info span{
+    padding-right: 10px;
+    
+}
+.offer-button,.edit-button{
+    float: right;
+    padding: 20px 20px 0px 0px ;
+}
+.offer-button button,.edit-button button{
+    width: 120px;
+    height: 50px;
+}
+.trip-decription{
+   clear: both;
+   padding-bottom: 20px;
+   max-width: 80%;
+
+}
+.traveler-info .name,.sex{
+font-size: 1.3em;
+font-weight: 500;
+padding-right: 20px;
+}
+.traveler-info .bold-value{
+    font-size: 1em;
+    font-weight: 500;
+}
