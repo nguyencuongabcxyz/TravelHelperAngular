@@ -8,7 +8,6 @@ a:hover{
     min-width: 300px;
     max-width: 300px;
     padding: 0px 5px 0px 5px !important;
-    
 }
 .content-right{
     padding: 0px 5px 0px 5px !important;
@@ -20,7 +19,7 @@ a:hover{
 .box-action{
     width: 100%;
     text-align: center;
-   
+
 }
 .box-action a{
     display: inline-block;
@@ -59,8 +58,9 @@ a:hover{
     padding: 10px 10px 10px 10px;
 
   }
+
 .search-box{
-    padding: 15px 0px;  
+    padding: 15px 0px;
     text-align: center;
 }
  .search-form{
@@ -77,14 +77,14 @@ a:hover{
      border-radius: 25px;
      text-indent:20px;
 }
-.search-form input:focus { 
+.search-form input:focus {
     outline: none;
 }
 .search-form input:hover{
     cursor: pointer;
 }
 .search-form  button {
-    height: 40px; 
+    height: 40px;
     width: 40px;
     position: absolute;
     right: 5px;
@@ -95,6 +95,8 @@ a:hover{
 .search-form  button:focus{
     outline: none;
 }
+
+
 
 /*find-host*/
 .notrip{
@@ -109,6 +111,7 @@ a:hover{
 }
 /*plans*/
 
+
 /*public-trips*/
 @media screen and (max-width: 816px) {
     .content-left{
@@ -117,6 +120,6 @@ a:hover{
     }
     .content-right{
         order: 1;
-        
+
     }
 }

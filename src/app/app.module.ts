@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -35,12 +35,16 @@ import { EditComponent } from './components/user/profile/edit/edit.component';
 import { SearchHostComponent } from './components/user/search-host/search-host.component';
 import { FormatDataPipe } from './pipes/format-data.pipe';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
+
+import { PubicTripContentComponent } from './components/user/pubic-trip-content/pubic-trip-content.component';
+
 import { TripComponent } from './components/user/reuse/trip/trip.component';
 import { PublictripComponent } from './components/user/reuse/publictrip/publictrip.component';
 import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.component';
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
+
 
 
 
@@ -69,12 +73,14 @@ import { HomeComponent } from './components/user/profile/home/home.component';
     AboutComponent,
     EditComponent,
     PublicTripComponent,
+    PubicTripContentComponent,
     TripComponent,
     PublictripComponent,
     DropdownComponent,
     UploadComponent,
     PhotosComponent,
     HomeComponent,
+
 
 
 
@@ -85,8 +91,8 @@ import { HomeComponent } from './components/user/profile/home/home.component';
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass:'toast-custom',
-      timeOut:1000,
+      positionClass: 'toast-custom',
+      timeOut: 1000,
       progressBar: true
     }),
     HttpClientModule,

@@ -1,0 +1,24 @@
+<div class="your-trips" (click)="onPublicTripClick()">
+    <div class="traveler-info">
+      <span class="name">Public Trip {{stt}} </span><br>
+      <span>Visiting: </span><span class="visiting">{{PublicTrip.trip.destination}}</span><br>
+    </div>
+
+    <div class="trip-info">
+      <span><i class="far fa-calendar-alt"></i></span>
+      <span>{{PublicTrip.trip.arrivalDate|date:"dd/MM/yy" }} <i class="fas fa-arrow-right"></i>
+        {{PublicTrip.trip.departureDate|date:"dd/MM/yy"}}</span>
+      <span><i class="fas fa-user-friends"></i></span><span>{{PublicTrip.trip.travelerNumber}} Traveler</span>
+    </div>
+    <div class="trip-decription">
+      <div class="content">
+          {{PublicTrip.trip.description}}
+      </div>
+
+      <div class="delete d-flex justify-content-center" (click)="onDeleteTripClick()">
+          <i class="fas fa-trash-alt"></i>
+      </div>
+    </div>
+
+
+  </div>

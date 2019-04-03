@@ -1,0 +1,60 @@
+.your-trips{
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  padding-left: 30px;
+}
+
+.your-trips:hover {
+  cursor: pointer;
+  background: #CCC;
+}
+
+.your-trips .name{
+  font-size: 1.3em;
+  font-weight: 500;
+  padding-right: 20px;
+}
+
+.your-trips .visiting{
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.your-trips .trip-info{
+  clear: both;
+  padding: 10px 0px;
+}
+
+.your-trips .trip-info span{
+  padding-right: 10px;
+}
+
+.your-trips .trip-decription{
+  clear: both;
+  padding-bottom: 20px;
+}
+
+.your-trips .trip-decription::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.your-trips .trip-decription .content{
+  float: left;
+  width: 90%;
+}
+
+.your-trips .delete {
+  float: right;
+  width: 10%;
+}
+
+.your-trips .delete i{
+  transition: all 500ms;
+  opacity: 0.8;
+}
+
+.your-trips .delete i:hover{
+  transform: scale(1.5);
+  opacity: 1;
+}
