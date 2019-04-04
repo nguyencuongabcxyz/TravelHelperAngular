@@ -1,13 +1,14 @@
 <div class="trip row">
   <div class="img col">
-    <a href=""><img class="photo" src="./../../../../assets/imgs/profile-picture-placeholder.png" alt=""></a>
+    <a routerLink="/Users/People/{{publicTrip.user.id}}"><img class="photo" src="./../../../../assets/imgs/profile-picture-placeholder.png" alt=""></a>
   </div>
   <div class="trip-content col">
     <div class="traveler-info">
       <a routerLink="/Users/People/{{publicTrip.user.id}}"> <span
           class="name">{{publicTrip.user.fullName}}</span></a>
-      <span class="sex"><i *ngIf="publicTrip.gender" class="fas fa-mars"></i><i *ngIf="!publicTrip.gender"
-          class="fas fa-venus"></i></span><br>
+      <!-- <span class="sex"><i *ngIf="publicTrip.gender" class="fas fa-mars"></i><i *ngIf="!publicTrip.gender"
+          class="fas fa-venus"></i></span> -->
+          <br>
       <span>Visiting: </span><span class="bold-value">{{publicTrip.destination}}</span><br>
       <span>From: </span><span class="bold-value">{{publicTrip.user.address}}</span><br>
       <span>Speakers: </span><span class="bold-value">{{publicTrip.user.fluentLanguage}}</span><br>

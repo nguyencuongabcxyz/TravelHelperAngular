@@ -54,8 +54,8 @@ export class UserService {
   editProfileAbout(formAbout) {
     return this.http.put(this.BaseURI + '/Users', formAbout);
   }
-  editProfileHome(formHome){
-    return this.http.put(this.BaseURI + '/homes', formHome);
+  editProfileHome(formHome,homeId){
+    return this.http.put(this.BaseURI + '/homes/'+homeId, formHome);
   }
   createProfileHome(formHome){
     return this.http.post(this.BaseURI + '/homes', formHome);

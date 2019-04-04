@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { PublicTrip } from 'src/app/models/publictrip';
 import { Subscription } from 'rxjs';
 import { Trip } from 'src/app/models/trip';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ChildActivationStart } from '@angular/router';
-
+import { Subject } from 'rxjs'
 
 @Component({
   selector: 'app-public-trip',
@@ -13,20 +13,23 @@ import { Router, ActivatedRoute, ChildActivationStart } from '@angular/router';
   styleUrls: ['./public-trip.component.css', './../../../app.component.css']
 })
 export class PublicTripComponent implements OnInit, OnDestroy {
+  addressInput = '';
+  issearch = false;
+  @ViewChild('search') search: ElementRef;
 
   formUser: FormGroup
   subscription: Subscription;
   publicTrips: PublicTrip[];
   trip: Trip = {};
   des: string;
-  places: string[] = [];
+  // places: string[] = [];
   idTrip: number;
 
   check: boolean;
   click: boolean;
   textBtn: string;
   isDelete: boolean;
-
+  private searchedSubject = new Subject<string>();
   constructor(
     private userService: UserService,
     private formBuilderService: FormBuilder,
@@ -60,8 +63,8 @@ export class PublicTripComponent implements OnInit, OnDestroy {
     });
   }
 
-  onClickPublicTrip(id: number){
-    if(!this.isDelete) {
+  onClickPublicTrip(id: number) {
+    if (!this.isDelete) {
       this.idTrip = id;
       this.subscription = this.userService.getPublicTripById(id).subscribe(data => {
         this.trip = data;
@@ -75,26 +78,26 @@ export class PublicTripComponent implements OnInit, OnDestroy {
     this.click = false;
   }
 
-  onKeyUp() {
-    if (!this.des) {
-      this.places = [];
-      return;
-    }
-    if (!this.des.trim()) {
-      this.places = [];
-      return;
-    }
+  // onKeyUp() {
+  //   if (!this.des) {
+  //     this.places = [];
+  //     return;
+  //   }
+  //   if (!this.des.trim()) {
+  //     this.places = [];
+  //     return;
+  //   }
 
-    this.subscription = this.userService.getAdressEntries(this.des).subscribe(data => {
-      console.log(data);
-      this.places = data;
-    });
-  }
+  //   this.subscription = this.userService.getAdressEntries(this.des).subscribe(data => {
+  //     console.log(data);
+  //     this.places = data;
+  //   });
+  // }
 
-  onClickPlace(place) {
-    this.des = place;
-    this.places = [];
-  }
+  // onClickPlace(place) {
+  //   this.des = place;
+  //   this.places = [];
+  // }
 
   onSubmitForm() {
     //this.formUser.value.travelerNumber = Number.parseInt(this.formUser.value.travelerNumber);
@@ -116,7 +119,7 @@ export class PublicTripComponent implements OnInit, OnDestroy {
 
 
   onUpdatePublicTrip() {
-    if(this.idTrip) {
+    if (this.idTrip) {
       this.subscription = this.userService.putPublicTripById(this.idTrip, this.formUser.value).subscribe(data => {
         console.log(data);
         this.load();
@@ -147,8 +150,23 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
   }
+
+  showsearch() {
+    this.issearch = true;
+    setTimeout(() => {
+      this.search.nativeElement.focus();
+    }, 0);
+  }
+
+  onKeyup() {
+    this.searchedSubject.next(this.addressInput);
+  }
+
+
+
+
 }

@@ -12,6 +12,7 @@ export class DropdownComponent implements OnInit {
   @Input() searchedSubject: Subject<string>;
   @Output() myClick = new EventEmitter();
   @Input() formSearch: any;
+  @Input() type: string;
   textSelect = 'host';
   cityNames: string[];
   constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
@@ -31,12 +32,14 @@ export class DropdownComponent implements OnInit {
     );
   }
   onClick(city) {
+    if (this.type == 'select') {
+      this.myClick.emit(city);
+    } else {
+      this.myClick.emit();
+      if (this.formSearch)
+        this.textSelect = this.formSearch.value['select'];
+      this.router.navigate(['/Users/Search'], { queryParams: { type: this.textSelect, location: city } });
+    }
     this.cityNames = [];
-    if (this.formSearch)
-      this.textSelect = this.formSearch.value['select'];
-    this.router.navigate(['/Users/Search'], { queryParams: { type: this.textSelect, location: city } });
-  }
-  resetValue() {
-    this.myClick.emit();
   }
 }
