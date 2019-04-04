@@ -19,7 +19,7 @@
         <div class="item"><i class="fas fa-child"></i> <span>Fluence in {{user.fluentLanguage}}</span></div>
         <div class="item"> <i class="fas fa-book"></i> <span>Leaning {{user.learningLanguage}}</span></div>
         <div class="item"> <i class="far fa-calendar-alt"></i><span>{{user.birthday|date:'dd/MM/yyyy'}}</span></div>
-        <div class="item"><i class="fas fa-venus-mars"></i> <span>{{user.gender?'Male':'Female'}}</span></div>
+        <div class="item"><i class="fas fa-venus-mars"></i> <span *ngIf="user.gender!=null">{{user.gender?'Male':'Female'}}</span></div>
         <div class="item"><i class="fas fa-briefcase"></i> <span>{{user.occupation}}</span></div>
       </div>
     </div>
@@ -37,7 +37,7 @@
           </li>
         </ul>
       </div>
-        <!-- tab-bar -->
+      <!-- tab-bar -->
       <div [ngClass]="{'selected':isabout}" class="content">
         <form class="form-group" [formGroup]="formabout" autocomplete="off">
           <div class="form-group row">
@@ -57,30 +57,23 @@
           </div>
           <div class="form-group row">
             <label for="Address" class="col-3 col-form-label">Address</label>
-            <div class="col-6"
-              (clickOutside)="formabout.get('address').setValue(formabout.get('address').value);cityNames=[];">
-              <input style="text-align: left;" type="button" class="form-control" formControlName="address"
+            <div class="col-6">
+              <input style="text-align: left;cursor: text;" type="button" class="form-control" formControlName="address"
                 (click)="showsearch();">
               <form style="position:relative;">
                 <input #search name="search" [(ngModel)]="addressInput" class="form-control" (focus)="addressInput=''"
                   (blur)="issearch=false;" (keyup)="onKeyup();" style=" position:absolute;bottom: 0px "
                   [style.display]="issearch?'unset':'none'">
-                <div class="dropdown">
-                  <ul>
-                    <li *ngFor="let city of cityNames"><a
-                        (click)="formabout.get('address').setValue(city); cityNames=[];addressInput=''">
-                        <span>{{city}}</span>
-                      </a></li>
-                  </ul>
-                </div>
+                <app-dropdown [type]="'select'" (myClick)="formabout.get('address').setValue($event);"
+                  [searchedSubject]="searchedSubject"></app-dropdown>
               </form>
-
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-form-label" for="Gender">Gender</label>
             <div style="max-width:130px;min-width:130px;" class="col-3">
               <select id="Gender" class="form-control" formControlName="gender">
+                  <!-- <option value="any">Any</option> -->
                 <option value="true">Male</option>
                 <option value="false">Female</option>
               </select>
@@ -137,21 +130,21 @@
             <label class="col-3 col-form-label" for="preferedGender">Preferred Gender to Host</label>
             <div style="max-width:130px;min-width:130px;" class="col-6">
               <select id="preferedGender" class="form-control" formControlName="preferedGender">
-                <option value="any" selected>Any</option>
-                <option value="true">Male</option>
-                <option value="false">Female</option>
+                <option value="Any">Any</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
               </select>
             </div>
           </div>
           <div class="form-group row">
-            <label class="col-3 col-form-label" for="preferedGender">Sleeping Arrangements</label>
+            <label class="col-3 col-form-label" for="sleepingArrangement">Sleeping Arrangements</label>
             <div style="max-width:250px;min-width:250px;" class="col-6">
-              <select id="preferedGender" class="form-control" formControlName="preferedGender">
+              <select id="sleepingArrangement" class="form-control" formControlName="sleepingArrangement">
                 <option></option>
-                <option value="sharedBed" selected>Shared Bed</option>
-                <option value="true">Shared Room</option>
-                <option value="false">Public Room (Eg: Living Room)</option>
-                <option value="false">Private Room</option>
+                <option value="Shared Bed" selected>Shared Bed</option>
+                <option value="Shared Room">Shared Room</option>
+                <option value="Public Room">Public Room (Eg: Living Room)</option>
+                <option value="Private Room">Private Room</option>
               </select>
             </div>
           </div>
@@ -178,9 +171,9 @@
             <textarea class="form-control" id="additionInfo" rows="5" formControlName="additionInfo"></textarea>
           </div>
           <div class="button-bar">
-          <button (click)="onSavehome()" type="submit" class="btn btn-success">Save</button>
-          <button (click)="setvaluehome()" class="btn btn-secondary">Reset</button>
-        </div>
+            <button (click)="onSavehome()" type="submit" class="btn btn-success">Save</button>
+            <button (click)="setvaluehome()" class="btn btn-secondary">Reset</button>
+          </div>
         </form>
       </div>
       <!-- content-home -->

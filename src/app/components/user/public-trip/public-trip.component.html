@@ -8,30 +8,26 @@
     </div>
 
     <ng-template #show>
-        <fieldset class="">
+      <fieldset class="">
 
-          <legend>Public Trips</legend>
-          <div class="PublicTrip">
-            <ng-container *ngIf="publicTrips.length > 0;else noPublicTrip">
+        <legend>Public Trips</legend>
+        <div class="PublicTrip">
+          <ng-container *ngIf="publicTrips.length > 0;else noPublicTrip">
 
-            <app-pubic-trip-content
-            *ngFor="let publicTrip of publicTrips; let id = index"
-            [PublicTrip]="publicTrip"
-            [stt]="id + 1"
-            (idTrip)="onClickPublicTrip($event)"
-            (idTripDelete)="onClickDeleteTrip($event)"
-            ></app-pubic-trip-content>
+            <app-pubic-trip-content *ngFor="let publicTrip of publicTrips; let id = index" [PublicTrip]="publicTrip"
+              [stt]="id + 1" (idTrip)="onClickPublicTrip($event)" (idTripDelete)="onClickDeleteTrip($event)">
+            </app-pubic-trip-content>
 
 
-            </ng-container>
+          </ng-container>
 
-            <ng-template #noPublicTrip>
-              <div class="alert alert-primary" role="alert">
-                You have not public trip
-              </div>
-            </ng-template>
-          </div>
-        </fieldset>
+          <ng-template #noPublicTrip>
+            <div class="alert alert-primary" role="alert">
+              You have not public trip
+            </div>
+          </ng-template>
+        </div>
+      </fieldset>
     </ng-template>
   </div>
 
@@ -41,29 +37,31 @@
     <fieldset style="padding: 15px">
       <legend>Trip's Detail</legend>
 
-        <form  [formGroup]="formUser" autocomplete="off" novalidate="true" (ngSubmit)="onSubmitForm()" >
+      <form [formGroup]="formUser" autocomplete="off" novalidate="true" (ngSubmit)="onSubmitForm()">
         <span style="margin: 0.5rem">Destination</span>
-        <div class="form-row" >
+        <div class="form-row">
           <div class="col relative">
+            <input type="button" class="form-control"  style="padding-left: 20px; cursor: text;" 
+            (click)="showsearch();" [(ngModel)]="des" formControlName="destination">
 
+            <form style="position:relative;">
+              <input #search name="search" [(ngModel)]="addressInput" class="form-control" (focus)="addressInput=''"
+                (blur)="issearch=false;" (keyup)="onKeyup();" style=" position:absolute;bottom: 0px ;padding-left: 20px;"
+                [style.display]="issearch?'unset':'none'" >
+              <app-dropdown [type]="'select'" (myClick)="formUser.get('destination').setValue($event);"
+                [searchedSubject]="searchedSubject"></app-dropdown>
+            </form>
 
+            <label class="text-danger"
+              *ngIf="formUser.controls.destination.dirty && formUser.controls.destination.errors?.required">This field
+              is mandatory.</label>
 
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Place"
-              style="padding-left: 20px;"
-              (keyup)="onKeyUp()"
-              [(ngModel)]="des"
-              formControlName="destination"
-            >
-            <label class="text-danger" *ngIf="formUser.controls.destination.dirty && formUser.controls.destination.errors?.required">This field is mandatory.</label>
-            <div class="dropdown list-group"  *ngIf="this.places.length > 0">
+            <!-- <div class="dropdown list-group" *ngIf="this.places.length > 0">
               <ul>
-                  <li class="list-group-item" *ngFor="let place of places"  (click)="onClickPlace(place)">{{place}}</li>
+                <li class="list-group-item" *ngFor="let place of places" (click)="onClickPlace(place)">{{place}}</li>
               </ul>
+            </div> -->
 
-          </div>
           </div>
           <!-- <div class=" col">
             <input type="text" class="form-control"  placeholder="City">
@@ -81,37 +79,44 @@
 
 
 
-        <div class="form-row" >
+        <div class="form-row">
           <div class="col">
             <span style="margin: 0.5rem">Departure Date</span>
-            <input type="date"  class="form-control" [(ngModel)]="trip.departureDate" formControlName="departureDate">
-            <label class="text-danger" *ngIf="formUser.controls.departureDate.dirty && formUser.controls.departureDate.errors?.required">This field is mandatory.</label>
+            <input type="date" class="form-control" [(ngModel)]="trip.departureDate" formControlName="departureDate">
+            <label class="text-danger"
+              *ngIf="formUser.controls.departureDate.dirty && formUser.controls.departureDate.errors?.required">This
+              field is mandatory.</label>
           </div>
           <div class="col" style="margin-left: 5px;">
             <span style="margin: 0.5rem">Arrival Date</span>
             <input type="date" class="form-control" [(ngModel)]="trip.arrivalDate" formControlName="arrivalDate">
-            <label class="text-danger" *ngIf="formUser.controls.arrivalDate.dirty && formUser.controls.arrivalDate.errors?.required">This field is mandatory.</label>
+            <label class="text-danger"
+              *ngIf="formUser.controls.arrivalDate.dirty && formUser.controls.arrivalDate.errors?.required">This field
+              is mandatory.</label>
           </div>
         </div>
 
-        <div class="form-row" >
+        <div class="form-row">
           <div class="col">
             <span style="margin: 0.5rem">Traveler Number</span>
-            <select class="form-control" id=""  [(ngModel)]="trip.travelerNumber" formControlName="travelerNumber">
+            <select class="form-control" id="" [(ngModel)]="trip.travelerNumber" formControlName="travelerNumber">
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <label class="text-danger" *ngIf="formUser.controls.travelerNumber.dirty && formUser.controls.travelerNumber.errors?.required">This field is mandatory.</label>
+            <label class="text-danger"
+              *ngIf="formUser.controls.travelerNumber.dirty && formUser.controls.travelerNumber.errors?.required">This
+              field is mandatory.</label>
           </div>
           <div class="col"></div>
         </div>
 
-        <div class="form-row" >
+        <div class="form-row">
           <div class="col">
-              <textarea class="form-control"  placeholder="Description about the trip" [(ngModel)]="trip.description" formControlName="description"></textarea>
+            <textarea class="form-control" placeholder="Description about the trip" [(ngModel)]="trip.description"
+              formControlName="description"></textarea>
           </div>
         </div>
 
@@ -124,14 +129,15 @@
         </datalist> -->
 
 
-        <div class="form-row " >
+        <div class="form-row ">
           <div class="col d-flex justify-content-end">
             <button type="submit" class="btn btn-primary" [disabled]="formUser.invalid">Submit</button>
           </div>
-          <div class="col d-flex justify-content-center " >
-            <button type="button" class="btn btn-success" [disabled]="formUser.invalid" (click)="onUpdatePublicTrip()">Update</button>
+          <div class="col d-flex justify-content-center ">
+            <button type="button" class="btn btn-success" [disabled]="formUser.invalid"
+              (click)="onUpdatePublicTrip()">Update</button>
           </div>
-          <div class="col d-flex justify-content-start " >
+          <div class="col d-flex justify-content-start ">
             <button type="button" class="btn btn-danger" (click)="onClearForm()">Clear</button>
           </div>
         </div>
@@ -143,7 +149,7 @@
 
 
 
-        </form>
-      </fieldset>
+      </form>
+    </fieldset>
   </div>
 </div>

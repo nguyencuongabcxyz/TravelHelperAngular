@@ -21,7 +21,7 @@
       </div>
       <div class="right col">
         <div class="item"> <i class="far fa-calendar-alt"></i><span>{{user.birthday|date:'dd/MM/yyyy'}}</span></div>
-        <div class="item"><i class="fas fa-venus-mars"></i> <span>{{user.gender?'Male':'Female'}}</span></div>
+        <div class="item"><i class="fas fa-venus-mars"></i> <span *ngIf="user.gender!=null">{{user.gender?'Male':'Female'}}</span></div>
         <div class="item"><i class="fas fa-briefcase"></i> <span>{{user.occupation}}</span></div>
       </div>
     </div>

@@ -34,5 +34,6 @@ span{
     clear: both;
     padding-bottom: 20px;
     max-width: 80%;
- 
+    word-wrap: break-word;
+    white-space: pre-wrap;
  }

@@ -16,7 +16,6 @@ export class EditComponent implements OnInit {
   @ViewChild(UploadComponent) upload: UploadComponent;
   issearch = false;
   user: any = {};
-  cityNames: string[];
   addressInput = '';
   isabout;
   private searchedSubject = new Subject<string>();
@@ -38,7 +37,7 @@ export class EditComponent implements OnInit {
     sleepingArrangement: '',
     sleepingDescription: '',
     transportationAccess: '',
-    allowedThing: '',
+    allowedThing: null,
     stuff: '',
     additionInfo: ''
   });
@@ -52,23 +51,21 @@ export class EditComponent implements OnInit {
       res => {
         this.user = res;
         this.setvalueabout();
-        this.setvaluehome();
+        if (this.user.home)
+          this.setvaluehome();
+        console.log(this.formhome.value);
+        console.log(Object.values(this.formhome.value))
       }
     );
-    
-    this.service.getAdress(this.searchedSubject).subscribe(
-      res => {
-        this.cityNames = res;
-      }
-    );
+
   }
   setvalueabout() {
     this.formabout.setValue({
-      status: this.user.status,
+      status: (this.user.status == null ? false : this.user.status),
       fullName: this.user.fullName,
       address: this.user.address,
       gender: this.user.gender,
-      birthday: this.user.birthday.substring(0, 10),
+      birthday: (this.user.birthday == null ? null : this.user.birthday.substring(0, 10)),
       occupation: this.user.occupation,
       fluentLanguage: this.user.fluentLanguage,
       learningLanguage: this.user.learningLanguage,
@@ -78,9 +75,6 @@ export class EditComponent implements OnInit {
   }
   onKeyup() {
     this.searchedSubject.next(this.addressInput);
-    if (this.addressInput.length < 1) {
-      this.cityNames = [];
-    }
   }
   onSaveabout() {
     this.service.editProfileAbout(this.formabout.value).subscribe(
@@ -110,15 +104,15 @@ export class EditComponent implements OnInit {
     });
   }
   onSavehome() {
-    
-    if (this.user.home)
-      this.service.editProfileHome(this.formhome.value).subscribe(
+    if (this.user.home) {
+
+      this.service.editProfileHome(this.formhome.value, this.user.home.homeId).subscribe(
         (res: any) => {
           this.toastr.success("Saved");
           this.route.navigateByUrl('/Users/Profile');
         },
       );
-    else {
+    } else {
       this.service.createProfileHome(this.formhome.value).subscribe(
         (res: any) => {
           this.toastr.success("Saved");

@@ -37,7 +37,7 @@ export class PeopleComponent implements OnInit {
       this.trip.trip = {...this.trip};
       console.log(this.trip);
     }
-    console.log(this.user, this.trip);
+    //console.log(this.user, this.trip);
     this.language = [this.user.fluentLanguage ? this.user.fluentLanguage : '', this.user.learningLanguage ? this.user.learningLanguage : ''];
 
   }
