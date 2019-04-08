@@ -15,16 +15,18 @@ export class DropdownComponent implements OnInit {
   @Input() type: string;
   textSelect = 'host';
   cityNames: string[];
+  isload = false;
   constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
-
   ngOnInit() {
     this.service.getAdress(this.searchedSubject).subscribe(
       res => {
         this.cityNames = res;
+        this.isload = false;
       }
     );
     this.searchedSubject.subscribe(
       value => {
+        this.isload = value.length ? true : false;
         if (value.length < 1) {
           this.cityNames = [];
         }

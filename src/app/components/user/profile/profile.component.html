@@ -1,12 +1,16 @@
-<div class="row" *ngIf="user.id">
-  <div class="content-left col ">
+
+<div class="row" >
+  <div class="content-left col-3 ">
     <div class="box user-info">
-      <img class="photo img-responsive" [src]="'./../../../../assets/imgs/profile-picture-placeholder.png'">
+      <img class="photo img-responsive" [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'">
       <div class="info">
         <p style="font-size:30px;">{{user.fullName}}</p>
         <p>{{user.address}}</p>
       </div>
 
+    </div>
+    <div class="box" style="min-height:500px">
+      
     </div>
   </div>
   <div class="content-right col ">

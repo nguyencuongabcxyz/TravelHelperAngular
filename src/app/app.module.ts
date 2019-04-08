@@ -9,7 +9,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { UserauthComponent } from './components/userauth/userauth.component';
-import { UserComponent } from './components/user/user.component';
+import { UserComponent } from "./components/user/user.component";
 import { AdminComponent } from './components/admin/admin.component';
 import { SigninComponent } from './components/userauth/signin/signin.component';
 import { SignupComponent } from './components/userauth/signup/signup.component';
@@ -18,9 +18,9 @@ import { FooterComponent } from './components/user/footer/footer.component';
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 
 import { UserauthService } from './services/userauth.service';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap'
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
-import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 
 
 import { AuthInterceptor } from './auth/auth.interceptor';
@@ -44,9 +44,8 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-
-
-
+import { UserResolve ,ProfileResolve} from './services/user.resolve';
+import { NgProgressModule } from '@ngx-progressbar/core';
 
 
 
@@ -99,6 +98,10 @@ import { HomeComponent } from './components/user/profile/home/home.component';
     BrowserAnimationsModule,
     ClickOutsideModule,
     NgbModule,
+    NgProgressModule.withConfig({
+      color: '#ED6504',
+      spinner: false,
+    }),
   ],
   providers: [UserauthService,
     {
@@ -107,7 +110,9 @@ import { HomeComponent } from './components/user/profile/home/home.component';
       multi: true,
     },
     NgbModal,
-    NgbActiveModal
+    NgbActiveModal,
+    UserResolve,
+    ProfileResolve
   ],
   bootstrap: [AppComponent]
 })

@@ -1,13 +1,15 @@
 
 .content-left{
-    min-width: 300px;
-    max-width: 300px;
+    /* min-width: 220px; */
+    max-width: 300px; 
+    min-width: 260px;
     padding: 0px 5px 0px 5px !important;
     /* margin-right: 5px !important; */
     
 }
 .content-right{
     padding: 0px 5px 0px 5px !important;
+    min-width: 100px;
     /* min-width: 500px; */
 }
 .content-right .row,.col{
@@ -69,6 +71,7 @@
 .menu-bar ul li a{
     text-decoration: none;
     font-size: 17px;
+    color: #287FB8;
 }
 .menu-bar ul li a:hover{
     color: #ED6504;
@@ -76,4 +79,15 @@
 .menu-bar ul li .is-selected{
     color: #ED6504;
     font-weight: 600;
+}
+@media screen and (max-width: 768px) {
+    .content-left{
+        flex: 0 0 100%;
+        max-width: 100%;
+        order: 2;
+    }
+    .content-right{
+        order: 1;
+
+    }
 }

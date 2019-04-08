@@ -20,12 +20,13 @@ export class DashboardComponent implements OnInit {
   public searchedSubject = new Subject<string>();
   ngOnInit() {
     this.user.publicTrips=[];
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.user=res;
+    this.user=this.activatedRoute.snapshot.data.users;
+    // this.service.getUserProfile().subscribe(
+    //   res => {
+    //     this.user=res;
        
-      }
-    );
+    //   }
+    // );
     this.service.getPublicTrips().subscribe(
       res=> {
         this.publicTrips=res;
@@ -36,6 +37,7 @@ export class DashboardComponent implements OnInit {
     this.searchedSubject.next(this.textInput);
   }
   onSubmit(form) {
+    console.log(form.value.input)
     this.router.navigate(['/Users/Search'], { queryParams: { type: 'host', location: form.value.input } });
   }
 }

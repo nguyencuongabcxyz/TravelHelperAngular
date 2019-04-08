@@ -1,12 +1,10 @@
-
-
 <div class="header shadow-sm bg-white  ">
     <app-header></app-header>
 </div>
 <div class="container">
-    <router-outlet></router-outlet>
+    <ng-progress></ng-progress>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
 <div class="footer shadow-sm p-3 bg-white ">
     <app-footer></app-footer>
 </div>
-

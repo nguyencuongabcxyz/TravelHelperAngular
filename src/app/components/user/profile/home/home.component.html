@@ -1,13 +1,21 @@
-<ng-container *ngIf="user.id">
-
+<ng-template #loading>
+  <div class="box" style="height:150px;display: flex; align-items: center;justify-content: center;">
+    <div>
+      <img style="height:50px;width: 50px;" src="./../../../../../assets/imgs/spinner.gif">
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf="user.id;else loading">
   <div class="box box-myhome">
     <div class="box-header">
       <span>MY HOME</span>
     </div>
-    <div *ngIf="!user.home" class="nothing">
-      <span>Nothing to show</span>
-    </div>
-    <div *ngIf="user.home" class="content-myhome">
+    <ng-template #nothing>
+      <div class="nothing">
+        <span>Nothing to show</span>
+      </div>
+    </ng-template>
+    <div *ngIf="user.home && !none;else nothing" class="content-myhome">
       <div *ngIf="user.home.maxGuest" class="item"><span>Max Number of Guests :</span>{{user.home.maxGuest}}</div>
       <div *ngIf="user.home.preferedGender" class="item"><span>Preferred Gender to Host
           :</span>{{user.home.preferedGender}}</div>
