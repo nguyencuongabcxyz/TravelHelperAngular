@@ -14,9 +14,8 @@ a:hover{
 .col{
     padding: 0;
 }
-.trip .img{
+.trip .avatar{
     padding: 20px;
-    float: left;
     max-width: 110px;
 }
 .trip img{
@@ -25,16 +24,29 @@ a:hover{
     border-radius: 50%;
 }
 .trip .trip-content{
-    width: 100%;
+   min-width: 100px;
    
+}
+.top{
+    width: 100%;
+    float: left;
+}
+span{
+    word-wrap: break-word;
 }
 .traveler-info{
     float: left;
     padding-top: 5px;
 }
-span{
-    word-wrap: break-word;
+.offer-button{
+    float: right;
+    padding: 20px 20px 0px 0px ;
 }
+.offer-button button{
+    width: 120px;
+    height: 50px;
+}
+
 .trip-info{
     clear: both;
     padding: 10px 0px;
@@ -43,21 +55,35 @@ span{
     padding-right: 10px;
     
 }
-.offer-button,.edit-button{
-    float: right;
-    padding: 20px 20px 0px 0px ;
-}
-.offer-button button,.edit-button button{
-    width: 120px;
-    height: 50px;
-}
+
 .trip-decription{
    clear: both;
-   padding-bottom: 20px;
+   word-wrap: break-word;
+   white-space: pre-wrap;
    max-width: 80%;
+   max-height: 6em;
+   overflow: hidden; 
+  transition: max-height 0.5s; 
 
 }
-.traveler-info .name,.sex{
+.trip-decription p{
+    margin-bottom: 0px; 
+}
+.button-decription{
+    padding-bottom:20px; 
+    padding-top: 5px;
+    display: flex; 
+    max-width: 80%;
+}
+.button-decription a{
+color: #287FB8;;
+font-weight: 600;
+}
+.button-decription a:hover{
+    cursor: pointer;
+    color: #ED6504;
+}
+.traveler-info .name{
 font-size: 1.3em;
 font-weight: 500;
 padding-right: 20px;

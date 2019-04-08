@@ -63,3 +63,8 @@ input, select{
   background: #DDD;
   cursor: pointer;
 }
+.input-focus:focus{
+   
+  box-shadow: none;
+
+}

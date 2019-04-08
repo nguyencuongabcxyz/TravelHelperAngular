@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { PublicTrip } from '../models/publictrip';
 import { Trip } from '../models/trip';
@@ -32,7 +32,12 @@ export class UserService {
   }
 
   getPeopleProfile(id: String): Observable<any> {
-    return this.http.get<any>(this.BaseURI + '/Users/' + id);
+    return this.http.get<any>(this.BaseURI + '/Users/' + id).pipe(
+      catchError(
+        err => {
+          return of({ 'err': err.status, 'id': id });
+        }
+      ));
   }
   getUserProfile(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users');
@@ -54,10 +59,10 @@ export class UserService {
   editProfileAbout(formAbout) {
     return this.http.put(this.BaseURI + '/Users', formAbout);
   }
-  editProfileHome(formHome,homeId){
-    return this.http.put(this.BaseURI + '/homes/'+homeId, formHome);
+  editProfileHome(formHome, homeId) {
+    return this.http.put(this.BaseURI + '/homes/' + homeId, formHome);
   }
-  createProfileHome(formHome){
+  createProfileHome(formHome) {
     return this.http.post(this.BaseURI + '/homes', formHome);
   }
   getHostByAddress(address): Observable<any[]> {

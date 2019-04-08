@@ -1,13 +1,13 @@
 <div class="your-trips">
-  <div class="traveler-info">
-    <!-- <span class="name">Public Trip</span><br> -->
-    <span>Visiting: </span><span class="bold-value">{{trip.destination}}</span><br>
-  </div>
-  <div *ngIf="isUser" class="button">
-    <button class="btn btn-primary">Edit</button>
-  </div>
-  <div *ngIf="!isUser" class="button">
-    <button class="btn btn-primary">Offer to Host</button>
+  <div class="top" >
+    <div class="traveler-info">
+      <!-- <span class="name">Public Trip</span><br> -->
+      <span>Visiting: </span><span class="bold-value">{{trip.destination}}</span><br>
+    </div>
+    <div class="button">
+      <button *ngIf="isUser" class="btn btn-primary">Edit</button>
+      <button *ngIf="!isUser" class="btn btn-primary">Offer to Host</button>
+    </div>
   </div>
   <div class="trip-info">
     <span><i class="far fa-calendar-alt"></i></span>
@@ -15,9 +15,11 @@
       {{trip.departureDate|date:"dd/MM/yy"}}</span>
     <span><i class="fas fa-user-friends"></i></span><span>{{trip.travelerNumber}} Traveler</span>
   </div>
-  <div class="trip-decription">
-    <p>{{trip.description}}</p>
-   
-  </div>
 
+  <div (window:resize)="onResize($event)" [ngStyle]="x && {'max-height.em':height}" class="trip-decription ">
+    <p #des>{{trip.description}} </p>
+  </div>
+  <div class="button-decription">
+    <a style="margin-left:auto" *ngIf="show" (click)="x=!x">{{x?'[-]Read Less':'[+]Read More'}}</a>
+  </div>
 </div>

@@ -1,8 +1,8 @@
-<div class="row" *ngIf="user.id">
-  <div class="content-left col ">
+<div class="row">
+  <div class="content-left col-3 ">
     <div class="box user-info">
       <a [routerLink]="['../Profile']"><img class="photo img-responsive"
-          [src]="'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
+          [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
       <div class="info">
         <p style="font-size:30px;">{{user.fullName}}</p>
         <p>{{user.address}}</p>
@@ -30,13 +30,15 @@
             src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
       </div>
       <div class="search-box">
-        <form (submit)="onSubmit(formSearch);" #formSearch="ngForm" autocomplete="off">
-          <div class="search-form" (clickOutside)="cityNames=[];textInput = '';">
-            <input [(ngModel)]="textInput" (keyup)="onKeyup();" name="input" class="" type="text"
+        <form (submit)="onSubmit(formSearch);" #formSearch="ngForm" autocomplete="off" (clickOutside)="textInput = '';" >
+
+          <div class="search-form" >
+            <input ngModel [(ngModel)]="textInput" (keyup)="onKeyup();" name="input" class="" type="text"
               placeholder="Where are you going?">
-            <button class="" type="submit"><i style="color:#a0acbb;" class="fas fa-search"></i></button>
+              
             <app-dropdown [searchedSubject]="searchedSubject"></app-dropdown>
           </div>
+          <button type="submit"><i style="color:#a0acbb;" class="fas fa-search"></i></button>
         </form>
       </div>
     </div>
@@ -70,3 +72,4 @@
         <a href=""><span>See More Public Trips</span><span><i class="fas fa-arrow-circle-right"></i></span> </a>
       </div>
     </div>
+  </div>

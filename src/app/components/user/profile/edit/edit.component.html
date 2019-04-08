@@ -8,7 +8,8 @@
           <i class="fas fa-camera"></i>
         </div>
       </a>
-      <img class="photo img-responsive" [src]="'./../../../../assets/imgs/profile-picture-placeholder.png'">
+      <img class="photo img-responsive"
+        [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'">
       <p style="font-size:30px;">{{user.fullName}}</p>
       <p>{{user.address}}</p>
       <div class="box-header">
@@ -19,7 +20,8 @@
         <div class="item"><i class="fas fa-child"></i> <span>Fluence in {{user.fluentLanguage}}</span></div>
         <div class="item"> <i class="fas fa-book"></i> <span>Leaning {{user.learningLanguage}}</span></div>
         <div class="item"> <i class="far fa-calendar-alt"></i><span>{{user.birthday|date:'dd/MM/yyyy'}}</span></div>
-        <div class="item"><i class="fas fa-venus-mars"></i> <span *ngIf="user.gender!=null">{{user.gender?'Male':'Female'}}</span></div>
+        <div class="item"><i class="fas fa-venus-mars"></i> <span
+            *ngIf="user.gender!=null">{{user.gender?'Male':'Female'}}</span></div>
         <div class="item"><i class="fas fa-briefcase"></i> <span>{{user.occupation}}</span></div>
       </div>
     </div>
@@ -52,14 +54,14 @@
           <div class="form-group row">
             <label for="FullName" class="col-3 col-form-label">Full Name</label>
             <div class="col-9">
-              <input type="text" class="form-control" id="FullName" formControlName="fullName">
+              <input type="text" class="form-control " id="FullName" formControlName="fullName">
             </div>
           </div>
           <div class="form-group row">
             <label for="Address" class="col-3 col-form-label">Address</label>
             <div class="col-6">
-              <input style="text-align: left;cursor: text;" type="button" class="form-control" formControlName="address"
-                (click)="showsearch();">
+              <input style="text-align: left;cursor: text;" type="button" class="form-control input-focus"
+                formControlName="address" (click)="showsearch();">
               <form style="position:relative;">
                 <input #search name="search" [(ngModel)]="addressInput" class="form-control" (focus)="addressInput=''"
                   (blur)="issearch=false;" (keyup)="onKeyup();" style=" position:absolute;bottom: 0px "
@@ -73,7 +75,7 @@
             <label class="col-3 col-form-label" for="Gender">Gender</label>
             <div style="max-width:130px;min-width:130px;" class="col-3">
               <select id="Gender" class="form-control" formControlName="gender">
-                  <!-- <option value="any">Any</option> -->
+                <!-- <option value="any">Any</option> -->
                 <option value="true">Male</option>
                 <option value="false">Female</option>
               </select>
@@ -123,13 +125,14 @@
           <div class="form-group row">
             <label for="maxGuest" class="col-3 col-form-label">Max Number of Guests:</label>
             <div style="max-width:130px;min-width:130px;" class="col-2">
-              <input type="number" class="form-control" id="maxGuest" formControlName="maxGuest">
+              <input type="number" min="0" class="form-control" id="maxGuest" formControlName="maxGuest">
             </div>
           </div>
           <div class="form-group row">
             <label class="col-3 col-form-label" for="preferedGender">Preferred Gender to Host</label>
             <div style="max-width:130px;min-width:130px;" class="col-6">
               <select id="preferedGender" class="form-control" formControlName="preferedGender">
+                <option></option>
                 <option value="Any">Any</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>

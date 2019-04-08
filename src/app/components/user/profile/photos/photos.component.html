@@ -1,4 +1,11 @@
-<ng-container *ngIf="user.id">
+<ng-template #loading>
+  <div class="box" style="height:150px;display: flex; align-items: center;justify-content: center;">
+    <div>
+      <img style="height:50px;width: 50px;" src="./../../../../../assets/imgs/spinner.gif">
+    </div>
+  </div>
+</ng-template>
+<ng-container *ngIf="user.id;else loading">
   <app-upload></app-upload>
   <div class="box box-photos">
     <div class="box-header">
@@ -7,8 +14,8 @@
     </div>
     <div class="content-photos">
       <ul class="grid-photos row">
-        <li class="grid-item col-lg-3 col-md-4 col-sm-6" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10]">
-              <a><img [src]="'./../../../../../assets/imgs/background.jpg'"></a>
+        <li class="grid-item  col-3" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10]">
+          <a><img [src]="'./../../../../../assets/imgs/background.jpg'"></a>
         </li>
       </ul>
 
