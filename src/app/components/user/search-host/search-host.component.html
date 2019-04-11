@@ -17,16 +17,21 @@
   <div class="col-sm">
     <!-- <div class="lds-ring" *ngIf="!peoples"><div></div><div></div><div></div><div></div></div> -->
 
-    <div class="d-flex justify-content-center text-secondary m-3" *ngIf="!hosts && !travelers">
+    <div class="d-flex justify-content-center text-secondary m-3" *ngIf="!hosts && !travelers; else inform">
         <div class="spinner-border" role="status" style="width: 3em; height: 3em;">
           <span class="sr-only">Loading...</span>
         </div>
     </div>
 
-    <div class="alert alert-light box" *ngIf="length === 0;else Result">No result with key "{{address}}" for {{hosts ? 'hosts' : 'travelers'}}</div>
-    <ng-template #Result>
-        <div class="alert alert-light box">{{length}} result{{length > 1 ? 's' : ''}}</div>
+    <ng-template #inform>
+        <div class="alert alert-light box" *ngIf="length === 0;else Result">No result with key "{{address}}" for {{hosts ? 'hosts' : 'travelers'}}</div>
+        <ng-template #Result>
+            <div class="alert alert-light box">{{length}} result{{length > 1 ? 's' : ''}} with key "{{address}}" for {{hosts ? 'hosts' : 'travelers'}}</div>
+        </ng-template>
     </ng-template>
+
+
+
     <div class="row">
       <ng-container *ngIf="hosts;else trip">
         <div class="col-sm-6" *ngFor="let host of hosts" [ngStyle]="{padding: '5px'}">

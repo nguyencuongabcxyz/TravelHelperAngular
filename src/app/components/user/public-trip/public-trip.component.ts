@@ -106,10 +106,15 @@ export class PublicTripComponent implements OnInit, OnDestroy {
       console.log(data);
     });
     // this.router.navigate(['PublicTrip'], {relativeTo: this.activate.parent});
-    this.load();
+
     this.formUser.reset();
     this.idTrip = null;
     this.textBtn = 'Submit';
+    this.click = true;
+    this.check = true;
+    setTimeout( () => {
+      this.load();
+    }, 100);
   }
 
 
@@ -133,6 +138,9 @@ export class PublicTripComponent implements OnInit, OnDestroy {
     this.subscription = this.userService.deletePublicTripById(id).subscribe(data => {
       console.log(data);
     });
+    setTimeout( () => {
+      this.load();
+    }, 100);
   }
 
   onClearForm() {
