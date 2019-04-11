@@ -1,3 +1,6 @@
 .text-danger{
     font-style: italic;
 }
+button{
+    width:200px;
+}

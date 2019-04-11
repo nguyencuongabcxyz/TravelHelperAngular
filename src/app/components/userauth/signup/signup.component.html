@@ -1,43 +1,65 @@
-<form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
-  <div class="form-group required">
-    <label>Username<span style ="color: red;">*</span></label>
-    <input class="form-control" formControlName="UserName">
-    <label class="text-danger"
-      *ngIf="formModel.get('UserName').touched && formModel.get('UserName').errors?.required">This
-      field is mandatory.</label>
+<div class="box" style="padding:20px">
+  <div class="box-header" style="text-align:center">
+    <span style="font-size: 25px">REGISTER</span>
   </div>
-  <div class="form-group">
-    <label>Email</label>
-    <input class="form-control" formControlName="Email">
-    <label class="text-danger"
-      *ngIf="formModel.get('Email').touched && formModel.get('Email').errors?.email">Invalid
-      email address.</label>
+  <div class="form-singup" style="padding-top:20px">
+
+    <form [formGroup]="formModel" autocomplete="off" (submit)="onSubmit()">
+      <div class="form-group required">
+        <label>Username<span style="color: red;">*</span></label>
+        <input class="form-control " formControlName="UserName"
+          [ngClass]="{'is-invalid':formModel.get('UserName').touched && formModel.get('UserName').errors?.required }">
+        <label class="text-danger"
+          *ngIf="formModel.get('UserName').touched && formModel.get('UserName').errors?.required">This
+          field is mandatory.</label>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" formControlName="Email">
+        <label class="text-danger"
+          *ngIf="formModel.get('Email').touched && formModel.get('Email').errors?.email">Invalid
+          email address.</label>
+      </div>
+      <div class="form-group">
+        <label>Full Name<span style="color: red;">*</span></label>
+        <input class="form-control" formControlName="FullName"
+          [ngClass]="{'is-invalid':formModel.get('FullName').touched && formModel.get('FullName').errors?.required }">
+        <label class="text-danger"
+          *ngIf="formModel.get('FullName').touched && formModel.get('FullName').errors?.required">This
+          field is mandatory.</label>
+      </div>
+      <div formGroupName="Passwords">
+        <div class="form-group required">
+          <label>Password<span style="color: red;">*</span></label>
+          <input type="password" class="form-control" formControlName="Password"
+            [ngClass]="{'is-invalid':formModel.get('Passwords.Password').touched && ((formModel.get('Passwords.Password').errors?.required) || (formModel.get('Passwords.Password').errors?.minlength)) }">
+          <label class="text-danger"
+            *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.required">This
+            field is mandatory.</label>
+          <label class="text-danger"
+            *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.minlength">Minimum
+            4 characters required.</label>
+        </div>
+        <div class="form-group required">
+          <label>Confirm Password<span style="color: red;">*</span></label>
+          <input type="password" class="form-control" formControlName="ConfirmPassword"
+            [ngClass]="{'is-invalid':formModel.get('Passwords.ConfirmPassword').touched && ((formModel.get('Passwords.ConfirmPassword').errors?.required)||(formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch)) }">
+          <label class="text-danger"
+            *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.required">This
+            field is mandatory.</label>
+          <label class="text-danger"
+            *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm
+            Password does not match.</label>
+        </div>
+
+      </div>
+      <div class="form-group form-check">
+        <input name="checkbox" type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="Checkbox">
+        <label class="form-check-label" for="exampleCheck1">I have accept the terms of our</label>
+      </div>
+      <div style="text-align:center">
+        <button type="submit" class="btn btn-primary" [disabled]="!formModel.valid">Register </button>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <label>Full Name</label>
-    <input class="form-control" formControlName="FullName">
-  </div>
-  <div formGroupName="Passwords">
-    <div class="form-group required">
-      <label>Password<span style ="color: red;">*</span></label>
-      <input type="password" class="form-control" formControlName="Password">
-      <label class="text-danger"
-        *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.required">This
-        field is mandatory.</label>
-      <label class="text-danger"
-        *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.minlength">Minimum
-        4 characters required.</label>
-    </div>
-    <div class="form-group required">
-      <label>Confirm Password<span style ="color: red;">*</span></label>
-      <input type="password" class="form-control" formControlName="ConfirmPassword">
-      <label class="text-danger"
-        *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.required">This
-        field is mandatory.</label>
-      <label class="text-danger"
-        *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm
-        Password does not match.</label>
-    </div>
-  </div>
-  <button type="submit" class="btn btn-primary" [disabled]="!formModel.valid">Sign Up</button>
-</form>
+</div>

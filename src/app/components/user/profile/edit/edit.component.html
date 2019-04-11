@@ -52,9 +52,12 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="FullName" class="col-3 col-form-label">Full Name</label>
+            <label for="FullName" class="col-3 col-form-label">Full Name<span style ="color: red;">*</span></label>
             <div class="col-9">
-              <input type="text" class="form-control " id="FullName" formControlName="fullName">
+              <input type="text" class="form-control " id="fullName" formControlName="fullName">
+              <label class="text-danger"
+                *ngIf="formabout.get('fullName').touched && formabout.get('fullName').errors?.required">This
+                field is mandatory.</label>
             </div>
           </div>
           <div class="form-group row">
@@ -114,7 +117,7 @@
             <textarea class="form-control" id="Interest" rows="5" formControlName="interest"></textarea>
           </div>
           <div class="button-bar">
-            <button (click)="onSaveabout();" type="submit" class="btn btn-success">Save</button>
+            <button [disabled]="!formabout.valid" (click)="onSaveabout();" type="submit" class="btn btn-success">Save</button>
             <button (click)="setvalueabout();" class="btn btn-secondary">Reset</button>
           </div>
         </form>

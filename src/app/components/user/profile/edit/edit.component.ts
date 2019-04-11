@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { User } from './../../../../models/user'
 import { UserService } from './../../../../services/user.service'
-import { FormBuilder, FormGroup } from '@angular/forms'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'
 import { Subject } from 'rxjs'
 import { Router, ActivatedRoute } from '@angular/router'
@@ -22,7 +22,7 @@ export class EditComponent implements OnInit {
   private searchedSubject = new Subject<string>();
   formabout: FormGroup = this.fbabout.group({
     status: '',
-    fullName: '',
+    fullName: ['',Validators.required],
     address: '',
     gender: '',
     birthday: '',

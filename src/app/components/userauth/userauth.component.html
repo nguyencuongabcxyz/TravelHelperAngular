@@ -3,35 +3,36 @@
         <div class="logo">
             <a routerLink='/Users/Dashboard' routerLinkActive='active'>
                 <i class="fas fa-globe-asia"></i>
-            </a>
-        </div>
-        <!-- <div class="">
 
-        </div> -->
+            </a>
+
+        </div>
+        <img style="height:50px;padding-left: 20px" src="./../../../assets/imgs/logo.png">
+
+
         <div class="menu-bar">
-            
-                <button class="btn btn-primary btn-lg" routerLink='/Userauth/SignIn' routerLinkActive='active'>Sign
-                    In</button>
-                <button class="btn btn-primary btn-lg" routerLink='/Userauth/SignUp' routerLinkActive='active'>Sign
-                    Up</button>
-            
+
+            <button class="btn btn-outline-primary " [routerLink]="['SignIn']" routerLinkActive='active'>Login</button>
+            <button class="btn btn-outline-primary " [routerLink]="['SignUp']" routerLinkActive='active'>Sign
+                Up</button>
+
         </div>
     </nav>
 </div>
 <!-- Header -->
 <div class="container">
     <div class="container-wrapper row">
-            <div class="content col">
-                    <h3>Something here</h3>
-                </div>
-                <div class="auth-box col">
-            
-                    <div class="form-box shadow-lg p-3 bg-white rounded">
-                        <router-outlet></router-outlet>
-                    </div>
-                </div>
+        <div class="content col">
+            <h2>Stay with Locals and Meet Travelers </h2>
+            <h4>Join to share authentic travel experiences</h4>
+        </div>
+        <div class="auth-box col">
+            <div class="form-box">
+                <router-outlet (activate)="onActivate($event)"></router-outlet>
+            </div>
+        </div>
     </div>
-    
+
 
 </div>
 <div class="footer shadow-lg p-3 bg-white ">

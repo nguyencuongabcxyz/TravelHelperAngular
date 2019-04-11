@@ -5,7 +5,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css','./../../../app.component.css']
 })
 export class SignupComponent implements OnInit {
 
@@ -18,11 +18,12 @@ export class SignupComponent implements OnInit {
   formModel = this.fb.group({
     UserName: ['', Validators.required],
     Email: ['', Validators.email],
-    FullName: [''],
+    FullName: ['', Validators.required],
     Passwords: this.fb.group({
       Password: ['', [Validators.required, Validators.minLength(4)]],
       ConfirmPassword: ['', Validators.required]
-    }, { validator: this.comparePasswords })
+    }, { validator: this.comparePasswords }),
+    Checkbox:[false, Validators.requiredTrue]
 
   });
 
