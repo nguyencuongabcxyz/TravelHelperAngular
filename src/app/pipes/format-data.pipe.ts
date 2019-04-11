@@ -13,12 +13,13 @@ export class FormatDataPipe implements PipeTransform {
       //console.log(value);
       value = value.join(', ');
     }
-    else {
-      while(value.charAt(end) !== ' ') {
-        end++;
-      }
-    }
-    return value.substr(start, end) + '...';
+    // else {
+    //   while(value.charAt(end) !== ' ' && value.charAt(end)) {
+    //     end++;
+    //   }
+    // }
+
+    return value.slice(start, end) + (end > value.length ? '' : '...');
   }
 
 }

@@ -40,6 +40,7 @@ export class SearchHostComponent implements OnInit, OnDestroy {
         this.subscription = this.UserService.getTravelerByAddress(this.address).subscribe(trip => {
           this.travelers = trip;
           this.length = this.travelers.length;
+          this.hosts = null;
         });
       }
     });

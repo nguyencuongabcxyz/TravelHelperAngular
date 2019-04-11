@@ -1,6 +1,6 @@
 
 
-<div class="card box">
+<div class="card box" style="height: 230px">
 
   <div class="headers">
       <img [src]="img" class="card-img-top" alt="...">
@@ -55,7 +55,19 @@
       </div>
   </div>
   <div class="card-body" [style.padding.px]="10">
-    <p class="card-text">{{trip.description | formatData:0:90}}</p>
+    <ng-container *ngIf="trip? !trip.trip.description : !user.about;else des">
+        <p class="text-muted">
+            <i>empty</i>
+        </p>
+    </ng-container>
+
+
+    <ng-template #des>
+        <p class="card-text">{{trip ? (trip.trip.description | formatData:0:50) : (user.about | formatData:0:50)}}</p>
+    </ng-template>
+
+
+
   </div>
 </div>
 
