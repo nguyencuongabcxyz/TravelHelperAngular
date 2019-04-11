@@ -8,7 +8,7 @@ import { NgProgressComponent } from '@ngx-progressbar/core'
   styleUrls: ['./user.component.css', './../../app.component.css']
 })
 export class UserComponent implements OnInit {
- 
+
   @ViewChild(NgProgressComponent) progressBar: NgProgressComponent;
   constructor(private router: Router) { }
 
@@ -26,6 +26,6 @@ export class UserComponent implements OnInit {
 
   }
   onActivate(event) {
-    window.scroll(0,0);
-}
+    window.scroll(0, 0);
+  }
 }

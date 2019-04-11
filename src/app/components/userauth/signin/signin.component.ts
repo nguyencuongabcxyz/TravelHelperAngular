@@ -6,7 +6,7 @@ import { NgProgressComponent } from '@ngx-progressbar/core'
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css']
+  styleUrls: ['./signin.component.css','./../../../app.component.css']
 })
 export class SigninComponent implements OnInit {
   @ViewChild(NgProgressComponent) progressBar: NgProgressComponent;

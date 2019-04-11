@@ -1,26 +1,36 @@
 <ng-progress></ng-progress>
-<div class="form-login">
-  <form (submit)="onSubmit(formSignin);" #formSignin="ngForm">
-    <div class="form-group">
-      <label for="username">Username</label>
-      <div class="form-input">
-      <i class="fas fa-user"></i><input required ngModel #txtusername="ngModel" name="username" class=" form-control" id="username" placeholder="Enter Username">    
-    </div>
-      <p class="text-danger" *ngIf="txtusername.touched && txtusername.errors?.required">Username is requied</p>
-    </div>
+<div class="box" style="padding:20px">
+  <div class="box-header" style="text-align:center;">
+    <span style="font-size: 25px">LOGIN</span>
+  </div>
 
-    <div class="form-group">
+  <div class="form-login" style="padding-top:20px">
+    <form (submit)="onSubmit(formSignin);" #formSignin="ngForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <div class="form-input">
+          <i class="fas fa-user"></i><input required ngModel #txtusername="ngModel" name="username"
+            class=" form-control" id="username" placeholder="Enter Username">
+        </div>
+        <p class="text-danger" *ngIf="txtusername.touched && txtusername.errors?.required">Username is requied</p>
+      </div>
+
+      <div class="form-group">
         <label for="password">Password</label>
         <div class="form-input">
-        <i class="fas fa-key"></i><input required ngModel #txtpassword="ngModel" type ="password" name="password" class="form-control" id="password" placeholder="Enter Password">
-      </div>
+          <i class="fas fa-key"></i><input required ngModel #txtpassword="ngModel" type="password" name="password"
+            class="form-control" id="password" placeholder="Enter Password">
+        </div>
         <p class="text-danger" *ngIf="txtpassword.touched && txtpassword.errors?.required">Password is requied</p>
+      </div>
+      <div class="form-group form-check">
+        <input ngModel name="checkbox" type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        <a style=" float: right;" href="">Fogot Password?</a>
+      </div>
+      <div style="text-align:center">
+      <button [disabled]="formSignin.invalid" type="submit" class="btn btn-primary">Login</button>
     </div>
-    <div class="form-group form-check">
-      <input ngModel name="checkbox" type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Remember me</label>
-      <a style=" float: right;" href="">Fogot Password?</a>
-    </div>
-    <button [disabled]="formSignin.invalid" type="submit" class="btn btn-primary">Login</button>
-  </form>
+    </form>
+  </div>
 </div>
