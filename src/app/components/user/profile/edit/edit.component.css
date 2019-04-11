@@ -149,3 +149,8 @@ padding: 0;
         order: 1;
     }
 }
+.input-focus:focus{
+   
+    box-shadow: none;
+
+}

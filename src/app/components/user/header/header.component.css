@@ -10,6 +10,7 @@
     margin-left: auto;
 }
 .menu-bar ul{
+    padding-inline-start: 0px;
     margin: 0 auto;
     list-style: none;
 }
@@ -67,10 +68,10 @@
     margin: 0px;
 }
 .search-box .search-form-1{
-    display: inline-block;
+    
     text-align: center;
     position: relative;
-
+   
 }
 .search-box .search-form .search-select{
     display: inline-block !important;
@@ -140,7 +141,7 @@
 .button-responsive  button i:hover{
     color: #ED6504;
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 890px) {
     .header-wrapper{
         flex-wrap: wrap;
     }

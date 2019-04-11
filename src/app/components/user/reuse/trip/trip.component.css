@@ -2,6 +2,10 @@
     border-bottom: 1px solid rgba(0,0,0,0.15);
     padding-left: 20px;
 }
+.top{
+    width: 100%;
+    float: left;
+}
 .traveler-info{
     float: left;
     
@@ -32,8 +36,28 @@ span{
 }
 .trip-decription{
     clear: both;
-    padding-bottom: 20px;
     max-width: 80%;
     word-wrap: break-word;
     white-space: pre-wrap;
+     max-height: 6em;
+     overflow: hidden; 
+    transition: max-height 0.5s; 
+    
  }
+ .trip-decription p{
+     margin-bottom: 0px; 
+ }
+ .button-decription{
+    padding-bottom:20px; 
+    padding-top: 5px;
+    display: flex; 
+    max-width: 80%;
+}
+.button-decription a{
+    color: #287FB8;;
+    font-weight: 600;
+}
+.button-decription a:hover{
+    cursor: pointer;
+    color: #ED6504;
+}

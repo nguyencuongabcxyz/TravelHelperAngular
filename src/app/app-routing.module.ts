@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './auth/auth.guard'
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './components/user/user.component';
+import { UserComponent } from "./components/user/user.component";
 import { DashboardComponent } from './components/user/dashboard/dashboard.component';
 import { UserauthComponent } from './components/userauth/userauth.component';
 import { SigninComponent } from './components/userauth/signin/signin.component';
@@ -16,8 +16,9 @@ import { NotfoundComponent } from './components/notfound.component';
 import { AboutComponent } from './components/user/profile/about/about.component'
 import { EditComponent } from './components/user/profile/edit/edit.component';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
-import {PhotosComponent} from './components/user/profile/photos/photos.component'
-import {HomeComponent} from './components/user/profile/home/home.component'
+import { PhotosComponent } from './components/user/profile/photos/photos.component'
+import { HomeComponent } from './components/user/profile/home/home.component'
+import { UserResolve, ProfileResolve } from './services/user.resolve'
 const routes: Routes = [
 
   { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
@@ -34,10 +35,10 @@ const routes: Routes = [
     path: 'Users', component: UserComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-      { path: 'Dashboard', component: DashboardComponent },
-      { path: 'Profile/Edit', component: EditComponent },
+      { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve } },
+      { path: 'Profile/Edit', component: EditComponent, resolve: { users: UserResolve } },
       {
-        path: 'Profile', component: ProfileComponent,
+        path: 'Profile', component: ProfileComponent, resolve: { users: ProfileResolve },
         children: [
           { path: '', redirectTo: 'About', pathMatch: 'full' },
           { path: 'About', component: AboutComponent },
@@ -47,28 +48,28 @@ const routes: Routes = [
       },
       { path: 'People', redirectTo: "/Users/Profile/About", pathMatch: 'full' },
       {
-        path: 'People/:id', component: ProfileComponent,
+        path: 'People/:id', component: ProfileComponent, resolve: { users: ProfileResolve },
         children: [
           { path: '', redirectTo: "About", pathMatch: 'full' },
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
-          
+
         ]
       },
 
       {
         path: 'Search',
-        component: SearchHostComponent
+        component: SearchHostComponent, resolve: { users: ProfileResolve }
       },
       {
         path: 'PublicTrip',
-        component: PublicTripComponent
+        component: PublicTripComponent, resolve: { users: ProfileResolve }
       },
 
 
-      { path: 'Message', component: MessageComponent },
-      { path: 'Request', component: RequestComponent },
+      { path: 'Message', component: MessageComponent, resolve: { users: ProfileResolve } },
+      { path: 'Request', component: RequestComponent, resolve: { users: ProfileResolve } },
       { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
 

@@ -1,6 +1,6 @@
 <nav class="header-wrapper" (clickOutside)="isMenu = false;isSearch = false;">
     <div class="logo">
-        <a routerLink='/Users/Dashboard' routerLinkActive='active'>
+        <a href='/Users/Dashboard' routerLinkActive='active'>
             <i class="fas fa-globe-asia"></i>
         </a>
     </div>
@@ -15,8 +15,7 @@
                 <i [ngStyle]="isMenu && !isSearch && {'color':'#ED6504'}" class="fas fa-bars"></i></button>
         </div>
     </div>
-    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box"
-        (clickOutside)="textInput = '';">
+    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box" (clickOutside)="textInput = '';">
         <form #formSearch="ngForm" autocomplete="off" (submit)="onSubmit(formSearch);">
             <div class="search-form row">
                 <select [(ngModel)]="textSelect" class=" search-select form-control shadow-sm col" name="select">
@@ -24,10 +23,14 @@
                     <option value="traveler">Find Traveler</option>
                 </select>
                 <div class="search-form-1 col">
-                    <button class="" type="submit" ><i class="fas fa-search"></i></button>
+                    <button class="" type="submit"><i class="fas fa-search"></i></button>
                     <input [(ngModel)]="textInput" (keyup)="onKeyup();" class="form-control shadow-sm" type="text"
                         name="input" placeholder="Search for Place">
-                        <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();" [searchedSubject]="searchedSubject" ></app-dropdown>
+
+
+                    
+                    <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();"
+                        [searchedSubject]="searchedSubject"></app-dropdown>
                 </div>
             </div>
         </form>
@@ -47,9 +50,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;"
-                   
-                    [routerLink]="['Profile']" routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['Profile']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-user-circle"></i>
                     </div>

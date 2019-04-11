@@ -5,13 +5,15 @@ a:hover{
     text-decoration: none;
 }
 .content-left{
-    min-width: 300px;
-    max-width: 300px;
+    /* min-width: 220px; */
+    max-width: 300px; 
+    min-width: 260px;
+   
     padding: 0px 5px 0px 5px !important;
 }
 .content-right{
     padding: 0px 5px 0px 5px !important;
-    min-width: 500px;
+    min-width: 100px;
 }
 .content-right .row{
     margin: 0px ;
@@ -61,21 +63,28 @@ a:hover{
 
 .search-box{
     padding: 15px 0px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
  .search-form{
     display: inline-block;
     text-align: center;
     position: relative;
+    
 }
-
+.search-box form{
+    border: 2px solid #c5ccd5;
+    border-radius: 25px;
+    padding: 0.5px 10px 0.5px 20px;
+}
 .search-form input{
-    height: 40px;
+    height: 38px;
     width: 300px;
     display: inline-block;
-    border: 2px solid #c5ccd5;
-     border-radius: 25px;
-     text-indent:20px;
+    /* border: 2px solid #c5ccd5;
+     border-radius: 25px; */
+     border: none;
+     /* text-indent:20px; */
 }
 .search-form input:focus {
     outline: none;
@@ -83,16 +92,16 @@ a:hover{
 .search-form input:hover{
     cursor: pointer;
 }
-.search-form  button {
-    height: 40px;
+.search-box  button {
+    /* height: 40px;
     width: 40px;
     position: absolute;
-    right: 5px;
+    right: 5px; */
     border-radius: 25px;
     background: none;
     border: none;
 }
-.search-form  button:focus{
+.search-box  button:focus{
     outline: none;
 }
 
@@ -113,8 +122,9 @@ a:hover{
 
 
 /*public-trips*/
-@media screen and (max-width: 816px) {
+@media screen and (max-width: 768px) {
     .content-left{
+        flex: 0 0 100%;
         max-width: 100%;
         order: 2;
     }

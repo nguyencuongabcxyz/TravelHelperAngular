@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { User } from './../../../../models/user'
 import { UserService } from './../../../../services/user.service'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr'
 import { Subject } from 'rxjs'
-import { Router } from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { UploadComponent } from './../../reuse/upload/upload.component'
 @Component({
   selector: 'app-edit',
@@ -12,6 +12,7 @@ import { UploadComponent } from './../../reuse/upload/upload.component'
   styleUrls: ['./edit.component.css', './../../../../app.component.css']
 })
 export class EditComponent implements OnInit {
+ 
   @ViewChild('search') search: ElementRef;
   @ViewChild(UploadComponent) upload: UploadComponent;
   issearch = false;
@@ -32,31 +33,27 @@ export class EditComponent implements OnInit {
     interest: ''
   });
   formhome: FormGroup = this.fbhome.group({
-    maxGuest: '',
-    preferedGender: '',
-    sleepingArrangement: '',
-    sleepingDescription: '',
-    transportationAccess: '',
+    maxGuest: null,
+    preferedGender: null,
+    sleepingArrangement: null,
+    sleepingDescription: null,
+    transportationAccess: null,
     allowedThing: null,
-    stuff: '',
-    additionInfo: ''
+    stuff: null,
+    additionInfo: null
   });
-  constructor(public route: Router, public fbhome: FormBuilder, public fbabout: FormBuilder, public service: UserService, public toastr: ToastrService) {
+  constructor(public route: Router, public fbhome: FormBuilder, public fbabout: FormBuilder,
+    public service: UserService, public toastr: ToastrService, private activatedRoute: ActivatedRoute) {
 
   }
 
   ngOnInit() {
     this.isabout = true;
-    this.service.getUserProfile().subscribe(
-      res => {
-        this.user = res;
-        this.setvalueabout();
-        if (this.user.home)
-          this.setvaluehome();
-        console.log(this.formhome.value);
-        console.log(Object.values(this.formhome.value))
-      }
-    );
+    this.user = this.activatedRoute.snapshot.data.users;
+    this.setvalueabout();
+    if (this.user.home)
+      this.setvaluehome();
+
 
   }
   setvalueabout() {
