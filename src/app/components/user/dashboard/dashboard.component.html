@@ -14,6 +14,22 @@
         </span>
       </div>
     </div>
+    <div class="box profile">
+      <div class="box-header">
+        <span>MY PROFILE</span>
+      </div>
+      <div class="profile-content">
+        <div class="progress-bar">
+          <div class="percent" [style.width.%]="percent">
+            <span>{{percent}}% Complete</span>
+          </div>
+        </div>
+      </div>
+      <div class="box-action">
+        <a routerLink="/Users/Profile/Edit"><span>Complete My Profile</span><span><i
+              class="fas fa-arrow-circle-right"></i></span> </a>
+      </div>
+    </div>
   </div>
   <!-- Content left -->
   <div class="content-right col ">
@@ -22,20 +38,35 @@
         <i class="fas fa-couch"></i> <span>FIND HOST AT WHERE YOU ARE GOING TO</span>
       </div>
       <div class="proposed-box row">
-        <a href="#" class="col"><img class=" img-responsive"
-            src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
-        <a href="#" class="col"><img class=" img-responsive"
-            src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
-        <a href="#" class="col"><img class=" img-responsive"
-            src="./../../../../assets/imgs/profile-picture-placeholder.png"></a>
+        <div class="item col">
+          <a style="background-image: url('/assets/imgs/cali.jpg');">
+            <p>Napa Valley, California</p>
+            <span>5,600+ hosts</span>
+          </a>
+        </div>
+        <div class="item col">
+          <a style="background-image: url('/assets/imgs/bord.jpg');">
+            <p>Bordeaux, France</p>
+            <span>6,600+ hosts</span>
+          </a>
+        </div>
+        <div class="item col hide">
+          <a style="background-image: url('/assets/imgs/tus.jpg');">
+            <p>Tuscany, Italy</p>
+            <span>7,600+ hosts</span>
+          </a>
+        </div>
+      </div>
+      <div style="text-align: center;border-top: solid 1px rgba(0,0,0,0.15);padding-top: 10px;">
+        <span style="font-weight: 600">Find hosts wherever I’m going</span>
       </div>
       <div class="search-box">
-        <form (submit)="onSubmit(formSearch);" #formSearch="ngForm" autocomplete="off" (clickOutside)="textInput = '';" >
+        <form (submit)="onSubmit(formSearch);" #formSearch="ngForm" autocomplete="off" (clickOutside)="textInput = '';">
 
-          <div class="search-form" >
+          <div class="search-form">
             <input ngModel [(ngModel)]="textInput" (keyup)="onKeyup();" name="input" class="" type="text"
               placeholder="Where are you going?">
-              
+
             <app-dropdown [searchedSubject]="searchedSubject"></app-dropdown>
           </div>
           <button type="submit"><i style="color:#a0acbb;" class="fas fa-search"></i></button>
@@ -48,12 +79,18 @@
       <div class="box-header">
         <i class="fas fa-plane"></i><span>YOUR TRIP'S PLANS</span>
       </div>
-      <ng-container *ngFor="let trip of user.publicTrips">
-        <app-trip [isUser]="isUser" [trip]="trip"></app-trip>
+      <ng-template #loading>
+        <app-loading></app-loading>
+      </ng-template>
+      <ng-container *ngIf="trips;else loading">
+        <ng-container *ngFor="let trip of trips">
+          <app-trip [isUser]="isUser" [trip]="trip"></app-trip>
+        </ng-container>
+        <div *ngIf="(!trips.length)" class="notrip">
+          <span>You have no upcoming trips.</span>
+        </div>
       </ng-container>
-      <div *ngIf="(!user.publicTrips.length)" class="notrip">
-        <span>You have no upcoming trips.</span>
-      </div>
+
       <div class="box-action">
         <a routerLink="/Users/PublicTrip"><span>Your Trip's Plan</span><span><i
               class="fas fa-arrow-circle-right"></i></span> </a>
@@ -65,8 +102,13 @@
       <div class="box-header">
         <i class="fas fa-users"></i><span>TRAVELERS LOOKING FOR HOSTS</span>
       </div>
+      <ng-template #loading>
+        <app-loading></app-loading>
+      </ng-template>
+      <ng-container *ngIf="publicTrips;else loading">
       <ng-container *ngFor="let publicTrip of publicTrips">
         <app-publictrip [publicTrip]="publicTrip"></app-publictrip>
+      </ng-container>
       </ng-container>
       <div class="box-action">
         <a href=""><span>See More Public Trips</span><span><i class="fas fa-arrow-circle-right"></i></span> </a>

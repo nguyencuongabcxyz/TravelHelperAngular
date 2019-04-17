@@ -47,4 +47,5 @@ export class User{
     lockoutEnd ?;
     lockoutEnabled ?;
     accessFailedCount?;
+    avatarLocation?;
 }

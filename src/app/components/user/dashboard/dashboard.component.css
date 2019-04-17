@@ -21,7 +21,6 @@ a:hover{
 .box-action{
     width: 100%;
     text-align: center;
-
 }
 .box-action a{
     display: inline-block;
@@ -59,7 +58,64 @@ a:hover{
     font-size: 20px;
     padding: 10px 10px 10px 10px;
 
-  }
+}
+.profile-content{
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.progress-bar{
+    text-align: left;
+    width: 100%;
+    background-color: #cdc9c9;
+    height: 35px;
+    border: 1px solid rgba(0,0,0,0.15);
+}
+.percent{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    background-color: #41b866;
+}
+.progress-bar span{
+    padding-left: 10px;
+    overflow: visible;
+
+
+   
+}
+/* info */
+
+
+.proposed-box{
+    padding: 15px;
+}
+.proposed-box .item{
+   padding: 5px;
+}
+.proposed-box a{
+    display: block;
+    /* background-image: url('/assets/imgs/background.jpg'); */
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 250px;
+    text-align: center;
+    color: white;
+ }
+ .proposed-box a:hover{
+   cursor: pointer;
+ }
+ .proposed-box p{
+     font-weight: 600;
+    font-size: 22px;
+    margin: 0px;
+    padding: 25px 0px 5px 0px;
+ }
+ .proposed-box span{
+    font-weight: 400;
+    font-size: 17px;
+}
+
 
 .search-box{
     padding: 15px 0px;
@@ -81,10 +137,7 @@ a:hover{
     height: 38px;
     width: 300px;
     display: inline-block;
-    /* border: 2px solid #c5ccd5;
-     border-radius: 25px; */
      border: none;
-     /* text-indent:20px; */
 }
 .search-form input:focus {
     outline: none;
@@ -93,10 +146,7 @@ a:hover{
     cursor: pointer;
 }
 .search-box  button {
-    /* height: 40px;
-    width: 40px;
-    position: absolute;
-    right: 5px; */
+
     border-radius: 25px;
     background: none;
     border: none;
@@ -131,5 +181,8 @@ a:hover{
     .content-right{
         order: 1;
 
+    }
+    .hide{
+        display: none;
     }
 }

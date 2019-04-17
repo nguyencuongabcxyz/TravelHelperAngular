@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './../../../services/user.service'
 import { PublicTrip } from './../../../models/publictrip'
 import { User } from './../../../models/user'
-import {Router,ActivatedRoute} from '@angular/router'
+import { Router, ActivatedRoute } from '@angular/router'
 import { Subject } from 'rxjs'
 
 @Component({
@@ -12,24 +12,41 @@ import { Subject } from 'rxjs'
 })
 
 export class DashboardComponent implements OnInit {
-  isUser=true;
+  percent;
+  isUser = true;
   textInput = "";
-  user:any={};
-  publicTrips: any[] ;
-  constructor(private service: UserService,private activatedRoute: ActivatedRoute,private router: Router) { }
+  user: any = {};
+  trips:any[];
+  publicTrips: any[];
+  constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
   public searchedSubject = new Subject<string>();
   ngOnInit() {
-    this.user.publicTrips=[];
-    this.user=this.activatedRoute.snapshot.data.users;
-    // this.service.getUserProfile().subscribe(
-    //   res => {
-    //     this.user=res;
-       
-    //   }
-    // );
+   // this.trips=[];
+    //this.user.publicTrips = [];
+    this.user = this.activatedRoute.snapshot.data.users;
+    let d = {
+      address: this.user.address,
+      gender: this.user.gender,
+      birthday: this.user.birthday,
+      occupation: this.user.occupation,
+      fluentLanguage: this.user.fluentLanguage,
+      learningLanguage: this.user.learningLanguage,
+      about: this.user.about,
+      interest: this.user.interest,
+      status: this.user.status,
+      avatarLocation: this.user.avatarLocation,
+    };
+    let x = Object.values(d).filter(x => (x !== null && x !== "")).length;
+    this.percent = x / 10 * 100;
+    this.service.getUserPublicTrips().subscribe(
+      res=>{
+        this.trips=res;
+      }
+    );
+
     this.service.getPublicTrips().subscribe(
-      res=> {
-        this.publicTrips=res;
+      res => {
+        this.publicTrips = res;
       }
     );
   }

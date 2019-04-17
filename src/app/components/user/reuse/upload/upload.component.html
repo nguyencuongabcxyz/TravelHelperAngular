@@ -7,8 +7,8 @@
   </div>
 
   <div class="modal-body">
-    <div class="img-preview">
-      <img class="photo" [src]="imageUrl">
+    <div class="img-preview" [style.height.px]="from=='photos' && 300">
+      <img [ngClass]="{'photo':from=='edit','image':from=='photos'}" [src]="imageUrl">
     </div>
 
     <form autocomplete="off" #uploadForm="ngForm">
@@ -25,16 +25,16 @@
           <li><span>Using script blockers may prevent image uploads from working.</span></li>
         </ul>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="exampleFormControlInput1">Description</label>
         <input required autofocus ngModel name="description" type="text" class="form-control"
           id="exampleFormControlInput1">
-      </div>
+      </div> -->
     </form>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
     <button [disabled]="uploadForm.invalid" type="button" class="btn btn-success"
-      (click)="upload(uploadForm)">Upload</button>
+      (click)="upload(uploadForm);">Upload</button>
   </div>
 </ng-template>
