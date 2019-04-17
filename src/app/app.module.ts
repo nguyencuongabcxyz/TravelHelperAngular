@@ -44,8 +44,15 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve ,ProfileResolve} from './services/user.resolve';
+import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve} from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
+import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
+import { ReferencesComponent } from './components/user/profile/references/references.component';
+import { LoadingComponent } from './components/user/reuse/loading/loading.component';
+import { WriteReferenceModalComponent } from './components/user/reuse/write-reference-modal/write-reference-modal.component';
+import { SendRequestModalComponent } from './components/user/reuse/send-request-modal/send-request-modal.component';
+import { SendMessageModalComponent } from './components/user/reuse/send-message-modal/send-message-modal.component';
+import { OfferToHostComponent } from './components/user/reuse/offer-to-host/offer-to-host.component';
 
 
 
@@ -79,6 +86,13 @@ import { NgProgressModule } from '@ngx-progressbar/core';
     UploadComponent,
     PhotosComponent,
     HomeComponent,
+    ReferenceComponent,
+    ReferencesComponent,
+    LoadingComponent,
+    WriteReferenceModalComponent,
+    SendRequestModalComponent,
+    SendMessageModalComponent,
+    OfferToHostComponent,
 
 
 
@@ -112,7 +126,9 @@ import { NgProgressModule } from '@ngx-progressbar/core';
     NgbModal,
     NgbActiveModal,
     UserResolve,
-    ProfileResolve
+    ProfileResolve,
+    TokenResolve,
+    HomeResolve
   ],
   bootstrap: [AppComponent]
 })

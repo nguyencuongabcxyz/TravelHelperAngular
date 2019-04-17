@@ -1,11 +1,9 @@
 <ng-template #loading>
-  <div class="box" style="height:150px;display: flex; align-items: center;justify-content: center;">
-    <div>
-      <img style="height:50px;width: 50px;" src="./../../../../../assets/imgs/spinner.gif">
-    </div>
+    <div class="box">
+  <app-loading></app-loading>
   </div>
 </ng-template>
-<ng-container *ngIf="user.id;else loading">
+<ng-container *ngIf="isLoading==false;else loading">
   <div class="box box-myhome">
     <div class="box-header">
       <span>MY HOME</span>
@@ -15,26 +13,26 @@
         <span>Nothing to show</span>
       </div>
     </ng-template>
-    <div *ngIf="user.home && !none;else nothing" class="content-myhome">
-      <div *ngIf="user.home.maxGuest" class="item"><span>Max Number of Guests :</span>{{user.home.maxGuest}}</div>
-      <div *ngIf="user.home.preferedGender" class="item"><span>Preferred Gender to Host
-          :</span>{{user.home.preferedGender}}</div>
-      <div *ngIf="user.home.sleepingArrangement" class="item"><span>Sleeping Arrangements
-          :</span>{{user.home.sleepingArrangement}}</div>
-      <div *ngIf="user.home.sleepingDescription" class="item"> <span>Description of Sleeping Arrangement</span>
-        <p>{{user.home.sleepingDescription}}</p>
+    <div *ngIf="home && !none;else nothing" class="content-myhome">
+      <div *ngIf="home.maxGuest" class="item"><span>Max Number of Guests :</span>{{home.maxGuest}}</div>
+      <div *ngIf="home.preferedGender" class="item"><span>Preferred Gender to Host
+          :</span>{{home.preferedGender}}</div>
+      <div *ngIf="home.sleepingArrangement" class="item"><span>Sleeping Arrangements
+          :</span>{{home.sleepingArrangement}}</div>
+      <div *ngIf="home.sleepingDescription" class="item"> <span>Description of Sleeping Arrangement</span>
+        <p>{{home.sleepingDescription}}</p>
       </div>
-      <div *ngIf="user.home.transportationAccess" class="item"><span>Public Transportation Access </span>
-        <p>{{user.home.transportationAccess}}</p>
+      <div *ngIf="home.transportationAccess" class="item"><span>Public Transportation Access </span>
+        <p>{{home.transportationAccess}}</p>
       </div>
-      <div *ngIf="user.home.allowedThing" class="item"><span>Allowed Thing </span>
-        <p>{{user.home.allowedThing}}</p>
+      <div *ngIf="home.allowedThing" class="item"><span>Allowed Thing </span>
+        <p>{{home.allowedThing}}</p>
       </div>
-      <div *ngIf="user.home.stuff" class="item"><span>Stuff </span>
-        <p>{{user.home.stuff}}</p>
+      <div *ngIf="home.stuff" class="item"><span>Stuff </span>
+        <p>{{home.stuff}}</p>
       </div>
-      <div *ngIf="user.home.additionInfo" class="item"><span>Additional Information </span>
-        <p>{{user.home.additionInfo}}</p>
+      <div *ngIf="home.additionInfo" class="item"><span>Additional Information </span>
+        <p>{{home.additionInfo}}</p>
       </div>
     </div>
   </div>

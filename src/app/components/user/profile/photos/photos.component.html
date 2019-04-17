@@ -1,25 +1,30 @@
 <ng-template #loading>
-  <div class="box" style="height:150px;display: flex; align-items: center;justify-content: center;">
-    <div>
-      <img style="height:50px;width: 50px;" src="./../../../../../assets/imgs/spinner.gif">
-    </div>
+  <div class="box">
+    <app-loading></app-loading>
   </div>
 </ng-template>
-<ng-container *ngIf="user.id;else loading">
-  <app-upload></app-upload>
+<ng-template #nothing>
+  <div class="nothing">
+    <span>Nothing to show</span>
+  </div>
+</ng-template>
+<ng-container *ngIf="isLoading==false;else loading">
+  <app-upload [from]="'photos'" (myclick)="addphoto($event)"></app-upload>
   <div class="box box-photos">
-    <div class="box-header">
-      <span>PHOTOS</span>
-      <button (click)="upload.open();" class="btn btn-primary"><i class="fas fa-plus"></i>Add Photo</button>
+    <div class="box-header" [ngStyle]=" isUser && {'padding': '8px 20px'}">
+      <span>PHOTOS ({{photos.length}})</span>
+      <button *ngIf="isUser" (click)="upload.open();" class="btn btn-primary"><i class="fas fa-plus"></i>Add
+        Photo</button>
     </div>
-    <div class="content-photos">
-      <ul class="grid-photos row">
-        <li class="grid-item  col-3" *ngFor="let x of [0,1,2,3,4,5,6,7,8,9,10]">
-          <a><img [src]="'./../../../../../assets/imgs/background.jpg'"></a>
-        </li>
-      </ul>
-
-    </div>
+    <ng-container *ngIf="photos.length;else nothing">
+      <div class="content-photos">
+        <ul class="grid-photos row">
+          <li class="grid-item  col-3" *ngFor="let photo of photos">
+            <a><img [src]="photo.location"></a>
+          </li>
+        </ul>
+      </div>
+    </ng-container>
   </div>
 
 

@@ -14,7 +14,7 @@ export class DropdownComponent implements OnInit {
   @Input() formSearch: any;
   @Input() type: string;
   textSelect = 'host';
-  cityNames: string[];
+  cityNames: string[]=[];
   isload = false;
   constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
   ngOnInit() {

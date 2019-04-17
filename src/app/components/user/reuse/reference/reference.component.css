@@ -1,0 +1,84 @@
+a{
+    color: #27374c;
+}
+a:hover{
+    text-decoration: none;
+}
+.reference{
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    width: 100%;
+    padding: 20px;
+}
+.row{
+    margin: 0;
+}
+.col{
+    padding: 0;
+}
+.reference .avatar{
+    max-width: 90px;
+}
+.reference img{
+    height: 70px;
+    width:70px;
+    border-radius: 50%;
+}
+.reference .reference-content{
+   min-width: 100px;
+   
+}
+span{
+    word-wrap: break-word;
+}
+.user-info{
+    float: left;
+}
+.user-info p{
+    margin-bottom: 0px;
+}
+.user-info .name{
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.user-info .address{
+margin-bottom: 0px;
+}
+.time{
+    float: right;
+    color: #929EAE;
+    size: 0.9em;
+}
+.status{
+    clear: both;
+    padding: 20px 0px;
+}
+.status span{
+
+}
+
+.reference-decription{
+   clear: both;
+   word-wrap: break-word;
+   white-space: pre-wrap;
+   max-width: 80%;
+   max-height: 4.5em;
+   overflow: hidden; 
+  transition: max-height 0.5s; 
+
+}
+.reference-decription p{
+    margin-bottom: 0px; 
+}
+.button-decription{
+    padding-top: 5px;
+    display: flex; 
+    max-width: 80%;
+}
+.button-decription a{
+color: #287FB8;;
+font-weight: 600;
+}
+.button-decription a:hover{
+    cursor: pointer;
+    color: #ED6504;
+}

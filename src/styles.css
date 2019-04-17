@@ -21,3 +21,74 @@ body::after {
   top: 72px;
   right: 12px;
 }
+.modal-holder{
+  animation-name: example;
+  animation-duration: 0.3s;
+}
+
+@keyframes example {
+  0%   {transform: scale(0.5)}
+  100% {transform: scale(1)}
+}
+
+.container {
+  padding-top: 70px!important;
+  max-width: 1280px!important;
+
+}
+.col{
+  padding: 0px ;
+}   
+
+.header{
+  
+  top: 0;
+  width: 100%;
+  background-color: white;
+  position: fixed;
+  z-index: 1000;
+}
+
+.footer{
+  position: absolute;
+  height: 200px;
+  background-color: white;
+  width: 100%;
+  bottom: 0;
+}
+.box{
+  background-color: white;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175) !important;
+  border-radius: 0.15rem !important;
+  margin-bottom: 10px!important;
+}
+.box-header{
+  padding: 15px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+.box-header span{
+  font-size: 17px;
+  font-weight: 600;
+}
+.box-header i{
+  font-size: 1.1em;;
+  padding-right: 8px;
+}
+.photo{
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+ border-radius: 50%;
+}
+.nothing{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: #eceef0;
+  height: 150px;
+}
+.nothing span{
+  margin: auto;
+}

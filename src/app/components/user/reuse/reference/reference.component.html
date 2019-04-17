@@ -1,0 +1,24 @@
+<div class="reference row">
+  <div class="avatar col">
+    <a routerLink="/Users/People/{{reference.sender.id}}"><img class="photo"
+        [src]="reference.sender.avatarLocation?reference.sender.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
+  </div>
+  <div class="reference-content col">
+    <div class="user-info">
+      <a routerLink="/Users/People/{{reference.sender.id}}">
+        <p class="name">{{reference.sender.fullName}}</p>
+      </a>
+      <p class="address">{{reference.sender.address}}</p>
+    </div>
+    <div class="time"><span>10/11/12</span></div>
+    <div class="status">
+      <span [style.color]="reference.status?'green':'red'">{{reference.status?'Recommend':'Not Recommend'}}</span>
+    </div>
+    <div class="reference-decription" (window:resize)="onResize($event)" [ngStyle]="x && {'max-height.em':height}">
+      <p #des>{{reference.content}} </p>
+    </div>
+    <div class="button-decription" *ngIf="show">
+      <a style="margin-left:auto" (click)="x=!x">{{x?'[-]Read Less':'[+]Read More'}}</a>
+    </div>
+  </div>
+</div>
