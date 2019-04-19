@@ -8,7 +8,7 @@ import { PublicTrip } from 'src/app/models/publictrip';
   styleUrls: ['./pubic-trip-content.component.css']
 })
 export class PubicTripContentComponent implements OnInit {
-
+  permit = true;
   @Input() PublicTrip: PublicTrip;
   @Input() stt: number;
 
@@ -23,7 +23,15 @@ export class PubicTripContentComponent implements OnInit {
   }
 
   onPublicTripClick() {
-    this.idTrip.emit(this.PublicTrip.trip.publicTripId);
+    if(this.permit === true) {
+      this.idTrip.emit(this.PublicTrip.trip.publicTripId);
+    }
+    this.permit = true;
+  }
+
+  notOnPublicTripClick() {
+    this.permit = false;
+    console.log(1);
   }
 
   onDeleteTripClick() {

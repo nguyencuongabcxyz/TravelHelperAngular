@@ -36,6 +36,17 @@ margin-bottom: 0px;
 
 } */
 
+.people:hover{
+  cursor: pointer;
+}
+
+.people:hover .name{
+  color: #365899;
+  text-decoration: underline;
+}
+
+
+
 .headers {
   display: flex;
   padding: 10px;
