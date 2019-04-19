@@ -50,12 +50,13 @@
   width: 10%;
 }
 
-.your-trips .delete i{
+.your-trips .delete button{
   transition: all 500ms;
   opacity: 0.8;
+  transform: scale(0.8);
 }
 
-.your-trips .delete i:hover{
-  transform: scale(1.5);
+.your-trips .delete button:hover{
+  transform: scale(1);
   opacity: 1;
 }

@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 import { Trip } from 'src/app/models/trip';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute, ChildActivationStart } from '@angular/router';
-import { Subject } from 'rxjs'
+import { Subject } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-public-trip',
@@ -33,6 +34,7 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   constructor(
     private userService: UserService,
     private formBuilderService: FormBuilder,
+    private toastr: ToastrService,
     private router: Router,
     private activate: ActivatedRoute
   ) { }
@@ -57,25 +59,26 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   }
 
   load() {
-    this.subscription = this.userService.getUserProfile().subscribe(data => {
-      this.publicTrips = data.publicTrips;
+    this.subscription = this.userService.getPublicTripUser().subscribe(data => {
+      this.publicTrips = data;
       console.log(data);
     });
   }
 
   onClickPublicTrip(id: number) {
-    if (!this.isDelete) {
-      this.idTrip = id;
-      this.subscription = this.userService.getPublicTripById(id).subscribe(data => {
-        this.trip = data;
-        this.trip.arrivalDate = this.trip.arrivalDate.slice(0, 10);
-        this.trip.departureDate = this.trip.departureDate.slice(0, 10);
-        this.des = this.trip.destination;
-        console.log(this.trip);
-      });
-    }
-    this.isDelete = false;
+
+    this.idTrip = id;
+    this.subscription = this.userService.getPublicTripById(id).subscribe(data => {
+      this.trip = data;
+      this.trip.arrivalDate = this.trip.arrivalDate.slice(0, 10);
+      this.trip.departureDate = this.trip.departureDate.slice(0, 10);
+      this.des = this.trip.destination;
+      console.log(this.trip);
+    });
+
+
     this.click = false;
+    this.check = null;
   }
 
   // onKeyUp() {
@@ -102,45 +105,77 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   onSubmitForm() {
     //this.formUser.value.travelerNumber = Number.parseInt(this.formUser.value.travelerNumber);
     console.log(this.formUser);
-    this.userService.postPublicTrip(this.formUser.value).subscribe(data => {
+    var submit = false;
+    this.subscription =  this.userService.postPublicTrip(this.formUser.value).subscribe((data: any) => {
       console.log(data);
+      submit = true;
     });
     // this.router.navigate(['PublicTrip'], {relativeTo: this.activate.parent});
 
-    this.formUser.reset();
-    this.idTrip = null;
     this.textBtn = 'Submit';
-    this.click = true;
-    this.check = true;
+
     setTimeout( () => {
+      if(submit){
+        this.toastr.success('New public trip created', 'Create public trip success');
+        this.formUser.reset();
+        this.idTrip = null;
+        this.check = true;
+        this.click = true;
+      }
+      else {
+        this.toastr.error('Create public trip failed', 'Error');
+        this.check = false;
+        this.click = true;
+      }
       this.load();
-    }, 100);
+    }, 1000);
   }
 
 
   onUpdatePublicTrip() {
+    var update = false;
     if (this.idTrip) {
       this.subscription = this.userService.putPublicTripById(this.idTrip, this.formUser.value).subscribe(data => {
         console.log(data);
-        this.load();
+        update = true;
       });
-      this.check = true;
-    } else {
-      this.check = false;
     }
-    this.click = true;
+    setTimeout(() => {
+      if(update) {
+        this.check = true;
+        this.formUser.reset();
+        this.toastr.success('Updated pubic trip', 'Update public trip success');
+        this.click = true;
+      }else{
+        if(!this.idTrip){
+          this.check = false;
+        }
+        this.click = true;
+        this.toastr.error('Update pubic trip failed', 'Error');
+      }
+      this.load();
+    }, 1000);
     this.textBtn = 'Update';
-    this.formUser.reset();
   }
 
   onClickDeleteTrip(id: number) {
     this.isDelete = true;
+    var del = false;
     this.subscription = this.userService.deletePublicTripById(id).subscribe(data => {
       console.log(data);
-    });
-    setTimeout( () => {
+      del = true;
+      this.idTrip = null;
       this.load();
-    }, 100);
+    });
+
+    setTimeout(() => {
+      if(del) {
+        this.toastr.success('Delete pubic trip', 'Delete public trip success');
+      }
+      else{
+        this.toastr.error('Delete pubic trip failed', 'Error');
+      }
+    }, 1000);
   }
 
   onClearForm() {
