@@ -16,16 +16,18 @@ import { NotfoundComponent } from './components/notfound.component';
 import { AboutComponent } from './components/user/profile/about/about.component'
 import { EditComponent } from './components/user/profile/edit/edit.component';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
-import { PhotosComponent } from './components/user/profile/photos/photos.component'
-import { HomeComponent } from './components/user/profile/home/home.component'
-import { UserResolve, ProfileResolve } from './services/user.resolve'
+import { PhotosComponent } from './components/user/profile/photos/photos.component';
+import { HomeComponent } from './components/user/profile/home/home.component';
+import { ReferencesComponent } from './components/user/profile/references/references.component'
+
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve } from './services/user.resolve'
 const routes: Routes = [
 
-  { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
+  { path: '', redirectTo: 'Userauth', pathMatch: 'full' },
   {
-    path: 'Userauth', component: UserauthComponent,
+    path: 'Userauth', component: UserauthComponent, resolve: { TokenResolve },
     children: [
-      { path: '', redirectTo: '/Userauth/SignIn', pathMatch: 'full' },
+      { path: '', redirectTo: 'SignIn', pathMatch: 'full' },
       { path: 'SignUp', component: SignupComponent },
       { path: 'SignIn', component: SigninComponent },
       { path: '**', component: NotfoundComponent },
@@ -36,7 +38,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
       { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve } },
-      { path: 'Profile/Edit', component: EditComponent, resolve: { users: UserResolve } },
+      { path: 'Profile/Edit', component: EditComponent, resolve: { users: UserResolve, homeres: HomeResolve } },
       {
         path: 'Profile', component: ProfileComponent, resolve: { users: ProfileResolve },
         children: [
@@ -44,6 +46,7 @@ const routes: Routes = [
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
+          { path: 'References', component: ReferencesComponent ,},
         ]
       },
       { path: 'People', redirectTo: "/Users/Profile/About", pathMatch: 'full' },
@@ -54,7 +57,7 @@ const routes: Routes = [
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
-
+          { path: 'References', component: ReferencesComponent, },
         ]
       },
 
@@ -79,7 +82,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

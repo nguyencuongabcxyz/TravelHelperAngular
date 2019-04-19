@@ -10,7 +10,7 @@ import { Trip } from '../models/trip';
   providedIn: 'root'
 })
 export class UserService {
-  private id: string;
+  private peopleid: string;
   constructor(private http: HttpClient) { }
   readonly BaseURI = 'https://travelhelperwebsite.azurewebsites.net/api';
   searchHost = '/Users/Search?address=';
@@ -18,19 +18,42 @@ export class UserService {
   userPublicTrip = '/Users/Publictrips';
   publicTrip = '/Publictrips/';
 
-  setUser(id) {
-    this.id = id;
+  setPeopleid(id) {
+    this.peopleid = id;
   }
   getisUser() {
-    return this.id ? false : true;
+    return this.peopleid ? false : true;
   }
   getUser(): Observable<any> {
-    if (this.id == null)
+    if (this.getisUser())
       return this.getUserProfile();
-    return this.getPeopleProfile(this.id);
-
+    return this.getPeopleProfile(this.peopleid);
+  }
+  getProfilePublictrip(): Observable<any> {
+    if (this.getisUser())
+      return this.getUserPublicTrips();
+    return this.getPeoplePublicTrips(this.peopleid);
+  }
+  getHome(): Observable<any> {
+    if (this.getisUser())
+      return this.getUserHome();
+    return this.getPeopleHome(this.peopleid);
+  }
+  getReferences(): Observable<any> {
+    if (this.getisUser())
+      return this.getUserReferences();
+    return this.getPeopleReferences(this.peopleid);
+  }
+  getImages(): Observable<any> {
+    if (this.getisUser())
+      return this.getUserImages();
+    return this.getPeopleImages(this.peopleid);
   }
 
+  //  =============================
+  getUserProfile(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users');
+  }
   getPeopleProfile(id: String): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users/' + id).pipe(
       catchError(
@@ -39,12 +62,54 @@ export class UserService {
         }
       ));
   }
-  getUserProfile(): Observable<any> {
-    return this.http.get<any>(this.BaseURI + '/Users');
+  //  =============================
+  getUserHome(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/Homes');
   }
+  getPeopleHome(id): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/' + id + '/Homes');
+  }
+
+  //  =============================
+  getUserPublicTrips(): Observable<any[]> {
+    return this.http.get<any[]>(this.BaseURI + '/Users/Publictrips');
+  }
+  getPeoplePublicTrips(id): Observable<any[]> {
+    return this.http.get<any[]>(this.BaseURI + '/Users/' + id + '/Publictrips');
+  }
+  //  =============================
+
+  getUserReferences(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/References');
+  }
+  getPeopleReferences(id): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/' + id + '/References');
+  }
+  //  =============================
+  getUserImages(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/Images');
+  }
+  getPeopleImages(id): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/' + id + '/Images');
+  }
+  //  =============================
+  uploadImage(image): Observable<any> {
+    return this.http.post<any>(this.BaseURI + '/Images', image);
+  }
+  uploadAvatar(image): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/Users/Avatar', image);
+  }
+  //  =============================
+  sendReference(formReference): Observable<any> {
+    return this.http.post<any>(this.BaseURI + '/References/' + this.peopleid, formReference);
+  }
+
+  //  =============================
   getPublicTrips(): Observable<any[]> {
     return this.http.get<any[]>(this.BaseURI + '/Publictrips');
   }
+  //  =============================
+
   getAdressEntries(term: string): Observable<string[]> {
     if (term.length < 1)
       return of();
@@ -56,6 +121,8 @@ export class UserService {
       // distinctUntilChanged(),
       switchMap(term => this.getAdressEntries(term)))
   }
+  //  =============================
+
   editProfileAbout(formAbout) {
     return this.http.put(this.BaseURI + '/Users', formAbout);
   }
@@ -65,6 +132,9 @@ export class UserService {
   createProfileHome(formHome) {
     return this.http.post(this.BaseURI + '/homes', formHome);
   }
+  //  =============================
+
+
   getHostByAddress(address): Observable<any[]> {
     // console.log(this.API + this.Search + address);
 

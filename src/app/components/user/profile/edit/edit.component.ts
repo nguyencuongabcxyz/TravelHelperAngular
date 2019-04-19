@@ -12,17 +12,19 @@ import { UploadComponent } from './../../reuse/upload/upload.component'
   styleUrls: ['./edit.component.css', './../../../../app.component.css']
 })
 export class EditComponent implements OnInit {
- 
+
   @ViewChild('search') search: ElementRef;
   @ViewChild(UploadComponent) upload: UploadComponent;
   issearch = false;
   user: any = {};
+  home: any;
+  homeres: any;
   addressInput = '';
   isabout;
   private searchedSubject = new Subject<string>();
   formabout: FormGroup = this.fbabout.group({
     status: '',
-    fullName: ['',Validators.required],
+    fullName: ['', Validators.required],
     address: '',
     gender: '',
     birthday: '',
@@ -50,11 +52,15 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.isabout = true;
     this.user = this.activatedRoute.snapshot.data.users;
+    this.homeres = this.activatedRoute.snapshot.data.homeres;
     this.setvalueabout();
-    if (this.user.home)
+    if (this.homeres.length) {
+      this.home = this.homeres[0];
       this.setvaluehome();
-
-
+    }
+  }
+  setAvatar(event) {
+    this.user.avatarLocation = event;
   }
   setvalueabout() {
     this.formabout.setValue({
@@ -90,20 +96,20 @@ export class EditComponent implements OnInit {
   }
   setvaluehome() {
     this.formhome.setValue({
-      maxGuest: this.user.home.maxGuest,
-      preferedGender: this.user.home.preferedGender,
-      sleepingArrangement: this.user.home.sleepingArrangement,
-      sleepingDescription: this.user.home.sleepingDescription,
-      transportationAccess: this.user.home.transportationAccess,
-      allowedThing: this.user.home.allowedThing,
-      stuff: this.user.home.stuff,
-      additionInfo: this.user.home.additionInfo
+      maxGuest: this.home.maxGuest,
+      preferedGender: this.home.preferedGender,
+      sleepingArrangement: this.home.sleepingArrangement,
+      sleepingDescription: this.home.sleepingDescription,
+      transportationAccess: this.home.transportationAccess,
+      allowedThing: this.home.allowedThing,
+      stuff: this.home.stuff,
+      additionInfo: this.home.additionInfo
     });
   }
   onSavehome() {
-    if (this.user.home) {
+    if (this.home) {
 
-      this.service.editProfileHome(this.formhome.value, this.user.home.homeId).subscribe(
+      this.service.editProfileHome(this.formhome.value, this.home.homeId).subscribe(
         (res: any) => {
           this.toastr.success("Saved");
           this.route.navigateByUrl('/Users/Profile');

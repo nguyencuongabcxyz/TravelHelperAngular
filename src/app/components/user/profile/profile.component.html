@@ -1,8 +1,11 @@
-
-<div class="row" >
+<app-write-reference-modal [people]="user"></app-write-reference-modal>
+<app-send-message-modal [people]="user"></app-send-message-modal>
+<app-send-request-modal [people]="user"></app-send-request-modal>
+<div class="row">
   <div class="content-left col-3 ">
     <div class="box user-info">
-      <img class="photo img-responsive" [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'">
+      <img class="photo img-responsive"
+        [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'">
       <div class="info">
         <p style="font-size:30px;">{{user.fullName}}</p>
         <p>{{user.address}}</p>
@@ -10,7 +13,7 @@
 
     </div>
     <div class="box" style="min-height:500px">
-      
+
     </div>
   </div>
   <div class="content-right col ">
@@ -19,8 +22,10 @@
         {{user.status?'Acepting Guest':'Not Acepting Guest'}}
       </span>
       <div class="button-bar">
-        <button *ngIf="!isUser&&user.status" class="btn btn-primary">Send Request</button>
-        <button *ngIf="!isUser" class="btn btn-primary"><i class="far fa-envelope"></i></button>
+        <button (click)="sendRequestModal.open();" *ngIf="!isUser&&user.status" class="btn btn-primary">Send
+          Request</button>
+        <button (click)="sendMessageModal.open();" *ngIf="!isUser" class="btn btn-primary"><i
+            class="far fa-envelope"></i></button>
         <button *ngIf="isUser" class="btn btn-primary" routerLink="/Users/Profile/Edit">Edit My Profile</button>
         <div *ngIf="!isUser" class="dropdown" (clickOutside)="isdrop=false;">
           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
@@ -29,9 +34,9 @@
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
             [style.display]="isdrop?'block':'none'">
-            <button class="dropdown-item" type="button">Action</button>
-            <button class="dropdown-item" type="button">Another action</button>
-            <button class="dropdown-item" type="button">Something else here</button>
+            <button class="dropdown-item" type="button">Add Friend</button>
+            <button (click)="writeReferenceModal.open();" class="dropdown-item" type="button">Write Reference</button>
+            <button class="dropdown-item" type="button">Report</button>
           </div>
         </div>
       </div>
@@ -42,9 +47,8 @@
         <li><a routerLinkActive='is-selected' [routerLink]="['About']"><span>About</span></a></li>
         <li><a routerLinkActive='is-selected' [routerLink]="['Myhome']"><span>My Home</span></a></li>
         <li><a routerLinkActive='is-selected' [routerLink]="['Photos']"><span>Photos</span></a></li>
-        <li><a href=""><span>References</span></a></li>
+        <li><a routerLinkActive='is-selected' [routerLink]="['References']"><span>References</span></a></li>
         <li><a href=""><span>Friends</span></a></li>
-        <li><a href=""><span>Favorites</span></a></li>
       </ul>
     </div>
     <router-outlet></router-outlet>

@@ -1,7 +1,8 @@
 <img *ngIf="isload" style="z-index: 210;position:absolute;height:22px;width: 22px;right: 10px ;"
   [ngStyle]="type=='select'?{'top':'-30px'}:{'top':'8px'}" src="./../../../../../assets/imgs/spinner.gif">
 
-<div class="dropdown" (clickOutside)="cityNames=[];">
+<div class="dropdown" (clickOutside)="cityNames=[];"
+  [ngStyle]="(cityNames.length)&&  {'border': 'rgba(0,0,0,0.15) 1px solid'}">
   <ul>
     <li *ngFor="let city of cityNames"><a (click)="onClick(city);">
         <span>{{city}}</span>

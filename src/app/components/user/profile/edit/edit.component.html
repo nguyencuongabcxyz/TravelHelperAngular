@@ -1,8 +1,8 @@
 <div class="row" *ngIf="user.id">
-  <app-upload></app-upload>
+  <app-upload [from]="'edit'" (myclick)="setAvatar($event)"></app-upload>
   <div class="content-left col ">
     <div class="box user-info">
-      <a class="upload" (click)="this.upload.open()">
+      <a class="upload" (click)="upload.open()">
         <div class="top"></div>
         <div class="bottom">
           <i class="fas fa-camera"></i>

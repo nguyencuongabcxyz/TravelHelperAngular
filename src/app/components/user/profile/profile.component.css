@@ -26,7 +26,9 @@
 }
 .button-bar button{
     margin-left: 5px;
-   
+}
+.dropdown-menu button{
+    margin: 0px;
 }
 .status-bar span{
     padding-left: 20px;
