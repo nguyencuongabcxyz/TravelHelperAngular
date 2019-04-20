@@ -1,0 +1,144 @@
+
+.carousel-header{
+    
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+}
+.button-bar .delbtn{
+    outline-style: none;
+    border: none;
+    background: none;
+    padding: 0px;
+    margin-right: 20px;
+    color: white;
+}
+.button-bar .delbtn:hover{
+    cursor: pointer;
+    color: #ED6504;
+}
+.button-bar{
+    margin-left: auto;
+}
+.carousel-header span,h4{
+color: white;
+
+}
+.info{
+    padding-left: 30px;
+     font-style: italic;
+     color: #cbc3c3;
+}
+
+
+
+.carousel-footer {
+    
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 20px;
+
+}
+.carousel-footer ul{
+    margin-block-start: 0px;
+    margin-block-end: 10px;
+    padding-inline-start: 0px;
+    list-style: none;
+    white-space: nowrap;
+}
+.carousel-footer ul li:first-child{
+    display: inline-block;
+    padding-left: 0px;
+}
+.carousel-footer ul li{
+    display: inline-block;
+    padding: 5px;
+}
+.thumbnail{
+    object-fit: cover;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+}
+.thumbnail:hover{
+    border: 1px solid white;
+}
+.thumbnail-active{
+    border: 1px solid white;
+}
+
+.carousel-body{
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto; 
+    padding: 20px;
+
+}
+.view{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 158px;
+    padding-top: 66px;
+    padding-left: 70px;
+    padding-right: 70px;
+    display: flex;
+    align-items: center;
+
+}
+.background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.img-view{
+    margin: auto;
+    object-fit: cover;
+    max-height: 100%;
+    max-width: 100%;
+    
+}
+.next{
+    margin-left: auto;
+}
+.previous button,.next button{
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    outline-style: none;
+}
+.previous button:hover,.next button:hover{
+    background: rgba(0, 0, 0, 0.5);
+}
+.previous button i,.next button i{
+   font-size: 40px;
+   color: white;
+}
+
+
+.content{
+    overflow-x: auto;
+}
+.content::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 8px;
+	background-color: #F5F5F5;
+}
+.content::-webkit-scrollbar
+{
+    height: 8px;
+    border-radius: 8px;
+	background-color: #F5F5F5;
+}
+
+.content::-webkit-scrollbar-thumb
+{
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #555;
+}

@@ -53,6 +53,7 @@ import { WriteReferenceModalComponent } from './components/user/reuse/write-refe
 import { SendRequestModalComponent } from './components/user/reuse/send-request-modal/send-request-modal.component';
 import { SendMessageModalComponent } from './components/user/reuse/send-message-modal/send-message-modal.component';
 import { OfferToHostComponent } from './components/user/reuse/offer-to-host/offer-to-host.component';
+import { CarouselModalComponent } from './components/user/reuse/carousel-modal/carousel-modal.component';
 
 
 
@@ -93,6 +94,7 @@ import { OfferToHostComponent } from './components/user/reuse/offer-to-host/offe
     SendRequestModalComponent,
     SendMessageModalComponent,
     OfferToHostComponent,
+    CarouselModalComponent,
 
 
 

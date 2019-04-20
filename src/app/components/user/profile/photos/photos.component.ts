@@ -3,6 +3,7 @@ import { UserService } from './../../../../services/user.service'
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router'
 import { UploadComponent } from './../../reuse/upload/upload.component'
 import { Subject, BehaviorSubject } from 'rxjs';
+import { CarouselModalComponent } from '../../reuse/carousel-modal/carousel-modal.component';
 @Component({
   selector: 'app-photos',
   templateUrl: './photos.component.html',
@@ -14,6 +15,7 @@ export class PhotosComponent implements OnInit , OnDestroy {
   }
   navigationSubscription;
   @ViewChild(UploadComponent) upload: UploadComponent;
+  @ViewChild(CarouselModalComponent) carousel: CarouselModalComponent;
   isUser: boolean;
   user: any = {};
   photos: any[] = [];
@@ -47,7 +49,9 @@ export class PhotosComponent implements OnInit , OnDestroy {
     );
   }
   addphoto(photo){
-    this.photos.push(photo)
-
+    this.photos.push(photo);
+  }
+  subphoto(index){
+    this.photos.splice(index,1);
   }
 }
