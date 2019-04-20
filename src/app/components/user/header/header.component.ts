@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/Userauth']);
+
   }
   onKeyup() {
     this.searchedSubject.next(this.textInput);

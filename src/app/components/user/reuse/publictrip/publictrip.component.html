@@ -5,6 +5,7 @@
         [src]="publicTrip.user.avatarLocation?publicTrip.user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'" alt=""></a>
   </div>
   <div class="trip-content col">
+      
     <div class="top">
       <div class="traveler-info">
         <a routerLink="/Users/People/{{publicTrip.user.id}}"> <span class="name">{{publicTrip.user.fullName}}</span></a>
@@ -13,9 +14,7 @@
         <span>From: </span><span class="bold-value">{{publicTrip.user.address}}</span><br>
         <span>Speakers: </span><span class="bold-value">{{publicTrip.user.fluentLanguage}}</span><br>
       </div>
-      <div class="offer-button ">
-        <button (click)="offerToHost.open()" class="btn btn-primary">Offer to Host</button>
-      </div>
+      
     </div>
     <div class="trip-info">
       <span><i class="far fa-calendar-alt"></i></span>
@@ -29,5 +28,8 @@
     <div class="button-decription" *ngIf="show">
       <a style="margin-left:auto"  (click)="x=!x">{{x?'[-]Read Less':'[+]Read More'}}</a>
     </div>
+    <div class="offer-button">
+        <button (click)="offerToHost.open()" class="btn btn-primary">Offer to Host</button>
+      </div>
   </div>
 </div>

@@ -16,7 +16,7 @@ a:hover{
     padding: 0;
 }
 .trip .avatar{
-    
+    min-width: 90px;
     max-width: 90px;
 }
 .trip img{
@@ -30,21 +30,25 @@ a:hover{
 }
 .top{
     width: 100%;
-    float: left;
+    
 }
 span{
     word-wrap: break-word;
 }
 .traveler-info{
+    min-width: 100px;
     float: left;
 }
 .offer-button{
-    float: right;
-    padding-right: 20px ;
+    max-width: 120px;
+  
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 .offer-button button{
     width: 120px;
-    height: 50px;
+    min-height: 50px;
 }
 
 .trip-info{
@@ -70,7 +74,6 @@ span{
     margin-bottom: 0px; 
 }
 .button-decription{
-   
     padding-top: 5px;
     display: flex; 
     max-width: 80%;
@@ -91,4 +94,31 @@ padding-right: 20px;
 .traveler-info .bold-value{
     font-size: 1em;
     font-weight: 500;
+}
+@media screen and (max-width: 480px) {
+    .avatar{
+        flex: 0 0 100%;
+        max-width: 100%;
+      
+    }
+    .trip-content{
+        flex: 0 0 100%;
+        max-width: 100%;
+
+    }
+    .trip-decription,.button-decription{
+        max-width: 100%;
+    }
+    .offer-button{
+        padding-top: 10px;
+        position: unset;
+        max-width: 100%;
+        float: unset;
+        display: flex;
+        justify-content: center;
+    }
+    .offer-button button{
+        min-height: unset;
+        width: 150px;
+    }
 }

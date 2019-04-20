@@ -1,9 +1,4 @@
-a{
-    color: #27374c;
-}
-a:hover{
-    text-decoration: none;
-}
+
 .content-left{
     /* min-width: 220px; */
     max-width: 300px; 
@@ -18,23 +13,7 @@ a:hover{
 .content-right .row{
     margin: 0px ;
 }
-.box-action{
-    width: 100%;
-    text-align: center;
-}
-.box-action a{
-    display: inline-block;
-    margin: 12px 0px;
-    font-size: 1.1em;
-    color: #287FB8;
-    font-weight: 500;
-}
-.box-action a:hover{
-    color: #ED6504;
-}
-.box-action i{
-    padding-left: 5px;
-}
+
 
 .user-info{
     padding-top: 50px;
@@ -135,7 +114,7 @@ a:hover{
 }
 .search-form input{
     height: 38px;
-    width: 300px;
+    width: 250px;
     display: inline-block;
      border: none;
 }
@@ -185,4 +164,5 @@ a:hover{
     .hide{
         display: none;
     }
+    
 }

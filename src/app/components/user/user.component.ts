@@ -3,13 +3,13 @@ import { UserService } from './../../services/user.service';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { NgProgressComponent } from '@ngx-progressbar/core'
 @Component({
-  selector: 'app-user',
+  selector: '.app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css', './../../app.component.css']
 })
 export class UserComponent implements OnInit,OnDestroy {
   ngOnDestroy(): void {
-    this.navigationSubscription.unsubcribe();
+    //this.navigationSubscription.unsubcribe();
   }
 
   @ViewChild(NgProgressComponent) progressBar: NgProgressComponent;
