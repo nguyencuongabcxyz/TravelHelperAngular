@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { PublicTrip } from 'src/app/models/publictrip';
-
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { PublicTrip } from 'src/app/models/publictrip';
 })
 export class PeopleComponent implements OnInit {
 
-  img = '/assets/imgs/demo.jpg';
+  img = '/assets/imgs/profile-picture-placeholder.png';
 
   @Input() user: User;
   @Input() trip: PublicTrip;
@@ -21,7 +21,7 @@ export class PeopleComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -34,6 +34,10 @@ export class PeopleComponent implements OnInit {
     //console.log(this.user, this.trip);
     this.language = [this.user.fluentLanguage ? this.user.fluentLanguage : '', this.user.learningLanguage ? this.user.learningLanguage : ''];
 
+  }
+
+  onClickPeople(){
+    this.router.navigate(['/Users/People', this.user.id]);
   }
 
 }

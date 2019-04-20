@@ -71,7 +71,7 @@ li {
 .name {
   font-weight: 500;
   font-size: 1.1em;
-  padding-top: 0
+  padding-top: 0px !important;
 }
 
 .wrapper-icon {

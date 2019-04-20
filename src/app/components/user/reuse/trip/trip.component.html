@@ -6,7 +6,7 @@
       <span>Visiting: </span><span class="bold-value">{{trip.destination}}</span><br>
     </div>
     <div class="button">
-      <button *ngIf="isUser" class="btn btn-primary">Edit</button>
+      <button *ngIf="isUser" class="btn btn-primary" (click)="onClickTrip()">Edit</button>
       <button (click)="offerToHost.open()" *ngIf="!isUser" class="btn btn-primary">Offer to Host</button>
     </div>
   </div>

@@ -69,6 +69,10 @@ const routes: Routes = [
         path: 'PublicTrip',
         component: PublicTripComponent, resolve: { users: ProfileResolve }
       },
+      {
+        path: 'PublicTrip/:id',
+        component: PublicTripComponent
+      },
 
 
       { path: 'Message', component: MessageComponent, resolve: { users: ProfileResolve } },
