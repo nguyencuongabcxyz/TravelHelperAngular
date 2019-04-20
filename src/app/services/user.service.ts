@@ -93,11 +93,14 @@ export class UserService {
     return this.http.get<any>(this.BaseURI + '/Users/' + id + '/Images');
   }
   //  =============================
-  uploadImage(image): Observable<any> {
-    return this.http.post<any>(this.BaseURI + '/Images', image);
+  uploadPhotos(image): Observable<any> {
+    return this.http.post<any>(this.BaseURI + '/Images', image, { reportProgress: true, observe: "events" });
   }
   uploadAvatar(image): Observable<any> {
     return this.http.put<any>(this.BaseURI + '/Users/Avatar', image);
+  }
+  deletePhoto(imageId): Observable<any> {
+    return this.http.delete<any>(this.BaseURI + '/Images/'+imageId, { reportProgress: true, observe: "response" });
   }
   //  =============================
   sendReference(formReference): Observable<any> {

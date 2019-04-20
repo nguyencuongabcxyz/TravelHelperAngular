@@ -1,0 +1,54 @@
+<ng-template #content>
+  <div class="view">
+    <img *ngIf="activePhoto" style="z-index: 7;" class="img-view" [src]="activePhoto.location">
+  </div>
+  <div class="background" style="z-index: 5;" (click)="modalRef.close()">
+
+  </div>
+  <div class="carousel-header" style="z-index: 100;">
+    <h4 class="modal-title" id="modal-basic-title">Photo</h4>
+    <span class="info"> {{index+1}}/{{photos.length}}</span>
+    <span class="info">Upload Date:
+      {{activePhoto.createDate| date:'dd/MM/yyyy'}}</span>
+
+    <div class="button-bar">
+      <button *ngIf="activePhoto && isUser" class="delbtn" (click)="deletePhoto()">Delete Photo</button>
+      <button class="close" (click)="modalRef.close()">
+        <span><i class="fas fa-times"></i></span>
+      </button>
+    </div>
+  </div>
+  <div class="carousel-body">
+
+    <div class="previous" style="z-index: 100;">
+      <button *ngIf="!(index==0)" (click)="action('previous');"><i class="fas fa-chevron-left"></i></button>
+    </div>
+
+
+    <div class="next" style="z-index: 100;">
+      <button *ngIf="!(index==photos.length-1)" (click)="action('next');"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+
+  </div>
+  <div class="carousel-footer" style="z-index: 100;">
+    <div class="previous" style="padding-right: 5px;">
+      <button  (click)="content.scrollTo({left:(content.scrollLeft - 500),behavior: 'smooth'})"><i
+          class="fas fa-chevron-left"></i></button>
+    </div>
+    <div class="content" #content id="content">
+      <ul>
+        <ng-container *ngFor="let photo of photos; index as i">
+          <li id="item_{{i}}">
+            <img [ngClass]="{'thumbnail-active':i==index}" (click)="onclick(photo,i)" class="thumbnail"
+              [src]="photo.location">
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+    <div class="next" style="padding-left: 5px;">
+      <button  (click)="content.scrollTo({left:(content.scrollLeft + 500),behavior: 'smooth'})"><i
+          class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+</ng-template>

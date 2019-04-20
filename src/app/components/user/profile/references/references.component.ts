@@ -17,8 +17,8 @@ export class ReferencesComponent implements OnInit, OnDestroy {
   //user: User = {};
   references = [];
   referencesres = [];
-  commendre = [];
-  notcommendre = [];
+  positive = [];
+  negative = [];
   isLoading = true;
   constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute) { }
 
@@ -39,8 +39,8 @@ export class ReferencesComponent implements OnInit, OnDestroy {
       res => {
         this.isLoading = false
         this.referencesres = res;
-        this.commendre = this.referencesres.filter(item => item.status == true);
-        this.notcommendre = this.referencesres.filter(item => item.status == false);
+        this.positive = this.referencesres.filter(item => item.status == true);
+        this.negative = this.referencesres.filter(item => item.status == false);
 
         this.references = this.referencesres;
       }
@@ -54,10 +54,10 @@ export class ReferencesComponent implements OnInit, OnDestroy {
   filter(type) {
     if (type == 'all') {
       return this.referencesres;
-    } else if (type == 'notrecommend') {
-      return this.notcommendre;
+    } else if (type == 'negative') {
+      return this.negative;
     } else {
-      return this.commendre;
+      return this.positive;
     }
   }
 }
