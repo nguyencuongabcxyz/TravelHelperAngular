@@ -197,6 +197,7 @@ export class PublicTripComponent implements OnInit, OnDestroy {
 
   showsearch() {
     this.issearch = true;
+    this.addressInput="";
     setTimeout(() => {
       this.search.nativeElement.focus();
     }, 0);

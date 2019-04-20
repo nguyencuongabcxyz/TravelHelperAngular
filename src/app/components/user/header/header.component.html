@@ -1,16 +1,16 @@
 <nav class="header-wrapper" (clickOutside)="isMenu = false;isSearch = false;">
     <div class="logo">
-        <a href='/Users/Dashboard' routerLinkActive='active'>
+        <a href='' routerLinkActive='active'>
             <i class="fas fa-globe-asia"></i>
         </a>
     </div>
 
-    <div class="button-responsive">
-        <div class="search-responsive">
+    <div class="button-responsive" style="padding-right:10px;">
+        <div class="search-responsive" style="padding-right: 6px">
             <button (click)="isSearch = !isSearch;isMenu = false;">
                 <i [ngStyle]="isSearch && !isMenu && {'color':'#ED6504'}" class="fas fa-search "></i></button>
         </div>
-        <div class="menu-responsive">
+        <div class="menu-responsive" >
             <button (click)="isMenu = !isMenu;isSearch = false;">
                 <i [ngStyle]="isMenu && !isSearch && {'color':'#ED6504'}" class="fas fa-bars"></i></button>
         </div>
@@ -28,7 +28,7 @@
                         name="input" placeholder="Search for Place">
 
 
-                    
+
                     <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();"
                         [searchedSubject]="searchedSubject"></app-dropdown>
                 </div>
@@ -89,18 +89,29 @@
                 </a>
             </li>
             <li>
-                <a href="" (click)="onLogout();">
-                    <div class="icon">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </div>
-                    <div class="name">
-                        <span>
-                            Logout
-                        </span>
+                <div class="dropdown" (clickOutside)="isdrop=false;">
+                    <a class="" id="dropdownMenu2" data-toggle="dropdown"
+                        (click)="isdrop=!isdrop" aria-haspopup="true" aria-expanded="false">
 
-                    </div>
+                        <div class="icon" style="display: flex">
+                            <div class="dropdown-toggle">
+                                    <i class="fas fa-cog"></i>
+                            </div>
+                            
+                        </div>
+                        <div class="name">
+                            <span>
+                                Setting
+                            </span>
 
-                </a>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
+                        [style.display]="isdrop?'block':'none'">
+                        <button class="dropdown-item" type="button"><i class="fas fa-user-cog"></i> Change Password</button>
+                        <button (click)="onLogout();" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+                    </div>
+                </div>
             </li>
         </ul>
     </nav>

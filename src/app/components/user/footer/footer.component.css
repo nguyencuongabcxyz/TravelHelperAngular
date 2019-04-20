@@ -1,8 +1,10 @@
-.footer {
+.footer1 {
   display: flex;
   padding: 0 34.5px;
   flex-direction: row;
   height: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .info {

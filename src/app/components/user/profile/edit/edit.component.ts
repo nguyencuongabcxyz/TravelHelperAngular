@@ -90,6 +90,7 @@ export class EditComponent implements OnInit {
   }
   showsearch() {
     this.issearch = true;
+    this.addressInput="";
     setTimeout(() => {
       this.search.nativeElement.focus();
     }, 0);

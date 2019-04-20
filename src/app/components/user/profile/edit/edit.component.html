@@ -52,7 +52,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="FullName" class="col-3 col-form-label">Full Name<span style ="color: red;">*</span></label>
+            <label for="FullName" class="col-3 col-form-label">Full Name<span style="color: red;">*</span></label>
             <div class="col-9">
               <input type="text" class="form-control " id="fullName" formControlName="fullName">
               <label class="text-danger"
@@ -64,14 +64,18 @@
             <label for="Address" class="col-3 col-form-label">Address</label>
             <div class="col-6">
               <input style="text-align: left;cursor: text;" type="button" class="form-control input-focus"
-                formControlName="address" (click)="showsearch();">
-              <form style="position:relative;">
-                <input #search name="search" [(ngModel)]="addressInput" class="form-control" (focus)="addressInput=''"
-                  (blur)="issearch=false;" (keyup)="onKeyup();" style=" position:absolute;bottom: 0px "
-                  [style.display]="issearch?'unset':'none'">
-                <app-dropdown [type]="'select'" (myClick)="formabout.get('address').setValue($event);"
+                formControlName="address" (click)="show=true;showsearch();">
+              <div class="back-drop-header" (click)="show=false" *ngIf="show">
+              </div>
+              <div class="back-drop" (click)="show=false" *ngIf="show">
+              </div>
+              <form style="position:relative; z-index: 901;" autocomplete="off">
+                <input #search name="search" [(ngModel)]="addressInput" class="form-control" (keyup)="onKeyup();"
+                  style=" position:absolute;bottom: 0px " [style.display]="show && issearch?'unset':'none'">
+                <app-dropdown [type]="'select'" (myClick)="show=false;formabout.get('address').setValue($event);"
                   [searchedSubject]="searchedSubject"></app-dropdown>
               </form>
+
             </div>
           </div>
           <div class="form-group row">
@@ -117,7 +121,8 @@
             <textarea class="form-control" id="Interest" rows="5" formControlName="interest"></textarea>
           </div>
           <div class="button-bar">
-            <button [disabled]="!formabout.valid" (click)="onSaveabout();" type="submit" class="btn btn-success">Save</button>
+            <button [disabled]="!formabout.valid" (click)="onSaveabout();" type="submit"
+              class="btn btn-success">Save</button>
             <button (click)="setvalueabout();" class="btn btn-secondary">Reset</button>
           </div>
         </form>

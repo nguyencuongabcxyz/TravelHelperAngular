@@ -2,21 +2,29 @@
 
 @import "../node_modules/eva-icons/style/eva-icons.css";
 
+.app-user,.app-userauth{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 
+}
 
 body{
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f1efea !important;
   color:#27374c!important;
   position: relative;
-  min-height: 100vh;
+  /* min-height: 100vh!important; */
   overflow-y: scroll;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;
 }
-body::after {
+/* body::after {
     content: '';
     display: block;
-    height: 200px; /* Set same as footer's height */
-}
+    min-height: 200px; 
+} */
 .toast-custom {
   top: 72px;
   right: 12px;
@@ -34,6 +42,8 @@ body::after {
 .container {
   padding-top: 70px!important;
   max-width: 1280px!important;
+  flex: 1 1 auto;
+  height: 100%;
 
 }
 .col{
@@ -41,7 +51,8 @@ body::after {
 }   
 
 .header{
-  
+  margin-right: 13px;
+    margin-left: auto;
   top: 0;
   width: 100%;
   background-color: white;
@@ -50,11 +61,15 @@ body::after {
 }
 
 .footer{
-  position: absolute;
-  height: 200px;
+  margin-right: auto;
+    margin-left: auto;
+z-index: 800;
+  /* position: absolute; */
+  min-height: 200px;
   background-color: white;
   width: 100%;
-  bottom: 0;
+  /* bottom: 0; */
+  margin-top: auto;
 }
 .box{
   background-color: white;
@@ -73,6 +88,25 @@ body::after {
 .box-header i{
   font-size: 1.1em;;
   padding-right: 8px;
+}
+.box-action{
+  width: 100%;
+  text-align: center;
+}
+.box-action a{
+  display: inline-block;
+  margin: 12px 0px;
+  font-size: 1.1em;
+  color: #287FB8;
+  font-weight: 500;
+  text-decoration: none;
+}
+.box-action a:hover{
+  color: #ED6504;
+  text-decoration: none;
+}
+.box-action i{
+  padding-left: 5px;
 }
 .photo{
   object-fit: cover;
@@ -104,4 +138,33 @@ body::after {
   background-color: unset;
   min-height: 100vh;
 
+}
+.back-drop{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  min-width: 100%;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  z-index: 900;
+  background-color: #fff;
+}
+.back-drop-header{
+  border: 0;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-width: 100%;
+  height: 60px;
+  width: auto;
+  opacity: 0;
+  z-index: 1001;
+  background-color: #fff;
 }

@@ -97,7 +97,7 @@ export class UserService {
     return this.http.post<any>(this.BaseURI + '/Images', image, { reportProgress: true, observe: "events" });
   }
   uploadAvatar(image): Observable<any> {
-    return this.http.put<any>(this.BaseURI + '/Users/Avatar', image);
+    return this.http.post<any>(this.BaseURI + '/Users/Avatar', image,{ reportProgress: true, observe: "events" });
   }
   deletePhoto(imageId): Observable<any> {
     return this.http.delete<any>(this.BaseURI + '/Images/'+imageId, { reportProgress: true, observe: "response" });
