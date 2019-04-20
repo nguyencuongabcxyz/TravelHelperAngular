@@ -21,7 +21,7 @@ body::after {
   top: 72px;
   right: 12px;
 }
-.modal-holder{
+.modal-holder ,.carousel-modal{
   animation-name: example;
   animation-duration: 0.3s;
 }
@@ -91,4 +91,17 @@ body::after {
 }
 .nothing span{
   margin: auto;
+}
+
+.carousel-modal .modal-dialog{
+  margin: 0px;
+  min-height: 100vh;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  
+}
+.carousel-modal .modal-dialog .modal-content{
+  background-color: unset;
+  min-height: 100vh;
+
 }

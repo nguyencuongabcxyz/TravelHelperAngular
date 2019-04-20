@@ -1,5 +1,5 @@
-import { Component, OnInit ,ViewChild,ElementRef, Input} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap'
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -9,18 +9,19 @@ import { User } from 'src/app/models/user';
 })
 export class SendRequestModalComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
-  @Input() people:User;
+  @Input() people: User;
   modalRef: any;
-  constructor( private modalService: NgbModal) { }
+  now = new Date();
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
    
   }
   open() {
-    this.modalRef = this.modalService.open(this.content,{size:'lg',windowClass:'modal-holder'});
+    this.modalRef = this.modalService.open(this.content, { size: 'lg', windowClass: 'modal-holder' });
   }
-  send(requestForm){
-console.log(requestForm.value)
+  send(requestForm) {
+    console.log(requestForm.value)
   }
 
 }

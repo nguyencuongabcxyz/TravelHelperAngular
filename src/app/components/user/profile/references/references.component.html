@@ -21,10 +21,10 @@
         <ul>
             <li><a [ngClass]="{'is-selected':type=='all'}" (click)="onClick('all')"><span>All ({{referencesres.length}})</span></a>
             </li>
-          <li><a [ngClass]="{'is-selected':type=='recommend'}" (click)="onClick('recommend')"><span>Recommend ({{commendre.length}})</span></a>
+          <li><a [ngClass]="{'is-selected':type=='positive'}" (click)="onClick('positive')"><span>Positive ({{positive.length}})</span></a>
           </li>
-          <li><a [ngClass]="{'is-selected':type=='notrecommend'}" (click)="onClick('notrecommend')"><span>Not
-                Recommend ({{notcommendre.length}})</span></a></li>
+          <li><a [ngClass]="{'is-selected':type=='negative'}" (click)="onClick('negative')"><span>
+          Negative ({{negative.length}})</span></a></li>
 
         </ul>
       </div>

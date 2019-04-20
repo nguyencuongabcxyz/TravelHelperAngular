@@ -16,11 +16,13 @@
       <button *ngIf="isUser" (click)="upload.open();" class="btn btn-primary"><i class="fas fa-plus"></i>Add
         Photo</button>
     </div>
+
     <ng-container *ngIf="photos.length;else nothing">
+      <app-carousel-modal [isUser]="isUser" [photos]="photos" (myclick)="subphoto($event)"></app-carousel-modal>
       <div class="content-photos">
         <ul class="grid-photos row">
-          <li class="grid-item  col-3" *ngFor="let photo of photos">
-            <a><img [src]="photo.location"></a>
+          <li class="grid-item  col-3" *ngFor="let photo of photos; index as index">
+            <a (click)="carousel.open(index)"> <img [src]="photo.location"></a>
           </li>
         </ul>
       </div>
