@@ -1,4 +1,4 @@
-legend{
+legend, p{
   width: 125px;
   margin-left: 20px;
 }
@@ -24,7 +24,7 @@ input {
 }
 
 .PublicTrip{
-  max-height: 400px;
+  max-height: 450px;
   overflow-y: scroll;
 }
 
@@ -64,7 +64,7 @@ input, select{
   cursor: pointer;
 }
 .input-focus:focus{
-   
+
   box-shadow: none;
 
 }

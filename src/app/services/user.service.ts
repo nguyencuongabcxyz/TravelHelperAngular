@@ -15,8 +15,8 @@ export class UserService {
   readonly BaseURI = 'https://travelhelperwebsite.azurewebsites.net/api';
   searchHost = '/Users/Search?address=';
   searchTraveler = '/Publictrips/Search?destination=';
-  // userPublicTrip = '/Users/Publictrips';
-  publicTripId = '/Publictrips/';
+  userPublicTrip = '/Users/Publictrips';
+  publicTrip = '/Publictrips/';
 
   setPeopleid(id) {
     this.peopleid = id;
@@ -148,23 +148,23 @@ export class UserService {
     return this.http.get<PublicTrip[]>(this.BaseURI + this.searchTraveler + address);
   }
 
-  // getPublicTripUser(): Observable<PublicTrip[]> {
-  //   return this.http.get<PublicTrip[]>(this.BaseURI + this.userPublicTrip);
-  // }
+  getPublicTripUser(): Observable<PublicTrip[]> {
+    return this.http.get<PublicTrip[]>(this.BaseURI + this.userPublicTrip);
+  }
 
   getPublicTripById(id: number): Observable<Trip> {
-    return this.http.get<Trip>(this.BaseURI + this.publicTripId + id);
+    return this.http.get<Trip>(this.BaseURI + this.publicTrip + id);
   }
 
   putPublicTripById(id: number, publicTrip): Observable<Trip> {
-    return this.http.put<Trip>(this.BaseURI + this.publicTripId + id, publicTrip);
+    return this.http.put<Trip>(this.BaseURI + this.publicTrip + id, publicTrip);
   }
 
   postPublicTrip(publicTrip): Observable<any[]> {
-    return this.http.post<any[]>(this.BaseURI + '/Publictrips', publicTrip);
+    return this.http.post<any[]>(this.BaseURI + this.publicTrip, publicTrip);
   }
 
   deletePublicTripById(id: number) {
-    return this.http.delete(this.BaseURI + this.publicTripId + id);
+    return this.http.delete(this.BaseURI + this.publicTrip + id);
   }
 }
