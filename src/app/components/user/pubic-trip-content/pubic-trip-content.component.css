@@ -60,3 +60,8 @@
   transform: scale(1);
   opacity: 1;
 }
+
+.name:focus {
+  color: #365899;
+  text-decoration: underline;
+}

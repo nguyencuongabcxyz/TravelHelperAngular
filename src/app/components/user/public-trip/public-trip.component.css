@@ -26,6 +26,7 @@ input {
 .PublicTrip{
   max-height: 450px;
   overflow-y: scroll;
+  overflow-wrap: break-word;
 }
 
 

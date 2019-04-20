@@ -40,6 +40,11 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.activate.params.subscribe(data => {
+      if(data.id){
+        this.onClickPublicTrip(data.id);
+      }
+    });
     this.createForm();
     this.load();
   }
