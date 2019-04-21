@@ -38,12 +38,9 @@ margin-bottom: 0px;
 
 .people:hover{
   cursor: pointer;
+  color: #256ae9;
 }
 
-.people:hover .name{
-  color: #365899;
-  text-decoration: underline;
-}
 
 
 

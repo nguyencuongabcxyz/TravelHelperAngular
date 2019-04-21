@@ -71,7 +71,7 @@ const routes: Routes = [
       },
       {
         path: 'PublicTrip/:id',
-        component: PublicTripComponent
+        component: PublicTripComponent, resolve: { users: UserResolve }
       },
 
 

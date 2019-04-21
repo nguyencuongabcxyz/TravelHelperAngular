@@ -37,7 +37,7 @@ export class PeopleComponent implements OnInit {
   }
 
   onClickPeople(){
-    this.router.navigate(['/Users/People', this.user.id]);
+    this.router.navigate([`/Users/People/${this.user.id}`]);
   }
 
 }
