@@ -16,7 +16,7 @@
     margin: 0px ;
 }
 .status-bar{
-    height: 70px;
+    min-height: 70px;
     display: flex;
     align-items: center;
 }
@@ -57,7 +57,7 @@
     margin: auto;
     display: flex;
     align-items: center;
-    height: 70px;
+    min-height: 70px;
 }
 .menu-bar ul{
     padding-inline-start: 7px;

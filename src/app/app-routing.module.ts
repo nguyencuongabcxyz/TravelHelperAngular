@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AuthGuard } from './auth/auth.guard'
 import { Routes, RouterModule } from '@angular/router';
 import { UserComponent } from "./components/user/user.component";
@@ -86,7 +86,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload',useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -46,7 +46,8 @@ margin-bottom: 0px;
 .time{
     float: right;
     color: #929EAE;
-    size: 0.9em;
+    font-size: 0.8em;
+    padding-top: 8px;
 }
 .status{
     clear: both;
@@ -81,4 +82,11 @@ font-weight: 600;
 .button-decription a:hover{
     cursor: pointer;
     color: #ED6504;
+}
+@media screen and (max-width: 480px) {
+    .reference-content{
+        padding-top: 10px;
+        flex: 1 1 auto;
+        max-width: 100%;
+    }
 }

@@ -32,37 +32,38 @@ export class UploadComponent implements OnInit {
 
 
   }
- 
+
   upload(uploadForm) {
     const fd = new FormData();
     //fd.append('description',uploadForm.value.description);
     fd.append('file', this.fileToUpload, this.fileToUpload.name);
+    this.uploading = true;
     if (this.from == 'photos') {
-      this.uploading = true;
+
       this.service.uploadPhotos(fd).subscribe(
         event => {
           if (event.type === HttpEventType.UploadProgress)
             this.value = Math.round(event.loaded / event.total * 100);
           else if (event.type === HttpEventType.Response) {
-            this.toast.success("Uploaded");
+            
             this.modalRef.close();
             this.myclick.emit(event.body);
+            this.toast.success("Uploaded");
           }
         }
       );
     }
     if (this.from == 'edit') {
       this.service.uploadAvatar(fd).subscribe(
-        res => {
-          // console.log(event)
-          // if (event.type === HttpEventType.UploadProgress)
-          //   console.log(Math.round(event.loaded / event.total * 100))
-          // else if (event === HttpEventType.Response) {
-          //   console.log(event.body)
-          // }
-          this.toast.success("Update Successed");
-          this.modalRef.close();
-          this.myclick.emit(res.avatarLocation);
+        event => {
+          if (event.type === HttpEventType.UploadProgress)
+            this.value = Math.round(event.loaded / event.total * 100);
+          else if (event.type === HttpEventType.Response) {
+            
+            this.modalRef.close();
+            this.myclick.emit(event.body.avatarLocation);
+            this.toast.success("Update Successed");
+          }
         }
       );
     }

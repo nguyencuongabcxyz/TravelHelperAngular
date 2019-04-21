@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserauthService } from './../../../services/userauth.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,7 +11,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 export class SignupComponent implements OnInit {
 
 
-  constructor(private fb: FormBuilder, public service: UserauthService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, public service: UserauthService, private toastr: ToastrService,private router:Router) { }
 
   ngOnInit() {
     this.formModel.reset();
@@ -51,6 +52,7 @@ export class SignupComponent implements OnInit {
         if (res.succeeded) {
           this.formModel.reset();
           this.toastr.success('New user created!', 'Registration successful.');
+          this.router.navigate(['Userauth/SignIn'])
         } else {
           res.errors.forEach(element => {
             switch (element.code) {
