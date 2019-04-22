@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { UserService } from './../../../services/user.service'
 import { PublicTrip } from './../../../models/publictrip'
 import { User } from './../../../models/user'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Subject } from 'rxjs'
+import { OfferToHostComponent } from '../reuse/offer-to-host/offer-to-host.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,16 +13,18 @@ import { Subject } from 'rxjs'
 })
 
 export class DashboardComponent implements OnInit {
+  @ViewChild(OfferToHostComponent) offerToHost: OfferToHostComponent;
+
   percent;
   isUser = true;
   textInput = "";
   user: any = {};
-  trips:any[];
+  trips: any[];
   publicTrips: any[];
   constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
   public searchedSubject = new Subject<string>();
   ngOnInit() {
-   // this.trips=[];
+    // this.trips=[];
     //this.user.publicTrips = [];
     this.user = this.activatedRoute.snapshot.data.users;
     let d = {
@@ -39,8 +42,8 @@ export class DashboardComponent implements OnInit {
     let x = Object.values(d).filter(x => (x !== null && x !== "")).length;
     this.percent = x / 10 * 100;
     this.service.getUserPublicTrips().subscribe(
-      res=>{
-        this.trips=res;
+      res => {
+        this.trips = res;
       }
     );
 
@@ -56,5 +59,8 @@ export class DashboardComponent implements OnInit {
   onSubmit(form) {
     console.log(form.value.input)
     this.router.navigate(['/Users/Search'], { queryParams: { type: 'host', location: form.value.input } });
+  }
+  openofferToHostModal(event) {
+    this.offerToHost.open(event);
   }
 }

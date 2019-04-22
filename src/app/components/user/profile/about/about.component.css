@@ -5,7 +5,7 @@
 }
 .content-aboutme{
     line-height: 2.0;
-    padding: 10px 20px;
+    padding: 20px;
     white-space: pre-wrap;
 }
 .content-overview span{
@@ -15,4 +15,13 @@
 .content-overview i{
     font-size: 1.1em;
     width: 20px;
+}
+.interest-header{
+    background-image: linear-gradient(to right, #e1e6db , #e2dede);
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    border-top: 1px solid rgba(0,0,0,0.15);
+}
+.interest-header h6{
+    margin: 0;
 }

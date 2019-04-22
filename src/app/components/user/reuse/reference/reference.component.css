@@ -5,7 +5,7 @@ a:hover{
     text-decoration: none;
 }
 .reference{
-    border-bottom: 1px solid rgba(0,0,0,0.15);
+    /* border-bottom: 1px solid rgba(0,0,0,0.15); */
     width: 100%;
     padding: 20px;
 }
@@ -51,7 +51,7 @@ margin-bottom: 0px;
 }
 .status{
     clear: both;
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 .status span{
     font-weight: 600;
@@ -79,7 +79,7 @@ margin-bottom: 0px;
 color: #287FB8;;
 font-weight: 600;
 }
-.button-decription a:hover{
+ a:hover{
     cursor: pointer;
     color: #ED6504;
 }

@@ -15,7 +15,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
-    <button [disabled]="messageForm.invalid" type="button" class="btn btn-success" (click)="send(messageForm);">Send</button>
+    <button [disabled]="isdiable" type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
+    <button [disabled]="messageForm.invalid||isdiable" type="button" class="btn btn-success" (click)="send(messageForm);">Send</button>
   </div>
 </ng-template>

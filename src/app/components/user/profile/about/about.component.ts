@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { UserService } from './../../../../services/user.service'
 import { User } from './../../../../models/user'
 import { Router, ActivatedRoute, NavigationStart, NavigationEnd } from '@angular/router'
+import { OfferToHostComponent } from '../../reuse/offer-to-host/offer-to-host.component';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -15,6 +16,8 @@ export class AboutComponent implements OnInit, OnDestroy {
   isUser: boolean;
   user: any = {};
   trips;
+  
+  @ViewChild(OfferToHostComponent) offerToHost:OfferToHostComponent;
   constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -44,5 +47,12 @@ export class AboutComponent implements OnInit, OnDestroy {
       }
     );
 
+  }
+  openofferToHostModal(event){
+    
+    
+      this.offerToHost.open(event);
+
+    
   }
 }

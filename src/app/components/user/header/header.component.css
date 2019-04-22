@@ -148,6 +148,12 @@ a:hover{
 .dropdown button:hover{
     color: #ED6504;;
 }
+.dropdown-menu{
+    top: -10px!important;
+}
+.dropdown-item{
+    padding: 0.25rem 0.5rem !important;
+}
 @media screen and (max-width: 890px) {
     .header-wrapper{
         flex-wrap: wrap;

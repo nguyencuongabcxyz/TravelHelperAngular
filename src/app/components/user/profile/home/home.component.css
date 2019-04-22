@@ -8,13 +8,10 @@
     font-size: 18px;
     font-weight: 600;
 }
-/* .nothing{
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background: #eceef0;
-    height: 150px;
+.item{
+    border: 1px solid rgba(0,0,0,0.15);
+    margin: 10px 0px;
+    padding: 5px 20px;
+    border-radius: 15px;
+    background-color: #f8f8f878;
 }
-.nothing span{
-    margin: auto;
-} */

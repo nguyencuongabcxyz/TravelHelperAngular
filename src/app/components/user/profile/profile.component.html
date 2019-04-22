@@ -18,6 +18,12 @@
   </div>
   <div class="content-right col ">
     <div class="box status-bar">
+      <i *ngIf="user.status;else not" class="color-icon"
+        style=" margin-left: 20px; width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/ok.png)"></i>
+      <ng-template #not>
+        <i class="color-icon"
+          style=" margin-left: 20px; width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/cancel.png)"></i>
+      </ng-template>
       <span class="status-value" [style.color]="user.status?'green':'red'">
         {{user.status?'Acepting Guest':'Not Acepting Guest'}}
       </span>

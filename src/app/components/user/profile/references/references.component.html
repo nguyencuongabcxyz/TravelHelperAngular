@@ -19,19 +19,25 @@
     <div class="content-references">
       <div class="menu-bar">
         <ul>
-            <li><a [ngClass]="{'is-selected':type=='all'}" (click)="onClick('all')"><span>All ({{referencesres.length}})</span></a>
-            </li>
-          <li><a [ngClass]="{'is-selected':type=='positive'}" (click)="onClick('positive')"><span>Positive ({{positive.length}})</span></a>
+          <li><a [ngClass]="{'is-selected':type=='all'}" (click)="onClick('all')"><span>All
+                ({{referencesres.length}})</span></a>
+          </li>
+          <li><a [ngClass]="{'is-selected':type=='positive'}" (click)="onClick('positive')"><span><i style="color:green"
+                  class="fas fa-star"></i> Positive
+                ({{positive.length}})</span></a>
           </li>
           <li><a [ngClass]="{'is-selected':type=='negative'}" (click)="onClick('negative')"><span>
-          Negative ({{negative.length}})</span></a></li>
+              <i style="color:red"
+              class="fas fa-star"></i> Negative ({{negative.length}})</span></a></li>
 
         </ul>
       </div>
 
       <ng-container *ngIf="references.length;else nothing">
         <ng-container *ngFor="let reference of references">
-          <app-reference [reference]="reference"></app-reference>
+          <div class="item">
+            <app-reference [reference]="reference"></app-reference>
+          </div>
         </ng-container>
       </ng-container>
 

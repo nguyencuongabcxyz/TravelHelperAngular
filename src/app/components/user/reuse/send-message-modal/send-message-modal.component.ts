@@ -10,15 +10,18 @@ export class SendMessageModalComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
   @Input() people:User;
   modalRef: any;
+  isdiable;
   constructor( private modalService: NgbModal) { }
 
   ngOnInit() {
   
   }
   open() {
+    this.isdiable=false;
     this.modalRef = this.modalService.open(this.content,{windowClass:'modal-holder'});
   }
   send(messageForm){
+    this.isdiable=true;
 console.log(messageForm.value)
   }
 

@@ -1,4 +1,4 @@
-<app-offer-to-host [trip]="trip"></app-offer-to-host>
+<!-- <app-offer-to-host [trip]="trip"></app-offer-to-host> -->
 <div class="your-trips">
   <div class="top" >
     <div class="traveler-info">
@@ -22,6 +22,6 @@
   </div>
   <div class="menu-button">
       <button *ngIf="isUser" class="btn btn-primary" (click)="onClickTrip()">Edit</button>
-      <button (click)="offerToHost.open()" *ngIf="!isUser" class="btn btn-primary">Offer to Host</button>
+      <button (click)="openModal()" *ngIf="!isUser" class="btn btn-primary">Offer to Host</button>
     </div>
 </div>

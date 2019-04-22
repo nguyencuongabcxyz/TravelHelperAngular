@@ -29,7 +29,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
-    <button [disabled]="requestForm.invalid" type="button" class="btn btn-success" (click)="send(requestForm);">Send</button>
+    <button [disabled]="isdiable" type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
+    <button [disabled]="requestForm.invalid||isdiable" type="button" class="btn btn-success" (click)="send(requestForm);">Send</button>
   </div>
 </ng-template>

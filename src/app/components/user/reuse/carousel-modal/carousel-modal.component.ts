@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgbCarouselConfig, NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 @Component({
   selector: 'app-carousel-modal',
   templateUrl: './carousel-modal.component.html',
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
   providers: [NgbCarouselConfig, NgbCarousel]
 })
 export class CarouselModalComponent implements OnInit {
+  @ViewChild(DeleteModalComponent)  deleteModal: DeleteModalComponent;
   @Output() myclick = new EventEmitter();
   @Input() photos;
   @ViewChild('content') content: ElementRef;
@@ -51,6 +53,9 @@ export class CarouselModalComponent implements OnInit {
     this.activePhoto = this.photos[this.index];
     window.document.getElementById("item_" + this.index).scrollIntoView();
     console.log(window.document.getElementById('content').scrollLeft);
+  }
+  opendeleteModal(){
+    this.deleteModal.open();
   }
   deletePhoto() {
     this.service.deletePhoto(this.activePhoto.photoId).subscribe(

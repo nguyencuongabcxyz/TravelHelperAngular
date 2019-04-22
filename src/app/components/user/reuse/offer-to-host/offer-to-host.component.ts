@@ -11,24 +11,28 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class OfferToHostComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
-  @Input() trip: Trip;
+  @Input() trip;
   modalRef: any;
   user;
+  isdiable;
   constructor(private modalService: NgbModal, private service: UserService) { }
 
   ngOnInit() {
-
+    
   }
-  open() {
-    this.service.getPeopleProfile(this.trip.applicationUserId).subscribe(
+  open(trip) {
+    this.isdiable=false;
+    this.trip=trip;
+    this.service.getPeopleProfile(trip.applicationUserId).subscribe(
       res => {
         this.user = res;
-        this.modalRef = this.modalService.open(this.content, { size: 'lg', windowClass: 'modal-holder' });
+       this.modalRef = this.modalService.open(this.content, {  windowClass: 'modal-holder' });
       }
     );
     
   }
   send(offerForm) {
+    this.isdiable=true;
     console.log(offerForm.value)
   }
 
