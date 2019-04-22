@@ -1,4 +1,4 @@
-<app-offer-to-host [trip]="publicTrip"></app-offer-to-host>
+
 <div class="trip row">
   <div class="avatar col">
     <a routerLink="/Users/People/{{publicTrip.user.id}}"><img class="photo"
@@ -29,7 +29,7 @@
       <a style="margin-left:auto"  (click)="x=!x">{{x?'[-]Read Less':'[+]Read More'}}</a>
     </div>
     <div class="offer-button">
-        <button (click)="offerToHost.open()" class="btn btn-primary">Offer to Host</button>
+        <button  (click)="openModal();" class="btn btn-primary offerbutton">Offer to Host</button>
       </div>
   </div>
 </div>

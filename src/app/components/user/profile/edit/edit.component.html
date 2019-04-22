@@ -32,10 +32,12 @@
       <div class=" tab-bar">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link " [ngClass]="{'active':isabout}" (click)="isabout=true;">About</a>
+            <a class="nav-link " [ngClass]="{'active':isabout}" [routerLink]="" skipLocationChange="true"
+              fragment="about" > About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [ngClass]="{'active':!isabout}" (click)="isabout=false;">My home</a>
+            <a class="nav-link" [ngClass]="{'active':!isabout}" [routerLink]="" skipLocationChange="true"
+              fragment="myhome" >My home</a>
           </li>
         </ul>
       </div>
@@ -121,7 +123,7 @@
             <textarea class="form-control" id="Interest" rows="5" formControlName="interest"></textarea>
           </div>
           <div class="button-bar">
-            <button [disabled]="!formabout.valid" (click)="onSaveabout();" type="submit"
+            <button [disabled]="!formabout.valid || isdiable" (click)="onSaveabout();" type="submit"
               class="btn btn-success">Save</button>
             <button (click)="setvalueabout();" class="btn btn-secondary">Reset</button>
           </div>
@@ -182,7 +184,7 @@
             <textarea class="form-control" id="additionInfo" rows="5" formControlName="additionInfo"></textarea>
           </div>
           <div class="button-bar">
-            <button (click)="onSavehome()" type="submit" class="btn btn-success">Save</button>
+            <button [disabled]="isdiable" (click)="onSavehome()" type="submit" class="btn btn-success">Save</button>
             <button (click)="setvaluehome()" class="btn btn-secondary">Reset</button>
           </div>
         </form>

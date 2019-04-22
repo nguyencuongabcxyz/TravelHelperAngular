@@ -2,16 +2,24 @@
   <div class="content-left col-3 ">
     <div class="box user-info">
       <a [routerLink]="['../Profile']"><img class="photo img-responsive"
-          [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
+           [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
       <div class="info">
         <p style="font-size:30px;">{{user.fullName}}</p>
         <p>{{user.address}}</p>
       </div>
       <div class="status">
         <p style="font-size:18px;">Your status</p>
+        <div style="display: flex;align-items: center; justify-content: center">
+        <i *ngIf="user.status;else not" class="color-icon"
+        style=" width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/ok.png)"></i>
+      <ng-template #not>
+        <i class="color-icon"
+          style=" width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/cancel.png)"></i>
+      </ng-template>
         <span *ngIf="user.id" class="status-value" [style.color]="user.status?'green':'red'">
           {{user.status?'Acepting Guest':'Not Acepting Guest'}}
         </span>
+</div>
       </div>
     </div>
     <div class="box profile">
@@ -82,13 +90,20 @@
       <ng-template #loading>
         <app-loading></app-loading>
       </ng-template>
-      <ng-container *ngIf="trips;else loading">
-        <ng-container *ngFor="let trip of trips">
-          <app-trip [isUser]="isUser" [trip]="trip"></app-trip>
-        </ng-container>
-        <div *ngIf="(!trips.length)" class="notrip">
-          <span>You have no upcoming trips.</span>
+      <ng-template #nothing>
+        <div class="nothing">
+          <span>Nothing to show</span>
         </div>
+      </ng-template>
+      <ng-container *ngIf="trips;else loading">
+        <ng-container *ngIf="trips.length;else nothing">
+          <ng-container *ngFor="let trip of trips">
+            <app-trip  [isUser]="isUser" [trip]="trip"></app-trip>
+          </ng-container>
+        </ng-container>
+        <!-- <div *ngIf="(!trips.length)" class="notrip">
+          <span>You have no upcoming trips.</span>
+        </div> -->
       </ng-container>
 
       <div class="box-action">
@@ -106,12 +121,16 @@
         <app-loading></app-loading>
       </ng-template>
       <ng-container *ngIf="publicTrips;else loading">
-      <ng-container *ngFor="let publicTrip of publicTrips">
-        <app-publictrip [publicTrip]="publicTrip"></app-publictrip>
-      </ng-container>
+        <ng-container *ngIf="publicTrips.length;else nothing">
+          <ng-container *ngFor="let publicTrip of publicTrips">
+            <app-publictrip (myClick)="openofferToHostModal($event)" [publicTrip]="publicTrip"></app-publictrip>
+          </ng-container>
+        </ng-container>
       </ng-container>
       <div class="box-action">
-        <a href=""><span>See More Public Trips</span><span><i class="fas fa-arrow-circle-right"></i></span> </a>
+        <a [routerLink]="'/Users/Search'" [queryParams]="{type:'traveler',location:user.address}"><span>See More Public
+            Trips</span><span><i class="fas fa-arrow-circle-right"></i></span> </a>
       </div>
     </div>
   </div>
+  <app-offer-to-host></app-offer-to-host>

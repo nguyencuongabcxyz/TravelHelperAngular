@@ -16,3 +16,6 @@ input{
     top: 10px;
     left: 10px;
 }
+.box-header{
+    background-image:unset;
+}

@@ -13,6 +13,7 @@ export class WriteReferenceModalComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
   @Input() people: User;
   modalRef: any;
+  isdiable;
   constructor(private modalService: NgbModal, private service: UserService, private toast: ToastrService,
     private route: Router, private avtiveRoute: ActivatedRoute) { }
 
@@ -20,10 +21,12 @@ export class WriteReferenceModalComponent implements OnInit {
 
   }
   open() {
-    this.modalRef = this.modalService.open(this.content, { size: 'lg', windowClass: 'modal-holder', });
+    this.isdiable=false;
+    this.modalRef = this.modalService.open(this.content, {  windowClass: 'modal-holder', });
    // console.log(this.route.url)
   }
   send(referenceForm) {
+    this.isdiable=true;
     this.service.sendReference(referenceForm.value).subscribe(
       res => {
         this.toast.success("You had sent a Reference");

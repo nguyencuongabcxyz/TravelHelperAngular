@@ -63,19 +63,6 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Request']" routerLinkActive='active'>
-                    <div class="icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="name">
-                        <span>
-                            Request
-                        </span>
-
-                    </div>
-                </a>
-            </li>
-            <li>
                 <a (click)="this.isMenu = false;" [routerLink]="['Message']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-comments"></i>
@@ -88,6 +75,21 @@
                     </div>
                 </a>
             </li>
+            <li>
+                <a (click)="this.isMenu = false;" [routerLink]="['Request']" routerLinkActive='active'>
+                    <div class="icon">
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Notify
+                        </span>
+
+                    </div>
+                </a>
+            </li>
+            
             <li>
                 <div class="dropdown" (clickOutside)="isdrop=false;">
                     <a class="" id="dropdownMenu2" data-toggle="dropdown"
@@ -106,7 +108,7 @@
 
                         </div>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2" 
                         [style.display]="isdrop?'block':'none'">
                         <button class="dropdown-item" type="button"><i class="fas fa-user-cog"></i> Change Password</button>
                         <button (click)="onLogout();" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> Log Out</button>

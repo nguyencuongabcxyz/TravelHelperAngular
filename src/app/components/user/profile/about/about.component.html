@@ -16,10 +16,10 @@
     </div>
     <ng-container *ngIf="trips.length;else nothing">
       <ng-container *ngFor="let trip of trips">
-        <app-trip [isUser]="isUser" [trip]="trip"></app-trip>
+        <app-trip (myClick)="openofferToHostModal($event)" [isUser]="isUser" [trip]="trip"></app-trip>
       </ng-container>
     </ng-container>
-    <div class="box-action">
+    <div class="box-action" *ngIf="isUser">
         <a routerLink="/Users/PublicTrip"><span>Your Trip's Plan</span><span><i
               class="fas fa-arrow-circle-right"></i></span> </a>
       </div>
@@ -50,12 +50,16 @@
     </div>
     <div class="content-aboutme">
       <p>{{user.about}}</p>
-      <h4>Interest</h4>
+      
 
+      
+    </div>
+    <div class="interest-header">
+      <h6>INTEREST</h6>
+    </div>
+    <div class="content-aboutme">
       <p>{{user.interest}}</p>
-
-
-
     </div>
   </div>
 </ng-container>
+<app-offer-to-host></app-offer-to-host>
