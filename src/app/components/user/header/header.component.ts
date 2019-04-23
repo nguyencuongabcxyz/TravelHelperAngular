@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   subscription = Subscription;
   textInput = "";
   textSelect = "host";
-
+  placeholder = "Search for Place";
 
   private searchedSubject = new Subject<string>();
   constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService) { }
@@ -27,8 +27,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/Userauth']);
 
   }
-  onKeyup() {
-    this.searchedSubject.next(this.textInput);
+  onChange(){
+    this.placeholder = this.textSelect=='people'?"Search for Name":"Search for Place";
+  }
+  onKeyup(formSearch) {
+    if (formSearch.value.select !== 'people')
+      this.searchedSubject.next(this.textInput);
   }
   onSubmit(form) {
     this.textInput = '';

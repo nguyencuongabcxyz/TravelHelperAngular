@@ -20,7 +20,8 @@ import { PhotosComponent } from './components/user/profile/photos/photos.compone
 import { HomeComponent } from './components/user/profile/home/home.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component'
 
-import { UserResolve, ProfileResolve, TokenResolve, HomeResolve } from './services/user.resolve'
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve } from './services/user.resolve'
+import { FriendsComponent } from './components/user/profile/friends/friends.component';
 const routes: Routes = [
 
   { path: '', redirectTo: 'Userauth', pathMatch: 'full' },
@@ -37,7 +38,7 @@ const routes: Routes = [
     path: 'Users', component: UserComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-      { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve } },
+      { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve ,placesres:PlacesDashboardResolve} },
       { path: 'Profile/Edit', component: EditComponent, resolve: { users: UserResolve, homeres: HomeResolve } },
       {
         path: 'Profile', component: ProfileComponent, resolve: { users: ProfileResolve },
@@ -46,7 +47,8 @@ const routes: Routes = [
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
-          { path: 'References', component: ReferencesComponent ,},
+          { path: 'References', component: ReferencesComponent},
+          { path: 'Friends', component: FriendsComponent},
         ]
       },
       { path: 'People', redirectTo: "/Users/Profile/About", pathMatch: 'full' },
@@ -57,7 +59,8 @@ const routes: Routes = [
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
-          { path: 'References', component: ReferencesComponent, },
+          { path: 'References', component: ReferencesComponent },
+          { path: 'Friends', component: FriendsComponent},
         ]
       },
 

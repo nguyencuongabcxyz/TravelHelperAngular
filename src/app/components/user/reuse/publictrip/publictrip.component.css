@@ -1,6 +1,12 @@
 a{
     color: #27374c;
 }
+.item{
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    background-color: #f8f8f8;
+    margin: 20px;
+}
 a:hover{
     text-decoration: none;
 }

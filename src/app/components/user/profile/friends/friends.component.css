@@ -1,0 +1,40 @@
+.content-friends{
+    padding: 15px 5px;
+    margin: 0px;
+}
+.item{
+    display: flex;
+    padding: 10px;
+    border-radius: 1rem;
+    border: 1px solid rgba(0,0,0,0.15);
+    background-color: #f8f8f8;
+    margin: 5px 0px;
+}
+.item img{
+    height: 70px;
+    width: 70px;
+}
+.item .avatar{
+    padding-right: 20px;
+}
+.item a{
+  text-decoration: none;
+   
+}
+.item a:hover{
+    cursor: pointer;
+    color: #ED6504;
+}
+.item .info{
+    
+}
+.info p{
+    margin: 0;
+}
+.info .name{
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.info .address{
+
+}

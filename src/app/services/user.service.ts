@@ -97,10 +97,10 @@ export class UserService {
     return this.http.post<any>(this.BaseURI + '/Images', image, { reportProgress: true, observe: "events" });
   }
   uploadAvatar(image): Observable<any> {
-    return this.http.post<any>(this.BaseURI + '/Users/Avatar', image,{ reportProgress: true, observe: "events" });
+    return this.http.post<any>(this.BaseURI + '/Users/Avatar', image, { reportProgress: true, observe: "events" });
   }
   deletePhoto(imageId): Observable<any> {
-    return this.http.delete<any>(this.BaseURI + '/Images/'+imageId, { reportProgress: true, observe: "response" });
+    return this.http.delete<any>(this.BaseURI + '/Images/' + imageId, { reportProgress: true, observe: "response" });
   }
   //  =============================
   sendReference(formReference): Observable<any> {
@@ -123,6 +123,10 @@ export class UserService {
     return terms.pipe(debounceTime(100),
       // distinctUntilChanged(),
       switchMap(term => this.getAdressEntries(term)))
+  }
+  //  =============================
+  getPlaces():Observable<any[]> {
+    return this.http.get<any[]>('assets/db.json')
   }
   //  =============================
 

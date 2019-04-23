@@ -44,7 +44,7 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve} from './services/user.resolve';
+import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve} from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component';
@@ -56,6 +56,8 @@ import { OfferToHostComponent } from './components/user/reuse/offer-to-host/offe
 import { CarouselModalComponent } from './components/user/reuse/carousel-modal/carousel-modal.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { DeleteModalComponent } from './components/user/reuse/delete-modal/delete-modal.component';
+import { FriendsComponent } from './components/user/profile/friends/friends.component';
+import { SendReportModalComponent } from './components/user/reuse/send-report-modal/send-report-modal.component';
 
 
 
@@ -98,6 +100,8 @@ import { DeleteModalComponent } from './components/user/reuse/delete-modal/delet
     OfferToHostComponent,
     CarouselModalComponent,
     DeleteModalComponent,
+    FriendsComponent,
+    SendReportModalComponent,
 
 
 
@@ -134,7 +138,8 @@ import { DeleteModalComponent } from './components/user/reuse/delete-modal/delet
     UserResolve,
     ProfileResolve,
     TokenResolve,
-    HomeResolve
+    HomeResolve,
+    PlacesDashboardResolve
   ],
   bootstrap: [AppComponent]
 })

@@ -30,6 +30,14 @@ export class HomeResolve implements Resolve<any> {
     }
 }
 @Injectable()
+export class PlacesDashboardResolve implements Resolve<any> {
+    constructor(private service: UserService) { }
+
+    resolve(): Observable<any> {
+        return this.service.getPlaces();
+    }
+}
+@Injectable()
 export class ProfileResolve implements Resolve<any> {
     constructor(private service: UserService, private route: Router) { }
 

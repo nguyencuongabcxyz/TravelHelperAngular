@@ -79,7 +79,8 @@ z-index: 800;
   margin-bottom: 10px!important;
 }
 .box-header{
-  background-image: linear-gradient(to right, #e1e6db , #e2dede);
+  background-image: linear-gradient(to right, #ced1cb , #f3f5f6);
+  /* background-image: linear-gradient(to right, #e1e6db , #e2dede); */
   padding: 15px 20px;
   border-bottom: 1px solid rgba(0,0,0,0.15);
 }
@@ -94,6 +95,7 @@ z-index: 800;
 .box-action{
   width: 100%;
   text-align: center;
+  border-top: 1px solid rgba(0,0,0,0.15);
 }
 .box-action a{
   display: inline-block;
