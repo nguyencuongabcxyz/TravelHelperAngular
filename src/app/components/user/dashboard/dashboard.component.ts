@@ -1,20 +1,35 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 import { UserService } from './../../../services/user.service'
 import { PublicTrip } from './../../../models/publictrip'
 import { User } from './../../../models/user'
 import { Router, ActivatedRoute } from '@angular/router'
 import { Subject } from 'rxjs'
 import { OfferToHostComponent } from '../reuse/offer-to-host/offer-to-host.component';
+import { Dashplace } from 'src/app/models/dash-place';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css', './../../../app.component.css']
+  styleUrls: ['./dashboard.component.css', './../../../app.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void => *', animate(1000)),
+    ]),
+  ]
 })
 
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
+  }
   @ViewChild(OfferToHostComponent) offerToHost: OfferToHostComponent;
-
+  interval;
+  places: Dashplace[] = [];
+  placesres: Dashplace[] = [];
   percent;
   isUser = true;
   textInput = "";
@@ -24,6 +39,14 @@ export class DashboardComponent implements OnInit {
   constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
   public searchedSubject = new Subject<string>();
   ngOnInit() {
+    this.placesres = this.activatedRoute.snapshot.data.placesres;
+    this.places = this.randomPlace(this.placesres);
+    this.interval = setInterval(
+      () => {
+        this.places =[];
+        this.places = this.randomPlace(this.placesres);
+      }, 4000
+    );
     // this.trips=[];
     //this.user.publicTrips = [];
     this.user = this.activatedRoute.snapshot.data.users;
@@ -52,6 +75,17 @@ export class DashboardComponent implements OnInit {
         this.publicTrips = res;
       }
     );
+  }
+
+  randomPlace(ress): any {
+    let temp: any[] = [];
+    let temps = ress;
+    for (let i = 0; i < 3; i++) {
+      let idx = Math.floor(Math.random() * temps.length);
+      temp.push(temps[idx]);
+      temps = temps.filter(items => temps.indexOf(items) !== idx);
+    }
+    return temp;
   }
   onKeyup() {
     this.searchedSubject.next(this.textInput);

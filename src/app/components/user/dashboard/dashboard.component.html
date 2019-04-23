@@ -2,24 +2,24 @@
   <div class="content-left col-3 ">
     <div class="box user-info">
       <a [routerLink]="['../Profile']"><img class="photo img-responsive"
-           [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
+          [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'"></a>
       <div class="info">
-        <p style="font-size:30px;">{{user.fullName}}</p>
-        <p>{{user.address}}</p>
+        <p style="font-size:30px;font-weight: 600">{{user.fullName}}</p>
+        <p style="font-size: 20px;">{{user.address}}</p>
       </div>
       <div class="status">
         <p style="font-size:18px;">Your status</p>
         <div style="display: flex;align-items: center; justify-content: center">
-        <i *ngIf="user.status;else not" class="color-icon"
-        style=" width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/ok.png)"></i>
-      <ng-template #not>
-        <i class="color-icon"
-          style=" width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/cancel.png)"></i>
-      </ng-template>
-        <span *ngIf="user.id" class="status-value" [style.color]="user.status?'green':'red'">
-          {{user.status?'Acepting Guest':'Not Acepting Guest'}}
-        </span>
-</div>
+          <i *ngIf="user.status;else not" class="color-icon"
+            style=" width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/ok.png)"></i>
+          <ng-template #not>
+            <i class="color-icon"
+              style=" width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/cancel.png)"></i>
+          </ng-template>
+          <span *ngIf="user.id" class="status-value" [style.color]="user.status?'green':'red'">
+            {{user.status?'Acepting Guest':'Not Acepting Guest'}}
+          </span>
+        </div>
       </div>
     </div>
     <div class="box profile">
@@ -46,7 +46,16 @@
         <i class="fas fa-couch"></i> <span>FIND HOST AT WHERE YOU ARE GOING TO</span>
       </div>
       <div class="proposed-box row">
-        <div class="item col">
+        <ng-container *ngFor="let place of places; let i=index">
+          <div [@fadeInOut] class="item1 col" [ngClass]="{'hide':i==2}">
+            <a [routerLink]="'/Users/Search'" [queryParams]="{type:'host',location:place.place}"
+              [ngStyle]="{'background-image':'url('+place.imageLocation+')'}">
+              <p>{{place.place}}</p>
+              <span>{{place.hostNumber}}+ hosts</span>
+            </a>
+          </div>
+        </ng-container>
+        <!-- <div class="item col">
           <a style="background-image: url('/assets/imgs/cali.jpg');">
             <p>Napa Valley, California</p>
             <span>5,600+ hosts</span>
@@ -63,7 +72,7 @@
             <p>Tuscany, Italy</p>
             <span>7,600+ hosts</span>
           </a>
-        </div>
+        </div> -->
       </div>
       <div style="text-align: center;border-top: solid 1px rgba(0,0,0,0.15);padding-top: 10px;">
         <span style="font-weight: 600">Find hosts wherever I’m going</span>
@@ -98,7 +107,9 @@
       <ng-container *ngIf="trips;else loading">
         <ng-container *ngIf="trips.length;else nothing">
           <ng-container *ngFor="let trip of trips">
-            <app-trip  [isUser]="isUser" [trip]="trip"></app-trip>
+            
+              <app-trip [isUser]="isUser" [trip]="trip"></app-trip>
+            
           </ng-container>
         </ng-container>
         <!-- <div *ngIf="(!trips.length)" class="notrip">
@@ -123,7 +134,9 @@
       <ng-container *ngIf="publicTrips;else loading">
         <ng-container *ngIf="publicTrips.length;else nothing">
           <ng-container *ngFor="let publicTrip of publicTrips">
-            <app-publictrip (myClick)="openofferToHostModal($event)" [publicTrip]="publicTrip"></app-publictrip>
+            
+              <app-publictrip (myClick)="openofferToHostModal($event)" [publicTrip]="publicTrip"></app-publictrip>
+            
           </ng-container>
         </ng-container>
       </ng-container>

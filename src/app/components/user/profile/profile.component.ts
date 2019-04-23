@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, Event, NavigationStart, NavigationEnd } from '@
 import { WriteReferenceModalComponent } from './../reuse/write-reference-modal/write-reference-modal.component'
 import { SendMessageModalComponent } from '../reuse/send-message-modal/send-message-modal.component';
 import { SendRequestModalComponent } from '../reuse/send-request-modal/send-request-modal.component';
+import { SendReportModalComponent } from '../reuse/send-report-modal/send-report-modal.component';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -14,6 +16,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild(WriteReferenceModalComponent) writeReferenceModal: WriteReferenceModalComponent;
   @ViewChild(SendMessageModalComponent) sendMessageModal: SendMessageModalComponent;
   @ViewChild(SendRequestModalComponent) sendRequestModal: SendRequestModalComponent;
+  @ViewChild(SendReportModalComponent) sendReportModal: SendReportModalComponent;
   isUser: boolean;
   user: any = {};
   constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute) { }

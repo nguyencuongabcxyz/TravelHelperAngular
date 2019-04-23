@@ -1,0 +1,41 @@
+<ng-template #content>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Report {{people.fullName}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modalRef.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <div style="margin-bottom: 20px">
+      <span>
+        Please report inappropriate members and/or content to help our Trust & Safety team keep our Community safe for
+        everyone.
+      </span>
+    </div>
+    <form #reportForm="ngForm">
+      <div class="form-group">
+        <label class="" for="reason">Reason for Reporting<span style="color: red">*</span></label>
+        <div class="">
+          <select id="reason" class="form-control" name="reason" required ngModel>
+            <option value=""></option>
+            <option>Abusive or Illegal</option>
+            <option>Felt Unsafe</option>
+            <option>Commercial or Spam</option>
+            <option>Dating/Sexually Explicit</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Detail<span style="color: red">*</span></label>
+        <textarea required ngModel class="form-control" name="message" id="message" rows="5"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button [disabled]="isdiable" type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
+    <button [disabled]="reportForm.invalid||isdiable" type="button" class="btn btn-success"
+      (click)="send(reportForm);">Send</button>
+  </div>
+</ng-template>
