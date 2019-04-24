@@ -10,7 +10,7 @@ import { Subject, Subscription, from } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-
+  isdrop;
   subscription = Subscription;
   textInput = "";
   textSelect = "host";
@@ -41,5 +41,10 @@ export class HeaderComponent implements OnInit {
   resetvalue() {
     this.textInput = '';
     this.textSelect = 'host';
+  }
+
+  onChangePassword(){
+    this.router.navigate(['/Users/ChangePassword']);
+    this.isdrop = false;
   }
 }

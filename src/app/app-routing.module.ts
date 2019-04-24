@@ -83,7 +83,7 @@ const routes: Routes = [
       },
       {
         path: 'ChangePassword',
-        component: ChangePassComponent
+        component: ChangePassComponent, resolve: { users: UserResolve }
       },
 
 
