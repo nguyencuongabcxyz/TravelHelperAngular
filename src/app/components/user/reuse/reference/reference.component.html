@@ -12,7 +12,8 @@
     </div>
     <div class="time"><span>{{reference.createDate|date:'dd MMMM, yyyy'}}</span></div>
     <div class="status">
-      <span [style.color]="reference.status?'green':'red'">{{reference.status?'Positive':'Negative'}}</span>
+        <i [style.color]="reference.status?'green':'red'"
+        class="fas fa-star"></i><span [style.color]="reference.status?'green':'red'"> {{reference.status?'Positive':'Negative'}}</span>
     </div>
     <div class="reference-decription" (window:resize)="onResize($event)" [ngStyle]="x && {'max-height.em':height}">
       <p #des>{{reference.content}} </p>

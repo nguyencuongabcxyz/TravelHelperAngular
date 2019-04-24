@@ -19,6 +19,7 @@ export class UploadComponent implements OnInit {
   defaultUrl = './../../../../../assets/imgs/profile-picture-placeholder.png'
   imageUrl;
   uploading;
+  isdisable;
   constructor(public activeModal: NgbActiveModal, private modalService: NgbModal,
     private toast: ToastrService, private service: UserService) { }
   ngOnInit() {
@@ -30,10 +31,11 @@ export class UploadComponent implements OnInit {
     this.modalRef = this.modalService.open(this.content, { windowClass: 'modal-holder' });
     this.imageUrl = this.defaultUrl;
 
-
+    
   }
 
   upload(uploadForm) {
+    this.isdisable=true;
     const fd = new FormData();
     //fd.append('description',uploadForm.value.description);
     fd.append('file', this.fileToUpload, this.fileToUpload.name);

@@ -12,15 +12,18 @@ export class SendRequestModalComponent implements OnInit {
   @Input() people: User;
   modalRef: any;
   now = new Date();
+  isdiable;
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
    
   }
   open() {
-    this.modalRef = this.modalService.open(this.content, { size: 'lg', windowClass: 'modal-holder' });
+    this.isdiable=false;
+    this.modalRef = this.modalService.open(this.content, {  windowClass: 'modal-holder' });
   }
   send(requestForm) {
+    this.isdiable=true;
     console.log(requestForm.value)
   }
 

@@ -4,3 +4,6 @@
 button{
     width:200px;
 }
+.box-header{
+    background-image:unset;
+}

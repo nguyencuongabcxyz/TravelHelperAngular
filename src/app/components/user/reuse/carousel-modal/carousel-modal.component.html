@@ -12,7 +12,7 @@
       {{activePhoto.createDate| date:'dd/MM/yyyy'}}</span>
 
     <div class="button-bar">
-      <button *ngIf="activePhoto && isUser" class="delbtn" (click)="deletePhoto()">Delete Photo</button>
+      <button *ngIf="activePhoto && isUser" class="delbtn" (click)="opendeleteModal()">Delete Photo</button>
       <button class="close" (click)="modalRef.close()">
         <span><i class="fas fa-times"></i></span>
       </button>
@@ -52,3 +52,4 @@
     </div>
   </div>
 </ng-template>
+<app-delete-modal (myClick)="deletePhoto()"></app-delete-modal>

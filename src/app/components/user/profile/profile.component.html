@@ -1,14 +1,15 @@
 <app-write-reference-modal [people]="user"></app-write-reference-modal>
 <app-send-message-modal [people]="user"></app-send-message-modal>
 <app-send-request-modal [people]="user"></app-send-request-modal>
+<app-send-report-modal [people]="user"></app-send-report-modal>
 <div class="row">
   <div class="content-left col-3 ">
     <div class="box user-info">
       <img class="photo img-responsive"
         [src]="user.avatarLocation?user.avatarLocation:'./../../../../assets/imgs/profile-picture-placeholder.png'">
       <div class="info">
-        <p style="font-size:30px;">{{user.fullName}}</p>
-        <p>{{user.address}}</p>
+        <p style="font-size:30px;font-weight: 600">{{user.fullName}}</p>
+        <p style="font-size: 20px;"> {{user.address}}</p>
       </div>
 
     </div>
@@ -18,6 +19,12 @@
   </div>
   <div class="content-right col ">
     <div class="box status-bar">
+      <i *ngIf="user.status;else not" class="color-icon"
+        style=" margin-left: 20px; width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/ok.png)"></i>
+      <ng-template #not>
+        <i class="color-icon"
+          style=" margin-left: 20px; width: 40px;height: 40px; background-image: url(https://img.icons8.com/color/96/000000/cancel.png)"></i>
+      </ng-template>
       <span class="status-value" [style.color]="user.status?'green':'red'">
         {{user.status?'Acepting Guest':'Not Acepting Guest'}}
       </span>
@@ -36,7 +43,7 @@
             [style.display]="isdrop?'block':'none'">
             <button class="dropdown-item" type="button">Add Friend</button>
             <button (click)="writeReferenceModal.open();" class="dropdown-item" type="button">Write Reference</button>
-            <button class="dropdown-item" type="button">Report</button>
+            <button (click)="sendReportModal.open();" class="dropdown-item" type="button">Report</button>
           </div>
         </div>
       </div>
@@ -48,7 +55,7 @@
         <li><a routerLinkActive='is-selected' [routerLink]="['Myhome']"><span>My Home</span></a></li>
         <li><a routerLinkActive='is-selected' [routerLink]="['Photos']"><span>Photos</span></a></li>
         <li><a routerLinkActive='is-selected' [routerLink]="['References']"><span>References</span></a></li>
-        <li><a href=""><span>Friends</span></a></li>
+        <li><a routerLinkActive='is-selected' [routerLink]="['Friends']"><span>Friends</span></a></li>
       </ul>
     </div>
     <router-outlet></router-outlet>

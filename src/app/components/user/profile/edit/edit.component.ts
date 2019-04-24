@@ -50,7 +50,12 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isabout = true;
+    this.activatedRoute.fragment.subscribe(
+      fragment=>{
+        this.isabout = fragment == 'about'|| fragment == null ? true : false;
+      }
+    )
+    //this.onClick();
     this.user = this.activatedRoute.snapshot.data.users;
     this.homeres = this.activatedRoute.snapshot.data.homeres;
     this.setvalueabout();
@@ -59,6 +64,14 @@ export class EditComponent implements OnInit {
       this.setvaluehome();
     }
   }
+  // onClick() {
+    
+  //   setTimeout(() => {
+  //     let hash = this.route.url.substring(this.route.url.indexOf('#') + 1);
+  //     this.isabout = hash == 'about' || hash == '/Users/Profile/Edit' ? true : false;
+  //   }, 0);
+
+  // }
   setAvatar(event) {
     this.user.avatarLocation = event;
   }
@@ -79,10 +92,17 @@ export class EditComponent implements OnInit {
   onKeyup() {
     this.searchedSubject.next(this.addressInput);
   }
+  isdiable=false;
   onSaveabout() {
+    this.isdiable=true;
+    console.log(this.isdiable)
     this.service.editProfileAbout(this.formabout.value).subscribe(
       (res: any) => {
         this.toastr.success("Saved");
+        // setTimeout(() => {
+        //   this.isdiable=false;
+        // }, 1000);
+        
         this.route.navigateByUrl('/Users/Profile');
       },
 
@@ -90,12 +110,13 @@ export class EditComponent implements OnInit {
   }
   showsearch() {
     this.issearch = true;
-    this.addressInput="";
+    this.addressInput = "";
     setTimeout(() => {
       this.search.nativeElement.focus();
     }, 0);
   }
   setvaluehome() {
+    //this.isdiable=true;
     this.formhome.setValue({
       maxGuest: this.home.maxGuest,
       preferedGender: this.home.preferedGender,
@@ -108,19 +129,19 @@ export class EditComponent implements OnInit {
     });
   }
   onSavehome() {
+    this.isdiable=true;
     if (this.home) {
-
       this.service.editProfileHome(this.formhome.value, this.home.homeId).subscribe(
         (res: any) => {
           this.toastr.success("Saved");
-          this.route.navigateByUrl('/Users/Profile');
+          this.route.navigateByUrl('/Users/Profile/Myhome');
         },
       );
     } else {
       this.service.createProfileHome(this.formhome.value).subscribe(
         (res: any) => {
           this.toastr.success("Saved");
-          this.route.navigateByUrl('/Users/Profile');
+          this.route.navigateByUrl('/Users/Profile/Myhome');
         },
 
       );

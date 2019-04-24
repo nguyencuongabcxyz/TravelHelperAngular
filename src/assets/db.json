@@ -1,0 +1,47 @@
+[
+  {
+    "place": "Napa Valley, California",
+    "hostNumber": 5600,
+    "imageLocation": "/assets/imgs/cali.jpg"
+  },
+  {
+    "place": "Bordeaux, France",
+    "hostNumber": 6600,
+    "imageLocation": "/assets/imgs/bord.jpg"
+  },
+  {
+    "place": "Tuscany, Italy",
+    "hostNumber": 7000,
+    "imageLocation": "/assets/imgs/tus.jpg"
+  },
+  {
+    "place": "Rome, Italy",
+    "hostNumber": 500,
+    "imageLocation": "assets/imgs/dash-rome-italy.jpg"
+  },
+  {
+    "place": "Gold Coast, Australia",
+    "hostNumber": 1000,
+    "imageLocation": "/assets/imgs/dash-gold-coast-australia.jpg"
+  },
+  {
+    "place": "Istanbul, TurKey",
+    "hostNumber": 900,
+    "imageLocation": "/assets/imgs/dash-istanbul-turkey.jpg"
+  },
+  {
+    "place": "Mexico City, Mexico",
+    "hostNumber": 8800 ,
+    "imageLocation": "/assets/imgs/dash-mexico-city-mexico.jpg"
+  },
+  {
+    "place": "Phuket, Thailand",
+    "hostNumber":10000 ,
+    "imageLocation": "/assets/imgs/dash-phuket-thailan.jpg"
+  },
+  {
+    "place": "Bali, Indonesia",
+    "hostNumber": 6000,
+    "imageLocation": "/assets/imgs/dash-bali-indo.jpg"
+  }
+]

@@ -1,25 +1,18 @@
-{
-  "posts": [
+ [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "place": "Napa Valley, California",
+      "hostNumber": 5600,
+      "imageLocation": "/assets/imgs/cali.jpg"
     },
     {
-      "image": "abc.jpg",
-      "title": "asds",
-      "content": "ahihi",
-      "id": 2
-    }
-  ],
-  "comments": [
+      "place": "Bordeaux, France",
+      "hostNumber": 6600,
+      "imageLocation": "/assets/imgs/bord.jpg"
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "place": "Tuscany, Italy",
+      "hostNumber": 7000,
+      "imageLocation": "/assets/imgs/tus.jpg"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-}
+  ]
+ 

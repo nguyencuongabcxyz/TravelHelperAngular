@@ -10,25 +10,23 @@
             <button (click)="isSearch = !isSearch;isMenu = false;">
                 <i [ngStyle]="isSearch && !isMenu && {'color':'#ED6504'}" class="fas fa-search "></i></button>
         </div>
-        <div class="menu-responsive" >
+        <div class="menu-responsive">
             <button (click)="isMenu = !isMenu;isSearch = false;">
                 <i [ngStyle]="isMenu && !isSearch && {'color':'#ED6504'}" class="fas fa-bars"></i></button>
         </div>
     </div>
-    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box" (clickOutside)="textInput = '';">
+    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box" >
         <form #formSearch="ngForm" autocomplete="off" (submit)="onSubmit(formSearch);">
             <div class="search-form row">
-                <select [(ngModel)]="textSelect" class=" search-select form-control shadow-sm col" name="select">
+                <select [(ngModel)]="textSelect" (change)="onChange()" class=" search-select form-control shadow-sm col" name="select">
                     <option value="host" selected>Find Host</option>
                     <option value="traveler">Find Traveler</option>
+                    <option value="people">Find People</option>
                 </select>
-                <div class="search-form-1 col">
+                <div class="search-form-1 col" (clickOutside)="textInput = '';">
                     <button class="" type="submit"><i class="fas fa-search"></i></button>
-                    <input [(ngModel)]="textInput" (keyup)="onKeyup();" class="form-control shadow-sm" type="text"
-                        name="input" placeholder="Search for Place">
-
-
-
+                    <input [(ngModel)]="textInput" (keyup)="onKeyup(formSearch);" class="form-control shadow-sm" type="text"
+                        name="input" [placeholder]="placeholder">
                     <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();"
                         [searchedSubject]="searchedSubject"></app-dropdown>
                 </div>
@@ -63,19 +61,6 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Request']" routerLinkActive='active'>
-                    <div class="icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="name">
-                        <span>
-                            Request
-                        </span>
-
-                    </div>
-                </a>
-            </li>
-            <li>
                 <a (click)="this.isMenu = false;" [routerLink]="['Message']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-comments"></i>
@@ -89,13 +74,28 @@
                 </a>
             </li>
             <li>
+                <a (click)="this.isMenu = false;" [routerLink]="['Request']" routerLinkActive='active'>
+                    <div class="icon">
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="name">
+                        <span>
+                            Notify
+                        </span>
+
+                    </div>
+                </a>
+            </li>
+
+            <li>
                 <div class="dropdown" (clickOutside)="isdrop=false;">
-                    <a class="" id="dropdownMenu2" data-toggle="dropdown"
-                        (click)="isdrop=!isdrop" aria-haspopup="true" aria-expanded="false">
+                    <a class="" id="dropdownMenu2" data-toggle="dropdown" (click)="isdrop=!isdrop" aria-haspopup="true"
+                        aria-expanded="false">
 
                         <div class="icon" style="display: flex">
                             <div class="dropdown-toggle">
-                                    <i class="fas fa-cog"></i>
+                                <i class="fas fa-cog"></i>
                             </div>
 
                         </div>
@@ -108,8 +108,14 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
                         [style.display]="isdrop?'block':'none'">
-                        <button class="dropdown-item" type="button" [routerLink]="['/Users/ChangePassword']"><i class="fas fa-user-cog"></i> Change Password</button>
-                        <button (click)="onLogout();" class="dropdown-item" type="button"><i class="fas fa-sign-out-alt"></i> Log Out</button>
+
+
+
+                        <button class="dropdown-item" type="button"><i class="fas fa-user-cog"></i> Change
+                            Password</button>
+                        <button (click)="onLogout();" class="dropdown-item" type="button"><i
+                                class="fas fa-sign-out-alt"></i> Log Out</button>
+
                     </div>
                 </div>
             </li>

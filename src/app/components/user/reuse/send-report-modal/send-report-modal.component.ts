@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { User } from 'src/app/models/user';
+
 @Component({
-  selector: 'app-send-message-modal',
-  templateUrl: './send-message-modal.component.html',
-  styleUrls: ['./send-message-modal.component.css']
+  selector: 'app-send-report-modal',
+  templateUrl: './send-report-modal.component.html',
+  styleUrls: ['./send-report-modal.component.css']
 })
-export class SendMessageModalComponent implements OnInit {
+export class SendReportModalComponent implements OnInit {
   @ViewChild('content') content: ElementRef;
   @Input() people: User;
   modalRef: any;
@@ -20,9 +21,9 @@ export class SendMessageModalComponent implements OnInit {
     this.isdiable = false;
     this.modalRef = this.modalService.open(this.content, { windowClass: 'modal-holder' });
   }
-  send(messageForm) {
+  send(reportForm) {
     this.isdiable = true;
-    console.log(messageForm.value)
+    console.log(reportForm.value)
   }
 
 }
