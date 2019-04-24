@@ -18,10 +18,15 @@ import { EditComponent } from './components/user/profile/edit/edit.component';
 import { PublicTripComponent } from './components/user/public-trip/public-trip.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { ReferencesComponent } from './components/user/profile/references/references.component'
+import { ReferencesComponent } from './components/user/profile/references/references.component';
 
-import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve } from './services/user.resolve'
+
+
+import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
+
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve } from './services/user.resolve';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
+
 const routes: Routes = [
 
   { path: '', redirectTo: 'Userauth', pathMatch: 'full' },
@@ -74,7 +79,11 @@ const routes: Routes = [
       },
       {
         path: 'PublicTrip/:id',
-        component: PublicTripComponent
+        component: PublicTripComponent, resolve: { users: UserResolve }
+      },
+      {
+        path: 'ChangePassword',
+        component: ChangePassComponent
       },
 
 

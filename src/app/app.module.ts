@@ -55,9 +55,13 @@ import { SendMessageModalComponent } from './components/user/reuse/send-message-
 import { OfferToHostComponent } from './components/user/reuse/offer-to-host/offer-to-host.component';
 import { CarouselModalComponent } from './components/user/reuse/carousel-modal/carousel-modal.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+
+import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
+
 import { DeleteModalComponent } from './components/user/reuse/delete-modal/delete-modal.component';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
 import { SendReportModalComponent } from './components/user/reuse/send-report-modal/send-report-modal.component';
+
 
 
 
@@ -99,9 +103,13 @@ import { SendReportModalComponent } from './components/user/reuse/send-report-mo
     SendMessageModalComponent,
     OfferToHostComponent,
     CarouselModalComponent,
+
+    ChangePassComponent,
+
     DeleteModalComponent,
     FriendsComponent,
     SendReportModalComponent,
+
 
 
 

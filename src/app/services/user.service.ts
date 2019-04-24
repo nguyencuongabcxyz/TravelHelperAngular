@@ -17,6 +17,7 @@ export class UserService {
   searchTraveler = '/Publictrips/Search?destination=';
   userPublicTrip = '/Users/Publictrips';
   publicTrip = '/Publictrips/';
+  changePass = '/ApplicationUser/ChangePassword';
 
   setPeopleid(id) {
     this.peopleid = id;
@@ -170,5 +171,9 @@ export class UserService {
 
   deletePublicTripById(id: number) {
     return this.http.delete(this.BaseURI + this.publicTrip + id);
+  }
+
+  changePassword(password): Observable<any> {
+    return this.http.put(this.BaseURI + this.changePass, password, { reportProgress: true, observe: "response" });
   }
 }

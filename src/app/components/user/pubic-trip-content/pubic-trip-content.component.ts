@@ -26,6 +26,7 @@ export class PubicTripContentComponent implements OnInit {
     if(this.permit === true) {
       this.idTrip.emit(this.PublicTrip.trip.publicTripId);
       //this.router.navigate(['/Users/PublicTrip', this.PublicTrip.trip.publicTripId]);
+
     }
     this.permit = true;
   }

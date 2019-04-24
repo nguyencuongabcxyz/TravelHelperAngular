@@ -1,13 +1,13 @@
 
 
-<div class="card box people" style="height: 230px" (click)="onClickPeople()">
+<div class="card box" style="height: 230px" >
 
   <div class="headers">
-      <img [src]="user.avatarLocation ? user.avatarLocation : img" class="card-img-top" alt="...">
+      <img  [src]="user.avatarLocation ? user.avatarLocation : img" class="card-img-top" (click)="onClickPeople()" alt="...">
 
-      <div class="" >
+      <div class="info" >
         <ul class="list-group ">
-          <li class="list-group-item name">{{user.fullName}}</li>
+          <li class="list-group-item name" ><span id="b" class="people" (click)="onClickPeople()">{{user.fullName}}</span></li>
           <li class="list-group-item">
 
                 <i class="eva eva-message-square wrapper-icon"></i>

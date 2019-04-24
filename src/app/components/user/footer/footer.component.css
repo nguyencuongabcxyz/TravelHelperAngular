@@ -14,6 +14,8 @@
 
 .about {
   font-weight: 700;
+  color: #ED6504;
+  margin-bottom: 10px;
 }
 
 .website {
@@ -25,9 +27,9 @@
 
 .member {
   width: 400px;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-end; */
 }
 
 .list {
@@ -36,16 +38,32 @@
   margin: 0;
 }
 
-.list li i{
+i{
   color: #34495e;
   background: white;
-  border-radius: 50%;
-  border: 1px solid #EEE;
+  --border-radius: 50%;
+  --border: 1px solid #EEE;
   font-size: 16px;
   transition: 500ms all;
+  margin-right: 10px;
 }
 
-.list li i:hover {
+i:hover {
   cursor: pointer;
   transform: scale(1.5);
+}
+
+
+p{
+  margin: 0px;
+  font-weight: 500;
+}
+
+hr {
+  border-top: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.col-sm {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
 }

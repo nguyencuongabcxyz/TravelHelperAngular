@@ -17,7 +17,7 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   addressInput = '';
   issearch = false;
   @ViewChild('search') search: ElementRef;
-
+  now = new Date();
   formUser: FormGroup
   subscription: Subscription;
   publicTrips: PublicTrip[];
@@ -25,6 +25,7 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   des: string;
   // places: string[] = [];
   idTrip: number;
+
 
   check: boolean;
   click: boolean;
