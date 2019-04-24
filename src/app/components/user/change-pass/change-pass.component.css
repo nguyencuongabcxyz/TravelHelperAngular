@@ -1,0 +1,27 @@
+.container{
+  margin-bottom: 10px;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+
+
+
+.form-control:focus{
+  outline: none;
+  box-shadow: none;
+}
+
+.edit-form{
+  border: 1px solid #CCC;
+  border-radius: 5px;
+}
+
+input {
+  width: 90%;
+  display: inline;
+  border: none;
+}
+
+span:hover{
+  cursor: pointer;
+}

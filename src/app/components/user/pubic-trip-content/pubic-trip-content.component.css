@@ -1,11 +1,21 @@
 .your-trips{
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: 5px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 16px;
   padding-left: 30px;
+  /* background: rgb(25,192,221);
+  background: linear-gradient(90deg, rgba(25,192,221,0.6867121848739496) 0%, rgba(16,155,201,0.3981967787114846) 100%); */
+}
+
+.onClick{
+  background: #007bff;
+  color: white;
 }
 
 .your-trips:hover {
   cursor: pointer;
-  background: #CCC;
+  background: #4c94e0;
+  color: white
 }
 
 .your-trips .name{

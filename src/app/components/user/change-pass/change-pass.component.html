@@ -1,0 +1,72 @@
+<div class="container" >
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col frame">
+      <div class="card box">
+          <div class="card-header" style="background-color: #007bff; color: white">
+            Change Password
+          </div>
+          <div class="card-body">
+              <form [formGroup]="formChangePass" autocomplete="off" novalidate="true" (ngSubmit)="SavePassword()">
+                  <div class="form-group">
+                    <label for="oldPassword">Old Password <span style="color: red">*</span> </label>
+                    <div class="edit-form">
+                      <input type="password" class="form-control " id="oldPassword" formControlName="OldPassword" [(ngModel)]="txtOldPass" >
+                      <span id="click" (click)="onClickOldPass()">
+                        <i *ngIf="!showOldPass; else notShowOldPass" class="fas fa-eye-slash"></i>
+                        <ng-template #notShowOldPass>
+
+                          <i class="fas fa-eye"></i>
+                        </ng-template>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="newPass">New Password <span style="color: red">*</span> </label>
+                      <div class="edit-form">
+                        <input type="password" class="form-control " id="newPass" formControlName="NewPassword" [(ngModel)]="txtNewPass" >
+                        <span (click)="onClickNewPass()">
+                          <i *ngIf="!showNewPass;else notShowNewPass" class="fas fa-eye-slash"></i>
+                          <ng-template #notShowNewPass>
+
+                            <i class="fas fa-eye"></i>
+                          </ng-template>
+                        </span>
+                      </div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 10px;">
+                      <label for="confirmPass">Confirm Password <span style="color: red">*</span></label>
+                      <div class="edit-form">
+                        <input type="password" class="form-control " id="confirmPass" formControlName="ConfirmPassword" [(ngModel)]="txtConfirmPass" >
+                        <span (click)="onClickConfirmPass()">
+                          <i *ngIf="!showConfirmPass; else notShowConfirmPass" class="fas fa-eye-slash"></i>
+                          <ng-template #notShowConfirmPass>
+
+                            <i class="fas fa-eye"></i>
+                          </ng-template>
+                        </span>
+                      </div>
+                  </div>
+
+                  <div style="margin-bottom: 10px;">
+
+                    <span class="text-success" *ngIf="check === true">
+                      {{txtMessage}}
+                    </span>
+                    <span class="text-danger" *ngIf="check === false">
+                      {{txtMessage}}
+                    </span>
+                  </div>
+                  <button type="submit" class="btn btn-primary" >Save</button>
+                </form>
+          </div>
+      </div>
+    </div>
+    <div class="col"></div>
+  </div>
+</div>
+
+

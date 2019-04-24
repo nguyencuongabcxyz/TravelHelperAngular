@@ -52,7 +52,15 @@ margin-bottom: 0px;
 
 .headers img {
   height: 150px;
-   width: 150px;
+  width: 150px;
+}
+
+.headers img:hover{
+  cursor: pointer;
+}
+
+.headers img:hover + .info .people{
+  color: #256ae9;
 }
 
 li {

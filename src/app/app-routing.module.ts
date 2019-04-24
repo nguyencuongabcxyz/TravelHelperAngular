@@ -21,6 +21,7 @@ import { HomeComponent } from './components/user/profile/home/home.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component'
 
 import { UserResolve, ProfileResolve, TokenResolve, HomeResolve } from './services/user.resolve'
+import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 const routes: Routes = [
 
   { path: '', redirectTo: 'Userauth', pathMatch: 'full' },
@@ -72,6 +73,10 @@ const routes: Routes = [
       {
         path: 'PublicTrip/:id',
         component: PublicTripComponent, resolve: { users: UserResolve }
+      },
+      {
+        path: 'ChangePassword',
+        component: ChangePassComponent
       },
 
 

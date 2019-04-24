@@ -10,6 +10,11 @@ fieldset {
   border-image: initial;
 }
 
+.onClick{
+  background: #007bff;
+  color: white;
+}
+
 .output {
   font: 1rem 'Fira Sans', sans-serif;
 }
@@ -21,6 +26,7 @@ input {
 .content{
   background: white;
   padding-bottom: 15px;
+
 }
 
 .PublicTrip{

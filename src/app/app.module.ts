@@ -55,6 +55,7 @@ import { SendMessageModalComponent } from './components/user/reuse/send-message-
 import { OfferToHostComponent } from './components/user/reuse/offer-to-host/offer-to-host.component';
 import { CarouselModalComponent } from './components/user/reuse/carousel-modal/carousel-modal.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 
 
 
@@ -96,7 +97,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
     SendMessageModalComponent,
     OfferToHostComponent,
     CarouselModalComponent,
-
+    ChangePassComponent
 
 
 

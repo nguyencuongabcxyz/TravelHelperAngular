@@ -11,13 +11,14 @@
     </div>
 
     <ng-template #show>
-      <fieldset class="">
 
-        <legend>Public Trips</legend>
+
+        <h1>Public Trips</h1>
+        <hr style="border-top: 3px solid rgba(0, 0, 0, 0.1);" />
         <div class="PublicTrip">
           <ng-container *ngIf="publicTrips.length > 0;else noPublicTrip">
 
-            <app-pubic-trip-content *ngFor="let publicTrip of publicTrips; let id = index" [PublicTrip]="publicTrip"
+            <app-pubic-trip-content  *ngFor="let publicTrip of publicTrips; let id = index" [PublicTrip]="publicTrip"
               [stt]="id + 1" (idTrip)="onClickPublicTrip($event)" (idTripDelete)="onClickDeleteTrip($event)">
             </app-pubic-trip-content>
 
@@ -30,7 +31,7 @@
             </div>
           </ng-template>
         </div>
-      </fieldset>
+
     </ng-template>
   </div>
 
@@ -39,10 +40,10 @@
   <div class="col-sm-4 content box" style="margin-bottom: 10px; padding-bottom: 15px">
     <!-- <fieldset style="padding: 15px"> -->
     <h1>Trip's Detail</h1>
-    <hr />
+    <hr style="border-top: 3px solid rgba(0, 0, 0, 0.1);" />
 
     <form [formGroup]="formUser" autocomplete="off" novalidate="true" (ngSubmit)="onSubmitForm()">
-      <span style="margin: 0.5rem">Destination</span>
+      <span style="margin: 0.5rem">Destination <span style="color: red">*</span> </span>
       <div class="form-row">
         <div class="col relative">
 
@@ -90,25 +91,26 @@
 
 
       <div class="form-row">
-        <div class="col">
-          <span style="margin: 0.5rem">Departure Date</span>
-          <input type="date" class="form-control" [(ngModel)]="trip.departureDate" formControlName="departureDate">
-          <label class="text-danger"
-            *ngIf="formUser.controls.departureDate.dirty && formUser.controls.departureDate.errors?.required">This
-            field is mandatory.</label>
-        </div>
-        <div class="col" style="margin-left: 5px;">
-          <span style="margin: 0.5rem">Arrival Date</span>
-          <input type="date" class="form-control" [(ngModel)]="trip.arrivalDate" formControlName="arrivalDate">
-          <label class="text-danger"
+
+        <div class="col" >
+          <span style="margin: 0.5rem">Arrival Date <span style="color: red">*</span> </span>
+          <input #arrivaldate min="{{now| date:'yyyy-MM-dd'}}" type="date" class="form-control" [(ngModel)]="trip.arrivalDate" formControlName="arrivalDate">
+          <label  class="text-danger"
             *ngIf="formUser.controls.arrivalDate.dirty && formUser.controls.arrivalDate.errors?.required">This field
             is mandatory.</label>
         </div>
+        <div class="col" style="margin-left: 5px;">
+            <span style="margin: 0.5rem">Departure Date <span style="color: red">*</span> </span>
+            <input  [min]="arrivaldate.value"  type="date" class="form-control" [(ngModel)]="trip.departureDate" formControlName="departureDate">
+            <label class="text-danger"
+              *ngIf="formUser.controls.departureDate.dirty && formUser.controls.departureDate.errors?.required">This
+              field is mandatory.</label>
+          </div>
       </div>
 
       <div class="form-row">
         <div class="col">
-          <span style="margin: 0.5rem">Traveler Number</span>
+          <span style="margin: 0.5rem">Traveler Number <span style="color: red">*</span> </span>
           <select class="form-control" id="" [(ngModel)]="trip.travelerNumber" formControlName="travelerNumber">
             <option value="1">1</option>
             <option value="2">2</option>
@@ -141,7 +143,7 @@
 
       <div class="form-row ">
         <div class="col d-flex justify-content-end">
-          <button type="submit" class="btn btn-primary" [disabled]="formUser.invalid">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="formUser.invalid">Add</button>
         </div>
         <div class="col d-flex justify-content-center ">
           <button type="button" class="btn btn-success" [disabled]="formUser.invalid"

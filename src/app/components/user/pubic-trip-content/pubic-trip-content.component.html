@@ -1,6 +1,6 @@
 
 
-<div id="title" class="your-trips" onclick="myFunction()" (click)="onPublicTripClick()">
+<div id="title"  [ngClass]="{'your-trips': true}"   (click)="onPublicTripClick()">
     <div class="traveler-info">
       <span  class="name">Public Trip {{stt}} </span><br>
       <span>Visiting: </span><span class="visiting">{{PublicTrip.trip.destination}}</span><br>
@@ -39,7 +39,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="onDeleteTripClick()">Delete</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onDeleteTripClick()">Delete</button>
           </div>
         </div>
       </div>
