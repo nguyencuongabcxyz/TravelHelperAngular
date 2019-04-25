@@ -9,7 +9,8 @@ import { Subject, Subscription, from } from 'rxjs';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  isMenu;
+  isSearch;
   isdrop;
   subscription = Subscription;
   textInput = "";

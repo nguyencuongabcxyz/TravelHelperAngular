@@ -61,6 +61,8 @@ import { ChangePassComponent } from './components/user/change-pass/change-pass.c
 import { DeleteModalComponent } from './components/user/reuse/delete-modal/delete-modal.component';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
 import { SendReportModalComponent } from './components/user/reuse/send-report-modal/send-report-modal.component';
+import { ActivityComponent } from './components/user/activity/activity.component';
+import { ItemActivityComponent } from './components/user/reuse/item-activity/item-activity.component';
 
 
 
@@ -109,6 +111,8 @@ import { SendReportModalComponent } from './components/user/reuse/send-report-mo
     DeleteModalComponent,
     FriendsComponent,
     SendReportModalComponent,
+    ActivityComponent,
+    ItemActivityComponent,
 
 
 
@@ -122,7 +126,7 @@ import { SendReportModalComponent } from './components/user/reuse/send-report-mo
     ReactiveFormsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-custom',
-      timeOut: 1000,
+      timeOut: 3000,
       progressBar: true
     }),
     HttpClientModule,

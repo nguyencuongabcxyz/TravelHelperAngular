@@ -1,20 +1,32 @@
-<div class="box box-friends">
-  <div class="box-header">
-    <span>FRIENDS</span>
+<ng-template #loading>
+  <div class="box">
+    <app-loading></app-loading>
   </div>
-  <div class="content-friends row">
-    <div *ngFor="let friend of friends" class="col-md-6 col-sm-12 ">
-      <div class="item">
-        <div class="avatar">
-          <a><img class="photo" src="./../../../../../assets/imgs/abc.jpg"></a>
-        </div>
-        <div class="info">
-          <a>
-            <p class="name">Name</p>
-          </a>
-          <p class="address">Adress</p>
+</ng-template>
+<ng-template #nothing>
+  <div class="nothing">
+    <span>Nothing to show</span>
+  </div>
+</ng-template>
+<ng-container *ngIf="isLoading==false;else loading">
+  <div class="box box-friends">
+    <div class="box-header">
+      <span>FRIENDS</span>
+    </div>
+    <div class="content-friends row">
+      <div *ngFor="let friend of friends" class="col-md-6 col-sm-12 ">
+        <div class="item">
+          <div class="avatar">
+            <a><img class="photo" src="./../../../../../assets/imgs/abc.jpg"></a>
+          </div>
+          <div class="info">
+            <a>
+              <p class="name">Name</p>
+            </a>
+            <p class="address">Adress</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</ng-container>

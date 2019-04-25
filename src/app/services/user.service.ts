@@ -50,7 +50,32 @@ export class UserService {
       return this.getUserImages();
     return this.getPeopleImages(this.peopleid);
   }
-
+  //  =============================
+  getTraveRequest(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/TravelRequests');
+  }
+  sendRequest(body, id): Observable<any> {
+    return this.http.post<any>(this.BaseURI + '/TravelRequests/' + id, body, { reportProgress: true, observe: "response" });
+  }
+  acceptRequest(id): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/TravelRequests/' + id, { reportProgress: true, observe: "response" });
+  }
+  ignoreRequest(id): Observable<any> {
+    return this.http.delete<any>(this.BaseURI + '/TravelRequests/' + id, { reportProgress: true, observe: "response" });
+  }
+  //=============================
+  getHostOffer(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/HostOffers');
+  }
+  sendHostOffer(body, id): Observable<any> {
+    return this.http.post<any>(this.BaseURI + '/HostOffers/' + id, body, { reportProgress: true, observe: "response" });
+  }
+  acceptHostOffer(id): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/HostOffers/' + id, { reportProgress: true, observe: "response" });
+  }
+  ignoreHostOffer(id): Observable<any> {
+    return this.http.delete<any>(this.BaseURI + '/HostOffers/' + id, { reportProgress: true, observe: "response" });
+  }
   //  =============================
   getUserProfile(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users');
@@ -126,7 +151,7 @@ export class UserService {
       switchMap(term => this.getAdressEntries(term)))
   }
   //  =============================
-  getPlaces():Observable<any[]> {
+  getPlaces(): Observable<any[]> {
     return this.http.get<any[]>('assets/db.json')
   }
   //  =============================

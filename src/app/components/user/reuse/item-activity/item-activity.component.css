@@ -1,0 +1,113 @@
+.item{
+    border: solid 1px rgba(0,0,0,0.15);
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+.activity-info,.message,.action{
+    padding: 0;
+}
+.activity-info{
+    min-width: 280px;
+   
+    /* background-color: #f0f0f0; */
+    margin-bottom: 20px;
+}
+.activity{
+    margin: 0;
+    padding: 20px;
+}
+.card-info{
+    display: flex;
+}
+.card-info p{
+    margin-bottom:  0px;
+}
+.card-info .name{
+    font-size: 1.3em;
+    font-weight: 500;
+}
+.info{
+    padding-right: 20px;
+}
+.avatar{
+    padding-right: 20px;
+}
+.avatar img{
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.trip-info{
+    clear: both;
+    padding-bottom: 15px;
+}
+.content-message{
+    padding: 10px;
+    background-color: #f0f0f0;
+    position: relative;
+    border-radius: 5px;
+}
+.trip-decription::after{
+    border-bottom: 25px solid transparent;
+    border-left: 25px solid transparent;
+    border-top: 25px solid #f0f0f0;
+    content: '';
+    left: -15px;
+    position: absolute;
+    top: 0px;
+}
+.trip-info span{
+    padding-right: 10px;
+    
+}
+
+.trip-decription{
+   clear: both;
+   word-wrap: break-word;
+   white-space: pre-wrap;
+   max-height: 4.5em;
+   overflow: hidden; 
+  transition: max-height 0.5s; 
+
+}
+.trip-decription p{
+    margin-bottom: 0px; 
+}
+.button-decription{
+    padding-top: 5px;
+    display: flex; 
+    
+}
+.button-decription a{
+color: #287FB8;;
+font-weight: 600;
+}
+.button-decription a:hover{
+    cursor: pointer;
+    color: #ED6504;
+}
+.action{
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+}
+.time{
+    padding-left: 10px;
+    margin-top: auto;
+    padding-top: 20px;
+    margin-left: auto;
+}
+.button-bar{
+    padding-top: 20px;
+    margin-left: auto;
+   
+}
+.button-bar button{
+    
+    margin-left: 10px;
+}
+.time p{
+    font-size: 0.8em;
+    font-style: italic;
+    margin-bottom: 0px;
+}

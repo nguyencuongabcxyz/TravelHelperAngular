@@ -1,51 +1,57 @@
 <ng-template #content>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Send a Offer to {{user.fullName}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modalRef.close()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
+  <ng-template #loading>
+    <app-loading></app-loading>
+  </ng-template>
+  <ng-container *ngIf="user;else loading">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Send a Offer to {{user.fullName}}</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modalRef.close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
 
-  <div class="modal-body">
-    <div class="trip-info">
-      <h3>Trip Information</h3>
-      <form>
-        <div class="form-group">
-          <label for="destination">Visiting</label>
-          <input disabled [ngModel]="trip.destination"  type="text"  class="form-control"
-            id="destination" name="destination">
-        </div>
-        <div class="form-row">
-          <div class="form-group col">
-            <label for="arrivaldate">Arrival Date</label>
-            <input disabled [ngModel]="trip.arrivalDate|date:'dd/MM/yyyy'" type="datetime" class="form-control"
-              id="arrivaldate" name="arrivaldate">
-          </div>
-          <div class="form-group col">
-            <label for="departuredate">Departure Date</label>
-            <input disabled [ngModel]="trip.departureDate|date:'dd/MM/yyyy'" type="datetime" class="form-control"
-              id="departuredate" name="departuredate">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="travelerNumber">Traveler Number</label>
-          <input disabled [ngModel]="trip.travelerNumber" style="width:100px" type="number" min="0" class="form-control"
-            id="travelerNumber" name="travelerNumber">
-        </div>
-      </form>
-    </div>
-    <div class="message">
+    <div class="modal-body">
       <form #offerForm="ngForm">
-        <div class="form-group">
-          <label for="message">Your Message<span style="color: red">*</span></label>
-          <textarea required ngModel class="form-control" name="message" id="message" rows="5"></textarea>
+        <div class="trip-info">
+          <h3>Trip Information</h3>
+
+          <div class="form-group">
+            <label for="destination">Visiting</label>
+            <input disabled ngModel [ngModel]="trip.destination" type="text" class="form-control" id="destination"
+              name="destination">
+          </div>
+          <div class="form-row">
+            <div class="form-group col">
+              <label for="arrivaldate">Arrival Date</label>
+              <input disabled ngModel [ngModel]="trip.arrivalDate|date:'dd/MM/yyyy'" type="datetime"
+                class="form-control" id="arrivaldate" name="arrivaldate">
+            </div>
+            <div class="form-group col">
+              <label for="departuredate">Departure Date</label>
+              <input disabled ngModel [ngModel]="trip.departureDate|date:'dd/MM/yyyy'" type="datetime"
+                class="form-control" id="departuredate" name="departuredate">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="travelerNumber">Traveler Number</label>
+            <input disabled ngModel [ngModel]="trip.travelerNumber" style="width:100px" type="number" min="0"
+              class="form-control" id="travelerNumber" name="travelerNumber">
+          </div>
+
+        </div>
+        <div class="message">
+          <div class="form-group">
+            <label for="message">Your Message<span style="color: red">*</span></label>
+            <textarea required ngModel class="form-control" name="message" id="message" rows="5"></textarea>
+          </div>
+
         </div>
       </form>
     </div>
-  </div>
-  <div class="modal-footer">
-    <button [disabled]="isdiable" type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
-    <button [disabled]="offerForm.invalid ||isdiable" type="button" class="btn btn-success"
-      (click)="send(offerForm);">Send</button>
-  </div>
+    <div class="modal-footer">
+      <button [disabled]="isdiable" type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
+      <button [disabled]="offerForm.invalid ||isdiable" type="button" class="btn btn-success"
+        (click)="send(offerForm);">Send</button>
+    </div>
+  </ng-container>
 </ng-template>
