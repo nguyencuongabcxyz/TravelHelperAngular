@@ -58,7 +58,7 @@ export class CarouselModalComponent implements OnInit {
   deletePhoto() {
     this.service.deletePhoto(this.activePhoto.photoId).subscribe(
       res => {
-        if (res.status == 204) {
+        if (res.status === 204) {
           this.myclick.emit(this.index);
           if (this.index === this.photos.length)
             this.index--;

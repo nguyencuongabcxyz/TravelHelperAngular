@@ -1,0 +1,46 @@
+<div class="item">
+    <div class="activity row">
+        <div class="activity-info col-sm-12 col-md-3">
+            <div class="card-info">
+                <div class="avatar">
+                    <a href=""><img [src]="item.sender.avatarLocation"></a>
+                </div>
+                <div class="info">
+                    <a>
+                        <p class="name">{{item.sender.fullName}}</p>
+                    </a>
+                    <p>{{item.sender.address}}</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="message col-md col-sm-12">
+            <div class="trip-info">
+                <span><i class="far fa-calendar-alt"></i></span>
+                <span>{{item.arrivalDate|date:"dd/MM/yyyy" }} <i class="fas fa-arrow-right"></i>
+                    {{item.departureDate|date:"dd/MM/yyyy"}}</span>
+                <span><i class="fas fa-user-friends"></i></span><span>{{item.travelerNumber}} Traveler</span>
+            </div>
+            <div class="content-message">
+                <div class="trip-decription" (window:resize)="onResize($event)"
+                    [ngStyle]="x && {'max-height.em':height}">
+                    <p #des>{{item.message}} </p>
+                </div>
+                <div class="button-decription" *ngIf="show">
+                    <a style="margin-left:auto" (click)="x=!x">{{x?'[-]Read Less':'[+]Read More'}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="action col-lg-2 col-md-12">
+            <div class="button-bar">
+                <button [disabled]="item.isAccepted || isdiabled" (click)="onAccept()"
+                    class="btn btn-primary">{{item.isAccepted?'Accepted':'Accept'}}</button>
+                <button [disabled]="isdiabled" (click)="onIgnore()" class="btn btn-danger">Ignore</button>
+            </div>
+            <div class="time">
+                <p>{{item.createDate|date:'dd MMMM, yyyy, HH:mm':'+0700'}}</p>
+            </div>
+        </div>
+    </div>
+</div>

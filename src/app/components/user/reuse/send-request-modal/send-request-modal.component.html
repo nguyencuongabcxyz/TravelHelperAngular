@@ -11,16 +11,19 @@
       <div class="form row">
         <div class="form-group col">
           <label for="arrivaldate">Arrival Date<span style="color: red">*</span></label>
-          <input #arrivaldate required ngModel type="date" min="{{now| date:'yyyy-MM-dd'}}" [max]="departuredate.value" class="form-control" id="arrivaldate" name="arrivaldate">
+          <input #arrivaldate required ngModel type="date" min="{{now| date:'yyyy-MM-dd'}}" [max]="departuredate.value"
+            class="form-control" id="arrivaldate" name="arrivaldate">
         </div>
         <div class="form-group col">
           <label for="departuredate">Departure Date<span style="color: red">*</span></label>
-          <input #departuredate required ngModel type="date" [min]="arrivaldate.value" class="form-control" id="departuredate" name="departuredate">
+          <input #departuredate required ngModel type="date" [min]="arrivaldate.value" class="form-control"
+            id="departuredate" name="departuredate">
         </div>
       </div>
       <div class="form-group">
         <label for="travelerNumber">Traveler Number<span style="color: red">*</span></label>
-        <input required ngModel style="width:100px" type="number" min="0" class="form-control" id="travelerNumber" name="travelerNumber">
+        <input required ngModel style="width:100px" type="number" min="0" class="form-control" id="travelerNumber"
+          name="travelerNumber">
       </div>
       <div class="form-group">
         <label for="message">Your Message<span style="color: red">*</span></label>
@@ -30,6 +33,7 @@
   </div>
   <div class="modal-footer">
     <button [disabled]="isdiable" type="button" class="btn btn-secondary" (click)="modalRef.close()">Cancel</button>
-    <button [disabled]="requestForm.invalid||isdiable" type="button" class="btn btn-success" (click)="send(requestForm);">Send</button>
+    <button [disabled]="requestForm.invalid||isdiable" type="button" class="btn btn-success"
+      (click)="send(requestForm);">Send</button>
   </div>
 </ng-template>

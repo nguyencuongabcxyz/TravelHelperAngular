@@ -26,6 +26,7 @@ import { ChangePassComponent } from './components/user/change-pass/change-pass.c
 
 import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve } from './services/user.resolve';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
+import { ActivityComponent } from './components/user/activity/activity.component';
 
 const routes: Routes = [
 
@@ -87,8 +88,8 @@ const routes: Routes = [
       },
 
 
-      { path: 'Message', component: MessageComponent, resolve: { users: ProfileResolve } },
-      { path: 'Request', component: RequestComponent, resolve: { users: ProfileResolve } },
+      { path: 'Message', component: MessageComponent, resolve: { users: UserResolve } },
+      { path: 'Activity', component: ActivityComponent, resolve: { users: UserResolve } },
       { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
 

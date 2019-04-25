@@ -19,6 +19,7 @@ export class UserComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.navigationSubscription= this.router.events.subscribe(
       (routerEvent: Event) => {
+        
         if (routerEvent instanceof NavigationStart) {
           this.progressBar.start();
         }
