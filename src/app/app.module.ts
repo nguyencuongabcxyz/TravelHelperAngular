@@ -26,7 +26,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { MessageComponent } from './components/user/message/message.component';
-import { RequestComponent } from './components/user/request/request.component';
+
 import { NotfoundComponent } from './components/notfound.component';
 import { ClickOutsideModule } from 'ng-click-outside';
 import { AboutComponent } from './components/user/profile/about/about.component';
@@ -85,7 +85,6 @@ import { ItemActivityComponent } from './components/user/reuse/item-activity/ite
     FormatDataPipe,
     ProfileComponent,
     MessageComponent,
-    RequestComponent,
     NotfoundComponent,
     AboutComponent,
     EditComponent,

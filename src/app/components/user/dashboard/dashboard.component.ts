@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.places = this.randomPlace(this.placesres);
     this.interval = setInterval(
       () => {
-        this.places =[];
+        // this.places =[];
         this.places = this.randomPlace(this.placesres);
       }, 4000
     );
@@ -78,6 +78,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   randomPlace(ress): any {
+    
     let temp: any[] = [];
     let temps = ress;
     for (let i = 0; i < 3; i++) {

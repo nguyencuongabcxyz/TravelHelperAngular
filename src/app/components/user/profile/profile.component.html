@@ -41,7 +41,7 @@
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
             [style.display]="isdrop?'block':'none'">
-            <button class="dropdown-item" type="button">Add Friend</button>
+            <button (click)="sendFriendRequest()" class="dropdown-item" type="button">Add Friend</button>
             <button (click)="writeReferenceModal.open();" class="dropdown-item" type="button">Write Reference</button>
             <button (click)="sendReportModal.open();" class="dropdown-item" type="button">Report</button>
           </div>

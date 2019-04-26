@@ -5,3 +5,32 @@
     margin-left: -10px;
     margin-right: -10px;
 }
+.tab-bar{
+    background-color: #ecedf0;
+}
+.tab-bar .nav-link{
+    min-height: 50px;
+    font-weight: 500;
+}
+.tab-bar .active{
+    color: #ED6504;
+    font-weight: 600;
+    border-bottom: solid 4px;
+}
+.nav-tabs{
+    padding-top: 4px;
+}
+a{
+    color: #27374c;
+}
+.tab-bar a{
+    text-decoration: none;
+    font-size: 20px;
+}
+.tab-bar a:hover{
+    color: #ED6504;
+}
+.tab-menu .active{
+    color: #ED6504;
+    font-weight: 600;
+}
