@@ -11,7 +11,6 @@ import { SearchHostComponent } from './components/user/search-host/search-host.c
 
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { MessageComponent } from './components/user/message/message.component';
-import { RequestComponent } from './components/user/request/request.component';
 import { NotfoundComponent } from './components/notfound.component';
 import { AboutComponent } from './components/user/profile/about/about.component'
 import { EditComponent } from './components/user/profile/edit/edit.component';

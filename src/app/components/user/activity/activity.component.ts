@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
@@ -10,47 +10,64 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ActivityComponent implements OnInit {
   type: string = 'travelrequest';
+  select = 'received';
   items: any[];
   isLoading;
   navigationSubscription
-  constructor(private router:Router,private activatedRoute: ActivatedRoute, private service: UserService, private toast: ToastrService) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private service: UserService, private toast: ToastrService) { }
 
   ngOnInit() {
-    this.type = 'travelrequest';
+    // this.type = 'travelrequest';
     // console.log(this.type)
     this.activatedRoute.queryParams.subscribe(
       res => {
-      //  console.log(res)
+        //  console.log(res)
         if (res.type) {
           this.type = res.type;
+          this.select = res.select;
         }
-        this.getItem(this.type)
+        this.getItem(this.type, this.select)
       }
     );
 
   }
-  getItem(type) {
+  getItem(type, select) {
     this.isLoading = true;
     this.items = [];
-    if (type == 'travelrequest') {
-      this.service.getTraveRequest().subscribe(
-        res => {
+    if (select == 'received') {
+      if (type == 'travelrequest') {
+        this.service.getTraveRequest().subscribe(
+          res => {
 
-          this.items = res;
-          this.isLoading = false;
-          console.log(this.items)
-        }
-      );
-    }
-    if (type == 'hostoffer') {
-      this.service.getHostOffer().subscribe(
-        res => {
+            this.items = res;
+            this.isLoading = false;
+            console.log(this.items)
+          }
+        );
+      }
+      else if (type == 'hostoffer') {
+        this.service.getHostOffer().subscribe(
+          res => {
 
-          this.items = res;
-          this.isLoading = false;
-          console.log(this.items)
-        }
-      );
+            this.items = res;
+            this.isLoading = false;
+            console.log(this.items)
+          }
+        );
+      }
+      else if (type == 'friendrequest') {
+        this.service.getFriendRequest().subscribe(
+          res => {
+            this.items = res;
+            this.isLoading = false;
+            console.log(this.items)
+          }
+        )
+      } else {
+        this.isLoading = false;
+      }
+    } else if (select = 'send') {
+      this.isLoading = false;
     }
   }
 
@@ -73,6 +90,17 @@ export class ActivityComponent implements OnInit {
             if (res.status == 204) {
               this.toast.success('Deleted')
               this.items = this.items.filter(item => item.hostOfferId !== event.id);
+            } else {
+              this.toast.success('Fail')
+            }
+          }
+        );
+      } else if (this.type == 'friendrequest') {
+        this.service.ignoreFriendRequest(event.id).subscribe(
+          res => {
+            if (res.status == 204) {
+              this.toast.success('Deleted')
+              this.items = this.items.filter(item => item.friendRequestId !== event.id);
             } else {
               this.toast.success('Fail')
             }

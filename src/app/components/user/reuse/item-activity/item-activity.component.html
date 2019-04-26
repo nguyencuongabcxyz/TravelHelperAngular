@@ -3,10 +3,10 @@
         <div class="activity-info col-sm-12 col-md-3">
             <div class="card-info">
                 <div class="avatar">
-                    <a href=""><img [src]="item.sender.avatarLocation"></a>
+                    <a routerLink="/Users/People/{{item.sender.id}}"><img [src]="item.sender.avatarLocation"></a>
                 </div>
                 <div class="info">
-                    <a>
+                    <a routerLink="/Users/People/{{item.sender.id}}">
                         <p class="name">{{item.sender.fullName}}</p>
                     </a>
                     <p>{{item.sender.address}}</p>
@@ -15,7 +15,7 @@
             </div>
 
         </div>
-        <div class="message col-md col-sm-12">
+        <div *ngIf="from!='friendrequest'" class="message col-md col-sm-12">
             <div class="trip-info">
                 <span><i class="far fa-calendar-alt"></i></span>
                 <span>{{item.arrivalDate|date:"dd/MM/yyyy" }} <i class="fas fa-arrow-right"></i>
@@ -35,7 +35,8 @@
         <div class="action col-lg-2 col-md-12">
             <div class="button-bar">
                 <button [disabled]="item.isAccepted || isdiabled" (click)="onAccept()"
-                    class="btn btn-primary">{{item.isAccepted?'Accepted':'Accept'}}</button>
+                    [ngClass]="item.isAccepted?'btn-success':'btn-primary'"
+                    class="btn ">{{item.isAccepted?'Accepted':'Accept'}}</button>
                 <button [disabled]="isdiabled" (click)="onIgnore()" class="btn btn-danger">Ignore</button>
             </div>
             <div class="time">

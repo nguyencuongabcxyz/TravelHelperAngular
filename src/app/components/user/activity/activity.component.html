@@ -7,16 +7,42 @@
   </div>
 </ng-template>
 <div class="box box-activity">
-  <div class=" tab-bar">
-    <ul class="nav nav-tabs">
+  <div class="tab-bar">
+    <ul class="nav ">
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active':type==='travelrequest'}" [routerLink]=""
-          [queryParams]="{type:'travelrequest'}">
-          Travel Request</a>
+          [queryParams]="{type:'travelrequest',select:'received'}">Travel Request</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active':type==='hostoffer'}" [routerLink]=""
-          [queryParams]="{type:'hostoffer'}">Host Offer</a>
+          [queryParams]="{type:'hostoffer',select:'received'}">Host Offer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':type==='friendrequest'}" [routerLink]=""
+          [queryParams]="{type:'friendrequest',select:'received'}">Friend Request</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':type==='notification'}" [routerLink]=""
+          [queryParams]="{type:'notification'}">Notification</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':type==='request'}" [routerLink]=""
+          [queryParams]="{type:'request'}">Your Request</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':type==='offer'}" [routerLink]="" [queryParams]="{type:'offer'}">Your
+          Offer</a>
+      </li> -->
+    </ul>
+  </div>
+  
+  <div class="tab-menu">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':select==='received'}" [routerLink]="" [queryParams]="{type:type,select:'received'}">Received</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':select==='send'}" [routerLink]="" [queryParams]="{type:type,select:'send'}">Send</a>
       </li>
     </ul>
   </div>
@@ -26,7 +52,6 @@
         <ng-container *ngFor="let item of items">
           <app-item-activity (myClick)="onAction($event)" [item]="item" [from]="type"> </app-item-activity>
         </ng-container>
-
       </ng-container>
 
     </ng-container>

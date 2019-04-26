@@ -6,6 +6,7 @@ import { WriteReferenceModalComponent } from './../reuse/write-reference-modal/w
 import { SendMessageModalComponent } from '../reuse/send-message-modal/send-message-modal.component';
 import { SendRequestModalComponent } from '../reuse/send-request-modal/send-request-modal.component';
 import { SendReportModalComponent } from '../reuse/send-report-modal/send-report-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,8 @@ export class ProfileComponent implements OnInit {
   @ViewChild(SendReportModalComponent) sendReportModal: SendReportModalComponent;
   isUser: boolean;
   user: any = {};
-  constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute) { }
+  isdrop;
+  constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute, private toast: ToastrService) { }
   ngOnInit() {
 
     this.isUser = this.service.getisUser();
@@ -29,6 +31,22 @@ export class ProfileComponent implements OnInit {
     else {
       this.user = temp;
     }
+  }
+  sendFriendRequest() {
+    this.isdrop = false;
+    let body = {
+      message: ""
+    }
+    this.service.sendFriendRequest(body, this.user.id).subscribe(
+      res => {
+        if (res.status == 200) {
+          this.toast.success("You had sent a friend request ");
+        } else {
+          this.toast.error("Fail")
+        }
+
+      }
+    )
   }
 
 }

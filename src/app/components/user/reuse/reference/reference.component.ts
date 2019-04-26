@@ -19,7 +19,7 @@ export class ReferenceComponent implements OnInit {
   }
   onResize(event) {
     this.height = this.des.nativeElement.offsetHeight / 16;
-    this.show = (this.height > 6);
+    this.show = (this.height > 5);
   }
 
 }

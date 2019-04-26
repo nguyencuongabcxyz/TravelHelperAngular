@@ -12,19 +12,21 @@ export class ItemActivityComponent implements OnInit {
   @Input() from;
   @Output() myClick = new EventEmitter();
   @ViewChild('des') des: ElementRef;
+
   isdiabled;
   show = false;
   height;
   constructor(private service: UserService, private toast: ToastrService) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.onResize(event);
-    }, 0);
+    if (this.from != 'friendrequest')
+      setTimeout(() => {
+        this.onResize(event);
+      }, 0);
   }
   onResize(event) {
     this.height = this.des.nativeElement.offsetHeight / 16;
-    this.show = (this.height > 6);
+    this.show = (this.height > 5);
   }
   onAccept() {
     this.isdiabled = true;
@@ -34,7 +36,7 @@ export class ItemActivityComponent implements OnInit {
         res => {
           this.toast.success('Accepted')
           this.item.isAccepted = res.isAccepted;
-          this.isdiabled=false;
+          this.isdiabled = false;
           console.log(res)
 
         }
@@ -45,7 +47,21 @@ export class ItemActivityComponent implements OnInit {
         res => {
           this.toast.success('Accepted')
           this.item.isAccepted = res.isAccepted;
-          this.isdiabled=false;
+          this.isdiabled = false;
+          console.log(res)
+
+        }
+      );
+    }else if (this.from == 'friendrequest') {
+      // let body = {
+      //   type: 'acceptfriend', id: this.item.friendRequestId
+      // }
+      // this.myClick.emit(body);
+      this.service.acceptFriendRequest(this.item.friendRequestId).subscribe(
+        res => {
+          this.toast.success('Accepted')
+          this.item.isAccepted = res.isAccepted;
+          this.isdiabled = false;
           console.log(res)
 
         }
@@ -60,6 +76,8 @@ export class ItemActivityComponent implements OnInit {
       id = this.item.travelRequestId;
     } else if (this.from == 'hostoffer') {
       id = this.item.hostOfferId;
+    }else if (this.from == 'friendrequest') {
+      id = this.item.friendRequestId;
     }
 
     let body = {
