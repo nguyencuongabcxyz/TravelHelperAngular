@@ -10,16 +10,20 @@
   <div class="tab-bar">
     <ul class="nav ">
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':type==='travelrequest'}" [routerLink]=""
-          [queryParams]="{type:'travelrequest',select:'received'}">Travel Request</a>
+        <a class="nav-link" [ngClass]="{'active':data.type==='notification'}" [routerLink]=""
+          [queryParams]="{type:'notification'}">Notification</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':type==='hostoffer'}" [routerLink]=""
-          [queryParams]="{type:'hostoffer',select:'received'}">Host Offer</a>
+        <a class="nav-link" [ngClass]="{'active':data.type==='travelrequest'}" [routerLink]=""
+          [queryParams]="{type:'travelrequest'}">Travel Request</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':type==='friendrequest'}" [routerLink]=""
-          [queryParams]="{type:'friendrequest',select:'received'}">Friend Request</a>
+        <a class="nav-link" [ngClass]="{'active':data.type==='hostoffer'}" [routerLink]=""
+          [queryParams]="{type:'hostoffer'}">Host Offer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{'active':data.type==='friendrequest'}" [routerLink]=""
+          [queryParams]="{type:'friendrequest'}">Friend Request</a>
       </li>
       <!-- <li class="nav-item">
         <a class="nav-link" [ngClass]="{'active':type==='notification'}" [routerLink]=""
@@ -35,14 +39,16 @@
       </li> -->
     </ul>
   </div>
-  
-  <div class="tab-menu">
+
+  <div *ngIf="data.type!='notification'" class="tab-menu">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':select==='received'}" [routerLink]="" [queryParams]="{type:type,select:'received'}">Received</a>
+        <a class="nav-link" [ngClass]="{'active':data.select==='received'}" [routerLink]=""
+          [queryParams]="{type:data.type}">Received</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{'active':select==='send'}" [routerLink]="" [queryParams]="{type:type,select:'send'}">Send</a>
+        <a class="nav-link" [ngClass]="{'active':data.select==='sent'}" [routerLink]=""
+          [queryParams]="{type:data.type,select:'sent'}">Sent</a>
       </li>
     </ul>
   </div>
@@ -50,7 +56,10 @@
     <ng-container *ngIf="isLoading==false;else loading">
       <ng-container *ngIf="items.length;else nothing">
         <ng-container *ngFor="let item of items">
-          <app-item-activity (myClick)="onAction($event)" [item]="item" [from]="type"> </app-item-activity>
+          <app-item-activity *ngIf="data.type!='notification'" (myClick)="onAction($event)" [item]="item" [data]="data">
+          </app-item-activity>
+          <app-item-notification *ngIf="data.type=='notification'" (myClick)="onAction($event)" [item]="item"
+            [data]="data"></app-item-notification>
         </ng-container>
       </ng-container>
 

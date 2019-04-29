@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   @ViewChild(SendRequestModalComponent) sendRequestModal: SendRequestModalComponent;
   @ViewChild(SendReportModalComponent) sendReportModal: SendReportModalComponent;
   isUser: boolean;
+  isFriend: boolean;
   user: any = {};
   isdrop;
   constructor(public router: Router, public service: UserService, public activatedRoute: ActivatedRoute, private toast: ToastrService) { }
@@ -26,6 +27,8 @@ export class ProfileComponent implements OnInit {
 
     this.isUser = this.service.getisUser();
     let temp = this.activatedRoute.snapshot.data.users;
+    if (!this.isUser)
+      this.isFriend=this.activatedRoute.snapshot.data.isFriend.isFriend;
     if (temp.err == '404')
       this.router.navigate(['/Users/' + temp.id]);
     else {

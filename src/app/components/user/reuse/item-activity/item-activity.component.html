@@ -3,29 +3,32 @@
         <div class="activity-info col-sm-12 col-md-3">
             <div class="card-info">
                 <div class="avatar">
-                    <a routerLink="/Users/People/{{item.sender.id}}"><img [src]="item.sender.avatarLocation"></a>
+                    <a routerLink="/Users/People/{{data.select==='received'?item.sender.id:item.receiver.id}}">
+                        <img [src]="data.select==='received'?item.sender.avatarLocation:item.receiver.avatarLocation"></a>
                 </div>
                 <div class="info">
-                    <a routerLink="/Users/People/{{item.sender.id}}">
-                        <p class="name">{{item.sender.fullName}}</p>
+                    <a routerLink="/Users/People/{{data.select==='received'?item.sender.id:item.receiver.id}}">
+                        <p class="name">
+                            {{data.select==='received'?item.sender.fullName:item.receiver.fullName}}</p>
                     </a>
-                    <p>{{item.sender.address}}</p>
+                    <p>{{data.select==='received'?item.sender.address:item.receiver.address}}</p>
                 </div>
 
             </div>
 
         </div>
-        <div *ngIf="from!='friendrequest'" class="message col-md col-sm-12">
+        <div *ngIf="data.type!='friendrequest'" class="message col-md col-sm-12">
             <div class="trip-info">
                 <span><i class="far fa-calendar-alt"></i></span>
                 <span>{{item.arrivalDate|date:"dd/MM/yyyy" }} <i class="fas fa-arrow-right"></i>
                     {{item.departureDate|date:"dd/MM/yyyy"}}</span>
                 <span><i class="fas fa-user-friends"></i></span><span>{{item.travelerNumber}} Traveler</span>
             </div>
-            <div class="content-message">
+            <div class="content-message"
+                [ngClass]="{'content-message':data.select=='received','content-message-sent':data.select=='sent'}">
                 <div class="trip-decription" (window:resize)="onResize($event)"
                     [ngStyle]="x && {'max-height.em':height}">
-                    <p #des>{{item.message}} </p>
+                    <p #des>{{item.message}}</p>
                 </div>
                 <div class="button-decription" *ngIf="show">
                     <a style="margin-left:auto" (click)="x=!x">{{x?'[-]Read Less':'[+]Read More'}}</a>
@@ -34,10 +37,13 @@
         </div>
         <div class="action col-lg-2 col-md-12">
             <div class="button-bar">
-                <button [disabled]="item.isAccepted || isdiabled" (click)="onAccept()"
+                <button *ngIf="data.select=='received'" [disabled]="item.isAccepted || isdiabled" (click)="onAccept()"
                     [ngClass]="item.isAccepted?'btn-success':'btn-primary'"
                     class="btn ">{{item.isAccepted?'Accepted':'Accept'}}</button>
-                <button [disabled]="isdiabled" (click)="onIgnore()" class="btn btn-danger">Ignore</button>
+                <button *ngIf="data.select=='received'" [disabled]="isdiabled" (click)="onIgnore()"
+                    class="btn btn-danger">Ignore</button>
+                <button *ngIf="data.select=='sent'" [disabled]="isdiabled" (click)="onCancel()"
+                    class="btn btn-danger">Cancel</button>
             </div>
             <div class="time">
                 <p>{{item.createDate|date:'dd MMMM, yyyy, HH:mm':'+0700'}}</p>

@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ItemActivityComponent implements OnInit {
   @Input() item;
-  @Input() from;
+  @Input() data;
   @Output() myClick = new EventEmitter();
   @ViewChild('des') des: ElementRef;
 
@@ -19,7 +19,8 @@ export class ItemActivityComponent implements OnInit {
   constructor(private service: UserService, private toast: ToastrService) { }
 
   ngOnInit() {
-    if (this.from != 'friendrequest')
+    // console.log(this.data)
+    if (this.data.type != 'friendrequest')
       setTimeout(() => {
         this.onResize(event);
       }, 0);
@@ -31,7 +32,7 @@ export class ItemActivityComponent implements OnInit {
   onAccept() {
     this.isdiabled = true;
 
-    if (this.from == 'travelrequest') {
+    if (this.data.type == 'travelrequest') {
       this.service.acceptRequest(this.item.travelRequestId).subscribe(
         res => {
           this.toast.success('Accepted')
@@ -42,7 +43,7 @@ export class ItemActivityComponent implements OnInit {
         }
       );
 
-    } else if (this.from == 'hostoffer') {
+    } else if (this.data.type == 'hostoffer') {
       this.service.acceptHostOffer(this.item.hostOfferId).subscribe(
         res => {
           this.toast.success('Accepted')
@@ -52,7 +53,7 @@ export class ItemActivityComponent implements OnInit {
 
         }
       );
-    }else if (this.from == 'friendrequest') {
+    } else if (this.data.type == 'friendrequest') {
       // let body = {
       //   type: 'acceptfriend', id: this.item.friendRequestId
       // }
@@ -72,11 +73,11 @@ export class ItemActivityComponent implements OnInit {
   onIgnore() {
     this.isdiabled = true;
     let id;
-    if (this.from == 'travelrequest') {
+    if (this.data.type == 'travelrequest') {
       id = this.item.travelRequestId;
-    } else if (this.from == 'hostoffer') {
+    } else if (this.data.type == 'hostoffer') {
       id = this.item.hostOfferId;
-    }else if (this.from == 'friendrequest') {
+    } else if (this.data.type == 'friendrequest') {
       id = this.item.friendRequestId;
     }
 

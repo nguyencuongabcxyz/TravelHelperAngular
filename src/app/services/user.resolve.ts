@@ -55,3 +55,12 @@ export class ProfileResolve implements Resolve<any> {
         return this.service.getUser();
     }
 } 
+@Injectable()
+export class IsFriendResolve implements Resolve<any> {
+    constructor(private service: UserService) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
+        let id = activatedRouteSnapshot.paramMap.get('id');
+        return this.service.checkIsFriend(id);
+    }
+}
