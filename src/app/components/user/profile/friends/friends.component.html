@@ -13,20 +13,22 @@
     <div class="box-header">
       <span>FRIENDS</span>
     </div>
+    <ng-container *ngIf="friends.length;else nothing"></ng-container>
     <div class="content-friends row">
       <div *ngFor="let friend of friends" class="col-md-6 col-sm-12 ">
         <div class="item">
           <div class="avatar">
-            <a><img class="photo" src="./../../../../../assets/imgs/abc.jpg"></a>
+            <a routerLink="/Users/People/{{friend.id}}"><img class="photo" [src]="friend.avatarLocation"></a>
           </div>
           <div class="info">
-            <a>
-              <p class="name">Name</p>
+            <a routerLink="/Users/People/{{friend.id}}">
+              <p class="name">{{friend.fullName}}</p>
             </a>
-            <p class="address">Adress</p>
+            <p class="address">{{friend.address}}</p>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </ng-container>
