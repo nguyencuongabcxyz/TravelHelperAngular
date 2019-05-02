@@ -18,6 +18,7 @@ export class SearchHostComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   hosts: User[] ;
   travelers: PublicTrip[];
+  peoples: User[];
   length: number;
 
 // tslint:disable-next-line: no-shadowed-variable
@@ -36,12 +37,20 @@ export class SearchHostComponent implements OnInit, OnDestroy {
           this.hosts = users;
           this.length = this.hosts.length;
         });
-      } else {
+      } else if(data.type === 'traveler') {
         this.subscription = this.UserService.getTravelerByAddress(this.address).subscribe(trip => {
           this.travelers = trip;
           this.length = this.travelers.length;
           this.hosts = null;
         });
+      }
+      else {
+        this.subscription = this.UserService.getUserByFullName(this.address).subscribe(people => {
+          this.peoples = people;
+          this.length = people.length;
+          this.hosts = null;
+          this.travelers = null;
+        })
       }
     });
   }

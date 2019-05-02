@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { User } from './../../../models/user';
@@ -16,11 +16,19 @@ export class HeaderComponent implements OnInit {
   textInput = "";
   textSelect = "host";
   placeholder = "Search for Place";
+  @Input() admin;
+  logo_admin = {};
+  admin_display = 'unset';
 
   private searchedSubject = new Subject<string>();
   constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService) { }
   ngOnInit() {
-
+    if(this.admin){
+      this.logo_admin = {
+        color: 'white'
+      };
+      this.admin_display = 'none';
+    }
   }
 
   onLogout() {

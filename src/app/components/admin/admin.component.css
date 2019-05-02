@@ -1,0 +1,55 @@
+.content{
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.container {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 60px !important;
+  margin: 0px ;
+  max-width: 100% !important;
+}
+
+.menu{
+  height:100%;
+  padding: 0px;
+  color: #AAA;
+  position: fixed;
+  max-width: 25%;
+  width: 100%;
+}
+
+.menu li{
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid rgb(102, 102, 102) !important
+}
+
+.menu li:last-child{
+  border-bottom: none !important;
+}
+
+.menu li:hover a{
+  color: white;
+  background: #2a2d31;
+}
+
+.menu a{
+  color: #AAA;
+  padding-left: 10%;
+}
+
+.menu i{
+  margin-right: 15px;
+}
+
+.left {
+  padding: 0px;
+}
+
+.headerContent{
+  background: #343a40 ;
+}
