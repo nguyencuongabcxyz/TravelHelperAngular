@@ -63,6 +63,8 @@ import { FriendsComponent } from './components/user/profile/friends/friends.comp
 import { SendReportModalComponent } from './components/user/reuse/send-report-modal/send-report-modal.component';
 import { ActivityComponent } from './components/user/activity/activity.component';
 import { ItemActivityComponent } from './components/user/reuse/item-activity/item-activity.component';
+import { DashboardAdminComponent } from './components/admin/dashboard-admin/dashboard-admin.component';
+
 
 
 
@@ -112,6 +114,8 @@ import { ItemActivityComponent } from './components/user/reuse/item-activity/ite
     SendReportModalComponent,
     ActivityComponent,
     ItemActivityComponent,
+    DashboardAdminComponent,
+
 
 
 

@@ -1,6 +1,6 @@
 <nav class="header-wrapper" (clickOutside)="isMenu = false;isSearch = false;">
     <div class="logo">
-        <a href='' routerLinkActive='active'>
+        <a href='' routerLinkActive='active' [ngStyle]="logo_admin">
             <i class="fas fa-globe-asia"></i>
         </a>
     </div>
@@ -15,7 +15,7 @@
                 <i [ngStyle]="isMenu && !isSearch && {'color':'#ED6504'}" class="fas fa-bars"></i></button>
         </div>
     </div>
-    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box" >
+    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}"  class="search-box" >
         <form #formSearch="ngForm" autocomplete="off" (submit)="onSubmit(formSearch);">
             <div class="search-form row">
                 <select [(ngModel)]="textSelect" (change)="onChange()" class=" search-select form-control shadow-sm col" name="select">
@@ -33,7 +33,7 @@
             </div>
         </form>
     </div>
-    <nav [ngStyle]="isMenu && !isSearch && {'display':'block'}" class="menu-bar">
+    <nav  [style.display]="admin_display" [ngStyle]="isMenu && !isSearch && {'display':'block'}"  class="menu-bar">
         <ul>
             <li>
                 <a (click)="this.isMenu = false;" [routerLink]="['Dashboard']" routerLinkActive='active'>

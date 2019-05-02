@@ -1,3 +1,52 @@
-<p>
-  admin works!
-</p>
+
+
+
+  <div class="header shadow-sm bg-white  ">
+      <div class="row box " style="  margin: 0px !important;">
+        <div class="col-sm-3"></div>
+          <div class="col-sm headerContent" style="padding: 0px;">
+
+            <app-header [admin]="true"></app-header>
+
+          </div>
+        </div>
+  </div>
+  <div class="container">
+      <div class="row content">
+          <div class="col-sm-3 left">
+            <nav class="navbar menu navbar-expand-lg navbar-dark bg-dark flex-column">
+              <div style="padding: 20px 0px 20px 0px">
+                <img class="photo img-responsive"
+                [src]="'/assets/imgs/profile-picture-placeholder.png'">
+
+              </div>
+
+              <li class="nav-item">
+                <a class="nav-link active" href="#"> <span><i class="fas fa-chalkboard"></i></span>  Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"> <span> <i class="fas fa-users"></i></span> Users</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"> <span> <i class="fas fa-book-open"></i></span> Report</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link " href="#"  ><span> <i class="fas fa-user-slash"></i> </span>Banned</a>
+              </li>
+
+            </nav>
+          </div>
+
+          <div class="col-sm-9 right">
+
+            <div class="">
+              <router-outlet></router-outlet>
+            </div>
+          </div>
+        </div>
+  </div>
+
+
+
+
+

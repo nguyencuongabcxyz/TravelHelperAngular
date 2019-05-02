@@ -17,14 +17,14 @@ body{
   /* min-height: 100vh!important; */
   overflow-y: scroll;
   overflow-wrap: break-word;
-  
+  --height: 100%;
   display: flex;
   flex-direction: column;
 }
 /* body::after {
     content: '';
     display: block;
-    min-height: 200px; 
+    min-height: 200px;
 } */
 .toast-custom {
   top: 72px;
@@ -49,7 +49,7 @@ body{
 }
 .col{
   padding: 0px ;
-}   
+}
 
 .header{
   margin-right: 13px;
@@ -137,7 +137,7 @@ z-index: 800;
   min-height: 100vh;
   max-width: 100%;
   background-color: rgba(0, 0, 0, 0.8);
-  
+
 }
 .carousel-modal .modal-dialog .modal-content{
   background-color: unset;
@@ -175,7 +175,7 @@ z-index: 800;
 }
 .color-icon{
 display: inline-block;
-background-position: center; 
-  background-repeat: no-repeat; 
+background-position: center;
+  background-repeat: no-repeat;
   background-size: cover;
 }

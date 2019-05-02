@@ -1,13 +1,30 @@
 
 
-<div class="card box" style="height: 230px" >
+<div class="card box" [ngStyle]="obj">
 
   <div class="headers">
       <img  [src]="user.avatarLocation ? user.avatarLocation : img" class="card-img-top" (click)="onClickPeople()" alt="...">
 
       <div class="info" >
         <ul class="list-group ">
-          <li class="list-group-item name" ><span id="b" class="people" (click)="onClickPeople()">{{user.fullName}}</span></li>
+          <ng-container  *ngIf="user.fullName;else notName">
+            <li class="list-group-item name"><span id="b" class="people" (click)="onClickPeople()">{{user.fullName}}</span></li>
+          </ng-container>
+          <ng-template #notName>
+            <li class="list-group-item">
+              <i>empty</i>
+            </li>
+          </ng-template>
+
+
+          <ng-container *ngIf="people">
+              <li class="list-group-item" >
+
+                <i class="far fa-map wrapper-icon"></i>
+
+              <span><b>{{user.address | formatData:0:25}}</b></span>
+            </li>
+          </ng-container>
           <li class="list-group-item">
 
                 <i class="eva eva-message-square wrapper-icon"></i>
@@ -51,10 +68,12 @@
           </li>
           </ng-container>
 
+
         </ul>
       </div>
   </div>
-  <div class="card-body" [style.padding.px]="10">
+
+  <div class="card-body" [style.padding.px]="10" *ngIf="!people">
     <ng-container *ngIf="trip? !trip.trip.description : !user.about;else des">
         <p class="text-muted">
             <i>empty</i>
