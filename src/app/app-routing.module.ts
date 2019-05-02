@@ -26,6 +26,9 @@ import { ChangePassComponent } from './components/user/change-pass/change-pass.c
 import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve, IsFriendResolve } from './services/user.resolve';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
 import { ActivityComponent } from './components/user/activity/activity.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { DashboardAdminComponent } from './components/admin/dashboard-admin/dashboard-admin.component';
+
 
 const routes: Routes = [
 
@@ -91,6 +94,14 @@ const routes: Routes = [
       { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
 
+    ]
+  },
+  {
+    path: 'Admin', component: AdminComponent,
+    children: [
+      {
+        path: 'Dashboard', component: DashboardAdminComponent
+      }
     ]
   },
   { path: '**', component: NotfoundComponent },

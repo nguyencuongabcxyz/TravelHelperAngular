@@ -10,7 +10,6 @@ export class FormatDataPipe implements PipeTransform {
       return '';
     }
     if(value instanceof Array) {
-      //console.log(value);
       value = value.join(', ');
     }
     // else {

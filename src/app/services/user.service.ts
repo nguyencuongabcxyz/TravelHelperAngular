@@ -18,6 +18,7 @@ export class UserService {
   userPublicTrip = '/Users/Publictrips';
   publicTrip = '/Publictrips/';
   changePass = '/ApplicationUser/ChangePassword';
+  searchUser = '/Users/SearchByName?name=';
 
   setPeopleid(id) {
     this.peopleid = id;
@@ -238,5 +239,9 @@ export class UserService {
 
   changePassword(password): Observable<any> {
     return this.http.put(this.BaseURI + this.changePass, password, { reportProgress: true, observe: "response" });
+  }
+
+  getUserByFullName(name: string): Observable<User[]>{
+    return this.http.get<User[]>(this.BaseURI + this.searchUser + name);
   }
 }

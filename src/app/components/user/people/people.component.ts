@@ -15,9 +15,13 @@ export class PeopleComponent implements OnInit {
 
   @Input() user: User;
   @Input() trip: PublicTrip;
+  @Input() people: User;
 
 
   language: string [];
+  obj = {
+    height: '230px'
+  };
 
 
 
@@ -31,9 +35,16 @@ export class PeopleComponent implements OnInit {
       this.trip.trip = {...this.trip};
 
     }
+    if(this.people) {
+      this.user = this.people;
+      this.obj.height = '170px';
+    }
+
     //console.log(this.user, this.trip);
     this.language = [this.user.fluentLanguage ? this.user.fluentLanguage : '', this.user.learningLanguage ? this.user.learningLanguage : ''];
-
+    if(this.language[0] === '' && this.language[1] === '') {
+      this.language = [];
+    }
   }
 
   onClickPeople(){
