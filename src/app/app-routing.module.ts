@@ -85,8 +85,8 @@ const routes: Routes = [
         component: ChangePassComponent, resolve: { users: UserResolve }
       },
 
-
-      { path: 'Message', component: MessageComponent, resolve: { users: UserResolve } },
+      {path: 'Message', component: MessageComponent, resolve: {user: UserResolve}},
+      { path: 'Message/:id', component: MessageComponent, resolve: { users: UserResolve }},
       { path: 'Activity', component: ActivityComponent, resolve: { users: UserResolve } },
       { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
