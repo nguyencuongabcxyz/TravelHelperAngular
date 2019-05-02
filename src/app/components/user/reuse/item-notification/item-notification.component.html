@@ -1,0 +1,13 @@
+<div class="item">
+  <div class="notification">
+    <div class="avatar">
+      <a routerLink="/Users/People/{{item.senderId}}"><img [src]="item.senderAvatar"></a>
+    </div>
+    <div class="notify">
+      <p class="name">{{item.senderName}} has accepted your {{typeShow()}}</p>
+    </div>
+    <div class="button-bar">
+      <button class="btn btn-danger" [disabled]="isdiabled" (click)="onDelete()">Delete</button>
+    </div>
+  </div>
+</div>

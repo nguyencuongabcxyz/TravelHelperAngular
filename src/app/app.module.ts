@@ -44,7 +44,7 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve} from './services/user.resolve';
+import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve, IsFriendResolve} from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component';
@@ -63,7 +63,11 @@ import { FriendsComponent } from './components/user/profile/friends/friends.comp
 import { SendReportModalComponent } from './components/user/reuse/send-report-modal/send-report-modal.component';
 import { ActivityComponent } from './components/user/activity/activity.component';
 import { ItemActivityComponent } from './components/user/reuse/item-activity/item-activity.component';
+
 import { DashboardAdminComponent } from './components/admin/dashboard-admin/dashboard-admin.component';
+
+
+import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
 
 
 
@@ -114,7 +118,11 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
     SendReportModalComponent,
     ActivityComponent,
     ItemActivityComponent,
+
     DashboardAdminComponent,
+
+
+    ItemNotificationComponent,
 
 
 
@@ -154,7 +162,8 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
     ProfileResolve,
     TokenResolve,
     HomeResolve,
-    PlacesDashboardResolve
+    PlacesDashboardResolve,
+    IsFriendResolve
   ],
   bootstrap: [AppComponent]
 })

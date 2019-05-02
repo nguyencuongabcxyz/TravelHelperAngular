@@ -23,7 +23,7 @@ import { ReferencesComponent } from './components/user/profile/references/refere
 
 import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 
-import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve } from './services/user.resolve';
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve, IsFriendResolve } from './services/user.resolve';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
 import { ActivityComponent } from './components/user/activity/activity.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -61,14 +61,13 @@ const routes: Routes = [
       },
       { path: 'People', redirectTo: "/Users/Profile/About", pathMatch: 'full' },
       {
-        path: 'People/:id', component: ProfileComponent, resolve: { users: ProfileResolve },
+        path: 'People/:id', component: ProfileComponent, resolve: { users: ProfileResolve,isFriend:IsFriendResolve },
         children: [
           { path: '', redirectTo: "About", pathMatch: 'full' },
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
           { path: 'References', component: ReferencesComponent },
-          { path: 'Friends', component: FriendsComponent},
         ]
       },
 

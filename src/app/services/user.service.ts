@@ -52,6 +52,22 @@ export class UserService {
     return this.getPeopleImages(this.peopleid);
   }
   //  =============================
+  getSentTraveRequest(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/SentTravelRequests');
+  }
+  getSentHostOffer(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/SentHostOffers');
+  }
+  getSentFriendRequest(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/SentFriendRequests');
+  }
+  getNotification(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Notifications')
+  }
+  deleteNotification(id): Observable<any> {
+    return this.http.delete<any>(this.BaseURI + '/Notifications/' + id, { reportProgress: true, observe: "response" })
+  }
+  //  =============================
   getTraveRequest(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users/TravelRequests');
   }
@@ -78,16 +94,16 @@ export class UserService {
     return this.http.delete<any>(this.BaseURI + '/HostOffers/' + id, { reportProgress: true, observe: "response" });
   }
   //==============================
-  getFriendRequest(): Observable<any>{
+  getFriendRequest(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users/FriendRequests/');
   }
-  sendFriendRequest(body,id): Observable<any>{
+  sendFriendRequest(body, id): Observable<any> {
     return this.http.post<any>(this.BaseURI + '/FriendRequests/' + id, body, { reportProgress: true, observe: "response" });
   }
-  acceptFriendRequest(id): Observable<any>{
+  acceptFriendRequest(id): Observable<any> {
     return this.http.put<any>(this.BaseURI + '/FriendRequests/' + id, { reportProgress: true, observe: "response" });
   }
-  ignoreFriendRequest(id): Observable<any>{
+  ignoreFriendRequest(id): Observable<any> {
     return this.http.delete<any>(this.BaseURI + '/FriendRequests/' + id, { reportProgress: true, observe: "response" });
   }
 
@@ -102,6 +118,14 @@ export class UserService {
           return of({ 'err': err.status, 'id': id });
         }
       ));
+  }
+  //  =============================
+
+  getUserFriends(): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/Friends');
+  }
+  checkIsFriend(id): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Friends/CheckIsFriend/' + id);
   }
   //  =============================
   getUserHome(): Observable<any> {
