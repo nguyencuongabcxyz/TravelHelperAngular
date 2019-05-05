@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class PubicTripContentComponent implements OnInit {
   permit = true;
+  id;
   @Input() PublicTrip: PublicTrip;
   @Input() stt: number;
 
@@ -18,12 +19,13 @@ export class PubicTripContentComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    this.PublicTrip = {trip: {...this.PublicTrip}, user: this.PublicTrip.user};
-    console.log({a: this.PublicTrip});
+    this.PublicTrip =  Object.assign({}, {trip: {...this.PublicTrip}, user: this.PublicTrip.user});
+    this.id = this.PublicTrip.trip.publicTripId;
   }
 
   onPublicTripClick() {
     if(this.permit === true) {
+
       this.idTrip.emit(this.PublicTrip.trip.publicTripId);
       //this.router.navigate(['/Users/PublicTrip', this.PublicTrip.trip.publicTripId]);
 
@@ -37,6 +39,8 @@ export class PubicTripContentComponent implements OnInit {
   }
 
   onDeleteTripClick() {
+    console.log(this.PublicTrip.trip.publicTripId);
+
     this.idTripDelete.emit(this.PublicTrip.trip.publicTripId);
   }
 }
