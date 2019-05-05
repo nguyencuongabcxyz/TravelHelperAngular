@@ -1,6 +1,24 @@
-<div>
-        <h4>message works!</h4>
-        <h3>{{select}}</h3>
-        <h3>{{city}}</h3>
+<h1>All you recent messages</h1>
+<div class="cover">
+        <div class="left-side" class="left-section">
+                <div class="sender-box" *ngFor="let sender of messageSenders" (click)="reloadPage(sender.id)" >
+                        <img src="{{sender.avatar}}">
+                        <div class="about">
+                        <h2>{{sender.fullName}}</h2>
+                        <p>{{sender.lastedMessage}}</p>
+                        <p>{{sender.createDate}}</p>
+                        </div>
+                </div>
+        </div>
+        <div class="right-section">
+            <h2 class="nameSender">{{name}}</h2>
+            <div class="chatBox">
+
+            </div>
+            <div class="chatControl">
+                    <input type="text">
+                    <button>Send</button>
+            </div>
+        </div>
 </div>
 

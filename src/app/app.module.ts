@@ -123,12 +123,6 @@ import { ItemNotificationComponent } from './components/user/reuse/item-notifica
 
 
     ItemNotificationComponent,
-
-
-
-
-
-
   ],
   imports: [
     BrowserModule,
