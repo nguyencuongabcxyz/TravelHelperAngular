@@ -230,7 +230,7 @@ export class UserService {
   }
 
   postPublicTrip(publicTrip): Observable<any[]> {
-    return this.http.post<any[]>(this.BaseURI + this.publicTrip, publicTrip);
+    return this.http.post<any[]>(this.BaseURI + this.publicTrip , publicTrip);
   }
 
   deletePublicTripById(id: number) {

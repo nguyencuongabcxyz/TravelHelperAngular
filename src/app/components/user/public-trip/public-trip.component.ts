@@ -50,6 +50,8 @@ export class PublicTripComponent implements OnInit, OnDestroy {
     this.load();
   }
 
+
+
   createForm() {
     this.formUser = this.formBuilderService.group({
       destination: ['', [Validators.required]],
@@ -108,80 +110,74 @@ export class PublicTripComponent implements OnInit, OnDestroy {
   //   this.places = [];
   // }
 
-  onSubmitForm() {
+  async onSubmitForm() {
     //this.formUser.value.travelerNumber = Number.parseInt(this.formUser.value.travelerNumber);
     console.log(this.formUser);
-    var submit = false;
-    this.subscription =  this.userService.postPublicTrip(this.formUser.value).subscribe((data: any) => {
-      console.log(data);
-      submit = true;
+    var submit = await this.userService.postPublicTrip(this.formUser.value).toPromise().catch((err) => {
+      console.log(err);
     });
     // this.router.navigate(['PublicTrip'], {relativeTo: this.activate.parent});
 
+    if(submit){
+      this.toastr.success('New public trip created', 'Create public trip success');
+      this.formUser.reset();
+      this.idTrip = null;
+      this.check = true;
+      this.click = true;
+    }
+    else {
+      this.toastr.error('Create public trip failed', 'Error');
+      this.check = false;
+      this.click = true;
+    }
     this.textBtn = 'Submit';
-
-    setTimeout( () => {
-      if(submit){
-        this.toastr.success('New public trip created', 'Create public trip success');
-        this.formUser.reset();
-        this.idTrip = null;
-        this.check = true;
-        this.click = true;
-      }
-      else {
-        this.toastr.error('Create public trip failed', 'Error');
-        this.check = false;
-        this.click = true;
-      }
-      this.load();
-    }, 1000);
+    this.load();
   }
 
 
-  onUpdatePublicTrip() {
-    var update = false;
+  async onUpdatePublicTrip() {
+    var update;
     if (this.idTrip) {
-      this.subscription = this.userService.putPublicTripById(this.idTrip, this.formUser.value).subscribe(data => {
-        console.log(data);
-        update = true;
+      update = await this.userService.putPublicTripById(this.idTrip, this.formUser.value).toPromise().catch((err) => {
+        console.log(err);
       });
     }
-    setTimeout(() => {
-      if(update) {
-        this.check = true;
-        this.formUser.reset();
-        this.toastr.success('Updated pubic trip', 'Update public trip success');
-        this.click = true;
-      }else{
-        if(!this.idTrip){
-          this.check = false;
-        }
-        this.click = true;
-        this.toastr.error('Update pubic trip failed', 'Error');
+    if(update){
+      this.check = true;
+      this.formUser.reset();
+      this.toastr.success('Updated pubic trip', 'Update public trip success');
+      this.click = true;
+    }
+    else{
+      if(!this.idTrip){
+        this.check = false;
       }
-      this.load();
-    }, 1000);
+      this.click = true;
+      this.toastr.error('Update pubic trip failed', 'Error');
+    }
     this.textBtn = 'Update';
+    this.load();
   }
 
-  onClickDeleteTrip(id: number) {
+  async onClickDeleteTrip(id: number) {
     this.isDelete = true;
-    var del = false;
-    this.subscription = this.userService.deletePublicTripById(id).subscribe(data => {
-      console.log(data);
-      del = true;
-      this.idTrip = null;
-      this.load();
-    });
+    console.log(id);
 
-    setTimeout(() => {
-      if(del) {
-        this.toastr.success('Delete pubic trip', 'Delete public trip success');
-      }
-      else{
-        this.toastr.error('Delete pubic trip failed', 'Error');
-      }
-    }, 1000);
+    var del = await this.userService.deletePublicTripById(id).toPromise().catch((err) => {
+      console.log(err);
+      return err;
+    });
+    console.log(del);
+
+    if(!del){
+
+      this.idTrip = null;
+      this.toastr.success('Delete pubic trip', 'Delete public trip success');
+      this.load();
+    }
+    else {
+      this.toastr.error('Delete pubic trip failed', 'Error');
+    }
   }
 
   onClearForm() {
