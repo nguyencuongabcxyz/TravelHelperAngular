@@ -15,25 +15,26 @@
                 <i [ngStyle]="isMenu && !isSearch && {'color':'#ED6504'}" class="fas fa-bars"></i></button>
         </div>
     </div>
-    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}"  class="search-box" >
+    <div [ngStyle]="isSearch && !isMenu && {'display':'flex'}" class="search-box">
         <form #formSearch="ngForm" autocomplete="off" (submit)="onSubmit(formSearch);">
             <div class="search-form row">
-                <select [(ngModel)]="textSelect" (change)="onChange()" class=" search-select form-control shadow-sm col" name="select">
+                <select [(ngModel)]="textSelect" (change)="onChange()" class=" search-select form-control shadow-sm col"
+                    name="select">
                     <option value="host" selected>Find Host</option>
                     <option value="traveler">Find Traveler</option>
                     <option value="people">Find People</option>
                 </select>
                 <div class="search-form-1 col" (clickOutside)="textInput = '';">
                     <button class="" type="submit"><i class="fas fa-search"></i></button>
-                    <input [(ngModel)]="textInput" (keyup)="onKeyup(formSearch);" class="form-control shadow-sm" type="text"
-                        name="input" [placeholder]="placeholder">
+                    <input [(ngModel)]="textInput" (keyup)="onKeyup(formSearch);" class="form-control shadow-sm"
+                        type="text" name="input" [placeholder]="placeholder">
                     <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();"
                         [searchedSubject]="searchedSubject"></app-dropdown>
                 </div>
             </div>
         </form>
     </div>
-    <nav  [style.display]="admin_display" [ngStyle]="isMenu && !isSearch && {'display':'block'}"  class="menu-bar">
+    <nav [ngStyle]="isMenu && !isSearch && {'display':'block'}" class="menu-bar">
         <ul>
             <li>
                 <a (click)="this.isMenu = false;" [routerLink]="['Dashboard']" routerLinkActive='active'>
@@ -61,7 +62,8 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Message']" routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['Message']" [queryParams]="{id:idMessage}"
+                    [ngClass]="{'active':isActive()}">
                     <div class="icon">
                         <i class="fas fa-comments"></i>
                     </div>
@@ -109,11 +111,12 @@
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
-                        [style.display]="isdrop?'block':'none'" >
+                        [style.display]="isdrop?'block':'none'">
 
 
 
-                        <button class="dropdown-item" type="button" (click)="onChangePassword()" ><i class="fas fa-user-cog"></i> Change
+                        <button class="dropdown-item" type="button" (click)="onChangePassword()"><i
+                                class="fas fa-user-cog"></i> Change
                             Password</button>
                         <button (click)="onLogout();" class="dropdown-item" type="button"><i
                                 class="fas fa-sign-out-alt"></i> Log Out</button>

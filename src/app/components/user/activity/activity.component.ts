@@ -258,6 +258,15 @@ export class ActivityComponent implements OnInit {
           }
         }
       )
+    } else if (event.type == 'acceptfriend') {
+     // console.log(event)
+      this.service.acceptFriendRequest(event.id).subscribe(
+        res => {
+          this.toast.success('Accepted')
+          this.items = this.items.filter(item => item.friendRequestId !== event.id);
+
+        }
+      );
     }
 
   }

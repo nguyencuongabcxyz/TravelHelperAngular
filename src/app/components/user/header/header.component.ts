@@ -19,11 +19,28 @@ export class HeaderComponent implements OnInit {
   @Input() admin;
   logo_admin = {};
   admin_display = 'unset';
-
+  idMessage = null;
   private searchedSubject = new Subject<string>();
   constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService) { }
+  isActive():boolean {
+    return (this.router.url.includes("/Users/Message"))
+  }
   ngOnInit() {
-    if(this.admin){
+
+    this.activatedRoute.queryParams.subscribe(
+      params => {
+        console.log(this.isActive())
+        let id = params['id'];
+        if (id) {
+          this.idMessage = id;
+        } else {
+          this.idMessage = null;
+        }
+      }
+    )
+
+
+    if (this.admin) {
       this.logo_admin = {
         color: 'white'
       };
@@ -36,14 +53,15 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/Userauth']);
 
   }
-  onChange(){
-    this.placeholder = this.textSelect=='people'?"Search for Name":"Search for Place";
+  onChange() {
+    this.placeholder = this.textSelect == 'people' ? "Search for Name" : "Search for Place";
   }
   onKeyup(formSearch) {
     if (formSearch.value.select !== 'people')
       this.searchedSubject.next(this.textInput);
   }
   onSubmit(form) {
+    this.isSearch = false;
     this.textInput = '';
     this.router.navigate(['/Users/Search'], { queryParams: { type: form.value.select, location: form.value.input } });
   }
@@ -52,8 +70,10 @@ export class HeaderComponent implements OnInit {
     this.textSelect = 'host';
   }
 
-  onChangePassword(){
+  onChangePassword() {
+    
     this.router.navigate(['/Users/ChangePassword']);
     this.isdrop = false;
+    this.isMenu = false;
   }
 }

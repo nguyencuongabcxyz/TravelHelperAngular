@@ -26,14 +26,16 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
 
     this.isUser = this.service.getisUser();
-    let temp = this.activatedRoute.snapshot.data.users;
+    this.user = this.activatedRoute.snapshot.data.users;
+    //console.log(temp)
     if (!this.isUser)
-      this.isFriend=this.activatedRoute.snapshot.data.isFriend.isFriend;
-    if (temp.err == '404')
-      this.router.navigate(['/Users/' + temp.id]);
-    else {
-      this.user = temp;
-    }
+      this.isFriend = this.activatedRoute.snapshot.data.isFriend.isFriend;
+    // if (temp.err == '404') {
+    //   this.router.navigate(['Users/People/404']);
+    // } else {
+    //   this.user = temp;
+    // }
+    console.log(this.user.id)
   }
   sendFriendRequest() {
     this.isdrop = false;

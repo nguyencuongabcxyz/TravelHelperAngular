@@ -1,0 +1,20 @@
+.message-item {
+    clear: both;
+    padding: 5px;
+    max-width: 70%;
+}
+.user{
+    float: right;
+}
+.user span{
+    color: red;
+    float: right;
+    
+}
+.message-item span{
+    float: left;
+    padding: 3px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: white;
+}

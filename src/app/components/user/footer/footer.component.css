@@ -39,8 +39,8 @@
 }
 
 i{
-  color: #34495e;
-  background: white;
+  /* color: #34495e;
+  background: white; */
   --border-radius: 50%;
   --border: 1px solid #EEE;
   font-size: 16px;

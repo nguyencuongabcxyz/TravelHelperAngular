@@ -31,8 +31,9 @@
       <div class="button-bar">
         <button (click)="sendRequestModal.open();" *ngIf="!isUser&&user.status" class="btn btn-primary">Send
           Request</button>
-        <button (click)="sendMessageModal.open();" *ngIf="!isUser" class="btn btn-primary"><i
-            class="far fa-envelope"></i></button>
+          <!-- (click)="sendMessageModal.open();"  -->
+        <button routerLink="/Users/Message" [queryParams]="{id:user.id}"
+          *ngIf="!isUser" class="btn btn-primary"><i class="far fa-envelope"></i></button>
         <button *ngIf="isUser" class="btn btn-primary" routerLink="/Users/Profile/Edit">Edit My Profile</button>
         <div *ngIf="!isUser" class="dropdown" (clickOutside)="isdrop=false;">
           <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown"
@@ -41,8 +42,9 @@
           </button>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu2"
             [style.display]="isdrop?'block':'none'">
-            <button *ngIf="!isFriend" (click)="sendFriendRequest()" class="dropdown-item" type="button">Add Friend</button>
-            <button *ngIf="isFriend"  class="dropdown-item" type="button">Remove Friend</button>
+            <button *ngIf="!isFriend" (click)="sendFriendRequest()" class="dropdown-item" type="button">Add
+              Friend</button>
+            <button *ngIf="isFriend" class="dropdown-item" type="button">Remove Friend</button>
             <button (click)="writeReferenceModal.open();" class="dropdown-item" type="button">Write Reference</button>
             <button (click)="sendReportModal.open();" class="dropdown-item" type="button">Report</button>
           </div>
