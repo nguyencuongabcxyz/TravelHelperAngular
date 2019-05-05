@@ -23,11 +23,12 @@ import { ReferencesComponent } from './components/user/profile/references/refere
 
 import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 
-import { UserResolve, ProfileResolve, TokenResolve, HomeResolve,PlacesDashboardResolve, IsFriendResolve } from './services/user.resolve';
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve } from './services/user.resolve';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
 import { ActivityComponent } from './components/user/activity/activity.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { DashboardAdminComponent } from './components/admin/dashboard-admin/dashboard-admin.component';
+import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
 
 const routes: Routes = [
@@ -46,7 +47,7 @@ const routes: Routes = [
     path: 'Users', component: UserComponent, canActivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-      { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve ,placesres:PlacesDashboardResolve} },
+      { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve, placesres: PlacesDashboardResolve } },
       { path: 'Profile/Edit', component: EditComponent, resolve: { users: UserResolve, homeres: HomeResolve } },
       {
         path: 'Profile', component: ProfileComponent, resolve: { users: ProfileResolve },
@@ -55,13 +56,14 @@ const routes: Routes = [
           { path: 'About', component: AboutComponent },
           { path: 'Myhome', component: HomeComponent },
           { path: 'Photos', component: PhotosComponent },
-          { path: 'References', component: ReferencesComponent},
-          { path: 'Friends', component: FriendsComponent},
+          { path: 'References', component: ReferencesComponent },
+          { path: 'Friends', component: FriendsComponent },
         ]
       },
       { path: 'People', redirectTo: "/Users/Profile/About", pathMatch: 'full' },
+      { path: 'People/404', component:NotfoundComponent },
       {
-        path: 'People/:id', component: ProfileComponent, resolve: { users: ProfileResolve,isFriend:IsFriendResolve },
+        path: 'People/:id', component: ProfileComponent, resolve: { users: ProfileResolve, isFriend: IsFriendResolve },
         children: [
           { path: '', redirectTo: "About", pathMatch: 'full' },
           { path: 'About', component: AboutComponent },
@@ -88,8 +90,11 @@ const routes: Routes = [
         component: ChangePassComponent, resolve: { users: UserResolve }
       },
 
-      {path: 'Message', component: MessageComponent, resolve: {user: UserResolve}},
-      { path: 'Message/:id', component: MessageComponent, resolve: { users: UserResolve }},
+      {
+        path: 'Message', component: MessageComponent,
+        resolve: { user: UserResolve, DefaultUserChatResolve, listUserChats: ListUserChatResolve, currentUserChat: CurrentUserChatResolve }
+      },
+      // { path: 'Message/:id', component: MessageComponent, resolve: { users: UserResolve }},
       { path: 'Activity', component: ActivityComponent, resolve: { users: UserResolve } },
       { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
@@ -108,7 +113,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload',useHash: true})],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

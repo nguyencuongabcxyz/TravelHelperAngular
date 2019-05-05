@@ -54,19 +54,19 @@ export class ItemActivityComponent implements OnInit {
         }
       );
     } else if (this.data.type == 'friendrequest') {
-      // let body = {
-      //   type: 'acceptfriend', id: this.item.friendRequestId
-      // }
-      // this.myClick.emit(body);
-      this.service.acceptFriendRequest(this.item.friendRequestId).subscribe(
-        res => {
-          this.toast.success('Accepted')
-          this.item.isAccepted = res.isAccepted;
-          this.isdiabled = false;
-          console.log(res)
+      let body = {
+        type: 'acceptfriend', id: this.item.friendRequestId
+      }
+      this.myClick.emit(body);
+      // this.service.acceptFriendRequest(this.item.friendRequestId).subscribe(
+      //   res => {
+      //     this.toast.success('Accepted')
+      //     this.item.isAccepted = res.isAccepted;
+      //     this.isdiabled = false;
+      //     console.log(res)
 
-        }
-      );
+      //   }
+      // );
     }
   }
 

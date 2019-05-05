@@ -115,6 +115,7 @@ export class UserService {
     return this.http.get<any>(this.BaseURI + '/Users/' + id).pipe(
       catchError(
         err => {
+          console.log(err.status)
           return of({ 'err': err.status, 'id': id });
         }
       ));
@@ -241,7 +242,16 @@ export class UserService {
     return this.http.put(this.BaseURI + this.changePass, password, { reportProgress: true, observe: "response" });
   }
 
-  getUserByFullName(name: string): Observable<User[]>{
+  getUserByFullName(name: string): Observable<User[]> {
     return this.http.get<User[]>(this.BaseURI + this.searchUser + name);
   }
+
+  //message
+  getMessage(id, index): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/Users/Messages/' + id + '?index=' + index);
+  }
+  getListUserChat(index): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/users/messagesenders?index='+index);
+  }
 }
+

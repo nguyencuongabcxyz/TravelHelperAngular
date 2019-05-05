@@ -1,0 +1,28 @@
+<ng-template #loading>
+  <div class="box">
+    <app-loading></app-loading>
+  </div>
+
+
+</ng-template>
+
+
+<ng-container *ngIf="!isLoading;else loading">
+  <div #boxchat id="box-chat" style="max-height:200px; overflow: auto; text-align: center">
+    <ng-template #loadingmess> Loading...</ng-template>
+    <button *ngIf="!isLoadingMess;else loadingmess" (click)="seeMore()">more</button>
+    <ng-container *ngFor="let message of messages ">
+      <div class="message-item" [ngClass]="{'user':message.isYou}">
+        <span>{{message.content}}</span>
+      </div>
+
+    </ng-container>
+
+  </div>
+  <div class="chatControl">
+    <form (submit)="sendMessage()" #formchat="ngForm" autocomplete="off">
+      <input ngModel [(ngModel)]="textchat" name="textchat" type="text" required>
+      <button [disabled]="formchat.invalid" type="submit">Send</button>
+    </form>
+  </div>
+</ng-container>

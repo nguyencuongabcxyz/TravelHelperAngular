@@ -69,8 +69,10 @@
     display: inline-block;
     text-align: center; 
     margin: 0px 13px;
+
 }
 .menu-bar ul li a{
+    font-weight: 500;
     text-decoration: none;
     font-size: 17px;
     color: #287FB8;
