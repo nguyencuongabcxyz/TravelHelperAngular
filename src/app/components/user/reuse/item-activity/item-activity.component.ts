@@ -26,8 +26,10 @@ export class ItemActivityComponent implements OnInit {
       }, 0);
   }
   onResize(event) {
-    this.height = this.des.nativeElement.offsetHeight / 16;
-    this.show = (this.height > 5);
+    let fontsizestr = getComputedStyle(this.des.nativeElement).fontSize;
+    let fontsize= parseInt(fontsizestr.slice(0,fontsizestr.length-2));
+    this.height = this.des.nativeElement.offsetHeight / fontsize;
+    this.show = (this.height > 4.5);
   }
   onAccept() {
     this.isdiabled = true;
