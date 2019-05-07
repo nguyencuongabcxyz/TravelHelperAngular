@@ -20,13 +20,17 @@ body{
 
 
 body{
+  font-size: 15px !important;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f1efea !important;
   color:#27374c!important;
   position: relative;
   /* min-height: 100vh!important; */
-  overflow-y: scroll;
+  overflow-y: auto;
+  
   overflow-wrap: break-word;
+  word-break: break-word;
+
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -55,7 +59,7 @@ body{
   max-width: 1280px!important;
   flex: 1 1 auto;
   height: 100%;
-
+  min-height: 90vh
 }
 .col{
   padding: 0px ;

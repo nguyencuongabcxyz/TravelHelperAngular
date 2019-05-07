@@ -1,32 +1,37 @@
-<h1>All you recent messages</h1>
-<div class="cover row">
-        <div class="left-section col">
-                <div class="box list-chat-box">
+<div class="cover row box">
+        <div class="left-section col-4">
+                <div class="header-section">
+                        <span class="header-title">Message</span>
+                </div>
+                <div class="list-chat-box">
+
                         <ng-container *ngFor="let sender of listUserChats">
-                                <a [ngClass]="{'active':peopleId==sender.id}" class="sender-item" [routerLink]=""
-                                        [queryParams]="{id:sender.id}">
-                                        <div class="avatar">
-                                                <img class="photo" [src]="sender.avatar">
-                                        </div>
-                                        <div class="about">
-                                                <p class="name">{{sender.fullName}}</p>
-                                                <p>{{sender.lastedMessage}}</p>
-                                                <p>{{sender.createDate}}</p>
+                                <a [ngClass]="{'active':peopleId==sender.id}" (click)="onClickItem(sender)"
+                                        class="sender-item">
+                                        <div class="item">
+                                                <div class="avatar">
+                                                        <img class="photo" [src]="sender.avatar">
+                                                </div>
+                                                <div class="about hidden">
+                                                        <div style="display: flex">
+                                                                <span class="name">{{sender.fullName}}</span>
+                                                                <span
+                                                                        class="time">{{sender.createDate | timeAgo}}</span>
+                                                        </div>
+
+                                                        <span class="message">{{sender.lastedMessage}}</span>
+
+                                                </div>
                                         </div>
                                 </a>
                         </ng-container>
-                        <button (click)="loadMoreList()">More</button>
+                        <ng-template #loadingmess> Loading...</ng-template>
+                        <button *ngIf="!isLoadingMess;else loadingmess" (click)="loadMoreList()">more</button>
                 </div>
         </div>
-        <div class="right-section col">
-                <h3 *ngIf="people">{{people.fullName}}</h3>
-
-                <div class="box">
-
-
-                        <app-box-chat (send)="sendMessage($event)" [userId]="user.id" [peopleId]="peopleId">
-                        </app-box-chat>
-                </div>
-
+        <div app-box-chat (send)="sendMessage($event)" [userId]="user.id" [peopleId]="peopleId"
+                class="right-section col-8">
+                <!-- <app-box-chat (send)="sendMessage($event)" [userId]="user.id" [peopleId]="peopleId">
+                </app-box-chat> -->
         </div>
 </div>

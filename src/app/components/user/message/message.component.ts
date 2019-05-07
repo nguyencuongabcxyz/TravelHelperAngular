@@ -13,9 +13,12 @@ import { BoxChatComponent } from "./box-chat/box-chat.component";
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit,OnDestroy {
+export class MessageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
-    this.hubConnection.stop();
+    window.document.getElementById("main-container").style.cssText = "height:unset;padding-bottom:unset;"
+    window.document.getElementById("main-footer").style.cssText = "display:unset";
+    if (this.hubConnection)
+      this.hubConnection.stop();
   }
   @ViewChild(BoxChatComponent) boxChatComponent: BoxChatComponent;
   constructor(private service: UserService, public router: Router, public activatedRoute: ActivatedRoute, private http: HttpClient) { }
@@ -30,12 +33,15 @@ export class MessageComponent implements OnInit,OnDestroy {
   avatar: String;
   token: String = localStorage.getItem("token");
   index = 0;
-
+  isLoadingMess;
   user;
   ngOnInit() {
+    window.document.getElementById("main-container").style.cssText = "height:100vh;padding-bottom:10px;"
+    window.document.getElementById("main-footer").style.cssText = "display:none";
     this.connect();
     this.user = this.activatedRoute.snapshot.data.user;
     this.listUserChats = this.activatedRoute.snapshot.data.listUserChats;
+    console.log(this.listUserChats[0])
     this.getId();
   }
   connect() {
@@ -51,7 +57,7 @@ export class MessageComponent implements OnInit,OnDestroy {
     this.hubConnection
       .start()
       .then(() => console.log('Connection Started!'))
-      .catch((err)=>console.log(err))
+      .catch((err) => console.log(err))
 
 
     this.hubConnection.on('sendChatMessage', (from: string, message: string) => {
@@ -73,6 +79,7 @@ export class MessageComponent implements OnInit,OnDestroy {
         this.service.getPeopleProfile(this.peopleId).subscribe(
           res => {
             this.people = res;
+            this.boxChatComponent.people=res.fullName;
           }
         )
         this.boxChatComponent.load(this.peopleId)
@@ -83,11 +90,20 @@ export class MessageComponent implements OnInit,OnDestroy {
     });
   }
   loadMoreList() {
+    this.isLoadingMess=true;
     this.index++;
     this.service.getListUserChat(this.index).subscribe(
       res => {
-        console.log(res)
+        this.isLoadingMess=false;
+        this.listUserChats=this.listUserChats.concat(res)
+        console.log(this.listUserChats)
       }
     )
+  }
+  onClickItem(sender) {
+    console.log(sender)
+    this.router.navigate([], { queryParams:{id:sender.id} })
+    this.boxChatComponent.people = sender.fullName;
+
   }
 }

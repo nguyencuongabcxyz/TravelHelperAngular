@@ -1,10 +1,10 @@
 <ng-progress></ng-progress>
-<div class="header shadow-sm">
+<div id="main-header" class="header shadow-sm">
     <app-header></app-header>
 </div>
-<div class="container">
+<div id="main-container" class="container">
     <router-outlet (activate)="onActivate($event)"></router-outlet>
 </div>
-<div class="footer shadow-sm ">
+<div id="main-footer" class="footer shadow-sm ">
     <app-footer></app-footer>
 </div>

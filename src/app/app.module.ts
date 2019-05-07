@@ -70,7 +70,7 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
 import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
 import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
-
+import {TimeAgoPipe} from "time-ago-pipe"
 
 
 
@@ -127,6 +127,7 @@ import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.co
 
 
     BoxChatComponent,
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,

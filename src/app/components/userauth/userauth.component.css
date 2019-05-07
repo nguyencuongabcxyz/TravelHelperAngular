@@ -26,9 +26,12 @@
     margin-right: 110px;
 }
 .menu-bar button{
+    color: #007bff;
+    background-color: white;
     margin-left: 20px;
     width: 100px;
 }
+
 /*---header---*/
 /* .container{
     background-image: url("/assets/imgs/15T2.jpg") ;

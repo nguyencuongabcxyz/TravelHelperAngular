@@ -9,13 +9,13 @@
         <label>Username<span style="color: red;">*</span></label>
         <input class="form-control " formControlName="UserName"
           [ngClass]="{'is-invalid':formModel.get('UserName').touched && formModel.get('UserName').errors?.required }">
-        <label class="text-danger"
+        <!-- <label class="text-danger"
           *ngIf="formModel.get('UserName').touched && formModel.get('UserName').errors?.required">This
-          field is mandatory.</label>
+          field is mandatory.</label> -->
       </div>
       <div class="form-group">
         <label>Email</label>
-        <input class="form-control" formControlName="Email">
+        <input class="form-control" formControlName="Email"  [ngClass]="{'is-invalid':formModel.get('Email').touched && formModel.get('Email').errors?.email }">
         <label class="text-danger"
           *ngIf="formModel.get('Email').touched && formModel.get('Email').errors?.email">Invalid
           email address.</label>
@@ -24,18 +24,18 @@
         <label>Full Name<span style="color: red;">*</span></label>
         <input class="form-control" formControlName="FullName"
           [ngClass]="{'is-invalid':formModel.get('FullName').touched && formModel.get('FullName').errors?.required }">
-        <label class="text-danger"
+        <!-- <label class="text-danger"
           *ngIf="formModel.get('FullName').touched && formModel.get('FullName').errors?.required">This
-          field is mandatory.</label>
+          field is mandatory.</label> -->
       </div>
       <div formGroupName="Passwords">
         <div class="form-group required">
           <label>Password<span style="color: red;">*</span></label>
           <input type="password" class="form-control" formControlName="Password"
             [ngClass]="{'is-invalid':formModel.get('Passwords.Password').touched && ((formModel.get('Passwords.Password').errors?.required) || (formModel.get('Passwords.Password').errors?.minlength)) }">
-          <label class="text-danger"
+          <!-- <label class="text-danger"
             *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.required">This
-            field is mandatory.</label>
+            field is mandatory.</label> -->
           <label class="text-danger"
             *ngIf="formModel.get('Passwords.Password').touched && formModel.get('Passwords.Password').errors?.minlength">Minimum
             4 characters required.</label>
@@ -44,9 +44,9 @@
           <label>Confirm Password<span style="color: red;">*</span></label>
           <input type="password" class="form-control" formControlName="ConfirmPassword"
             [ngClass]="{'is-invalid':formModel.get('Passwords.ConfirmPassword').touched && ((formModel.get('Passwords.ConfirmPassword').errors?.required)||(formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch)) }">
-          <label class="text-danger"
+          <!-- <label class="text-danger"
             *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.required">This
-            field is mandatory.</label>
+            field is mandatory.</label> -->
           <label class="text-danger"
             *ngIf="formModel.get('Passwords.ConfirmPassword').touched && formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">Confirm
             Password does not match.</label>
