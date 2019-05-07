@@ -8,16 +8,30 @@
   flex-direction: column;
 
 }
+body{
+  background-image: url("/assets/imgs/back-ground.jpg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+
 
 body{
+  font-size: 15px !important;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f1efea !important;
   color:#27374c!important;
   position: relative;
   /* min-height: 100vh!important; */
-  overflow-y: scroll;
+  overflow-y: auto;
+  
   overflow-wrap: break-word;
-  --height: 100%;
+  word-break: break-word;
+
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -45,7 +59,7 @@ body{
   max-width: 1280px!important;
   flex: 1 1 auto;
   height: 100%;
-
+  min-height: 90vh
 }
 .col{
   padding: 0px ;
@@ -53,21 +67,22 @@ body{
 
 .header{
   margin-right: 13px;
-    margin-left: auto;
+  margin-left: auto;
   top: 0;
   width: 100%;
-  background-color: white;
+  background-color: #27374c;
   position: fixed;
   z-index: 1000;
 }
 
 .footer{
+  color: wheat;
   margin-right: auto;
-    margin-left: auto;
-z-index: 800;
+  margin-left: auto;
+  z-index: 800;
   /* position: absolute; */
   min-height: 200px;
-  background-color: white;
+  background-color: #27374c;
   width: 100%;
   /* bottom: 0; */
   margin-top: auto;
@@ -80,7 +95,7 @@ z-index: 800;
   margin-bottom: 10px!important;
 }
 .box-header{
-  background-image: linear-gradient(to right, #ced1cb , #f3f5f6);
+  background-image: linear-gradient(to right, wheat , white);
   /* background-image: linear-gradient(to right, #e1e6db , #e2dede); */
   padding: 15px 20px;
   border-bottom: 1px solid rgba(0,0,0,0.15);

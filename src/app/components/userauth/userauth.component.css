@@ -26,21 +26,21 @@
     margin-right: 110px;
 }
 .menu-bar button{
+    color: #007bff;
+    background-color: white;
     margin-left: 20px;
     width: 100px;
 }
+
 /*---header---*/
-.container{
-/*     
-    background-image: url("https://ht-assets.couchsurfing.com/assets/homepage/have-fun-with-couchsurfing-0c56538cda235c5806dc956559fe942179937b39d686329158cd1987801ce115.jpg");
-    */
+/* .container{
     background-image: url("/assets/imgs/15T2.jpg") ;
     background-size: cover;
     background-repeat: no-repeat;
     max-width: 100% !important;
     min-height: 100vh;
     background-position: center; 
-}
+} */
 .container-wrapper{
    max-width: 1280px;
    margin: auto;

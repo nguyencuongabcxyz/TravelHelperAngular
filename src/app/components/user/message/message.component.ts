@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MessageSender } from 'src/app/models/messagesender';
 import { HttpClient } from '@angular/common/http';
@@ -6,64 +6,104 @@ import { HubConnection } from '@aspnet/signalr';
 import * as signalR from '@aspnet/signalr';
 import { getDiffieHellman } from 'crypto';
 import { UserChat } from 'src/app/models/userchat';
+import { UserService } from 'src/app/services/user.service';
+import { BoxChatComponent } from "./box-chat/box-chat.component";
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.css']
 })
-export class MessageComponent implements OnInit {
-
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, private http: HttpClient) { }
-  messageSenders: MessageSender[];
+export class MessageComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    window.document.getElementById("main-container").style.cssText = "height:unset;padding-bottom:unset;"
+    window.document.getElementById("main-footer").style.cssText = "display:unset";
+    if (this.hubConnection)
+      this.hubConnection.stop();
+  }
+  @ViewChild(BoxChatComponent) boxChatComponent: BoxChatComponent;
+  constructor(private service: UserService, public router: Router, public activatedRoute: ActivatedRoute, private http: HttpClient) { }
+  listUserChats: MessageSender[];
   userModel: UserChat;
   private hubConnection: HubConnection;
-  to: String;
+  people;
+  peopleId: String;
   message: String;
+  receiveMessage;
   name: String;
   avatar: String;
   token: String = localStorage.getItem("token");
-
-  public sendMessage(): void {
-    this.hubConnection
-      .invoke('sendChatMessage', this.to, this.message)
-      .catch(err => console.error(err));
-  }
+  index = 0;
+  isLoadingMess;
+  user;
   ngOnInit() {
+    window.document.getElementById("main-container").style.cssText = "height:100vh;padding-bottom:10px;"
+    window.document.getElementById("main-footer").style.cssText = "display:none";
+    this.connect();
+    this.user = this.activatedRoute.snapshot.data.user;
+    this.listUserChats = this.activatedRoute.snapshot.data.listUserChats;
+    console.log(this.listUserChats[0])
     this.getId();
-    this.http.get('http://travelhelperwebsite.azurewebsites.net/api/users/messagesenders').subscribe((res: MessageSender[]) => {
-      this.messageSenders = res;
-      this.to = this.messageSenders[0].id;
-      this.router.navigateByUrl("/Users/Message/"+this.to+"");
-    });
-    if(this.to!=undefined){
-      this.http.get('http://travelhelperwebsite.azurewebsites.net/api/userchats/'+this.to).subscribe((res: UserChat) =>{
-        this.name = res.fullName;
-        this.avatar = res.avatar;
-        console.log(res);
-      });
-    }
+  }
+  connect() {
     this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('http://travelhelperwebsite.azurewebsites.net/chat', {
+      .withUrl('https://travelhelperwebsite.azurewebsites.net/chat', {
         accessTokenFactory: () => {
           return this.token;
         },
       } as signalR.IHttpConnectionOptions)
       .build();
+
+
     this.hubConnection
       .start()
-      .then(() => console.log('Connection Started!'));
+      .then(() => console.log('Connection Started!'))
+      .catch((err) => console.log(err))
+
+
     this.hubConnection.on('sendChatMessage', (from: string, message: string) => {
       console.log(from + ":" + message)
+      this.receiveMessage = { from: from, message: message }
+      this.boxChatComponent.loadMessage(this.receiveMessage)
     });
   }
-  getId(){
-    this.activatedRoute.params.subscribe(params => {
-      this.to = params['id'];
+  sendMessage(event): void {
+    this.hubConnection
+      .invoke('sendChatMessage', event.peopleId, event.textchat)
+      .catch(err => console.error(err));
+  }
+  getId() {
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.peopleId = params['id'];
+      console.log(this.peopleId)
+      if (this.peopleId) {
+        this.service.getPeopleProfile(this.peopleId).subscribe(
+          res => {
+            this.people = res;
+            this.boxChatComponent.people=res.fullName;
+          }
+        )
+        this.boxChatComponent.load(this.peopleId)
+      } else {
+        console.log('un')
+        this.router.navigate(["/Users/Message/"], { queryParams: { id: this.listUserChats[0].id } })
+      }
     });
   }
-  reloadPage(id){
-    this.router.navigateByUrl("/Users/Message/"+id+"");
-    this.ngOnInit();
-    console.log("reload");
+  loadMoreList() {
+    this.isLoadingMess=true;
+    this.index++;
+    this.service.getListUserChat(this.index).subscribe(
+      res => {
+        this.isLoadingMess=false;
+        this.listUserChats=this.listUserChats.concat(res)
+        console.log(this.listUserChats)
+      }
+    )
+  }
+  onClickItem(sender) {
+    console.log(sender)
+    this.router.navigate([], { queryParams:{id:sender.id} })
+    this.boxChatComponent.people = sender.fullName;
+
   }
 }

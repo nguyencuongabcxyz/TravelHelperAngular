@@ -1,3 +1,13 @@
+.container-footer{
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  max-width: 1280px;
+  margin-right: auto;
+    margin-left: auto;
+}
+
+
 .footer1 {
   display: flex;
   padding: 0 34.5px;
@@ -39,8 +49,8 @@
 }
 
 i{
-  color: #34495e;
-  background: white;
+  /* color: #34495e;
+  background: white; */
   --border-radius: 50%;
   --border: 1px solid #EEE;
   font-size: 16px;

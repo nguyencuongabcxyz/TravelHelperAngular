@@ -44,17 +44,24 @@ export class ProfileResolve implements Resolve<any> {
     resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
 
         let id = activatedRouteSnapshot.paramMap.get('id');
+        console.log(id)
         this.service.setPeopleid(id);
+        this.service.getUser().subscribe(
+            res => {
+                if (res.err)
+                    this.route.navigate(['Users/People/404']);
+
+            }
+        );
         this.service.getUserProfile().subscribe(
             res => {
                 if (res.id == id)
                     this.route.navigate(["/Users/Profile"]);
             }
-        );
-        
+        )
         return this.service.getUser();
     }
-} 
+}
 @Injectable()
 export class IsFriendResolve implements Resolve<any> {
     constructor(private service: UserService) { }
@@ -62,5 +69,45 @@ export class IsFriendResolve implements Resolve<any> {
     resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
         let id = activatedRouteSnapshot.paramMap.get('id');
         return this.service.checkIsFriend(id);
+    }
+}
+@Injectable()
+export class DefaultUserChatResolve implements Resolve<any> {
+    constructor(private service: UserService, private router: Router) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot) {
+        let id = activatedRouteSnapshot.queryParamMap.get('id');
+        console.log(id)
+        if (id == null) {
+            this.service.getListUserChat(0).subscribe(
+                res => {
+                    if (res[0]) {
+                        this.router.navigate(['/Users/Message'], { queryParams: { id: res[0].id } })
+                    }
+                }
+            )
+        }
+        console.log(id)
+
+    }
+}
+@Injectable()
+export class ListUserChatResolve implements Resolve<any> {
+    constructor(private service: UserService, private router: Router) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
+        return this.service.getListUserChat(0);
+
+    }
+}
+@Injectable()
+export class CurrentUserChatResolve implements Resolve<any> {
+    constructor(private service: UserService, private router: Router) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
+        let id = activatedRouteSnapshot.queryParamMap.get('id');
+        console.log(id)
+        if (id)
+            return this.service.getPeopleProfile(id);
     }
 }

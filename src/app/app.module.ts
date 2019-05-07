@@ -44,7 +44,7 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve, IsFriendResolve} from './services/user.resolve';
+import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve} from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component';
@@ -68,11 +68,15 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
 
 
 import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
+
 import { StatisticComponent } from './components/admin/dashboard-admin/statistic/statistic.component';
 import { TableReportComponent } from './components/admin/dashboard-admin/table-report/table-report.component';
 import { TableBannedComponent } from './components/admin/dashboard-admin/table-banned/table-banned.component';
 
+import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
+
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 
 
@@ -128,6 +132,7 @@ import { TableBannedComponent } from './components/admin/dashboard-admin/table-b
     ItemNotificationComponent,
 
 
+
     StatisticComponent,
 
 
@@ -135,6 +140,10 @@ import { TableBannedComponent } from './components/admin/dashboard-admin/table-b
 
 
     TableBannedComponent,
+
+    BoxChatComponent,
+    TimeAgoPipe,
+
   ],
   imports: [
     BrowserModule,
@@ -169,7 +178,10 @@ import { TableBannedComponent } from './components/admin/dashboard-admin/table-b
     TokenResolve,
     HomeResolve,
     PlacesDashboardResolve,
-    IsFriendResolve
+    IsFriendResolve,
+    ListUserChatResolve,
+    CurrentUserChatResolve,
+    DefaultUserChatResolve
   ],
   bootstrap: [AppComponent]
 })
