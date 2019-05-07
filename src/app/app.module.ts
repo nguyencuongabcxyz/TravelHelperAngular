@@ -68,6 +68,9 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
 
 
 import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
+import { StatisticComponent } from './components/admin/dashboard-admin/statistic/statistic.component';
+import { TableReportComponent } from './components/admin/dashboard-admin/table-report/table-report.component';
+import { TableBannedComponent } from './components/admin/dashboard-admin/table-banned/table-banned.component';
 
 
 
@@ -123,6 +126,15 @@ import { ItemNotificationComponent } from './components/user/reuse/item-notifica
 
 
     ItemNotificationComponent,
+
+
+    StatisticComponent,
+
+
+    TableReportComponent,
+
+
+    TableBannedComponent,
   ],
   imports: [
     BrowserModule,
