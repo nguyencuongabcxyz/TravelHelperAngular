@@ -1,7 +1,7 @@
 
 
-
-  <div class="header shadow-sm bg-white  ">
+<div class="backgound">
+  <div class="header shadow-sm">
       <div class="row box " style="  margin: 0px !important;">
 
         <div class="col-sm headerContent" style="padding: 0px;">
@@ -17,21 +17,24 @@
             <nav class="navbar menu navbar-expand-lg navbar-dark bg-dark flex-column">
               <div style="padding: 20px 0px 20px 0px">
                 <img class="photo img-responsive"
-                [src]="'/assets/imgs/profile-picture-placeholder.png'">
-
+                [src]="user? user.avatarLocation : img">
+                <div class="info">
+                    <p style="font-size:30px;font-weight: 600">{{user.fullName}}</p>
+                    <p style="font-size: 20px;">{{user.address}}</p>
+                  </div>
               </div>
 
               <li class="nav-item">
-                <a class="nav-link active" href="#"> <span><i class="fas fa-chalkboard"></i></span>  Dashboard</a>
+                <a class="nav-link active" [routerLink]="['/Admin/Dashboard']"> <span><i class="fas fa-chalkboard"></i></span>  Dashboard</a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="#"> <span> <i class="fas fa-users"></i></span> Users</a>
-              </li>
+              </li> -->
               <li class="nav-item">
-                <a class="nav-link" href="#"> <span> <i class="fas fa-book-open"></i></span> Report</a>
+                <a class="nav-link" [routerLink]="['/Admin/Report']"> <span> <i class="fas fa-book-open"></i></span> Report</a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link " href="#"  ><span> <i class="fas fa-user-slash"></i> </span>Banned</a>
+                <a class="nav-link " [routerLink]="['/Admin/Ban']"  ><span> <i class="fas fa-user-slash"></i> </span>Banned</a>
               </li>
 
             </nav>
@@ -39,13 +42,13 @@
 
           <div class="col-sm-9 right">
 
-            <div class="">
+
               <router-outlet></router-outlet>
-            </div>
+
           </div>
         </div>
   </div>
-
+</div>
 
 
 

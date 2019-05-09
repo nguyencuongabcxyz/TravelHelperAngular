@@ -36,8 +36,20 @@
     </div>
     <nav [ngStyle]="isMenu && !isSearch && {'display':'block'}" class="menu-bar">
         <ul>
+          <li>
+              <a (click)="this.isMenu = false;" [routerLink]="['/Admin']" routerLinkActive='active'>
+                  <div class="icon">
+                      <i class="fas fa-users-cog"></i>
+                  </div>
+                  <div class="name">
+                      <span>
+                          Admin
+                      </span>
+                  </div>
+              </a>
+          </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Dashboard']" routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['/Users/Dashboard']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-home"></i>
                     </div>
@@ -49,7 +61,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Profile']" routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['/Users/Profile']" routerLinkActive='active'>
                     <div class="icon">
                         <i class="fas fa-user-circle"></i>
                     </div>
@@ -62,7 +74,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Message']" [queryParams]="{id:idMessage}"
+                <a (click)="this.isMenu = false;" [routerLink]="['/Users/Message']" [queryParams]="{id:idMessage}"
                     [ngClass]="{'active':isActive()}">
                     <div class="icon">
                         <i class="fas fa-comments"></i>
@@ -76,7 +88,7 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['Activity']" routerLinkActive='active'>
+                <a (click)="this.isMenu = false;" [routerLink]="['/Users/Activity']" routerLinkActive='active'>
                     <div class="icon">
                         <!-- <i class="fas fa-envelope"></i> -->
                         <!-- <i class="fas fa-bell"></i> -->

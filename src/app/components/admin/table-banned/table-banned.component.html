@@ -1,0 +1,47 @@
+
+<div class="card box" style="margin-top: 20px;">
+    <div class="card-header bg-danger" style="color: white">
+      <i class="fas fa-list"></i> List user is banned
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">User is banned</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of list; let index = index">
+            <th scope="row">{{index + 1}}</th>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="wrapicon">
+                  <img src="{{item.avatarLocation ? item.avatarLocation : img}}" width="32px" height="32px" alt="">
+                </div>
+                <div class="ml-3" style="">
+                  <div >{{item.fullName}}</div>
+                  <div >{{item.userName}}</div>
+                </div>
+              </div>
+            </td>
+            <td>
+              <button class="btn btn-primary" (click)="onClickActive(item.id)">Active</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+      
+      <ng-container *ngIf="urlCur === '/Admin/Ban'; else notBan">
+
+        <a style="color: white" (click)="onClickSeeMore()" class="btn btn-danger">See more</a>
+      </ng-container>
+
+      <ng-template #notBan>
+
+          <a [routerLink]="['/Admin/Ban']" routerLinkActive="router-link-active"   class="btn btn-danger">See more</a>
+      </ng-template>
+    </div>
+  </div>

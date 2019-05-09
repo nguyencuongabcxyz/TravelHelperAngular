@@ -19,6 +19,20 @@ export class UserService {
   publicTrip = '/Publictrips/';
   changePass = '/ApplicationUser/ChangePassword';
   searchUser = '/Users/SearchByName?name=';
+  report = '/Reports/';
+
+  roleMatch(allowedRoles): boolean{
+    var isMatch = false;
+    var payload = JSON.parse(window.atob(localStorage.getItem('token').split('.')[1]));
+    var userRole = payload.role;
+    allowedRoles.forEach(element => {
+      if(userRole == element){
+        isMatch = true;
+        return false;
+      }
+    });
+    return isMatch;
+  }
 
   setPeopleid(id) {
     this.peopleid = id;
@@ -252,6 +266,12 @@ export class UserService {
   }
   getListUserChat(index): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/users/messagesenders?index='+index);
+  }
+
+  // report
+  createReport(id, content): Observable<any>{
+    console.log(this.BaseURI + this.report + id, content);
+    return this.http.post(this.BaseURI + this.report + id, content);
   }
 }
 

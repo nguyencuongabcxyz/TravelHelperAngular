@@ -70,13 +70,18 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
 import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
 
 import { StatisticComponent } from './components/admin/dashboard-admin/statistic/statistic.component';
-import { TableReportComponent } from './components/admin/dashboard-admin/table-report/table-report.component';
-import { TableBannedComponent } from './components/admin/dashboard-admin/table-banned/table-banned.component';
+import { TableReportComponent } from './components/admin/table-report/table-report.component';
+import { TableBannedComponent } from './components/admin/table-banned/table-banned.component';
 
 import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
 
 import {TimeAgoPipe} from 'time-ago-pipe';
+
+import { BanUserComponent } from './components/admin/ban-user/ban-user.component';
+import { ReportUserComponent } from './components/admin/report-user/report-user.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+
 
 
 
@@ -143,6 +148,11 @@ import {TimeAgoPipe} from 'time-ago-pipe';
 
     BoxChatComponent,
     TimeAgoPipe,
+
+    BanUserComponent,
+    ReportUserComponent,
+    ForbiddenComponent,
+
 
   ],
   imports: [
