@@ -44,7 +44,7 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve} from './services/user.resolve';
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve } from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component';
@@ -70,7 +70,11 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
 import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
 import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
-import {TimeAgoPipe} from "time-ago-pipe"
+import { TimeAgoPipe } from "time-ago-pipe"
+import { FormatDate } from './pipes/format-date.pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
 
 
 
@@ -128,6 +132,7 @@ import {TimeAgoPipe} from "time-ago-pipe"
 
     BoxChatComponent,
     TimeAgoPipe,
+    FormatDate
   ],
   imports: [
     BrowserModule,
@@ -137,7 +142,9 @@ import {TimeAgoPipe} from "time-ago-pipe"
     ToastrModule.forRoot({
       positionClass: 'toast-custom',
       timeOut: 3000,
-      progressBar: true
+      progressBar: false,
+      //autoDismiss: true,
+     // maxOpened: 1,
     }),
     HttpClientModule,
     BrowserAnimationsModule,
@@ -147,9 +154,10 @@ import {TimeAgoPipe} from "time-ago-pipe"
       color: '#ED6504',
       spinner: false,
     }),
+    InfiniteScrollModule
   ],
   providers: [UserauthService,
-    Location,{provide: LocationStrategy, useClass: HashLocationStrategy},
+    Location, { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -165,8 +173,10 @@ import {TimeAgoPipe} from "time-ago-pipe"
     IsFriendResolve,
     ListUserChatResolve,
     CurrentUserChatResolve,
-    DefaultUserChatResolve
+    DefaultUserChatResolve,
+
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

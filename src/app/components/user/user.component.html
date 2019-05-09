@@ -1,6 +1,6 @@
 <ng-progress></ng-progress>
 <div id="main-header" class="header shadow-sm">
-    <app-header></app-header>
+    <app-header [user]="user" [isNoty]="isNoty"></app-header>
 </div>
 <div id="main-container" class="container">
     <router-outlet (activate)="onActivate($event)"></router-outlet>

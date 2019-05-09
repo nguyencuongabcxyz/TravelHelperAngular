@@ -44,7 +44,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'Users', component: UserComponent, canActivate: [AuthGuard],
+    path: 'Users', component: UserComponent, canActivate: [AuthGuard], resolve: { users: UserResolve },
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
       { path: 'Dashboard', component: DashboardComponent, resolve: { users: UserResolve, placesres: PlacesDashboardResolve } },
@@ -92,7 +92,7 @@ const routes: Routes = [
 
       {
         path: 'Message', component: MessageComponent,
-        resolve: { user: UserResolve, DefaultUserChatResolve, listUserChats: ListUserChatResolve, currentUserChat: CurrentUserChatResolve }
+        resolve: { user: UserResolve, DefaultUserChatResolve, listUserChats: ListUserChatResolve, }
       },
       // { path: 'Message/:id', component: MessageComponent, resolve: { users: UserResolve }},
       { path: 'Activity', component: ActivityComponent, resolve: { users: UserResolve } },

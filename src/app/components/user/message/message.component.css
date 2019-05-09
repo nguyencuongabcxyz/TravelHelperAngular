@@ -3,6 +3,7 @@
   margin-right: -10px;
   margin-left: -10px;
   flex-wrap: nowrap!important;
+  margin-bottom: 0px !important;
 }
 .left-section{
     border-right: solid 1px rgba(0, 0, 0, .10);
@@ -98,6 +99,31 @@ padding: 10px;
 	border-radius: 8px;
 	background-color: #777;
 }
+.icon{
+    display: none;
+    font-size: 1.5em;
+}
+.loading{
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+.loading img{
+    height: 30px;
+    width: 30px;
+}
+.none{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 17px;
+    padding-top: 30px;
+}
 @media screen and (max-width:480px){
     .hidden{
          display: none;
@@ -108,5 +134,11 @@ padding: 10px;
     .right-section{
         flex: 1 1 100%;
         max-width: 100%;
+    }
+    .icon{
+        display: block;
+    }
+    .header-title{
+        display: none;
     }
 }

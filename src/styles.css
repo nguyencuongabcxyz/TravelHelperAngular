@@ -40,9 +40,42 @@ body{
     display: block;
     min-height: 200px;
 } */
+a:hover{
+  text-decoration: none!important;
+}
+a{
+  cursor: pointer;
+}
 .toast-custom {
   top: 72px;
   right: 12px;
+}
+.message-toast{
+  top: 72px;
+  right: 12px;
+  width: 200px;
+    height: 80px;
+  background-color: #f2f2f2;
+  border: solid 1px #a2bfc9;
+  border-radius: 10px;
+  display: flex!important;
+  flex-direction: column;
+  
+  overflow: hidden;
+}
+.message-toast .toast-title{
+ display: inline-block;
+ white-space: nowrap;
+ padding: 5px;
+ text-overflow: ellipsis;
+ overflow: hidden;
+}
+.message-toast .toast-message{
+  padding: 5px;
+  display: inline-block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .modal-holder ,.carousel-modal{
   animation-name: example;
@@ -59,7 +92,7 @@ body{
   max-width: 1280px!important;
   flex: 1 1 auto;
   height: 100%;
-  min-height: 90vh
+  min-height: 100vh
 }
 .col{
   padding: 0px ;

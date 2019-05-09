@@ -1,13 +1,11 @@
-import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { Component, OnInit, ViewChild, OnDestroy, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageSender } from 'src/app/models/messagesender';
-import { HttpClient } from '@angular/common/http';
 import { HubConnection } from '@aspnet/signalr';
 import * as signalR from '@aspnet/signalr';
-import { getDiffieHellman } from 'crypto';
-import { UserChat } from 'src/app/models/userchat';
 import { UserService } from 'src/app/services/user.service';
 import { BoxChatComponent } from "./box-chat/box-chat.component";
+import { hubConnection, on } from './../../../models/global'
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
@@ -15,95 +13,257 @@ import { BoxChatComponent } from "./box-chat/box-chat.component";
 })
 export class MessageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
+    // console.log(123)
+    //this.cdr.detach();
     window.document.getElementById("main-container").style.cssText = "height:unset;padding-bottom:unset;"
     window.document.getElementById("main-footer").style.cssText = "display:unset";
-    if (this.hubConnection)
-      this.hubConnection.stop();
+    //this.boxChatComponent.destroy()
+    //hubConnection.off('sendChatMessage');
+    this.destroyComponent = true;
+    // console.log(this.hubConnection)
+    //   this.hubConnection.stop();
+    //hubConnection.off('sendChatMessage')
+
   }
   @ViewChild(BoxChatComponent) boxChatComponent: BoxChatComponent;
-  constructor(private service: UserService, public router: Router, public activatedRoute: ActivatedRoute, private http: HttpClient) { }
-  listUserChats: MessageSender[];
-  userModel: UserChat;
+  @ViewChild('listchatbox') listchatbox: ElementRef;
+  @ViewChild('loadinguserchat') loadinguserchat: ElementRef;
+  constructor(private service: UserService, public router: Router, public activatedRoute: ActivatedRoute,
+    private cdr: ChangeDetectorRef) { }
+
   private hubConnection: HubConnection;
+  destroyComponent;
+  listUserChatsAll: MessageSender[] = [];
+  listUserChats: MessageSender[] = [];
   people;
   peopleId: String;
   message: String;
   receiveMessage;
-  name: String;
-  avatar: String;
   token: String = localStorage.getItem("token");
   index = 0;
   isLoadingMess;
+  isConnecting;
   user;
+  notFound;
+  count = 0;
   ngOnInit() {
-    window.document.getElementById("main-container").style.cssText = "height:100vh;padding-bottom:10px;"
+    //console.log(hubConnection)
+    this.index = 0;
+    this.receive();
+    window.document.getElementById("main-container").style.cssText = "height:100vh;padding-bottom:5px;"
     window.document.getElementById("main-footer").style.cssText = "display:none";
-    this.connect();
+    //this.setup();
     this.user = this.activatedRoute.snapshot.data.user;
-    this.listUserChats = this.activatedRoute.snapshot.data.listUserChats;
-    console.log(this.listUserChats[0])
-    this.getId();
+    this.listUserChatsAll = this.activatedRoute.snapshot.data.listUserChats;
+    this.listUserChats = this.listUserChatsAll.slice(0, 10);
+    console.log(this.listUserChats)
+    this.getIdcurrentPeople();
   }
-  connect() {
-    this.hubConnection = new signalR.HubConnectionBuilder()
-      .withUrl('https://travelhelperwebsite.azurewebsites.net/chat', {
-        accessTokenFactory: () => {
-          return this.token;
-        },
-      } as signalR.IHttpConnectionOptions)
-      .build();
+  // setup() {
+  //   this.hubConnection = new signalR.HubConnectionBuilder()
+  //     .withUrl('https://travelhelperwebsite.azurewebsites.net/chat', {
+  //       accessTokenFactory: () => {
+  //         return this.token;
+  //       },
+  //     } as signalR.IHttpConnectionOptions)
+  //     .build();
+  //   this.connect();
 
-
-    this.hubConnection
-      .start()
-      .then(() => console.log('Connection Started!'))
-      .catch((err) => console.log(err))
-
-
-    this.hubConnection.on('sendChatMessage', (from: string, message: string) => {
-      console.log(from + ":" + message)
-      this.receiveMessage = { from: from, message: message }
-      this.boxChatComponent.loadMessage(this.receiveMessage)
-    });
-  }
+  //   // this.hubConnection.onclose(() => {
+  //   //   this.connect();
+  //   // })
+  // }
+  // async connect() {
+  //   this.hubConnection
+  //     .start()
+  //     .then(() => {
+  //       console.log('Connection Started!')
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       this.sleep(5000);
+  //       this.connect();
+  //     })
+  // }
+  // async sleep(msec) {
+  //   return new Promise(resolve => setTimeout(resolve, msec));
+  // }
   sendMessage(event): void {
-    this.hubConnection
+    hubConnection
       .invoke('sendChatMessage', event.peopleId, event.textchat)
       .catch(err => console.error(err));
   }
-  getId() {
+  receive() {
+    // on((from, message) => {
+    //   console.log(from + ":" + message)
+    //   this.receiveMessage = { from: from, message: message };
+    //   if (!this.destroyComponent)
+    //     this.boxChatComponent.loadMessage(this.receiveMessage)
+    // })
+    hubConnection.on('sendChatMessage', (from: string, fullName, avatar, message: string) => {
+      console.log(from + ":" + message)
+      if (!this.destroyComponent) {
+        // this.listUserChats.forEach(item => {
+        //   if (item.id == from) {
+        //     this.listUserChats = this.listUserChats.filter(item => { item.id != from })
+        //     this.listUserChats.unshift(item);
+        //     console.log(this.listUserChats)
+        //   }
+        // })
+        if (from == this.user.id) {
+          let item = this.listUserChatsAll.filter(item => item.id == this.people.id)
+          //console.log(item)
+          if (item.length) {
+            let i = this.listUserChatsAll.indexOf(item[0])
+            this.listUserChatsAll.splice(0, 0, this.listUserChatsAll.splice(i, 1)[0]);
+
+            let item1 = this.listUserChats.filter(item => item.id == this.people.id)
+            if (item1.length) {
+              let i = this.listUserChats.indexOf(item1[0])
+              this.listUserChats.splice(0, 0, this.listUserChats.splice(i, 1)[0]);
+            } else {
+              this.listUserChats.unshift(item[0])
+              this.count++;
+            }
+            this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+            this.listUserChats[0].lastedMessage = message;
+
+
+          } else {
+            let data: MessageSender = {
+              avatar: this.people.avatarLocation,
+              fullName: this.people.fullName,
+              createDate: new Date,
+              lastedMessage: message,
+              id: this.people.id
+            }
+            this.listUserChats.unshift(data)
+            this.listUserChatsAll.unshift(data)
+            this.count++;
+          }
+          this.cdr.detectChanges();
+          this.listchatbox.nativeElement.scrollTop = 0;
+        } else {
+          let item = this.listUserChatsAll.filter(item => item.id == from)
+
+          if (item.length) {
+            let i = this.listUserChatsAll.indexOf(item[0])
+            this.listUserChatsAll.splice(0, 0, this.listUserChatsAll.splice(i, 1)[0]);
+
+            let item1 = this.listUserChats.filter(item => item.id == from)
+            if (item1.length) {
+              let i = this.listUserChats.indexOf(item1[0])
+              this.listUserChats.splice(0, 0, this.listUserChats.splice(i, 1)[0]);
+            } else {
+              this.listUserChats.unshift(item[0])
+              this.count++;
+            }
+            this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+            this.listUserChats[0].lastedMessage = message;
+          } else {
+            // let xxx;
+            // this.service.getPeopleProfile(from).subscribe(
+            //   res => {
+            //     xxx = res;
+            //   }
+            // )
+            let data: MessageSender = {
+              avatar: avatar,
+              fullName: fullName,
+              createDate: new Date,
+              lastedMessage: message,
+              id: from
+            }
+            this.listUserChats.unshift(data)
+            this.listUserChatsAll.unshift(data)
+            this.count++;
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          // for (let i = 0; i < this.listUserChatsAll.length; i++) {
+          //   if (this.listUserChatsAll[i].id == from) {
+
+
+          //     this.listUserChatsAll.splice(0, 0, this.listUserChats.splice(i, 1)[0]);
+
+
+          //     break;
+          //   }
+          // }
+          this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+          this.listUserChats[0].lastedMessage = message;
+        }
+        this.cdr.detectChanges();
+        this.receiveMessage = { from: from, message: message };
+        this.boxChatComponent.loadMessage(this.receiveMessage)
+      }
+    });
+  }
+  getIdcurrentPeople() {
     this.activatedRoute.queryParams.subscribe(params => {
       this.peopleId = params['id'];
-      console.log(this.peopleId)
       if (this.peopleId) {
+        //  console.log(this.peopleId)
         this.service.getPeopleProfile(this.peopleId).subscribe(
           res => {
-            this.people = res;
-            this.boxChatComponent.people=res.fullName;
+            //  console.log(res)
+            if (res.err == 404) {
+              this.notFound = true;
+            } else {
+              this.notFound = false;
+              this.people = res;
+              this.cdr.detectChanges();
+              this.boxChatComponent.load(this.peopleId)
+            }
           }
         )
-        this.boxChatComponent.load(this.peopleId)
       } else {
-        console.log('un')
-        this.router.navigate(["/Users/Message/"], { queryParams: { id: this.listUserChats[0].id } })
+        if (this.listUserChats[0])
+          this.router.navigate(["/Users/Message/"], { queryParams: { id: this.listUserChats[0].id } })
       }
     });
   }
   loadMoreList() {
-    this.isLoadingMess=true;
-    this.index++;
-    this.service.getListUserChat(this.index).subscribe(
-      res => {
-        this.isLoadingMess=false;
-        this.listUserChats=this.listUserChats.concat(res)
-        console.log(this.listUserChats)
-      }
-    )
+    this.isLoadingMess = true;
+    this.index = this.listUserChats.length;
+    // this.index++;
+    // this.cdr.detectChanges();
+    // this.listchatbox.nativeElement.scrollTop = 696969;
+    setTimeout(() => {
+      let re = this.listUserChatsAll.slice(this.index + this.count, 10 + this.index + this.count);
+      console.log(re)
+      this.listUserChats = this.listUserChats.concat(re);
+      this.isLoadingMess = false;
+    }, 1000);
+    // this.service.getListUserChat(this.index, 3).subscribe(
+    //   res => {
+    //     console.log(res)
+    //     this.listUserChats = this.listUserChats.concat(res);
+    //     this.isLoadingMess = false;
+    //   }
+    // )
   }
   onClickItem(sender) {
-    console.log(sender)
-    this.router.navigate([], { queryParams:{id:sender.id} })
-    this.boxChatComponent.people = sender.fullName;
-
+    this.router.navigate([], { queryParams: { id: sender.id } })
   }
+  onScrollDown() {
+    console.log('scrolldown')
+    this.loadMoreList();
+  }
+
+
 }

@@ -1,14 +1,20 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectorRef, OnChanges, SimpleChange } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { User } from './../../../models/user';
 import { Subject, Subscription, from } from 'rxjs';
+import { con, dis, hubConnection, on } from './../../../models/global'
+import { useAnimation } from '@angular/animations';
+import { userInfo } from 'os';
+import { Toast, ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+
+  //isNoty;
   isMenu;
   isSearch;
   isdrop;
@@ -17,19 +23,35 @@ export class HeaderComponent implements OnInit {
   textSelect = "host";
   placeholder = "Search for Place";
   @Input() admin;
+  @Input() user;
+  @Input() isNoty;
   logo_admin = {};
   admin_display = 'unset';
   idMessage = null;
   private searchedSubject = new Subject<string>();
-  constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService) { }
-  isActive():boolean {
+  constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService,
+    private cdr: ChangeDetectorRef, private toast: ToastrService) { }
+  isActive(): boolean {
     return (this.router.url.includes("/Users/Message"))
   }
   ngOnInit() {
 
+    // hubConnection.on('sendChatMessage', (from: string, fullName, avatar, message: string) => {
+    //   console.log(from + ":" + message)
+    //   if (!this.isActive())
+    //     if (from != this.user.id) {
+    //       this.isNoty = true;
+    //       this.cdr.detectChanges();
+    //       this.toast.show(message, fullName, { toastClass: "message-toast" });
+          
+    //     }
+    // })
+
+
+
     this.activatedRoute.queryParams.subscribe(
       params => {
-        console.log(this.isActive())
+        // console.log(this.isActive())
         let id = params['id'];
         if (id) {
           this.idMessage = id;
@@ -71,7 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onChangePassword() {
-    
+
     this.router.navigate(['/Users/ChangePassword']);
     this.isdrop = false;
     this.isMenu = false;

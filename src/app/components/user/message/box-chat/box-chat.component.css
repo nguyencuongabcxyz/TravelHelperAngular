@@ -3,6 +3,7 @@
     flex-direction: column;
     overflow-y: auto;
     margin-bottom: auto;
+   
 }
 .box-chat::-webkit-scrollbar
 {
@@ -23,23 +24,32 @@
     justify-content: center;
     min-height: 50px;
 }
+.header-section a{
+     color: #27374c!important;
+}
+.header-section a:hover{
+    color: #ED6504!important;
+}
 .header-title{
     font-weight: 600;
     font-size: 1.5em;
 }
 .message-item {
-    padding: 5px;
+    padding: 2px 25px;
     max-width: 70%;
+    display: inline-block;
+    /* position: relative;  */
 }
 .user{
     margin-left: auto;
-    
+    position: relative;
 }
 .user span{
     color: white;
     background-color: #0084ff !important;
 }
 .message-item span{
+    
     font-size: 14px;
     line-height: 1.3;
     padding: 10px;
@@ -51,5 +61,79 @@
 }
 .chatControl{
     border-top: solid 1px rgba(0, 0, 0, .10); 
-    margin-bottom: 20px;
+    padding: 10px 0px;
+    margin-top: 10px;
+}
+.chatControl form{
+    display: flex;
+    justify-content: center;
+}
+.chatControl form button{
+  margin-top: auto;
+  /* height: 50px;
+  width: 50px; */
+  border: none;
+  background: none;
+  outline: none;
+  color: #007bff;
+}
+.chatControl form button:disabled{
+    opacity: .65;
+  }
+button i{
+    font-size: 20px;
+}
+textarea{
+    font-size: 14px;
+    padding-left: 15px;
+    width:100%;
+    height: 30px;
+    max-height: 92px;
+    overflow: hidden;
+    resize: none;
+    outline: none;
+    border: none;
+    margin-top: auto;
+}
+.sent{
+    position: absolute; 
+    bottom: 0px;
+    right: 5px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.tick{
+    padding-top: 1px;
+    margin-top: auto;
+    margin-bottom: 5px;
+    color: white;
+    background-color: #007bff;
+    border-radius: 50%;
+    font-size: 8px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.sent img{
+    margin-top: auto;
+    margin-bottom: 5px;
+    height:15px;
+    width: 15px;
+}
+.loading{
+    position: absolute;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+}
+.loading img{
+    height: 50px;
+    width: 50px;
 }
