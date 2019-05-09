@@ -1,0 +1,96 @@
+
+
+
+  <div class="card box" style="margin-top: 20px;">
+    <div class="card-header bg-warning" style="color: white">
+        <i class="fas fa-list"></i> List reports
+    </div>
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">User report</th>
+            <th scope="col">User is reported</th>
+            
+            <th scope="col">Content</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr id="{{item.reportId}}" *ngFor="let item of list; let index = index" [ngClass]="{ solve: item.isSolved}">
+                <td>{{index + 1}}</td>
+                <td  >
+                  <div class="d-flex align-items-center">
+                    <div class="wrapicon">
+                      <img src="{{item.sender.avatarLocation ? item.sender.avatarLocation : img }}" width="32px" height="32px" alt="">
+                    </div>
+                    <div class="ml-3" style="">
+                      <div class="fullName" >{{item.sender.fullName}}</div>
+                      <div >{{item.sender.userName}}</div>
+                    </div>
+                  </div>
+                </td>
+                <td  >
+                  <div class="d-flex align-items-center">
+                    <div class="wrapicon">
+                      <img src="{{item.receiver.avatarLocation ? item.receiver.avatarLocation : img }}" width="32px" height="32px" alt="">
+                    </div>
+                    <div class="ml-3" style="">
+                        <div class="fullName" >{{item.receiver.fullName}}</div>
+                        <div >{{item.receiver.userName}}</div>
+                    </div>
+                  </div>
+                </td>
+               
+                <td style="width: 30%" >
+                  <div>
+                      <b>{{item.type}}:</b>
+                  </div>
+                  {{item.message}}
+                </td>
+                <td style="width: 13%">
+                    <ng-container *ngIf="item.isSolved; else pending">
+                      <span >
+                        <i style="color: rgb(187, 212, 187); font-size: 30px" class="far fa-check-circle"  ></i>
+                      </span>
+                    </ng-container>
+
+                    <ng-template #pending>
+                      <span (click)="onClickPending(item.reportId)">
+                        <i style="font-size: 30px" class="far fa-circle"></i>
+                      </span>
+                    </ng-template>
+                    <span class="ban" (click)="onClickLock(item.receiver.id)">
+                        <i class="fas fa-ban"></i>
+
+                    </span>
+                    <span (click)="onClickDelete(item.reportId)">
+
+                      <i class="far fa-times-circle"></i>
+                    </span>
+                    <!-- <button id="btn{{item.reportId}}" [ngClass]="{btn: true, 'btn-warning': !item.isSolved, 'btn-success': item.isSolved}"  style="color: white" (click)="onClickPending(item.reportId)">{{item.isSolved ? 'Solved' : 'Pending'}}</button> -
+                    <button class="btn btn-primary" (click)="onClickLock(item.receiver.id)">Lock</button> -
+                    <button class="btn btn-danger" (click)="onClickDelete(item.reportId)">Delete</button> -->
+                </td>
+            </tr>
+
+
+
+
+
+        
+        </tbody>
+      </table>
+      <ng-container *ngIf="urlCur === '/Admin/Report'; else notReport">
+
+        <a (click)="onClickSeeMore()" class="btn btn-warning" style="color: white">See more</a>
+      </ng-container>
+
+      <ng-template #notReport>
+
+        <a [routerLink]="['/Admin/Report']" routerLinkActive="router-link-active"  class="btn btn-warning" style="color: white">See more</a>
+      </ng-template>
+    </div>
+  </div>
+

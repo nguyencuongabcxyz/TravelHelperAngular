@@ -1,3 +1,17 @@
+.backgound{
+  background: white;
+}
+
+.info{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.info p{
+  padding: 3px 0px 3px 0px;
+  margin-bottom: 0px !important;
+}
+
 .content{
   height: 100%;
   width: 100%;
@@ -11,6 +25,7 @@
   padding-top: 60px !important;
   margin: 0px ;
   max-width: 100% !important;
+  min-height: 100vh;
 }
 
 .menu{

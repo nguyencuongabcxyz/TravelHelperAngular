@@ -1,0 +1,38 @@
+.container {
+  padding-top: 20px !important;
+}
+
+.solve{
+  opacity: 0.5;
+}
+
+td{
+  padding-left: 8px;
+  padding-right: 8px
+}
+
+span:hover{
+  cursor: pointer;
+
+}
+
+span:hover i{
+  transform: scale(1.2);
+}
+
+i{
+  transition: 500ms all;
+}
+
+span {
+  font-size: 30px;
+  
+}
+
+.ban{
+  margin: 0 5px;
+}
+
+.fullName{
+  border-bottom: 1px solid #CCC
+}
