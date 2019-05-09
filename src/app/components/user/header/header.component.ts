@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   logo_admin = {};
   admin_display = 'unset';
   idMessage = null;
+  role;
   private searchedSubject = new Subject<string>();
   constructor(public router: Router, public activatedRoute: ActivatedRoute, private service: UserService,
     private cdr: ChangeDetectorRef, private toast: ToastrService) { }
@@ -33,7 +34,7 @@ export class HeaderComponent implements OnInit {
     return (this.router.url.includes("/Users/Message"))
   }
   ngOnInit() {
-
+    this.role=JSON.parse(window.atob(localStorage.getItem('token').split('.')[1])).role;
     // hubConnection.on('sendChatMessage', (from: string, fullName, avatar, message: string) => {
     //   console.log(from + ":" + message)
     //   if (!this.isActive())
@@ -71,6 +72,7 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     localStorage.removeItem('token');
     this.router.navigate(['/Userauth']);
+    dis();
 
   }
   onChange() {
