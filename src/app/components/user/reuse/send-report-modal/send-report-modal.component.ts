@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-send-report-modal',
@@ -13,7 +14,7 @@ export class SendReportModalComponent implements OnInit {
   @Input() people: User;
   modalRef: any;
   isdiable;
-  constructor(private modalService: NgbModal, private userService: UserService) { }
+  constructor(private modalService: NgbModal, private userService: UserService,private toast:ToastrService) { }
 
   ngOnInit() {
 
@@ -25,8 +26,13 @@ export class SendReportModalComponent implements OnInit {
 
   send(reportForm) {
     this.isdiable = true;
-     console.log(reportForm.value, this.people.id)
-   this.userService.createReport(this.people.id, reportForm.value).subscribe();
+    console.log(reportForm.value, this.people.id)
+    this.userService.createReport(this.people.id, reportForm.value).subscribe(
+      res => {
+        this.toast.success("You had sent a report")
+        this.modalRef.close();
+      }
+    );
 
   }
 

@@ -36,7 +36,7 @@
     </div>
     <nav [ngStyle]="isMenu && !isSearch && {'display':'block'}" class="menu-bar">
         <ul>
-          <li>
+          <li *ngIf="role=='Admin'">
               <a (click)="this.isMenu = false;" [routerLink]="['/Admin']" routerLinkActive='active'>
                   <div class="icon">
                       <i class="fas fa-users-cog"></i>

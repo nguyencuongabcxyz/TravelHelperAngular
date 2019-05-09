@@ -14,10 +14,13 @@ import { HubConnection } from '@aspnet/signalr';
 })
 export class UserComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
+    this.navigationSubscription.unsubscribe();
     // hubConnection.off('sendChatMessage');
-    dis();
-
+    // console.log("out of user")
+    // dis();
+    this.destroyComponent = true;
   }
+  destroyComponent;
   private hubConnection: HubConnection;
   token: String = localStorage.getItem("token");
   receiveMessage;
@@ -30,13 +33,21 @@ export class UserComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.user = this.activatedRoute.snapshot.data.users;
-    con();
+    if (!hubConnection)
+      con();
+    else {
+      console.log(hubConnection.state)
+      if (hubConnection.state == 0) {
+        con();
+      }
+    }
     hubConnection.on('sendChatMessage', (from: string, fullName, avatar, message: string) => {
-      console.log(from + ":" + message)
-      if (!this.router.url.includes("/Users/Message"))
+     
+      if (!this.router.url.includes("/Users/Message") && !this.destroyComponent)
         if (from != this.user.id) {
+          console.log(from + ":" + message)
           this.isNoty = true;
-         // this.toast.show(message, fullName, { toastClass: "message-toast" });
+          // this.toast.show(message, fullName, { toastClass: "message-toast" });
           this.cdr.detectChanges();
         }
     })

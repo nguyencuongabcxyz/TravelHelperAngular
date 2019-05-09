@@ -35,7 +35,12 @@ export class SendRequestModalComponent implements OnInit {
           this.toast.error('Fail');
         }
         this.modalRef.close();
+      },
+      err => {
+        this.toast.error("Your Request had been ignored or waiting for accept")
+        this.modalRef.close();
       }
+
     );
   }
 

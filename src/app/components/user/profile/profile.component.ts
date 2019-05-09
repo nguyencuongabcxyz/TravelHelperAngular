@@ -50,6 +50,9 @@ export class ProfileComponent implements OnInit {
           this.toast.error("Fail")
         }
 
+      },
+      err=>{
+        this.toast.error("Your Friend request had been ignored or waiting for accept")
       }
     )
   }

@@ -100,13 +100,14 @@ const routes: Routes = [
       },
       // { path: 'Message/:id', component: MessageComponent, resolve: { users: UserResolve }},
       { path: 'Activity', component: ActivityComponent, resolve: { users: UserResolve } },
+      { path: 'forbidden', component: ForbiddenComponent },
       { path: '404', component: NotfoundComponent },
       { path: '**', component: NotfoundComponent },
 
     ]
   },
   {
-    path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']},
+    path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']},resolve: { users: UserResolve },
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
       {
