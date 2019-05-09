@@ -6,23 +6,32 @@
 
 <div *ngIf="!isLoading;else loading" class="cover">
   <div class="box result">
-    <span>{{items.length?'':'No '}}Result of {{params.type=='traveler'?'Traveler':(params.type=='host'?'Host':'People')}} with
-      {{params.type=='people'?'name':'place' }} {{params.data}} </span>
+    <span>{{items.length?'':'No '}}Result of
+      {{params.type=='traveler'?'Traveler':(params.type=='host'?'Host':'People')}} with
+      {{params.type=='people'?'name':'place' }} "{{params.data}}" </span>
   </div>
-  <div class="row content" infiniteScroll [infiniteScrollDistance]="0.1"
-    [infiniteScrollUpDistance]="0" [infiniteScrollThrottle]="1000" (scrolled)="onScrollDown()">
+  <div class="row content" infiniteScroll [infiniteScrollDistance]="0.1" [infiniteScrollUpDistance]="0"
+    [infiniteScrollThrottle]="1000" (scrolled)="onScrollDown()">
     <ng-container *ngFor="let item of items">
       <div class="item col-md-6 col-sm-12">
         <app-card-result [type]="params.type" [item]="item"></app-card-result>
       </div>
     </ng-container>
   </div>
-  <!-- <div *ngIf="nothing" class="box result">
-      <span>That's All !</span>
-    </div> -->
+
 </div>
-
-
+<div *ngIf="isLoadingMore">
+  <div style="height:40px;display: flex; align-items: center;justify-content: center;">
+    <div>
+      <img style="height:30px;width: 30px;" src="./../../../../../assets/imgs/spinner.gif">
+    </div>
+  </div>
+</div>
+<!-- <ng-template #nothing1>
+  <div *ngIf="nothing" class="box result" style="height: 40px;background-color: #f2f2f2;justify-content: center;">
+    <span>That's All !</span>
+  </div>
+</ng-template> -->
 
 
 

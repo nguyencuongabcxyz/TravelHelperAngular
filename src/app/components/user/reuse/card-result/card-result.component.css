@@ -35,6 +35,9 @@
     color: #27374c;
     font-size: 20px;
     font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .ro a:hover{
     color: #007bff;

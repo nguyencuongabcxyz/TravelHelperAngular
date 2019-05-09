@@ -92,11 +92,11 @@
 
           <div class="search-form">
             <input ngModel [(ngModel)]="textInput" (keyup)="onKeyup();" name="input" class="" type="text"
-              placeholder="Where are you going?">
+              placeholder="Where are you going?" required>
 
             <app-dropdown [searchedSubject]="searchedSubject"></app-dropdown>
           </div>
-          <button type="submit"><i style="color:#a0acbb;" class="fas fa-search"></i></button>
+          <button [disabled]="formSearch.invalid" type="submit"><i style="color:#a0acbb;" class="fas fa-search"></i></button>
         </form>
       </div>
     </div>
@@ -151,7 +151,7 @@
         </ng-container>
       </ng-container>
       <div class="box-action">
-        <a [routerLink]="'/Users/Search'" [queryParams]="{type:'traveler',location:user.address}"><span>See More Public
+        <a [routerLink]="'/Users/Search'" [queryParams]="{type:'traveler',data:user.address}"><span>See More Public
             Trips</span><span><i class="fas fa-arrow-circle-right"></i></span> </a>
       </div>
     </div>
