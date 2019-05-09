@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-send-report-modal',
@@ -12,7 +13,7 @@ export class SendReportModalComponent implements OnInit {
   @Input() people: User;
   modalRef: any;
   isdiable;
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private userService: UserService) { }
 
   ngOnInit() {
 
@@ -21,9 +22,12 @@ export class SendReportModalComponent implements OnInit {
     this.isdiable = false;
     this.modalRef = this.modalService.open(this.content, { windowClass: 'modal-holder' });
   }
+
   send(reportForm) {
     this.isdiable = true;
-    console.log(reportForm.value)
+     console.log(reportForm.value, this.people.id)
+   this.userService.createReport(this.people.id, reportForm.value).subscribe();
+
   }
 
 }

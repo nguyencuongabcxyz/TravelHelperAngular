@@ -30,6 +30,10 @@ import { AdminComponent } from './components/admin/admin.component';
 import { DashboardAdminComponent } from './components/admin/dashboard-admin/dashboard-admin.component';
 import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
+import { ReportUserComponent } from './components/admin/report-user/report-user.component';
+import { BanUserComponent } from './components/admin/ban-user/ban-user.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+
 
 const routes: Routes = [
 
@@ -102,13 +106,22 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'Admin', component: AdminComponent,
+    path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']},
     children: [
+      { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
       {
         path: 'Dashboard', component: DashboardAdminComponent
-      }
+      },
+      {
+        path: 'Report', component: ReportUserComponent
+      },
+      {
+        path: 'Ban', component: BanUserComponent
+      },
+
     ]
   },
+  { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: NotfoundComponent },
 ];
 
