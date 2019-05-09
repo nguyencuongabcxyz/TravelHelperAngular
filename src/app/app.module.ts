@@ -44,7 +44,7 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve ,ProfileResolve,TokenResolve,HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve} from './services/user.resolve';
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve } from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component';
@@ -76,12 +76,19 @@ import { TableBannedComponent } from './components/admin/table-banned/table-bann
 import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
 
+
 import {TimeAgoPipe} from 'time-ago-pipe';
 
 import { BanUserComponent } from './components/admin/ban-user/ban-user.component';
 import { ReportUserComponent } from './components/admin/report-user/report-user.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 
+
+
+
+import { FormatDate } from './pipes/format-date.pipe';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
 
@@ -149,10 +156,14 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     BoxChatComponent,
     TimeAgoPipe,
 
+
     BanUserComponent,
     ReportUserComponent,
     ForbiddenComponent,
 
+
+
+    FormatDate
 
   ],
   imports: [
@@ -163,7 +174,9 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     ToastrModule.forRoot({
       positionClass: 'toast-custom',
       timeOut: 3000,
-      progressBar: true
+      progressBar: false,
+      //autoDismiss: true,
+     // maxOpened: 1,
     }),
     HttpClientModule,
     BrowserAnimationsModule,
@@ -173,9 +186,10 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
       color: '#ED6504',
       spinner: false,
     }),
+    InfiniteScrollModule
   ],
   providers: [UserauthService,
-    Location,{provide: LocationStrategy, useClass: HashLocationStrategy},
+    Location, { provide: LocationStrategy, useClass: HashLocationStrategy },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
@@ -191,8 +205,10 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     IsFriendResolve,
     ListUserChatResolve,
     CurrentUserChatResolve,
-    DefaultUserChatResolve
+    DefaultUserChatResolve,
+
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

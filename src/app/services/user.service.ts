@@ -245,7 +245,7 @@ export class UserService {
   }
 
   postPublicTrip(publicTrip): Observable<any[]> {
-    return this.http.post<any[]>(this.BaseURI + this.publicTrip , publicTrip);
+    return this.http.post<any[]>(this.BaseURI + this.publicTrip, publicTrip);
   }
 
   deletePublicTripById(id: number) {
@@ -262,10 +262,10 @@ export class UserService {
 
   //message
   getMessage(id, index): Observable<any> {
-    return this.http.get<any>(this.BaseURI + '/Users/Messages/' + id + '?index=' + index);
+    return this.http.get<any>(this.BaseURI + '/Users/Messages/' + id + '?index=' + index + '&size=' + 15);
   }
-  getListUserChat(index): Observable<any> {
-    return this.http.get<any>(this.BaseURI + '/users/messagesenders?index='+index);
+  getListUserChat(index,size): Observable<any> {
+    return this.http.get<any>(this.BaseURI + '/users/messagesenders?index=' + index + '&size=' + size);
   }
 
   // report

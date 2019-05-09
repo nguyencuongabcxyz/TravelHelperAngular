@@ -10,7 +10,7 @@
       </a>
       <p class="address">{{reference.sender.address}}</p>
     </div>
-    <div class="time"><span>{{reference.createDate|timeAgo}}</span></div>
+    <div class="time"><span>{{reference.createDate|formatDate:"dd/MM/yyyy"}}</span></div>
     <div class="status">
         <i [style.color]="reference.status?'green':'red'"
         class="fas fa-star"></i><span [style.color]="reference.status?'green':'red'"> {{reference.status?'Positive':'Negative'}}</span>

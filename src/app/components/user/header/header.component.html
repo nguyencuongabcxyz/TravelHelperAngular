@@ -74,9 +74,14 @@
                 </a>
             </li>
             <li>
-                <a (click)="this.isMenu = false;" [routerLink]="['/Users/Message']" [queryParams]="{id:idMessage}"
-                    [ngClass]="{'active':isActive()}">
+
+                
+
+                <a (click)="this.isMenu = false;this.isNoty=false;" [routerLink]="['/Users/Message']"
+                    [queryParams]="{id:idMessage}" [ngClass]="{'active':isActive()}">
+
                     <div class="icon">
+                        <div *ngIf="isNoty" class="noti"><i class="fas fa-exclamation"></i></div>
                         <i class="fas fa-comments"></i>
                     </div>
                     <div class="name">
