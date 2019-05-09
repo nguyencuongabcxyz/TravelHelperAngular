@@ -5,7 +5,7 @@ import { HubConnection } from '@aspnet/signalr';
 import * as signalR from '@aspnet/signalr';
 import { UserService } from 'src/app/services/user.service';
 import { BoxChatComponent } from "./box-chat/box-chat.component";
-import { hubConnection, on } from './../../../models/global'
+import { hubConnection } from './../../../models/global'
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
@@ -55,61 +55,19 @@ export class MessageComponent implements OnInit, OnDestroy {
     //this.setup();
     this.user = this.activatedRoute.snapshot.data.user;
     this.listUserChatsAll = this.activatedRoute.snapshot.data.listUserChats;
-    this.listUserChats = this.listUserChatsAll.slice(0, 10);
+    this.listUserChats = this.listUserChatsAll.slice(0, 20);
     console.log(this.listUserChats)
     this.getIdcurrentPeople();
   }
-  // setup() {
-  //   this.hubConnection = new signalR.HubConnectionBuilder()
-  //     .withUrl('https://travelhelperwebsite.azurewebsites.net/chat', {
-  //       accessTokenFactory: () => {
-  //         return this.token;
-  //       },
-  //     } as signalR.IHttpConnectionOptions)
-  //     .build();
-  //   this.connect();
-
-  //   // this.hubConnection.onclose(() => {
-  //   //   this.connect();
-  //   // })
-  // }
-  // async connect() {
-  //   this.hubConnection
-  //     .start()
-  //     .then(() => {
-  //       console.log('Connection Started!')
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       this.sleep(5000);
-  //       this.connect();
-  //     })
-  // }
-  // async sleep(msec) {
-  //   return new Promise(resolve => setTimeout(resolve, msec));
-  // }
   sendMessage(event): void {
     hubConnection
       .invoke('sendChatMessage', event.peopleId, event.textchat)
       .catch(err => console.error(err));
   }
   receive() {
-    // on((from, message) => {
-    //   console.log(from + ":" + message)
-    //   this.receiveMessage = { from: from, message: message };
-    //   if (!this.destroyComponent)
-    //     this.boxChatComponent.loadMessage(this.receiveMessage)
-    // })
     hubConnection.on('sendChatMessage', (from: string, fullName, avatar, message: string) => {
       console.log(from + ":" + message)
       if (!this.destroyComponent) {
-        // this.listUserChats.forEach(item => {
-        //   if (item.id == from) {
-        //     this.listUserChats = this.listUserChats.filter(item => { item.id != from })
-        //     this.listUserChats.unshift(item);
-        //     console.log(this.listUserChats)
-        //   }
-        // })
         if (from == this.user.id) {
           let item = this.listUserChatsAll.filter(item => item.id == this.people.id)
           //console.log(item)
@@ -125,8 +83,8 @@ export class MessageComponent implements OnInit, OnDestroy {
               this.listUserChats.unshift(item[0])
               this.count++;
             }
-            this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
-            this.listUserChats[0].lastedMessage = message;
+            // this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+            // this.listUserChats[0].lastedMessage = message;
 
 
           } else {
@@ -140,7 +98,11 @@ export class MessageComponent implements OnInit, OnDestroy {
             this.listUserChats.unshift(data)
             this.listUserChatsAll.unshift(data)
             this.count++;
+            // this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+            // this.listUserChats[0].lastedMessage = message;
           }
+          this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+          this.listUserChats[0].lastedMessage = message;
           this.cdr.detectChanges();
           this.listchatbox.nativeElement.scrollTop = 0;
         } else {
@@ -158,19 +120,13 @@ export class MessageComponent implements OnInit, OnDestroy {
               this.listUserChats.unshift(item[0])
               this.count++;
             }
-            this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
-            this.listUserChats[0].lastedMessage = message;
+            // this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
+            // this.listUserChats[0].lastedMessage = message;
           } else {
-            // let xxx;
-            // this.service.getPeopleProfile(from).subscribe(
-            //   res => {
-            //     xxx = res;
-            //   }
-            // )
             let data: MessageSender = {
               avatar: avatar,
               fullName: fullName,
-              createDate: new Date,
+              createDate: new Date(),
               lastedMessage: message,
               id: from
             }
@@ -178,32 +134,6 @@ export class MessageComponent implements OnInit, OnDestroy {
             this.listUserChatsAll.unshift(data)
             this.count++;
           }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          // for (let i = 0; i < this.listUserChatsAll.length; i++) {
-          //   if (this.listUserChatsAll[i].id == from) {
-
-
-          //     this.listUserChatsAll.splice(0, 0, this.listUserChats.splice(i, 1)[0]);
-
-
-          //     break;
-          //   }
-          // }
           this.listUserChats[0].createDate = new Date().toLocaleString("en-US", { timeZone: "Iceland" });
           this.listUserChats[0].lastedMessage = message;
         }

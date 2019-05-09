@@ -1,7 +1,6 @@
 
 
 <div class="card box" [ngStyle]="obj">
-
   <div class="headers">
       <img  [src]="user.avatarLocation ? user.avatarLocation : img" class="card-img-top" (click)="onClickPeople()" alt="...">
 
@@ -44,13 +43,10 @@
           <ng-template #traveler>
             <li class="list-group-item">
               <i class="fas fa-user-friends wrapper-icon"></i>
-              <!-- <i class="eva eva-people wrapper-icon"></i> -->
 
                 <span><b>{{trip.trip.travelerNumber}} Traveler{{trip.trip.travelerNumber > 1 ? 's' : ''}}</b> in town</span>
             </li>
           </ng-template>
-
-
 
           <li class="list-group-item">
 
@@ -89,6 +85,4 @@
 
   </div>
 </div>
-
-
 

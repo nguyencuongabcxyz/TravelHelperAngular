@@ -79,6 +79,7 @@ import { TimeAgoPipe } from "time-ago-pipe"
 import { FormatDate } from './pipes/format-date.pipe';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CardResultComponent } from './components/user/reuse/card-result/card-result.component';
 
 
 
@@ -144,7 +145,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
     BoxChatComponent,
     TimeAgoPipe,
-    FormatDate
+    FormatDate,
+    CardResultComponent
   ],
   imports: [
     BrowserModule,

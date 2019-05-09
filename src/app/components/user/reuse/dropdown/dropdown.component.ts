@@ -26,8 +26,8 @@ export class DropdownComponent implements OnInit {
     );
     this.searchedSubject.subscribe(
       value => {
-        this.isload = value.length ? true : false;
-        if (value.length < 1) {
+        this.isload = value.length>1 ? true : false;
+        if (value.length < 2) {
           this.cityNames = [];
         }
       }
@@ -40,7 +40,7 @@ export class DropdownComponent implements OnInit {
       this.myClick.emit();
       if (this.formSearch)
         this.textSelect = this.formSearch.value['select'];
-      this.router.navigate(['/Users/Search'], { queryParams: { type: this.textSelect, location: city } });
+      this.router.navigate(['/Users/Search'], { queryParams: { type: this.textSelect, data: city } });
     }
     this.cityNames = [];
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -11,57 +11,97 @@ import { PublicTrip } from 'src/app/models/publictrip';
   styleUrls: ['./search-host.component.css', './../../../app.component.css']
 })
 export class SearchHostComponent implements OnInit, OnDestroy {
-
-
+  isLoading;
+  items:any[]=[];
   address: string;
   subscriptionParams: Subscription;
   subscription: Subscription;
-  hosts: User[] ;
+  hosts: User[];
   travelers: PublicTrip[];
   peoples: User[];
   length: number;
-
-// tslint:disable-next-line: no-shadowed-variable
-  constructor(private activate: ActivatedRoute, private UserService: UserService) { }
-
+  params;
+  index=0;
+  nothing;
+  // tslint:disable-next-line: no-shadowed-variable
+  constructor(private activate: ActivatedRoute, private UserService: UserService,private cdr:ChangeDetectorRef) { }
   ngOnInit() {
     this.loadData();
+    
+    
   }
 
   loadData() {
+    
     this.subscriptionParams = this.activate.queryParams.subscribe(data => {
+      this.nothing=false;
+      this.isLoading=true;
+      this.index=0;
       console.log(data);
-      this.address = data.location;
-      if(data.type === 'host'){
-        this.subscription = this.UserService.getHostByAddress(this.address).subscribe(users => {
-          this.hosts = users;
-          this.length = this.hosts.length;
+      this.params = data;
+      this.address = data.data;
+      if (data.type === 'host') {
+        this.subscription = this.UserService.getHostByAddress(this.address, 0).subscribe(res => {
+         this.items=res;
+         console.log(res)
+         this.isLoading=false;
         });
-      } else if(data.type === 'traveler') {
-        this.subscription = this.UserService.getTravelerByAddress(this.address).subscribe(trip => {
-          this.travelers = trip;
-          this.length = this.travelers.length;
-          this.hosts = null;
+      } else if (data.type === 'traveler') {
+        this.subscription = this.UserService.getTravelerByAddress(this.address, 0).subscribe(res => {
+         this.items=res;
+         console.log(res)
+         this.isLoading=false;
         });
       }
       else {
-        this.subscription = this.UserService.getUserByFullName(this.address).subscribe(people => {
-          this.peoples = people;
-          this.length = people.length;
-          this.hosts = null;
-          this.travelers = null;
+        this.subscription = this.UserService.getUserByFullName(this.address, 0).subscribe(res => {
+         this.items=res;
+         console.log(res)
+         this.isLoading=false;
         })
       }
     });
   }
-
-
+  loadMoreData() {
+    this.nothing=false;
+    this.index++;
+    if (this.params.type === 'host') {
+      this.subscription = this.UserService.getHostByAddress(this.address, this.index).subscribe(res => {
+        if(!res.length){
+          this.nothing=true;
+        }
+        this.items= this.items.concat(res);
+        this.cdr.detectChanges();
+      });
+    } else if (this.params.type === 'traveler') {
+      this.subscription = this.UserService.getTravelerByAddress(this.address, this.index).subscribe(res => {
+        if(!res.length){
+          this.nothing=true;
+        }
+        this.items= this.items.concat(res);
+        this.cdr.detectChanges();
+      });
+    }
+    else {
+      this.subscription = this.UserService.getUserByFullName(this.address, this.index).subscribe(res => {
+        if(!res.length){
+          this.nothing=true;
+        }
+        this.items= this.items.concat(res);
+        this.cdr.detectChanges();
+      })
+    }
+  }
+  onScrollDown(){
+    console.log("crolldown")
+    this.loadMoreData();
+  }
 
   ngOnDestroy() {
-    if(this.subscription) {
+    if (this.subscription) {
       this.subscription.unsubscribe();
     }
-    if(this.subscriptionParams) {
+    if (this.subscriptionParams) {
       this.subscriptionParams.unsubscribe();
     }
   }

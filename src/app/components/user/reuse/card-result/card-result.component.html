@@ -1,0 +1,47 @@
+<div class="box cover">
+  <div class="top row">
+    <div class="avatar col">
+      <a routerLink="/Users/People/{{type=='traveler'?item.user.id:item.id}}"><img
+          [src]="type=='traveler'?item.user.avatarLocation:item.avatarLocation"></a>
+    </div>
+    <div class="info col">
+      <div class="ro"> <a
+          routerLink="/Users/People/{{type=='traveler'?item.user.id:item.id}}"><span>{{type=='traveler'?item.user.fullName:item.fullName}}</span></a>
+      </div>
+      <div class="ro" *ngIf="item?.user?.address||item?.address"><span class="address">From
+          {{type=='traveler'?item.user.address:item.address}}</span></div>
+      <div class="ro" *ngIf="type!='traveler'&& (item?.user?.occupation || item?.occupation)"><i
+          class="eva eva-briefcase wrapper-icon"></i>
+        <span><strong>{{type=='traveler'?item.user.occupation:item.occupation}}</strong></span>
+      </div>
+      <div class="ro" *ngIf="item?.user?.fluentLanguage||item?.fluentLanguage"><i
+          class="eva eva-globe-2 wrapper-icon"></i>
+        <span>Speaks <strong>{{type=='traveler'?item.user.fluentLanguage:item.fluentLanguage}}</strong></span>
+      </div>
+      <div class="ro"><i
+          class="eva eva-message-square wrapper-icon"></i><span><strong>{{referenceSize?referenceSize:referencesCount}}
+            Reference{{ (referenceSize?referenceSize:referencesCount)> 1 ? 's' : ''}}</strong></span></div>
+      <div class="ro" *ngIf="type=='traveler'"><i class="fab fa-telegram-plane"></i><span>Visit <strong>
+            {{item.destination}}</strong></span>
+      </div>
+      <div class="ro" *ngIf="type!='traveler'"> <i class="fas fa-venus-mars"></i><span><strong>
+            {{item.gender?'Male':'Female'}}</strong></span>
+      </div>
+
+      <div class="ro" *ngIf="type=='traveler'"><i class="fas fa-user-friends wrapper-icon"></i>
+        <span><strong>{{item.travelerNumber}} Traveler{{item.travelerNumber > 1 ? 's' : ''}}</strong></span></div>
+      <div class="ro" *ngIf="type=='traveler'"><i class="far fa-calendar-alt wrapper-icon"></i>
+        <span><strong>{{item.arrivalDate| date:'MMM d'}}</strong> to
+          <strong>{{item.departureDate| date:'MMM d'}}</strong></span></div>
+
+    </div>
+  </div>
+  <div *ngIf="type!='people'" class="bottom">
+    <div *ngIf="type!='people' &&(item?.description||item?.about)" style="padding-right: 10px;">
+      <i class="fas fa-user-alt"></i>
+    </div>
+    <div class="ro" style="align-items: unset;">
+      <p *ngIf="type!='people'">{{type=='traveler'?item.description:item.about}}</p>
+    </div>
+  </div>
+</div>
