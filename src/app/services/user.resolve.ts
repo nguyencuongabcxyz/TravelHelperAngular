@@ -79,7 +79,7 @@ export class DefaultUserChatResolve implements Resolve<any> {
         let id = activatedRouteSnapshot.queryParamMap.get('id');
         console.log(id)
         if (id == null) {
-            this.service.getListUserChat(0).subscribe(
+            this.service.getListUserChat(0,1).subscribe(
                 res => {
                     if (res[0]) {
                         this.router.navigate(['/Users/Message'], { queryParams: { id: res[0].id } })
@@ -87,7 +87,6 @@ export class DefaultUserChatResolve implements Resolve<any> {
                 }
             )
         }
-        console.log(id)
 
     }
 }
@@ -96,7 +95,7 @@ export class ListUserChatResolve implements Resolve<any> {
     constructor(private service: UserService, private router: Router) { }
 
     resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
-        return this.service.getListUserChat(0);
+        return this.service.getListUserChat(0,10000);
 
     }
 }

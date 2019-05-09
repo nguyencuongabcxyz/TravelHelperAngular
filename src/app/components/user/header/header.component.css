@@ -41,8 +41,23 @@ a:hover{
 }
 .menu-bar .icon{
     padding-top: 8px;
-
+    position: relative;
     height: 30px;
+}
+.noti{
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #fc4242;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    right: 3px;
+}
+.noti i{
+    font-size: 10px!important;
+    color: white!important;
 }
 .menu-bar span{
     font-size: 13px;

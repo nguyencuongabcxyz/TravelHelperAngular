@@ -39,6 +39,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
   public searchedSubject = new Subject<string>();
   ngOnInit() {
+
+
     this.placesres = this.activatedRoute.snapshot.data.placesres;
     this.places = this.randomPlace(this.placesres);
     this.interval = setInterval(
@@ -78,7 +80,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   randomPlace(ress): any {
-    
+
     let temp: any[] = [];
     let temps = ress;
     for (let i = 0; i < 3; i++) {
@@ -98,4 +100,5 @@ export class DashboardComponent implements OnInit, OnDestroy {
   openofferToHostModal(event) {
     this.offerToHost.open(event);
   }
+
 }

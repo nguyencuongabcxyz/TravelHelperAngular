@@ -1,10 +1,12 @@
 <div class="cover row box">
         <div class="left-section col-4">
                 <div class="header-section">
-                        <span class="header-title">Message</span>
+                        <span class="header-title">Message</span><i class="fas fa-users icon"></i>
                 </div>
-                <div class="list-chat-box">
-
+                <div #listchatbox class="list-chat-box" infiniteScroll [scrollWindow]="false"
+                        [infiniteScrollDistance]="0.1" [infiniteScrollUpDistance]="0" [infiniteScrollThrottle]="100"
+                        (scrolled)="onScrollDown()">
+                        <div class="none" *ngIf="!listUserChats?.length"> You has no message.</div>
                         <ng-container *ngFor="let sender of listUserChats">
                                 <a [ngClass]="{'active':peopleId==sender.id}" (click)="onClickItem(sender)"
                                         class="sender-item">
@@ -16,22 +18,34 @@
                                                         <div style="display: flex">
                                                                 <span class="name">{{sender.fullName}}</span>
                                                                 <span
-                                                                        class="time">{{sender.createDate | timeAgo}}</span>
+                                                                        class="time">{{(sender.createDate | formatDate:"MM/dd/yyyy HH:mm:ss")|timeAgo}}</span>
                                                         </div>
 
-                                                        <span class="message">{{sender.lastedMessage}}</span>
+                                                        <span *ngIf="sender.isYou">You:</span><span
+                                                                class="message">{{sender.lastedMessage}}</span>
 
                                                 </div>
                                         </div>
                                 </a>
                         </ng-container>
-                        <ng-template #loadingmess> Loading...</ng-template>
-                        <button *ngIf="!isLoadingMess;else loadingmess" (click)="loadMoreList()">more</button>
+                        <div #loadinguserchat class="loading" *ngIf="isLoadingMess"><img
+                                        src="./../../../../../assets/imgs/spinner.gif"></div>
+                        <!-- <ng-template #loadingmess> Loading...</ng-template>
+                        <button *ngIf="!isLoadingMess;else loadingmess" (click)="loadMoreList()">more</button> -->
                 </div>
         </div>
-        <div app-box-chat (send)="sendMessage($event)" [userId]="user.id" [peopleId]="peopleId"
-                class="right-section col-8">
-                <!-- <app-box-chat (send)="sendMessage($event)" [userId]="user.id" [peopleId]="peopleId">
+
+        <ng-container *ngIf="!notFound;else notfound">
+                <ng-container *ngIf="listUserChats?.length || !notFound ">
+                        <div *ngIf="!notFound;else notfound" app-box-chat (send)="sendMessage($event)"
+                                [userId]="user.id" [peopleId]="peopleId" [people]="people" class="right-section col">
+                                <!-- <app-box-chat (send)="sendMessage($event)" [userId]="user.id" [peopleId]="peopleId">
                 </app-box-chat> -->
-        </div>
+                        </div>
+                </ng-container>
+        </ng-container>
+
+        <ng-template #notfound>
+                <div class="right-section col none">Not Found</div>
+        </ng-template>
 </div>
