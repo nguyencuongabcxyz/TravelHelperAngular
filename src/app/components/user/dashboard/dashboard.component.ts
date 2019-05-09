@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
   onSubmit(form) {
     console.log(form.value.input)
-    this.router.navigate(['/Users/Search'], { queryParams: { type: 'host', location: form.value.input } });
+    this.router.navigate(['/Users/Search'], { queryParams: { type: 'host', data: form.value.input } });
   }
   openofferToHostModal(event) {
     this.offerToHost.open(event);

@@ -12,7 +12,7 @@ import { PublicTrip } from 'src/app/models/publictrip';
 })
 export class SearchHostComponent implements OnInit, OnDestroy {
   isLoading;
-  items:any[]=[];
+  items: any[] = [];
   address: string;
   subscriptionParams: Subscription;
   subscription: Subscription;
@@ -21,78 +21,89 @@ export class SearchHostComponent implements OnInit, OnDestroy {
   peoples: User[];
   length: number;
   params;
-  index=0;
+  index = 0;
   nothing;
+  isLoadingMore;
   // tslint:disable-next-line: no-shadowed-variable
-  constructor(private activate: ActivatedRoute, private UserService: UserService,private cdr:ChangeDetectorRef) { }
+  constructor(private activate: ActivatedRoute, private UserService: UserService, private cdr: ChangeDetectorRef) { }
   ngOnInit() {
     this.loadData();
-    
-    
+
+
   }
 
   loadData() {
-    
+
     this.subscriptionParams = this.activate.queryParams.subscribe(data => {
-      this.nothing=false;
-      this.isLoading=true;
-      this.index=0;
+      this.nothing = false;
+      this.isLoading = true;
+      this.index = 0;
       console.log(data);
       this.params = data;
       this.address = data.data;
       if (data.type === 'host') {
         this.subscription = this.UserService.getHostByAddress(this.address, 0).subscribe(res => {
-         this.items=res;
-         console.log(res)
-         this.isLoading=false;
+          if (res.length < 12 && res.length > 0)
+            this.nothing = true;
+          this.items = res;
+          console.log(res)
+          this.isLoading = false;
         });
       } else if (data.type === 'traveler') {
         this.subscription = this.UserService.getTravelerByAddress(this.address, 0).subscribe(res => {
-         this.items=res;
-         console.log(res)
-         this.isLoading=false;
+          if (res.length < 12 && res.length > 0)
+            this.nothing = true;
+          this.items = res;
+          console.log(res)
+          this.isLoading = false;
         });
       }
       else {
         this.subscription = this.UserService.getUserByFullName(this.address, 0).subscribe(res => {
-         this.items=res;
-         console.log(res)
-         this.isLoading=false;
+          if (res.length < 12 && res.length > 0)
+            this.nothing = true;
+          this.items = res;
+          console.log(res)
+          this.isLoading = false;
         })
       }
     });
   }
   loadMoreData() {
-    this.nothing=false;
+    this.isLoadingMore = true;
+    this.nothing = false;
     this.index++;
     if (this.params.type === 'host') {
       this.subscription = this.UserService.getHostByAddress(this.address, this.index).subscribe(res => {
-        if(!res.length){
-          this.nothing=true;
+        this.isLoadingMore = false;
+        if (!res.length) {
+          this.nothing = true;
         }
-        this.items= this.items.concat(res);
+        this.items = this.items.concat(res);
         this.cdr.detectChanges();
       });
     } else if (this.params.type === 'traveler') {
       this.subscription = this.UserService.getTravelerByAddress(this.address, this.index).subscribe(res => {
-        if(!res.length){
-          this.nothing=true;
+        this.isLoadingMore = false;
+        if (!res.length) {
+          this.nothing = true;
         }
-        this.items= this.items.concat(res);
+        this.items = this.items.concat(res);
         this.cdr.detectChanges();
       });
     }
     else {
       this.subscription = this.UserService.getUserByFullName(this.address, this.index).subscribe(res => {
-        if(!res.length){
-          this.nothing=true;
+        this.isLoadingMore = false;
+        if (!res.length) {
+          this.nothing = true;
         }
-        this.items= this.items.concat(res);
+        this.items = this.items.concat(res);
         this.cdr.detectChanges();
       })
     }
   }
-  onScrollDown(){
+  onScrollDown() {
     console.log("crolldown")
     this.loadMoreData();
   }
