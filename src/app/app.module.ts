@@ -68,14 +68,17 @@ import { DashboardAdminComponent } from './components/admin/dashboard-admin/dash
 
 
 import { ItemNotificationComponent } from './components/user/reuse/item-notification/item-notification.component';
+
+import { StatisticComponent } from './components/admin/dashboard-admin/statistic/statistic.component';
+import { TableReportComponent } from './components/admin/dashboard-admin/table-report/table-report.component';
+import { TableBannedComponent } from './components/admin/dashboard-admin/table-banned/table-banned.component';
+
 import { BoxChatComponent } from "./components/user/message/box-chat/box-chat.component";
 
 import { TimeAgoPipe } from "time-ago-pipe"
 import { FormatDate } from './pipes/format-date.pipe';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-
 
 
 
@@ -129,6 +132,15 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
     ItemNotificationComponent,
 
+
+
+    StatisticComponent,
+
+
+    TableReportComponent,
+
+
+    TableBannedComponent,
 
     BoxChatComponent,
     TimeAgoPipe,

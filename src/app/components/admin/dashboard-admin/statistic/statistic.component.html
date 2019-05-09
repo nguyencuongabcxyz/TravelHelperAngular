@@ -1,0 +1,22 @@
+
+  <div class="d-flex align-items-center">
+    <div class="wrapicon">
+      <ng-container *ngIf="type === 'users';else notUsers">
+        <i class="fas fa-users"></i>
+      </ng-container>
+      <ng-template #notUsers>
+        <ng-container *ngIf="type === 'reports'else notReports">
+          <i class="fas fa-sticky-note"></i>
+        </ng-container>
+
+        <ng-template #notReports>
+          <i class="fas fa-user-slash"></i>
+        </ng-template>
+      </ng-template>
+    </div>
+    <div class="m-auto" style="padding: 20px;">
+      <div >123456</div>
+      <div >Users</div>
+    </div>
+  </div>
+

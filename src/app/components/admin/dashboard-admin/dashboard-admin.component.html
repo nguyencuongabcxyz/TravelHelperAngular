@@ -1,43 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-3 box" style="font-size: 25px;  background: #007bff; color: white">
-      <div class="d-flex align-items-center">
-        <div class="wrapicon">
-            <i class="fas fa-users"></i>
-        </div>
-        <div class="m-auto" style="padding: 20px;">
-          <div >123456</div>
-          <div >Users</div>
-        </div>
-      </div>
+      <app-statistic [type]="'users'"></app-statistic>
     </div>
+
 
     <div class="col-sm-1"></div>
 
     <div class="col-sm-3 box" style="font-size: 25px; background: #ffc107; color: white">
-      <div class="d-flex align-items-center">
-        <div class="wrapicon">
-            <i class="fas fa-sticky-note"></i>
-        </div>
-        <div class="m-auto" style="padding: 20px;">
-          <div>5555</div>
-          <div>Reports</div>
-        </div>
-      </div>
+        <app-statistic [type]="'reports'"></app-statistic>
     </div>
 
     <div class="col-sm-1"></div>
 
     <div class="col-sm-3 box" style="font-size: 25px; background: #dc3545; color: white">
-      <div class="d-flex align-items-center">
-        <div class="wrapicon">
-          <i class="fas fa-user-slash"></i>
-        </div>
-        <div class="m-auto" style="padding: 20px;">
-          <div>1243</div>
-          <div>Banned</div>
-        </div>
-      </div>
+        <app-statistic [type]="'banned'"></app-statistic>
     </div>
 
   </div>
@@ -45,112 +22,10 @@
 
   <!-- part 2 -->
 
-
-
-  <div class="card box" style="margin-top: 20px;">
-    <div class="card-header bg-warning" style="color: white">
-        <i class="fas fa-list"></i> List reports
-    </div>
-    <div class="card-body">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">STT</th>
-            <th scope="col">User report</th>
-            <th scope="col">User is reported</th>
-            <th scope="col">Content</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>
-                <button class="btn btn-primary">View</button>
-              </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>
-                <button class="btn btn-primary">View</button>
-              </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-            <td>
-                <button class="btn btn-primary">View</button>
-              </td>
-          </tr>
-          <tr>
-            <th scope="row">...</th>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-            <td>...</td>
-          </tr>
-        </tbody>
-      </table>
-      <a href="#" class="btn btn-warning" style="color: white">See more</a>
-    </div>
-  </div>
+  <app-table-report></app-table-report>
 
 
 <!-- part 3 -->
 
-<div class="card box" style="margin-top: 20px;">
-  <div class="card-header bg-danger" style="color: white">
-    <i class="fas fa-list"></i> List user is banned
-  </div>
-  <div class="card-body">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">STT</th>
-          <th scope="col">User is banned</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>2</td>
-          <td>
-            <button class="btn btn-primary">Active</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>
-            <button class="btn btn-primary">Active</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>
-            <button class="btn btn-primary">Active</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">...</th>
-          <td>...</td>
-          <td>...</td>
-        </tr>
-      </tbody>
-    </table>
-    <a href="#" class="btn btn-danger">See more</a>
-  </div>
-</div>
-
-
+  <app-table-banned></app-table-banned>
 </div>
