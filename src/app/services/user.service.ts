@@ -194,7 +194,7 @@ export class UserService {
   //  =============================
 
   getAdressEntries(term: string): Observable<string[]> {
-    if (term.length < 1)
+    if (term.length < 2)
       return of();
     return this.http.get<string[]>(this.BaseURI + '/Address/' + term);
 
@@ -222,14 +222,14 @@ export class UserService {
   //  =============================
 
 
-  getHostByAddress(address): Observable<any[]> {
+  getHostByAddress(address, index): Observable<any[]> {
     // console.log(this.API + this.Search + address);
 
-    return this.http.get<User[]>(this.BaseURI + this.searchHost + address);
+    return this.http.get<User[]>(this.BaseURI + this.searchHost + address + '&index=' + index);
   }
 
-  getTravelerByAddress(address): Observable<PublicTrip[]> {
-    return this.http.get<PublicTrip[]>(this.BaseURI + this.searchTraveler + address);
+  getTravelerByAddress(address, index): Observable<PublicTrip[]> {
+    return this.http.get<PublicTrip[]>(this.BaseURI + this.searchTraveler + address + '&index=' + index);
   }
 
   getPublicTripUser(): Observable<PublicTrip[]> {
@@ -256,15 +256,15 @@ export class UserService {
     return this.http.put(this.BaseURI + this.changePass, password, { reportProgress: true, observe: "response" });
   }
 
-  getUserByFullName(name: string): Observable<User[]> {
-    return this.http.get<User[]>(this.BaseURI + this.searchUser + name);
+  getUserByFullName(name: string, index): Observable<User[]> {
+    return this.http.get<User[]>(this.BaseURI + this.searchUser + name + '&index=' + index);
   }
 
   //message
   getMessage(id, index): Observable<any> {
-    return this.http.get<any>(this.BaseURI + '/Users/Messages/' + id + '?index=' + index + '&size=' + 15);
+    return this.http.get<any>(this.BaseURI + '/Users/Messages/' + id + '?index=' + index + '&size=' + '25');
   }
-  getListUserChat(index,size): Observable<any> {
+  getListUserChat(index, size): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/users/messagesenders?index=' + index + '&size=' + size);
   }
 

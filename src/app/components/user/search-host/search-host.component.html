@@ -1,21 +1,42 @@
-<!-- <div class="center">
-  <div class="wrapper">
-    <div class="alert alert-light" role="alert">
-        <b>{{peoples.length}} Results</b>
-    </div>
-    <app-people
-      *ngFor="let people of peoples; let i = index"
-      [ngClass]="{left: true, clear: i % 2 === 0 ? true : false}"
-    >
-    </app-people>
+<ng-template #loading>
+  <div class="box cover">
+    <app-loading></app-loading>
   </div>
-</div> -->
+</ng-template>
+
+<div *ngIf="!isLoading;else loading" class="cover">
+  <div class="box result">
+    <span>{{items.length?'':'No '}}Result of {{params.type=='traveler'?'Traveler':(params.type=='host'?'Host':'People')}} with
+      {{params.type=='people'?'name':'place' }} {{params.data}} </span>
+  </div>
+  <div class="row content" infiniteScroll [infiniteScrollDistance]="0.1"
+    [infiniteScrollUpDistance]="0" [infiniteScrollThrottle]="1000" (scrolled)="onScrollDown()">
+    <ng-container *ngFor="let item of items">
+      <div class="item col-md-6 col-sm-12">
+        <app-card-result [type]="params.type" [item]="item"></app-card-result>
+      </div>
+    </ng-container>
+  </div>
+  <!-- <div *ngIf="nothing" class="box result">
+      <span>That's All !</span>
+    </div> -->
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- 
 
 <div class="row">
   <div class="col-sm-2"></div>
 
   <div class="col-sm">
-    <!-- <div class="lds-ring" *ngIf="!peoples"><div></div><div></div><div></div><div></div></div> -->
 
     <div class="d-flex justify-content-center text-secondary m-3" *ngIf="!hosts && !travelers && !peoples; else inform">
         <div class="spinner-border" role="status" style="width: 3em; height: 3em;">
@@ -59,4 +80,4 @@
   <div class="col-sm-2">
 
   </div>
-</div>
+</div> -->

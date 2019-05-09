@@ -25,9 +25,9 @@
                     <option value="people">Find People</option>
                 </select>
                 <div class="search-form-1 col" (clickOutside)="textInput = '';">
-                    <button class="" type="submit"><i class="fas fa-search"></i></button>
+                    <button [disabled]="formSearch.invalid" class="" type="submit"><i class="fas fa-search"></i></button>
                     <input [(ngModel)]="textInput" (keyup)="onKeyup(formSearch);" class="form-control shadow-sm"
-                        type="text" name="input" [placeholder]="placeholder">
+                        type="text" name="input" [placeholder]="placeholder" required>
                     <app-dropdown [formSearch]="formSearch" (myClick)="resetvalue();"
                         [searchedSubject]="searchedSubject"></app-dropdown>
                 </div>

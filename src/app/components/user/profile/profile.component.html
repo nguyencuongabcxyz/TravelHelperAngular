@@ -44,7 +44,7 @@
             [style.display]="isdrop?'block':'none'">
             <button *ngIf="!isFriend" (click)="sendFriendRequest()" class="dropdown-item" type="button">Add
               Friend</button>
-            <button *ngIf="isFriend" class="dropdown-item" type="button">Remove Friend</button>
+            <!-- <button *ngIf="isFriend" class="dropdown-item" type="button">Remove Friend</button> -->
             <button (click)="writeReferenceModal.open();" class="dropdown-item" type="button">Write Reference</button>
             <button (click)="sendReportModal.open();" class="dropdown-item" type="button">Report</button>
           </div>

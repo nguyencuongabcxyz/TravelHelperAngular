@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, OnDestroy, Cha
 import { UserService } from './../../services/user.service';
 import { Router, Event, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { NgProgressComponent } from '@ngx-progressbar/core'
-import { con, dis, hubConnection, on } from './../../models/global'
+import { con, dis, hubConnection } from './../../models/global'
 import { ToastrService } from 'ngx-toastr';
 import { userInfo } from 'os';
 import { HeaderComponent } from './header/header.component';

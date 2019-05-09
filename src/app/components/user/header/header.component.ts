@@ -3,9 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { User } from './../../../models/user';
 import { Subject, Subscription, from } from 'rxjs';
-import { con, dis, hubConnection, on } from './../../../models/global'
-import { useAnimation } from '@angular/animations';
-import { userInfo } from 'os';
+import { con, dis, hubConnection } from './../../../models/global'
 import { Toast, ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-header',
@@ -85,7 +83,7 @@ export class HeaderComponent implements OnInit {
   onSubmit(form) {
     this.isSearch = false;
     this.textInput = '';
-    this.router.navigate(['/Users/Search'], { queryParams: { type: form.value.select, location: form.value.input } });
+    this.router.navigate(['/Users/Search'], { queryParams: { type: form.value.select, data: form.value.input } });
   }
   resetvalue() {
     this.textInput = '';
