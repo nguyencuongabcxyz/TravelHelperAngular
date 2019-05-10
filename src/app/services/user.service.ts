@@ -94,6 +94,9 @@ export class UserService {
   ignoreRequest(id): Observable<any> {
     return this.http.delete<any>(this.BaseURI + '/TravelRequests/' + id, { reportProgress: true, observe: "response" });
   }
+  cancelRequest(id): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/TravelRequests/CancelRequest/' + id, { reportProgress: true, observe: "response" });
+  }
   //=============================
   getHostOffer(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users/HostOffers');
@@ -106,6 +109,9 @@ export class UserService {
   }
   ignoreHostOffer(id): Observable<any> {
     return this.http.delete<any>(this.BaseURI + '/HostOffers/' + id, { reportProgress: true, observe: "response" });
+  }
+  cancelHostOffer(id): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/HostOffers/CancelOffer/' + id, { reportProgress: true, observe: "response" });
   }
   //==============================
   getFriendRequest(): Observable<any> {
@@ -120,7 +126,9 @@ export class UserService {
   ignoreFriendRequest(id): Observable<any> {
     return this.http.delete<any>(this.BaseURI + '/FriendRequests/' + id, { reportProgress: true, observe: "response" });
   }
-
+  cancelFriendRequest(id): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/FriendRequests/CancelRequest/' + id, { reportProgress: true, observe: "response" });
+  }
   //  =============================
   getUserProfile(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users');

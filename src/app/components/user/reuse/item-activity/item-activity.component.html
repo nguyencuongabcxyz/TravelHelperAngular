@@ -1,6 +1,6 @@
 <div class="item">
     <div class="activity row">
-        <div class="activity-info col-sm-12 col-md-3">
+        <div class="activity-info col-sm-12 " [ngClass]="(data.type=='friendrequest')?'col-md-5':'col-md-3'">
             <div class="card-info">
                 <div class="avatar">
                     <a routerLink="/Users/People/{{data.select==='received'?item.sender.id:item.receiver.id}}">
@@ -35,14 +35,14 @@
                 </div>
             </div>
         </div>
-        <div class="action col-lg-2 col-md-12">
+        <div class="action col-lg-2 " [ngClass]="(data.type=='friendrequest')?'col-md-2':'col-md-12'">
             <div class="button-bar">
                 <button *ngIf="data.select=='received'" [disabled]="item.isAccepted || isdiabled" (click)="onAccept()"
                     [ngClass]="item.isAccepted?'btn-success':'btn-primary'"
                     class="btn ">{{item.isAccepted?'Accepted':'Accept'}}</button>
-                <button *ngIf="data.select=='received'" [disabled]="isdiabled" (click)="onIgnore()"
+                <button *ngIf="data.select=='received'" [disabled]="isdiabled" (click)="onAction('ignore')"
                     class="btn btn-danger">Ignore</button>
-                <button *ngIf="data.select=='sent'" [disabled]="isdiabled" (click)="onCancel()"
+                <button *ngIf="data.select=='sent'" [disabled]="isdiabled" (click)="onAction('cancel')"
                     class="btn btn-danger">Cancel</button>
             </div>
             <div class="time">
