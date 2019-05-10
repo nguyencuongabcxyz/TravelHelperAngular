@@ -72,7 +72,7 @@ export class ItemActivityComponent implements OnInit {
     }
   }
 
-  onIgnore() {
+  onAction(event) {
     this.isdiabled = true;
     let id;
     if (this.data.type == 'travelrequest') {
@@ -84,9 +84,10 @@ export class ItemActivityComponent implements OnInit {
     }
 
     let body = {
-      type: 'ignore', id: id
+      type: event, id: id
     }
 
     this.myClick.emit(body);
   }
+ 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy, ElementR
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { con } from 'src/app/models/global';
 class Data {
   type?;
   select?;
@@ -259,7 +260,7 @@ export class ActivityComponent implements OnInit {
         }
       )
     } else if (event.type == 'acceptfriend') {
-     // console.log(event)
+      // console.log(event)
       this.service.acceptFriendRequest(event.id).subscribe(
         res => {
           this.toast.success('Accepted')
@@ -267,6 +268,32 @@ export class ActivityComponent implements OnInit {
 
         }
       );
+    } else if (event.type == 'cancel') {
+      console.log(event)
+      if (this.data.type == 'travelrequest') {
+        this.service.cancelRequest(event.id).subscribe(
+          res => {
+              this.toast.success('Canceled')
+              this.items = this.items.filter(item => item.travelRequestId !== event.id);
+          }
+        );
+      } else if (this.data.type == 'hostoffer') {
+        this.service.cancelHostOffer(event.id).subscribe(
+          res => {
+              this.toast.success('Canceled')
+              this.items = this.items.filter(item => item.hostOfferId !== event.id);
+           
+          }
+        );
+      } else if (this.data.type == 'friendrequest') {
+        this.service.cancelFriendRequest(event.id).subscribe(
+          res => {
+              this.toast.success('Canceled')
+              this.items = this.items.filter(item => item.friendRequestId !== event.id);
+            
+          }
+        );
+      }
     }
 
   }
