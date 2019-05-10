@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Resolve, ActivatedRouteSnapshot, Router } from "@angular/router";
 import { Observable, of } from "rxjs";
 import { UserService } from "./../services/user.service";
+import { AdminService } from './admin.service';
 
 @Injectable()
 export class TokenResolve implements Resolve<any> {
@@ -96,6 +97,33 @@ export class ListUserChatResolve implements Resolve<any> {
 
     resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
         return this.service.getListUserChat(0,10000);
+
+    }
+}
+@Injectable()
+export class quantityUserResolve implements Resolve<any> {
+    constructor(private service: AdminService, private router: Router) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
+        return this.service.getUserQuantity();
+
+    }
+}
+@Injectable()
+export class quantityReportResolve implements Resolve<any> {
+    constructor(private service: AdminService, private router: Router) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
+        return this.service.getReportQuantity();
+
+    }
+}
+@Injectable()
+export class quantityBanResolve implements Resolve<any> {
+    constructor(private service: AdminService, private router: Router) { }
+
+    resolve(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<any> {
+        return this.service.getBanQuantity();
 
     }
 }
