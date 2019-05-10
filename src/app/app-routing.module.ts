@@ -23,7 +23,7 @@ import { ReferencesComponent } from './components/user/profile/references/refere
 
 import { ChangePassComponent } from './components/user/change-pass/change-pass.component';
 
-import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve } from './services/user.resolve';
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve, quantityUserResolve, quantityBanResolve, quantityReportResolve } from './services/user.resolve';
 import { FriendsComponent } from './components/user/profile/friends/friends.component';
 import { ActivityComponent } from './components/user/activity/activity.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -107,11 +107,17 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']},resolve: { users: UserResolve },
+    path: 'Admin', component: AdminComponent, canActivate: [AuthGuard], data: {permittedRoles: ['Admin']},
+    resolve: { users: UserResolve},
     children: [
       { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
       {
-        path: 'Dashboard', component: DashboardAdminComponent
+        path: 'Dashboard', component: DashboardAdminComponent,
+        resolve: {
+          quantityUser: quantityUserResolve,
+          quantityReport: quantityReportResolve,
+          quantityBan: quantityBanResolve
+        }
       },
       {
         path: 'Report', component: ReportUserComponent

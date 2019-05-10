@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AdminService } from 'src/app/services/admin.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-table-banned',
@@ -12,8 +13,8 @@ export class TableBannedComponent implements OnInit {
   list;
   urlCur;
   img = '/assets/imgs/avatar.png';
-  
-  constructor(private adminService: AdminService, private router: Router, private _dataService: DataService) { }
+
+  constructor(private adminService: AdminService, private router: Router, private _dataService: DataService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.urlCur = this.router.url;
@@ -33,9 +34,17 @@ export class TableBannedComponent implements OnInit {
   }
 
   async onClickActive(id) {
-    var a = await this.adminService.openUser(id).toPromise().catch(err => err);
-    console.log(a);
+    var active = await this.adminService.openUser(id).toPromise().catch(err => {console.log(err)});
     this.load();
+    if(active){
+      this.toastr.success('Success', 'Active User');
+    }
+    else {
+      this.toastr.error('Active failed', 'Error');
+    }
+    if(this.urlCur == '/Admin/Dashboard'){
+      this._dataService.onClickDel(true);
+    }
   }
 
   async onClickSeeMore(){

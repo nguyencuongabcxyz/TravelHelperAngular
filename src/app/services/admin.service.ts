@@ -14,6 +14,9 @@ export class AdminService {
   lockUser = '/Users/Lock/';
   unLockUser = '/Users/Unlock/';
   listBan = '/Users/BannedUsers';
+  userQuantity = '/Users/UserQuantity';
+  banQuantity = '/Users/BannedQuantity';
+  reportQuantity = '/Reports/ReportQuantity';
 
   getAllReport(id): Observable<any>{
     return this.http.get(this.BaseURI + this.getReport + id);
@@ -37,5 +40,17 @@ export class AdminService {
 
   changeStateReport(id): Observable<any>{
     return this.http.put(this.BaseURI + this.Report + id, {});
+  }
+
+  getUserQuantity(): Observable<any>{
+    return this.http.get(this.BaseURI + this.userQuantity);
+  }
+
+  getBanQuantity(): Observable<any> {
+    return this.http.get(this.BaseURI + this.banQuantity);
+  }
+
+  getReportQuantity(): Observable<any> {
+    return this.http.get(this.BaseURI + this.reportQuantity);
   }
 }

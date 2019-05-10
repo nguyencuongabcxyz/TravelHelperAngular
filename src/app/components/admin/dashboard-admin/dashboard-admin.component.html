@@ -1,20 +1,20 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-sm-3 box" style="font-size: 25px;  background: #007bff; color: white">
-      <app-statistic [type]="'users'"></app-statistic>
+      <app-statistic [type]="'Users'" [value]="userQuantity" ></app-statistic>
     </div>
 
 
     <div class="col-sm-1"></div>
 
     <div class="col-sm-3 box" style="font-size: 25px; background: #ffc107; color: white">
-        <app-statistic [type]="'reports'"></app-statistic>
+        <app-statistic [type]="'Reports'" [value]="reportQuantity" ></app-statistic>
     </div>
 
     <div class="col-sm-1"></div>
 
     <div class="col-sm-3 box" style="font-size: 25px; background: #dc3545; color: white">
-        <app-statistic [type]="'banned'"></app-statistic>
+        <app-statistic [type]="'Banned'" [value]="banQuantity" ></app-statistic>
     </div>
 
   </div>

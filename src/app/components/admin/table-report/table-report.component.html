@@ -12,7 +12,7 @@
             <th scope="col">#</th>
             <th scope="col">User report</th>
             <th scope="col">User is reported</th>
-            
+
             <th scope="col">Content</th>
             <th scope="col">Action</th>
           </tr>
@@ -20,7 +20,7 @@
         <tbody>
             <tr id="{{item.reportId}}" *ngFor="let item of list; let index = index" [ngClass]="{ solve: item.isSolved}">
                 <td>{{index + 1}}</td>
-                <td  >
+                <td class="sender" (click)="onClickUser(item.sender.id)" >
                   <div class="d-flex align-items-center">
                     <div class="wrapicon">
                       <img src="{{item.sender.avatarLocation ? item.sender.avatarLocation : img }}" width="32px" height="32px" alt="">
@@ -31,7 +31,7 @@
                     </div>
                   </div>
                 </td>
-                <td  >
+                <td class="receiver" (click)="onClickUser(item.receiver.id)" >
                   <div class="d-flex align-items-center">
                     <div class="wrapicon">
                       <img src="{{item.receiver.avatarLocation ? item.receiver.avatarLocation : img }}" width="32px" height="32px" alt="">
@@ -42,7 +42,7 @@
                     </div>
                   </div>
                 </td>
-               
+
                 <td style="width: 30%" >
                   <div>
                       <b>{{item.type}}:</b>
@@ -79,7 +79,7 @@
 
 
 
-        
+
         </tbody>
       </table>
       <ng-container *ngIf="urlCur === '/Admin/Report'; else notReport">
