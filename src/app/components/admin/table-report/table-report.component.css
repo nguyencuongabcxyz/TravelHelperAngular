@@ -26,7 +26,7 @@ i{
 
 span {
   font-size: 30px;
-  
+
 }
 
 .ban{
@@ -36,3 +36,12 @@ span {
 .fullName{
   border-bottom: 1px solid #CCC
 }
+
+.sender, .receiver{
+  cursor: pointer;
+}
+
+.sender:hover, .receiver:hover{
+  background: #DDD;
+}
+

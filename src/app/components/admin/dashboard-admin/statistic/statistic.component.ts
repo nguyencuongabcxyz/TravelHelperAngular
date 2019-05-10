@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class StatisticComponent implements OnInit {
   @Input() type: string;
+  @Input() value: number;
   constructor() { }
 
   ngOnInit() {

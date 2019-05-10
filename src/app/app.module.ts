@@ -44,7 +44,7 @@ import { DropdownComponent } from './components/user/reuse/dropdown/dropdown.com
 import { UploadComponent } from './components/user/reuse/upload/upload.component';
 import { PhotosComponent } from './components/user/profile/photos/photos.component';
 import { HomeComponent } from './components/user/profile/home/home.component';
-import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve } from './services/user.resolve';
+import { UserResolve, ProfileResolve, TokenResolve, HomeResolve, PlacesDashboardResolve, IsFriendResolve, ListUserChatResolve, CurrentUserChatResolve, DefaultUserChatResolve, quantityUserResolve, quantityBanResolve, quantityReportResolve } from './services/user.resolve';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { ReferenceComponent } from './components/user/reuse/reference/reference.component';
 import { ReferencesComponent } from './components/user/profile/references/references.component';
@@ -204,7 +204,9 @@ import { CardResultComponent } from './components/user/reuse/card-result/card-re
     ListUserChatResolve,
     CurrentUserChatResolve,
     DefaultUserChatResolve,
-
+    quantityUserResolve,
+    quantityReportResolve,
+    quantityBanResolve
   ],
   bootstrap: [AppComponent]
 })
