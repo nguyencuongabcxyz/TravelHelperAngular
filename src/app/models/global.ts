@@ -38,10 +38,11 @@ async function connect() {
         .catch((err) => {
             count++;
             console.log(count);
-            if (count < 10)
+            if (count < 10) {
                 setTimeout(() => {
                     connect();
                 }, 5000);
+            }
 
         })
 }

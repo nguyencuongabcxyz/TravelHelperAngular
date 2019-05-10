@@ -3,7 +3,10 @@
   padding-top: 20px !important;
   padding-bottom: 20px !important;
 }
-
+.frame{
+  max-width: 500px;
+  margin: auto;
+}
 
 
 .form-control:focus{

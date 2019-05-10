@@ -56,5 +56,13 @@ export class ProfileComponent implements OnInit {
       }
     )
   }
-
+  removeFriend(){
+    this.isdrop = false;
+    this.isFriend=false;
+    this.service.removeFriend(this.user.id).subscribe(
+      res=>{
+        this.toast.success("Remove Friend Successed ");
+      }
+    )
+  }
 }

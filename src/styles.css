@@ -9,7 +9,7 @@
 
 }
 body{
-  background-image: url("/assets/imgs/back-ground.jpg") ;
+    background-image: linear-gradient( rgba(50, 0, 0, 0.1), rgba(50, 0, 0, 0.5) ), url(/assets/imgs/back-ground.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; 
@@ -128,7 +128,9 @@ a{
   margin-bottom: 10px!important;
 }
 .box-header{
-  background-image: linear-gradient(to right, wheat , white);
+  color: wheat;
+  background-image: linear-gradient(to right, #27374c , #27374c);
+  /* background-image: linear-gradient(to right, wheat , white); */
   /* background-image: linear-gradient(to right, #e1e6db , #e2dede); */
   padding: 15px 20px;
   border-bottom: 1px solid rgba(0,0,0,0.15);
