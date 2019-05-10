@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { UserService } from './../../../services/user.service'
 import { PublicTrip } from './../../../models/publictrip'
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   user: any = {};
   trips: any[];
   publicTrips: any[];
-  constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private service: UserService, private activatedRoute: ActivatedRoute, private router: Router, private cdr:ChangeDetectorRef) { }
   public searchedSubject = new Subject<string>();
   ngOnInit() {
 
@@ -46,7 +46,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.interval = setInterval(
       () => {
         // this.places =[];
+      
         this.places = this.randomPlace(this.placesres);
+       // this.cdr.detectChanges()
       }, 4000
     );
     // this.trips=[];

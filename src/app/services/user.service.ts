@@ -129,6 +129,9 @@ export class UserService {
   cancelFriendRequest(id): Observable<any> {
     return this.http.put<any>(this.BaseURI + '/FriendRequests/CancelRequest/' + id, { reportProgress: true, observe: "response" });
   }
+  removeFriend(id): Observable<any> {
+    return this.http.put<any>(this.BaseURI + '/users/CancelFriend/' + id, { reportProgress: true, observe: "response" });
+  }
   //  =============================
   getUserProfile(): Observable<any> {
     return this.http.get<any>(this.BaseURI + '/Users');
