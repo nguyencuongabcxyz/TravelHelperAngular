@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { User } from './../../../../models/user'
 import { UserService } from './../../../../services/user.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
     additionInfo: null
   });
   constructor(public route: Router, public fbhome: FormBuilder, public fbabout: FormBuilder,
-    public service: UserService, public toastr: ToastrService, private activatedRoute: ActivatedRoute) {
+    public service: UserService, public toastr: ToastrService, private activatedRoute: ActivatedRoute, private cdr:ChangeDetectorRef) {
 
   }
 
@@ -74,6 +74,7 @@ export class EditComponent implements OnInit {
   // }
   setAvatar(event) {
     this.user.avatarLocation = event;
+    this.cdr.detectChanges();
   }
   setvalueabout() {
     this.formabout.setValue({

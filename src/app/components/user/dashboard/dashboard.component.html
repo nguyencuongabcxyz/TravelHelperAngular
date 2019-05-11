@@ -111,7 +111,7 @@
       </ng-template>
       <ng-template #nothing>
         <div class="nothing">
-          <span>Nothing to show</span>
+          <span>You don't have public trip</span>
         </div>
       </ng-template>
       <ng-container *ngIf="trips;else loading">
@@ -134,6 +134,11 @@
     </div>
 
     <!-- Plan -->
+    <ng-template #nothing1>
+      <div class="nothing">
+        <span>No public trip to your country</span>
+      </div>
+    </ng-template>
     <div class="box public-trips">
       <div class="box-header">
         <i class="fas fa-users"></i><span>TRAVELERS LOOKING FOR HOSTS</span>
@@ -142,7 +147,7 @@
         <app-loading></app-loading>
       </ng-template>
       <ng-container *ngIf="publicTrips;else loading">
-        <ng-container *ngIf="publicTrips.length;else nothing">
+        <ng-container *ngIf="publicTrips.length;else nothing1">
           <ng-container *ngFor="let publicTrip of publicTrips">
 
             <app-publictrip (myClick)="openofferToHostModal($event)" [publicTrip]="publicTrip"></app-publictrip>
