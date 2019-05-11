@@ -7,11 +7,11 @@ import { NgProgressComponent } from '@ngx-progressbar/core'
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.css','./../../../app.component.css']
+  styleUrls: ['./signin.component.css', './../../../app.component.css']
 })
 export class SigninComponent implements OnInit {
   @ViewChild(NgProgressComponent) progressBar: NgProgressComponent;
-  constructor(private userservice: UserService,private service: UserauthService, private router: Router, private toastr: ToastrService) { }
+  constructor(private userservice: UserService, private service: UserauthService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit() {
     // if (localStorage.getItem('token') != null)
@@ -21,9 +21,14 @@ export class SigninComponent implements OnInit {
     this.progressBar.start();
     this.service.login(form.value).subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token);
-        this.progressBar.complete();
-        this.router.navigateByUrl('/Users');
+        if (res.token) {
+          localStorage.setItem('token', res.token);
+          this.progressBar.complete();
+          this.router.navigateByUrl('/Users');
+        } else {
+          this.progressBar.complete();
+          this.toastr.error('User had been blocked.', 'Authentication failed.');
+        }
       },
       err => {
         this.progressBar.complete();

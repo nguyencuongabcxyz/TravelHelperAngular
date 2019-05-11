@@ -105,7 +105,8 @@ export class SearchHostComponent implements OnInit, OnDestroy {
   }
   onScrollDown() {
     console.log("crolldown")
-    this.loadMoreData();
+    if (this.items.length)
+      this.loadMoreData();
   }
 
   ngOnDestroy() {
